@@ -21,6 +21,9 @@ class App extends React.Component {
     }
     return (
       <Scene>
+        <Entity primitive='a-assets'>
+           <img id="cake" src="../assets/cake.jpg"/>
+        </Entity>
         <Entity primitive='a-camera'>
           <Entity primitive='a-cursor'></Entity>
         </Entity>

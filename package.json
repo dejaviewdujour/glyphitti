@@ -1,6 +1,6 @@
 {
-  "name": "aframe-hello-world-boilerplate",
-  "description": "Boilerplate with A-Frame's 'Hello, World!' of WebVR.",
+  "name": "Glyphitti",
+  "description": "Get your urges out",
   "version": "0.3.0",
   "license": "MIT",
   "scripts": {
@@ -19,5 +19,8 @@
     "aframe-scene",
     "webvr",
     "vr"
-  ]
+  ],
+  "dependencies": {
+    "heroku": "^7.20.1"
+  }
 }

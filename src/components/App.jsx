@@ -13,7 +13,10 @@ class App extends React.Component {
   }
 
 update = () => {
-  let newValue = [{ x: 1, y: 2, z: -2.977 }];
+  let x = event.detail.intersection.point.x;
+  let y = event.detail.intersection.point.y;
+  let z = event.detail.intersection.point.z;
+  let newValue = [{ x, y, z }];
 
   this.setState({
     location: newValue
@@ -22,7 +25,7 @@ update = () => {
 
   handleClick = () => {
     this.update();
-      console.log('Clicked!', this.state.location);
+      console.log('Clicked!', event.detail.intersection.point);
   }
   
   render () {

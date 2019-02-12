@@ -34,6 +34,7 @@ class App extends React.Component {
 
     return (
       <Scene cursor="rayOrigin: mouse">
+        <a-entity daydream-controls />
         <Entity primitive="a-assets">
           <img id="petraglyph" src="../assets/petraglyph.png" />
           <img id="sky" src="../assets/pefo.jpg" />

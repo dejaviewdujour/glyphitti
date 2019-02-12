@@ -11,14 +11,14 @@ class StampImage extends React.Component {
   render () {
     return (
       <Entity primitive='a-plane' 
-      plane src="#cake" 
+      plane src="#petraglyph" 
       height=".5" 
       width=".5" 
       rotation="0 0 0" 
       position={this.props.stamps[0]} 
       scale="1 1 1" 
-      visible={this.props.visible}
-      material="src:#cake"
+      visible={this.props.visible[0]}
+      material="src:#petraglyph; transparent: true"
       geometry="primitive:plane;height:.5;width:.5"/>
     );
   }

@@ -33,7 +33,13 @@ update = () => {
     return (
       <Scene>
         <Entity primitive='a-assets'>
-           <img id="cake" src="../assets/cake.jpg"/>
+           <img id="petraglyph" src="../assets/petraglyph.png"/>
+           <img id="sky" src="../assets/pefo.jpg"/>
+           {/* <video id="video" style="display:none" 
+               autoplay loop crossorigin="anonymous" playsinline webkit-playsinline>
+          <source type="video/mp4"
+               src="https://ucarecdn.com/fadab25d-0b3a-45f7-8ef5-85318e92a261/" />
+        </video> */}
         </Entity>
         <Entity primitive='a-camera'>
           <Entity primitive='a-cursor'></Entity>
@@ -46,25 +52,16 @@ update = () => {
             scale="4 3.61 1"
             visible="true"
             color="#FFF"
-            material="side: double; color: #000; transparent: true; opacity: 0.10"
+            material="side: double; color: #c9890a; transparent: true; opacity: 0.10"
             geometry="primitive:plane" 
             quaternion=""
             velocity=""
             dynamic-body="sphereRadius:NaN" />
         <StampImage stamps={this.state.location}
         visible={this.state.visible} />
-        <Entity primitive='a-plane' 
-            id="floor" 
-            position="0 0 -4" 
-            rotation="-90 0 0"  
-            scale="3 3 1" 
-            width="4" 
-            height="4" 
-            color="#7BC8A4" 
-            visible="true" 
-            material="color:#7BC8A4" 
-            geometry="primitive:plane;width:4;height:4" 
-            static-body="sphereRadius:NaN"/>
+        <Entity primitive="a-sky"
+        src="../assets/pefo.jpg" 
+        rotation="0 -130 0"/>
       </Scene>
     );
   }

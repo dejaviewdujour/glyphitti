@@ -8,8 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: [{ x: -0.053, y: 1.161, z: -2.977 }],
-      visible: true,
+      locations: [],
     };
   }
 
@@ -17,11 +16,10 @@ class App extends React.Component {
     const x = event.detail.intersection.point.x;
     const y = event.detail.intersection.point.y;
     const z = event.detail.intersection.point.z;
-    const newValue = [{ x, y, z }];
+    const newValue = { x, y, z };
 
     this.setState({
-      location: newValue,
-      visible: true,
+      locations: [...this.state.locations, newValue],
     });
   };
 
@@ -30,6 +28,10 @@ class App extends React.Component {
   };
 
   render() {
+    const stamps = this.state.locations.map((obj, i) => (
+      <StampImage position={obj} key={i} />
+    ));
+
     return (
       <Scene cursor="rayOrigin: mouse">
         <Entity primitive="a-assets">
@@ -47,7 +49,7 @@ class App extends React.Component {
           id="wall"
           position=".5 1 -2"
           rotation="0 0 0"
-          scale="8 3.61 1"
+          scale="7 3.61 1"
           visible="true"
           color="#FFF"
           material="side: double; color: #c9890a; transparent: true; opacity: 0.2"
@@ -56,12 +58,8 @@ class App extends React.Component {
           velocity=""
           dynamic-body="sphereRadius:NaN"
         />
-        <StampImage stamps={this.state.location} visible={this.state.visible} />
-        <Entity
-          primitive="a-sky"
-          src="../assets/pefo.jpg"
-          rotation="0 -130 0"
-        />
+        {stamps}
+        <Entity primitive="a-sky" src="../assets/pefo.jpg" rotation="0 75 0" />
         <Entity primitive="a-camera">
           <Entity primitive="a-cursor" />
         </Entity>

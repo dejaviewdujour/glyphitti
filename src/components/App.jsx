@@ -8,7 +8,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: [{ x: -0.053, y: 1.161, z: -2.977 }]
+      location: [{ x: -0.053, y: 1.161, z: -2.977 }],
+      visible: false
     }
   }
 
@@ -19,13 +20,13 @@ update = () => {
   let newValue = [{ x, y, z }];
 
   this.setState({
-    location: newValue
+    location: newValue,
+    visible: true
 })
 }
 
   handleClick = () => {
     this.update();
-      console.log('Clicked!', event.detail.intersection.point);
   }
   
   render () {
@@ -50,7 +51,8 @@ update = () => {
             quaternion=""
             velocity=""
             dynamic-body="sphereRadius:NaN" />
-        <StampImage stamps={this.state.location} />
+        <StampImage stamps={this.state.location}
+        visible={this.state.visible} />
         <Entity primitive='a-plane' 
             id="floor" 
             position="0 0 -4" 

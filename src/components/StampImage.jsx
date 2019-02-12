@@ -10,7 +10,6 @@ class StampImage extends React.Component {
   
   render () {
     return (
-    //   <Entity primitive='a-sphere' color="green" position={`-2 0 ${this.props.y}`}/>
       <Entity primitive='a-plane' 
       plane src="#cake" 
       height=".5" 
@@ -18,7 +17,7 @@ class StampImage extends React.Component {
       rotation="0 0 0" 
       position={this.props.stamps[0]} 
       scale="1 1 1" 
-      visible="true" 
+      visible={this.props.visible}
       material="src:#cake"
       geometry="primitive:plane;height:.5;width:.5"/>
     );

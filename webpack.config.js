@@ -1,12 +1,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.jsx"),
-  output: {
-    path: path.join(__dirname, "build"),
-    filename: "index.bundle.js",
-  },
   mode: process.env.NODE_ENV || "development",
   module: {
     rules: [
@@ -19,11 +16,11 @@ module.exports = {
       },
     ],
   },
-  devtool: "cheap-module-eval-source-map",
+  devtool:
+    process.env.NODE_ENV === "development" && "cheap-module-eval-source-map",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/dist",
   },
   devServer: {
     contentBase: path.join(__dirname, "src"),
@@ -32,6 +29,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "index.html"),
     }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, "src/assets"),
+        to: path.resolve(__dirname, "dist/assets"),
+      },
+    ]),
   ],
   resolve: {
     extensions: [".webpack.js", ".js", ".jsx"],

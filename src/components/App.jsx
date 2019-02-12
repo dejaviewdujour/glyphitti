@@ -47,12 +47,12 @@ update = () => {
         <Entity events={{click: this.handleClick}} 
             primative ='a-plane'
             id="wall"
-            position="-1 0.5 -3"
+            position=".5 1 -2"
             rotation="0 0 0"
-            scale="4 3.61 1"
+            scale="8 3.61 1"
             visible="true"
             color="#FFF"
-            material="side: double; color: #c9890a; transparent: true; opacity: 0.10"
+            material="side: double; color: #c9890a; transparent: true; opacity: 0.2"
             geometry="primitive:plane" 
             quaternion=""
             velocity=""

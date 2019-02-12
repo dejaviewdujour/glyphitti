@@ -4745,7 +4745,7 @@ heroku-exec-util@0.7.3:
     temp "0.8.3"
     uuid "3.2.1"
 
-heroku@^7.21.0:
+heroku@^7.20.1:
   version "7.21.0"
   resolved "https://registry.yarnpkg.com/heroku/-/heroku-7.21.0.tgz#09ca91da9692c05c49adfe2ba0057021747bc870"
   integrity sha512-o8lphioauniFxBJ3tRQKhMvdsAYSub6zQDJnqHJNrek7/LTsAvfm8018aGkS7aZbEs8nCaJ003h8d2BGfoCzeA==
@@ -5773,6 +5773,11 @@ lcid@^2.0.0:
   integrity sha512-avPEb8P8EGnwXKClwsNUgryVjllcRqtMYa49NTsbQagYuT1DcXnl1915oxWjoyGrXR6zH/Y0Zc96xWsPcoDKeA==
   dependencies:
     invert-kv "^2.0.0"
+
+lint@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/lint/-/lint-1.1.2.tgz#35ed064f322547c331358d899868664968ba371f"
+  integrity sha1-Ne0GTzIlR8MxNY2JmGhmSWi6Nx8=
 
 livereload-js@^2.2.0:
   version "2.4.0"

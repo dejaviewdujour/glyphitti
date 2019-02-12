@@ -6,12 +6,9 @@ let app = express();
 
 app.use(serveStatic(path.resolve(__dirname, "dist")));
 
-app.get("/", (rec, res) => {
-  res.send("hello world");
-});
-
-app.listen(3000, () => {
-  console.log(`Running a server at localhost:3000`);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server up and listening on port ${port}`);
 });
 
 module.exports = app;

@@ -9,7 +9,8 @@
     "start": "node app.js",
     "heroku-postbuild": "yarn build",
     "deployghpages": "ghpages",
-    "ghpages": "ghpages"
+    "ghpages": "ghpages",
+    "precommit": "pretty-quick --staged"
   },
   "keywords": [
     "aframe",
@@ -33,18 +34,20 @@
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
     "budo": "^7.0.0",
-    "ghpages": "0.0.3",
     "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
-    "babel-loader": "^8.0.5",
+    "ghpages": "0.0.3",
+    "html-webpack-plugin": "^3.2.0",
+    "path": "^0.12.7",
+    "prettier": "^1.16.4",
+    "pretty-quick": "^1.10.0",
     "serve-static": "^1.13.2",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14",
-    "html-webpack-plugin": "^3.2.0",
-    "path": "^0.12.7"
+    "webpack-dev-server": "^3.1.14"
   }
 }

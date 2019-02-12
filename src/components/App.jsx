@@ -8,16 +8,22 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stampPosition: { x: -0.053, y: 1.161, z: -2.977 }
+      location: [{ x: -0.053, y: 1.161, z: -2.977 }]
     }
   }
 
-  handleClick = () => {
-    let stamp = [];
-    stamp.push(<StampImage />)
-    console.log('Clicked!', stamp);
-  }
+update = () => {
+  let newValue = [{ x: 1, y: 2, z: -2.977 }];
 
+  this.setState({
+    location: newValue
+})
+}
+
+  handleClick = () => {
+    this.update();
+      console.log('Clicked!', this.state.location);
+  }
   
   render () {
     return (
@@ -41,8 +47,7 @@ class App extends React.Component {
             quaternion=""
             velocity=""
             dynamic-body="sphereRadius:NaN" />
-        { this.stamp }
-        <StampImage />
+        <StampImage stamps={this.state.location} />
         <Entity primitive='a-plane' 
             id="floor" 
             position="0 0 -4" 

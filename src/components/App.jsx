@@ -34,7 +34,8 @@ class App extends React.Component {
     ));
 
     return (
-      <Scene super-hands startButtons cursor="rayOrigin: mouse">
+      <Scene cursor="rayOrigin: mouse">
+        <a-entity daydream-controls daydream-listener />
         <Entity primitive="a-assets">
           <img id="petraglyph" src="../assets/petraglyph.png" />
           <img id="sky" src="../assets/pefo.jpg" />

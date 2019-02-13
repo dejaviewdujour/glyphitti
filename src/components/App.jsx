@@ -3,6 +3,7 @@ import "aframe-particle-system-component";
 import { Entity, Scene } from "aframe-react";
 import React from "react";
 import StampImage from "./StampImage";
+import "super-hands";
 
 class App extends React.Component {
   constructor(props) {
@@ -33,8 +34,7 @@ class App extends React.Component {
     ));
 
     return (
-      <Scene cursor="rayOrigin: mouse">
-        <a-entity daydream-controls />
+      <Scene super-hands startButtons cursor="rayOrigin: mouse">
         <Entity primitive="a-assets">
           <img id="petraglyph" src="../assets/petraglyph.png" />
           <img id="sky" src="../assets/pefo.jpg" />

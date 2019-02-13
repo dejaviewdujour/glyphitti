@@ -7137,6 +7137,11 @@ subarg@^1.0.0:
   dependencies:
     minimist "^1.1.0"
 
+super-hands@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/super-hands/-/super-hands-3.0.0.tgz#72a636e0db780942cf2285417a067cb2c4869d9a"
+  integrity sha512-zZl2Pk1Q3JiAuya3Ay2el5RwcxqAzR4QBe35/95atvIhU8KKt5CYPY9Zmkhz/5/UOpUOOKf+3kNQbWskiWkXTg==
+
 super-three@^0.101.0:
   version "0.101.0"
   resolved "https://registry.yarnpkg.com/super-three/-/super-three-0.101.0.tgz#81b64178b7ec2220bb23715dc61f7d3f1ba7ef74"

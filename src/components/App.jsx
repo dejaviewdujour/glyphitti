@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locations: [this.newValue],
+      locations: [],
     };
   }
 
@@ -17,7 +17,6 @@ class App extends React.Component {
     const y = event.detail.intersection.point.y;
     const z = event.detail.intersection.point.z;
     const newValue = { x, y, z };
-    console.log(newValue);
 
     this.setState({
       locations: [...this.state.locations, newValue],

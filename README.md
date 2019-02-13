@@ -1,3 +1,5 @@
+This was made during my time at Code Chrysalis
+
 # glyphitti
 
 Petraglyphs are the artistic remnants of ancient peoples. Be transported in front of Newspaper Rock in Arizona's Petrified Forest. Stamp a petraglyph identicial to one on the rock along the rock facing. Remember that just because you can doesn't mean you should.

@@ -50,11 +50,11 @@
       return Object.prototype.hasOwnProperty.call(e, t);
     }),
     (n.p = ""),
-    n((n.s = 15));
+    n((n.s = 26));
 })([
   function(e, t, n) {
     "use strict";
-    e.exports = n(7);
+    e.exports = n(8);
   },
   function(e, t, n) {
     "use strict";
@@ -234,6 +234,22 @@
         for (n.constructor === Function && (n = [n]), r = 0; r < n.length; r++)
           e.removeEventListener(t, n[r]);
     }
+  },
+  function(e, t) {
+    e.exports = (function() {
+      function e(e, t) {
+        return 0 === t.length || -1 !== t.indexOf(e.detail.buttonEvent.type);
+      }
+      return {
+        schema: { startButtons: { default: [] }, endButtons: { default: [] } },
+        startButtonOk: function(t) {
+          return e(t, this.data.startButtons);
+        },
+        endButtonOk: function(t) {
+          return e(t, this.data.endButtons);
+        },
+      };
+    })();
   },
   function(e, t) {
     var n;
@@ -783,7 +799,7 @@ object-assign
                         }
                       );
                     }
-                    function w(e, t) {
+                    function E(e, t) {
                       var n = a(t);
                       if (R.arr(e)) {
                         var i = e.length;
@@ -804,7 +820,7 @@ object-assign
                           return l(e, n);
                         });
                     }
-                    function x(e, t) {
+                    function w(e, t) {
                       var n;
                       return e.tweens.map(function(r) {
                         var i = (r = (function(e, t) {
@@ -849,7 +865,7 @@ object-assign
                         );
                       });
                     }
-                    function E(e, t, n, r) {
+                    function x(e, t, n, r) {
                       var i = "delay" === e;
                       return t.length
                         ? (i ? Math.min : Math.max).apply(
@@ -880,7 +896,7 @@ object-assign
                           c.push({
                             name: r,
                             offset: u.offset,
-                            tweens: w(e[r], o),
+                            tweens: E(e[r], o),
                           });
                       return (
                         (e = (function(e, r) {
@@ -890,7 +906,7 @@ object-assign
                                 return r.map(function(t) {
                                   var n = d(e.target, t.name);
                                   if (n) {
-                                    var r = x(t, e);
+                                    var r = w(t, e);
                                     t = {
                                       type: n,
                                       property: t.name,
@@ -913,12 +929,12 @@ object-assign
                           children: [],
                           animatables: a,
                           animations: e,
-                          duration: E("duration", e, i, o),
-                          delay: E("delay", e, i, o),
+                          duration: x("duration", e, i, o),
+                          delay: x("delay", e, i, o),
                         })
                       );
                     }
-                    function M(e) {
+                    function T(e) {
                       function n() {
                         return (
                           window.Promise &&
@@ -986,11 +1002,11 @@ object-assign
                         }
                         if ((n = Object.keys(r).length))
                           for (i = 0; i < n; i++)
-                            T ||
-                              (T = h(document.body, "transform")
+                            M ||
+                              (M = h(document.body, "transform")
                                 ? "transform"
                                 : "-webkit-transform"),
-                              (f.animatables[i].target.style[T] = r[i].join(
+                              (f.animatables[i].target.style[M] = r[i].join(
                                 " "
                               ));
                         (f.currentTime = e),
@@ -1063,7 +1079,7 @@ object-assign
                             f.children[e].reset();
                         }),
                         (f.tick = function(e) {
-                          (l = e), c || (c = l), s((u + l - c) * M.speed);
+                          (l = e), c || (c = l), s((u + l - c) * T.speed);
                         }),
                         (f.seek = function(e) {
                           s(r(e));
@@ -1094,7 +1110,7 @@ object-assign
                         f
                       );
                     }
-                    var T,
+                    var M,
                       S = {
                         update: void 0,
                         begin: void 0,
@@ -1317,10 +1333,10 @@ object-assign
                         return e;
                       })();
                     return (
-                      (M.version = "2.2.0"),
-                      (M.speed = 1),
-                      (M.running = I),
-                      (M.remove = function(e) {
+                      (T.version = "2.2.0"),
+                      (T.speed = 1),
+                      (T.running = I),
+                      (T.remove = function(e) {
                         e = A(e);
                         for (var t = I.length; t--; )
                           for (
@@ -1331,8 +1347,8 @@ object-assign
                             i(e, r[o].animatable.target) &&
                               (r.splice(o, 1), r.length || n.pause());
                       }),
-                      (M.getValue = p),
-                      (M.path = function(t, n) {
+                      (T.getValue = p),
+                      (T.path = function(t, n) {
                         var r = R.str(t) ? e(t)[0] : t,
                           i = n || 100;
                         return function(e) {
@@ -1343,14 +1359,14 @@ object-assign
                           };
                         };
                       }),
-                      (M.setDashoffset = function(e) {
+                      (T.setDashoffset = function(e) {
                         var t = g(e);
                         return e.setAttribute("stroke-dasharray", t), t;
                       }),
-                      (M.bezier = P),
-                      (M.easings = O),
-                      (M.timeline = function(e) {
-                        var t = M(e);
+                      (T.bezier = P),
+                      (T.easings = O),
+                      (T.timeline = function(e) {
+                        var t = T(e);
                         return (
                           t.pause(),
                           (t.duration = 0),
@@ -1370,7 +1386,7 @@ object-assign
                                   (t.began = !0),
                                   (t.completed = !0),
                                   t.seek(r.offset),
-                                  ((r = M(r)).began = !0),
+                                  ((r = T(r)).began = !0),
                                   (r.completed = !0),
                                   r.duration > n && (t.duration = r.duration),
                                   t.children.push(r);
@@ -1384,10 +1400,10 @@ object-assign
                           t
                         );
                       }),
-                      (M.random = function(e, t) {
+                      (T.random = function(e, t) {
                         return Math.floor(Math.random() * (t - e + 1)) + e;
                       }),
-                      M
+                      T
                     );
                   }),
                   "object" == typeof t && t.exports
@@ -1834,10 +1850,10 @@ object-assign
                   return a;
                 }
                 function b(e, t, n, r) {
-                  return z(U(t, e.length - n), e, n, r);
+                  return V(U(t, e.length - n), e, n, r);
                 }
                 function A(e, t, n, r) {
-                  return z(
+                  return V(
                     (function(e) {
                       for (var t = [], n = 0; n < e.length; ++n)
                         t.push(255 & e.charCodeAt(n));
@@ -1848,14 +1864,14 @@ object-assign
                     r
                   );
                 }
-                function w(e, t, n, r) {
+                function E(e, t, n, r) {
                   return A(e, t, n, r);
                 }
-                function x(e, t, n, r) {
-                  return z(H(t), e, n, r);
+                function w(e, t, n, r) {
+                  return V(H(t), e, n, r);
                 }
-                function E(e, t, n, r) {
-                  return z(
+                function x(e, t, n, r) {
+                  return V(
                     (function(e, t) {
                       for (
                         var n, r, i, o = [], a = 0;
@@ -1879,7 +1895,7 @@ object-assign
                     ? n.fromByteArray(e)
                     : n.fromByteArray(e.slice(t, r));
                 }
-                function M(e, t, n) {
+                function T(e, t, n) {
                   n = Math.min(e.length, n);
                   for (var r = [], i = t; i < n; ) {
                     var o,
@@ -1936,11 +1952,11 @@ object-assign
                   }
                   return (function(e) {
                     var t = e.length;
-                    if (t <= T) return String.fromCharCode.apply(String, e);
+                    if (t <= M) return String.fromCharCode.apply(String, e);
                     for (var n = "", r = 0; r < t; )
                       n += String.fromCharCode.apply(
                         String,
-                        e.slice(r, (r += T))
+                        e.slice(r, (r += M))
                       );
                     return n;
                   })(r);
@@ -2105,7 +2121,7 @@ object-assign
                     return 0 === e
                       ? ""
                       : 0 === arguments.length
-                      ? M(this, 0, e)
+                      ? T(this, 0, e)
                       : function(e, t, n) {
                           var r = !1;
                           if (
@@ -2126,7 +2142,7 @@ object-assign
                                 return L(this, t, n);
                               case "utf8":
                               case "utf-8":
-                                return M(this, t, n);
+                                return T(this, t, n);
                               case "ascii":
                                 return S(this, t, n);
                               case "latin1":
@@ -2244,14 +2260,14 @@ object-assign
                           return A(this, e, t, n);
                         case "latin1":
                         case "binary":
-                          return w(this, e, t, n);
+                          return E(this, e, t, n);
                         case "base64":
-                          return x(this, e, t, n);
+                          return w(this, e, t, n);
                         case "ucs2":
                         case "ucs-2":
                         case "utf16le":
                         case "utf-16le":
-                          return E(this, e, t, n);
+                          return x(this, e, t, n);
                         default:
                           if (o) throw new TypeError("Unknown encoding: " + r);
                           (r = ("" + r).toLowerCase()), (o = !0);
@@ -2263,7 +2279,7 @@ object-assign
                       data: Array.prototype.slice.call(this._arr || this, 0),
                     };
                   });
-                var T = 4096;
+                var M = 4096;
                 function S(e, t, n) {
                   var r = "";
                   n = Math.min(e.length, n);
@@ -2333,7 +2349,7 @@ object-assign
                 function k(e, t, n, r, o) {
                   return o || B(e, 0, n, 4), i.write(e, t, n, r, 23, 4), n + 4;
                 }
-                function F(e, t, n, r, o) {
+                function N(e, t, n, r, o) {
                   return o || B(e, 0, n, 8), i.write(e, t, n, r, 52, 8), n + 8;
                 }
                 (l.prototype.slice = function(e, t) {
@@ -2641,10 +2657,10 @@ object-assign
                     return k(this, e, t, !1, n);
                   }),
                   (l.prototype.writeDoubleLE = function(e, t, n) {
-                    return F(this, e, t, !0, n);
+                    return N(this, e, t, !0, n);
                   }),
                   (l.prototype.writeDoubleBE = function(e, t, n) {
-                    return F(this, e, t, !1, n);
+                    return N(this, e, t, !1, n);
                   }),
                   (l.prototype.copy = function(e, t, n, r) {
                     if (
@@ -2713,7 +2729,7 @@ object-assign
                     }
                     return this;
                   });
-                var N = /[^+\/0-9A-Za-z-_]/g;
+                var F = /[^+\/0-9A-Za-z-_]/g;
                 function U(e, t) {
                   var n;
                   t = t || 1 / 0;
@@ -2771,7 +2787,7 @@ object-assign
                           return e.trim
                             ? e.trim()
                             : e.replace(/^\s+|\s+$/g, "");
-                        })(e).replace(N, "")).length < 2
+                        })(e).replace(F, "")).length < 2
                       )
                         return "";
                       for (; e.length % 4 != 0; ) e += "=";
@@ -2779,7 +2795,7 @@ object-assign
                     })(e)
                   );
                 }
-                function z(e, t, n, r) {
+                function V(e, t, n, r) {
                   for (
                     var i = 0;
                     i < r && !(i + n >= t.length || i >= e.length);
@@ -3058,7 +3074,7 @@ object-assign
                 function s(e) {
                   var t = oe.call(e, "is"),
                     n = e.nodeName.toUpperCase(),
-                    r = z.call(F, t ? I + t.toUpperCase() : D + n);
+                    r = V.call(N, t ? I + t.toUpperCase() : D + n);
                   return t && -1 < r && !l(n, t) ? -1 : r;
                 }
                 function l(e, t) {
@@ -3090,13 +3106,13 @@ object-assign
                   fe && ((fe = !1), e.currentTarget.removeEventListener(P, h)),
                     o(
                       (e.target || n).querySelectorAll(U),
-                      e.detail === M ? M : _
+                      e.detail === T ? T : _
                     ),
                     te &&
                       (function() {
                         for (var e, t = 0, n = re.length; t < n; t++)
                           (e = re[t]),
-                            H.contains(e) || (n--, re.splice(t--, 1), m(e, M));
+                            H.contains(e) || (n--, re.splice(t--, 1), m(e, T));
                       })();
                 }
                 function d(e, t) {
@@ -3109,7 +3125,7 @@ object-assign
                       ? A.observe(e, ce)
                       : (pe &&
                           ((e.setAttribute = d),
-                          (e[E] = b(e)),
+                          (e[x] = b(e)),
                           e.addEventListener(O, g)),
                         e.addEventListener(R, c)),
                     e.createdCallback &&
@@ -3123,14 +3139,14 @@ object-assign
                   var n,
                     r = s(e);
                   -1 < r &&
-                    (w(e, N[r]),
+                    (E(e, F[r]),
                     (r = 0),
                     t !== _ || e[_]
-                      ? t === M && !e[M] && ((e[_] = !1), (e[M] = !0), (r = 1))
-                      : ((e[M] = !1),
+                      ? t === T && !e[T] && ((e[_] = !1), (e[T] = !0), (r = 1))
+                      : ((e[T] = !1),
                         (e[_] = !0),
                         (r = 1),
-                        te && z.call(re, e) < 0 && re.push(e)),
+                        te && V.call(re, e) < 0 && re.push(e)),
                     r && (n = e[t + "Callback"]) && n.call(e));
                 }
                 if (!(i in n)) {
@@ -3139,12 +3155,12 @@ object-assign
                     y,
                     b,
                     A,
+                    E,
                     w,
-                    x,
-                    E = "__" + i + ((1e5 * Math.random()) >> 0),
+                    x = "__" + i + ((1e5 * Math.random()) >> 0),
                     _ = "attached",
-                    M = "detached",
-                    T = "extends",
+                    T = "detached",
+                    M = "extends",
                     S = "ADDITION",
                     C = "MODIFICATION",
                     L = "REMOVAL",
@@ -3164,19 +3180,19 @@ object-assign
                       "FONT-FACE-NAME",
                       "MISSING-GLYPH",
                     ],
-                    F = [],
                     N = [],
+                    F = [],
                     U = "",
                     H = n.documentElement,
-                    z =
-                      F.indexOf ||
+                    V =
+                      N.indexOf ||
                       function(e) {
                         for (var t = this.length; t-- && this[t] !== e; );
                         return t;
                       },
-                    j = r.prototype,
-                    V = j.hasOwnProperty,
-                    G = j.isPrototypeOf,
+                    z = r.prototype,
+                    G = z.hasOwnProperty,
+                    j = z.isPrototypeOf,
                     W = r.defineProperty,
                     q = r.getOwnPropertyDescriptor,
                     X = r.getOwnPropertyNames,
@@ -3202,12 +3218,12 @@ object-assign
                                 i < o;
                                 i++
                               )
-                                (n = r[i]), V.call(e, n) || W(e, n, q(t, n));
+                                (n = r[i]), G.call(e, n) || W(e, n, q(t, n));
                             }
                             return function(t, n) {
                               do {
                                 e(t, n);
-                              } while ((n = Y(n)) && !G.call(n, t));
+                              } while ((n = Y(n)) && !j.call(n, t));
                               return t;
                             };
                           })()
@@ -3217,13 +3233,13 @@ object-assign
                           }),
                     $ = t.MutationObserver || t.WebKitMutationObserver,
                     ee = (t.HTMLElement || t.Element || t.Node).prototype,
-                    te = !G.call(ee, H),
+                    te = !j.call(ee, H),
                     ne = te
                       ? function(e) {
                           return 1 === e.nodeType;
                         }
                       : function(e) {
-                          return G.call(ee, e);
+                          return j.call(ee, e);
                         },
                     re = te && [],
                     ie = ee.cloneNode,
@@ -3254,12 +3270,12 @@ object-assign
                     fe = !0,
                     me = !0;
                   Q || K
-                    ? ((w = function(e, t) {
-                        G.call(t, e) || p(e, t);
+                    ? ((E = function(e, t) {
+                        j.call(t, e) || p(e, t);
                       }),
-                      (x = p))
-                    : (x = w = function(e, t) {
-                        e[E] || ((e[E] = r(!0)), p(e, t));
+                      (w = p))
+                    : (w = E = function(e, t) {
+                        e[x] || ((e[x] = r(!0)), p(e, t));
                       }),
                     te
                       ? ((pe = !1),
@@ -3291,7 +3307,7 @@ object-assign
                             o = function(e) {
                               var t,
                                 n = e.currentTarget,
-                                r = n[E],
+                                r = n[x],
                                 i = e.propertyName;
                               r.hasOwnProperty(i) &&
                                 ((r = r[i]),
@@ -3309,7 +3325,7 @@ object-assign
                             e === R &&
                               this.attributeChangedCallback &&
                               this.setAttribute !== i &&
-                              ((this[E] = {
+                              ((this[x] = {
                                 className: {
                                   name: "class",
                                   value: this.className,
@@ -3324,8 +3340,8 @@ object-assign
                         })())
                       : $ ||
                         (H.addEventListener(R, ue),
-                        H.setAttribute(E, 1),
-                        H.removeAttribute(E),
+                        H.setAttribute(x, 1),
+                        H.removeAttribute(x),
                         pe &&
                           ((g = function(e) {
                             var t,
@@ -3333,7 +3349,7 @@ object-assign
                               r,
                               i = this;
                             if (i === e.target) {
-                              for (r in ((t = i[E]), (i[E] = n = b(i)), n)) {
+                              for (r in ((t = i[x]), (i[x] = n = b(i)), n)) {
                                 if (!(r in t)) return y(0, i, r, t[r], n[r], S);
                                 if (n[r] !== t[r])
                                   return y(1, i, r, t[r], n[r], C);
@@ -3403,7 +3419,7 @@ object-assign
                                             a
                                           ));
                                 });
-                              })(a(_), a(M))).observe(n, {
+                              })(a(_), a(T))).observe(n, {
                                 childList: !0,
                                 subtree: !0,
                               })
@@ -3414,14 +3430,14 @@ object-assign
                                 he(e);
                               }),
                               n.addEventListener("DOMNodeInserted", u(_)),
-                              n.addEventListener("DOMNodeRemoved", u(M))),
+                              n.addEventListener("DOMNodeRemoved", u(T))),
                           n.addEventListener(P, h),
                           n.addEventListener("readystatechange", h),
                           (n.createElement = function(e, t) {
                             var r = le.apply(n, arguments),
                               i = "" + e,
-                              o = z.call(
-                                F,
+                              o = V.call(
+                                N,
                                 (t ? I : D) + (t || i).toUpperCase()
                               ),
                               a = -1 < o;
@@ -3430,7 +3446,7 @@ object-assign
                                 (r.setAttribute("is", (t = t.toLowerCase())),
                                 a && (a = l(i.toUpperCase(), t))),
                               (me = !n.createElement.innerHTMLHelper),
-                              a && x(r, N[o]),
+                              a && w(r, F[o]),
                               r
                             );
                           }),
@@ -3438,17 +3454,17 @@ object-assign
                             var t = ie.call(this, !!e),
                               n = s(t);
                             return (
-                              -1 < n && x(t, N[n]),
+                              -1 < n && w(t, F[n]),
                               e &&
                                 (function(e) {
                                   for (var t, n = 0, r = e.length; n < r; n++)
-                                    (t = e[n]), x(t, N[s(t)]);
+                                    (t = e[n]), w(t, F[s(t)]);
                                 })(t.querySelectorAll(U)),
                               t
                             );
                           })),
-                        -2 < z.call(F, I + r) + z.call(F, D + r) && f(e),
-                        !B.test(r) || -1 < z.call(k, r))
+                        -2 < V.call(N, I + r) + V.call(N, D + r) && f(e),
+                        !B.test(r) || -1 < V.call(k, r))
                       )
                         throw new Error("The type " + e + " is invalid");
                       var r,
@@ -3456,17 +3472,17 @@ object-assign
                         c = function() {
                           return p ? n.createElement(m, r) : n.createElement(m);
                         },
-                        d = t || j,
-                        p = V.call(d, T),
-                        m = p ? t[T].toUpperCase() : r;
+                        d = t || z,
+                        p = G.call(d, M),
+                        m = p ? t[M].toUpperCase() : r;
                       return (
-                        p && -1 < z.call(F, D + m) && f(m),
-                        (i = F.push((p ? I : D) + r) - 1),
+                        p && -1 < V.call(N, D + m) && f(m),
+                        (i = N.push((p ? I : D) + r) - 1),
                         (U = U.concat(
                           U.length ? "," : "",
                           p ? m + '[is="' + e.toLowerCase() + '"]' : m
                         )),
-                        (c.prototype = N[i] = V.call(d, "prototype")
+                        (c.prototype = F[i] = G.call(d, "prototype")
                           ? d.prototype
                           : Z(ee)),
                         o(n.querySelectorAll(U), _),
@@ -3859,15 +3875,15 @@ object-assign
                     v = 0,
                     b = o(e.lineHeight, s.common.lineHeight),
                     A = s.common.base,
-                    w = b - A,
-                    x = e.letterSpacing || 0,
-                    E = b * c.length - w,
+                    E = b - A,
+                    w = e.letterSpacing || 0,
+                    x = b * c.length - E,
                     _ = (function(e) {
                       return "center" === e ? d : "right" === e ? p : h;
                     })(this._opt.align);
-                  (v -= E),
+                  (v -= x),
                     (this._width = f),
-                    (this._height = E),
+                    (this._height = x),
                     (this._descender = b - A),
                     (this._baseline = A),
                     (this._xHeight = (function(e) {
@@ -3887,8 +3903,8 @@ object-assign
                       return 0;
                     })(s)),
                     (this._lineHeight = b),
-                    (this._ascender = b - w - this._xHeight);
-                  var M = this;
+                    (this._ascender = b - E - this._xHeight);
+                  var T = this;
                   c.forEach(function(e, r) {
                     for (
                       var i, o = e.start, a = e.end, l = e.width, c = o;
@@ -3896,7 +3912,7 @@ object-assign
                       c++
                     ) {
                       var u = n.charCodeAt(c),
-                        h = M.getGlyph(s, u);
+                        h = T.getGlyph(s, u);
                       if (h) {
                         i && (m += g(s, i.id, h.id));
                         var y = m;
@@ -3907,7 +3923,7 @@ object-assign
                             index: c,
                             line: r,
                           }),
-                          (m += h.xadvance + x),
+                          (m += h.xadvance + w),
                           (i = h);
                       }
                     }
@@ -4969,12 +4985,12 @@ object-assign
                     y = 1,
                     b = 2,
                     A = 0,
-                    w = 1,
-                    x = 2,
-                    E = 0,
+                    E = 1,
+                    w = 2,
+                    x = 0,
                     _ = 1,
-                    M = 2,
-                    T = 0,
+                    T = 2,
+                    M = 0,
                     S = 1,
                     C = 2,
                     L = 3,
@@ -4985,14 +5001,14 @@ object-assign
                     I = 102,
                     B = 103,
                     k = 104,
-                    F = 200,
-                    N = 201,
+                    N = 200,
+                    F = 201,
                     U = 202,
                     H = 203,
-                    z = 204,
-                    j = 205,
-                    V = 206,
-                    G = 207,
+                    V = 204,
+                    z = 205,
+                    G = 206,
+                    j = 207,
                     W = 208,
                     q = 209,
                     X = 210,
@@ -5023,12 +5039,12 @@ object-assign
                     ye = 1e3,
                     be = 1001,
                     Ae = 1002,
-                    we = 1003,
-                    xe = 1004,
-                    Ee = 1005,
+                    Ee = 1003,
+                    we = 1004,
+                    xe = 1005,
                     _e = 1006,
-                    Me = 1007,
-                    Te = 1008,
+                    Te = 1007,
+                    Me = 1008,
                     Se = 1009,
                     Ce = 1010,
                     Le = 1011,
@@ -5039,14 +5055,14 @@ object-assign
                     Ie = 1016,
                     Be = 1017,
                     ke = 1018,
-                    Fe = 1019,
-                    Ne = 1020,
+                    Ne = 1019,
+                    Fe = 1020,
                     Ue = 1021,
                     He = 1022,
-                    ze = 1023,
-                    je = 1024,
-                    Ve = 1025,
-                    Ge = ze,
+                    Ve = 1023,
+                    ze = 1024,
+                    Ge = 1025,
+                    je = Ve,
                     We = 1026,
                     qe = 1027,
                     Xe = 1028,
@@ -5077,12 +5093,12 @@ object-assign
                     yt = 2400,
                     bt = 0,
                     At = 1,
-                    wt = 2,
-                    xt = 3e3,
-                    Et = 3001,
+                    Et = 2,
+                    wt = 3e3,
+                    xt = 3001,
                     _t = 3007,
-                    Mt = 3002,
-                    Tt = 3004,
+                    Tt = 3002,
+                    Mt = 3004,
                     St = 3005,
                     Ct = 3006,
                     Lt = 3200,
@@ -5211,10 +5227,10 @@ object-assign
                       (this._z = n || 0),
                       (this._w = void 0 !== r ? r : 1);
                   }
-                  function Ft(e, t, n) {
+                  function Nt(e, t, n) {
                     (this.x = e || 0), (this.y = t || 0), (this.z = n || 0);
                   }
-                  function Nt() {
+                  function Ft() {
                     (this.elements = [1, 0, 0, 0, 1, 0, 0, 0, 1]),
                       arguments.length > 0 &&
                         console.error(
@@ -5626,7 +5642,7 @@ object-assign
                           this
                         );
                       },
-                      extractRotation: ((h = new Ft()),
+                      extractRotation: ((h = new Nt()),
                       function(e) {
                         var t = this.elements,
                           n = e.elements,
@@ -5727,31 +5743,31 @@ object-assign
                         } else if ("YZX" === e.order) {
                           var b = o * s,
                             A = o * l,
-                            w = a * s,
-                            x = a * l;
+                            E = a * s,
+                            w = a * l;
                           (t[0] = s * c),
-                            (t[4] = x - b * u),
-                            (t[8] = w * u + A),
+                            (t[4] = w - b * u),
+                            (t[8] = E * u + A),
                             (t[1] = u),
                             (t[5] = o * c),
                             (t[9] = -a * c),
                             (t[2] = -l * c),
-                            (t[6] = A * u + w),
-                            (t[10] = b - x * u);
+                            (t[6] = A * u + E),
+                            (t[10] = b - w * u);
                         } else if ("XZY" === e.order) {
                           var b = o * s,
                             A = o * l,
-                            w = a * s,
-                            x = a * l;
+                            E = a * s,
+                            w = a * l;
                           (t[0] = s * c),
                             (t[4] = -u),
                             (t[8] = l * c),
-                            (t[1] = b * u + x),
+                            (t[1] = b * u + w),
                             (t[5] = o * c),
-                            (t[9] = A * u - w),
-                            (t[2] = w * u - A),
+                            (t[9] = A * u - E),
+                            (t[2] = E * u - A),
                             (t[6] = a * c),
-                            (t[10] = x * u + b);
+                            (t[10] = w * u + b);
                         }
                         return (
                           (t[3] = 0),
@@ -5764,8 +5780,8 @@ object-assign
                           this
                         );
                       },
-                      makeRotationFromQuaternion: ((c = new Ft(0, 0, 0)),
-                      (u = new Ft(1, 1, 1)),
+                      makeRotationFromQuaternion: ((c = new Nt(0, 0, 0)),
+                      (u = new Nt(1, 1, 1)),
                       function(e) {
                         return this.compose(
                           c,
@@ -5773,9 +5789,9 @@ object-assign
                           u
                         );
                       }),
-                      lookAt: ((a = new Ft()),
-                      (s = new Ft()),
-                      (l = new Ft()),
+                      lookAt: ((a = new Nt()),
+                      (s = new Nt()),
+                      (l = new Nt()),
                       function(e, t, n) {
                         var r = this.elements;
                         return (
@@ -5834,12 +5850,12 @@ object-assign
                           y = n[7],
                           b = n[11],
                           A = n[15],
-                          w = r[0],
-                          x = r[4],
-                          E = r[8],
+                          E = r[0],
+                          w = r[4],
+                          x = r[8],
                           _ = r[12],
-                          M = r[1],
-                          T = r[5],
+                          T = r[1],
+                          M = r[5],
                           S = r[9],
                           C = r[13],
                           L = r[2],
@@ -5851,21 +5867,21 @@ object-assign
                           B = r[11],
                           k = r[15];
                         return (
-                          (i[0] = o * w + a * M + s * L + l * D),
-                          (i[4] = o * x + a * T + s * R + l * I),
-                          (i[8] = o * E + a * S + s * P + l * B),
+                          (i[0] = o * E + a * T + s * L + l * D),
+                          (i[4] = o * w + a * M + s * R + l * I),
+                          (i[8] = o * x + a * S + s * P + l * B),
                           (i[12] = o * _ + a * C + s * O + l * k),
-                          (i[1] = c * w + u * M + h * L + d * D),
-                          (i[5] = c * x + u * T + h * R + d * I),
-                          (i[9] = c * E + u * S + h * P + d * B),
+                          (i[1] = c * E + u * T + h * L + d * D),
+                          (i[5] = c * w + u * M + h * R + d * I),
+                          (i[9] = c * x + u * S + h * P + d * B),
                           (i[13] = c * _ + u * C + h * O + d * k),
-                          (i[2] = p * w + f * M + m * L + v * D),
-                          (i[6] = p * x + f * T + m * R + v * I),
-                          (i[10] = p * E + f * S + m * P + v * B),
+                          (i[2] = p * E + f * T + m * L + v * D),
+                          (i[6] = p * w + f * M + m * R + v * I),
+                          (i[10] = p * x + f * S + m * P + v * B),
                           (i[14] = p * _ + f * C + m * O + v * k),
-                          (i[3] = g * w + y * M + b * L + A * D),
-                          (i[7] = g * x + y * T + b * R + A * I),
-                          (i[11] = g * E + y * S + b * P + A * B),
+                          (i[3] = g * E + y * T + b * L + A * D),
+                          (i[7] = g * w + y * M + b * R + A * I),
+                          (i[11] = g * x + y * S + b * P + A * B),
                           (i[15] = g * _ + y * C + b * O + A * k),
                           this
                         );
@@ -5893,7 +5909,7 @@ object-assign
                         );
                       },
                       applyToBufferAttribute: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t) {
                           for (var n = 0, r = t.count; n < r; n++)
                             (e.x = t.getX(n)),
@@ -6010,37 +6026,37 @@ object-assign
                             c * y * m -
                             p * u * b +
                             c * f * b,
-                          w =
+                          E =
                             v * f * h -
                             d * y * h -
                             v * u * m +
                             l * y * m +
                             d * u * b -
                             l * f * b,
-                          x =
+                          w =
                             d * g * h -
                             v * p * h +
                             v * c * m -
                             l * g * m -
                             d * c * b +
                             l * p * b,
-                          E =
+                          x =
                             v * p * u -
                             d * g * u -
                             v * c * f +
                             l * g * f +
                             d * c * y -
                             l * p * y,
-                          _ = i * A + o * w + a * x + s * E;
+                          _ = i * A + o * E + a * w + s * x;
                         if (0 === _) {
-                          var M =
+                          var T =
                             "THREE.Matrix4: .getInverse() can't invert matrix, determinant is 0";
-                          if (!0 === t) throw new Error(M);
-                          return console.warn(M), this.identity();
+                          if (!0 === t) throw new Error(T);
+                          return console.warn(T), this.identity();
                         }
-                        var T = 1 / _;
+                        var M = 1 / _;
                         return (
-                          (n[0] = A * T),
+                          (n[0] = A * M),
                           (n[1] =
                             (g * f * s -
                               p * y * s -
@@ -6048,7 +6064,7 @@ object-assign
                               o * y * m +
                               p * a * b -
                               o * f * b) *
-                            T),
+                            M),
                           (n[2] =
                             (c * y * s -
                               g * u * s +
@@ -6056,7 +6072,7 @@ object-assign
                               o * y * h -
                               c * a * b +
                               o * u * b) *
-                            T),
+                            M),
                           (n[3] =
                             (p * u * s -
                               c * f * s -
@@ -6064,8 +6080,8 @@ object-assign
                               o * f * h +
                               c * a * m -
                               o * u * m) *
-                            T),
-                          (n[4] = w * T),
+                            M),
+                          (n[4] = E * M),
                           (n[5] =
                             (d * y * s -
                               v * f * s +
@@ -6073,7 +6089,7 @@ object-assign
                               i * y * m -
                               d * a * b +
                               i * f * b) *
-                            T),
+                            M),
                           (n[6] =
                             (v * u * s -
                               l * y * s -
@@ -6081,7 +6097,7 @@ object-assign
                               i * y * h +
                               l * a * b -
                               i * u * b) *
-                            T),
+                            M),
                           (n[7] =
                             (l * f * s -
                               d * u * s +
@@ -6089,8 +6105,8 @@ object-assign
                               i * f * h -
                               l * a * m +
                               i * u * m) *
-                            T),
-                          (n[8] = x * T),
+                            M),
+                          (n[8] = w * M),
                           (n[9] =
                             (v * p * s -
                               d * g * s -
@@ -6098,7 +6114,7 @@ object-assign
                               i * g * m +
                               d * o * b -
                               i * p * b) *
-                            T),
+                            M),
                           (n[10] =
                             (l * g * s -
                               v * c * s +
@@ -6106,7 +6122,7 @@ object-assign
                               i * g * h -
                               l * o * b +
                               i * c * b) *
-                            T),
+                            M),
                           (n[11] =
                             (d * c * s -
                               l * p * s -
@@ -6114,8 +6130,8 @@ object-assign
                               i * p * h +
                               l * o * m -
                               i * c * m) *
-                            T),
-                          (n[12] = E * T),
+                            M),
+                          (n[12] = x * M),
                           (n[13] =
                             (d * g * a -
                               v * p * a +
@@ -6123,7 +6139,7 @@ object-assign
                               i * g * f -
                               d * o * y +
                               i * p * y) *
-                            T),
+                            M),
                           (n[14] =
                             (v * c * a -
                               l * g * a -
@@ -6131,7 +6147,7 @@ object-assign
                               i * g * u +
                               l * o * y -
                               i * c * y) *
-                            T),
+                            M),
                           (n[15] =
                             (l * p * a -
                               d * c * a +
@@ -6139,7 +6155,7 @@ object-assign
                               i * p * u -
                               l * o * f +
                               i * c * f) *
-                            T),
+                            M),
                           this
                         );
                       },
@@ -6365,20 +6381,20 @@ object-assign
                           y = s * c,
                           b = s * u,
                           A = n.x,
-                          w = n.y,
-                          x = n.z;
+                          E = n.y,
+                          w = n.z;
                         return (
                           (r[0] = (1 - (f + v)) * A),
                           (r[1] = (d + b) * A),
                           (r[2] = (p - y) * A),
                           (r[3] = 0),
-                          (r[4] = (d - b) * w),
-                          (r[5] = (1 - (h + v)) * w),
-                          (r[6] = (m + g) * w),
+                          (r[4] = (d - b) * E),
+                          (r[5] = (1 - (h + v)) * E),
+                          (r[6] = (m + g) * E),
                           (r[7] = 0),
-                          (r[8] = (p + y) * x),
-                          (r[9] = (m - g) * x),
-                          (r[10] = (1 - (h + f)) * x),
+                          (r[8] = (p + y) * w),
+                          (r[9] = (m - g) * w),
+                          (r[10] = (1 - (h + f)) * w),
                           (r[11] = 0),
                           (r[12] = e.x),
                           (r[13] = e.y),
@@ -6387,7 +6403,7 @@ object-assign
                           this
                         );
                       },
-                      decompose: ((i = new Ft()),
+                      decompose: ((i = new Nt()),
                       (o = new Bt()),
                       function(e, t, n) {
                         var r = this.elements,
@@ -6543,17 +6559,17 @@ object-assign
                             (m = Math.sin(m * A) / b),
                               (a = Math.sin(a * A) / b);
                           }
-                          var w = a * g;
+                          var E = a * g;
                           if (
-                            ((s = s * m + h * w),
-                            (l = l * m + d * w),
-                            (c = c * m + p * w),
-                            (u = u * m + f * w),
+                            ((s = s * m + h * E),
+                            (l = l * m + d * E),
+                            (c = c * m + p * E),
+                            (u = u * m + f * E),
                             m === 1 - a)
                           ) {
-                            var x =
+                            var w =
                               1 / Math.sqrt(s * s + l * l + c * c + u * u);
-                            (s *= x), (l *= x), (c *= x), (u *= x);
+                            (s *= w), (l *= w), (c *= w), (u *= w);
                           }
                         }
                         (e[t] = s),
@@ -6733,10 +6749,10 @@ object-assign
                       },
                       setFromUnitVectors: (function() {
                         var e,
-                          t = new Ft();
+                          t = new Nt();
                         return function(n, r) {
                           return (
-                            void 0 === t && (t = new Ft()),
+                            void 0 === t && (t = new Nt()),
                             (e = n.dot(r) + 1) < 1e-6
                               ? ((e = 0),
                                 Math.abs(n.x) > Math.abs(n.z)
@@ -6928,7 +6944,7 @@ object-assign
                       },
                       onChangeCallback: function() {},
                     }),
-                    Object.assign(Ft.prototype, {
+                    Object.assign(Nt.prototype, {
                       isVector3: !0,
                       set: function(e, t, n) {
                         return (this.x = e), (this.y = t), (this.z = n), this;
@@ -7185,8 +7201,8 @@ object-assign
                         );
                       },
                       clampScalar: (function() {
-                        var e = new Ft(),
-                          t = new Ft();
+                        var e = new Nt(),
+                          t = new Nt();
                         return function(n, r) {
                           return (
                             e.set(n, n, n), t.set(r, r, r), this.clamp(e, t)
@@ -7312,13 +7328,13 @@ object-assign
                         return this.copy(e).multiplyScalar(t);
                       },
                       projectOnPlane: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t) {
                           return e.copy(this).projectOnVector(t), this.sub(e);
                         };
                       })(),
                       reflect: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t) {
                           return this.sub(
                             e.copy(t).multiplyScalar(2 * this.dot(t))
@@ -7433,7 +7449,7 @@ object-assign
                         );
                       },
                     }),
-                    Object.assign(Nt.prototype, {
+                    Object.assign(Ft.prototype, {
                       isMatrix3: !0,
                       set: function(e, t, n, r, i, o, a, s, l) {
                         var c = this.elements;
@@ -7490,7 +7506,7 @@ object-assign
                         );
                       },
                       applyToBufferAttribute: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t) {
                           for (var n = 0, r = t.count; n < r; n++)
                             (e.x = t.getX(n)),
@@ -7527,18 +7543,18 @@ object-assign
                           y = r[4],
                           b = r[7],
                           A = r[2],
-                          w = r[5],
-                          x = r[8];
+                          E = r[5],
+                          w = r[8];
                         return (
                           (i[0] = o * f + a * g + s * A),
-                          (i[3] = o * m + a * y + s * w),
-                          (i[6] = o * v + a * b + s * x),
+                          (i[3] = o * m + a * y + s * E),
+                          (i[6] = o * v + a * b + s * w),
                           (i[1] = l * f + c * g + u * A),
-                          (i[4] = l * m + c * y + u * w),
-                          (i[7] = l * v + c * b + u * x),
+                          (i[4] = l * m + c * y + u * E),
+                          (i[7] = l * v + c * b + u * w),
                           (i[2] = h * f + d * g + p * A),
-                          (i[5] = h * m + d * y + p * w),
-                          (i[8] = h * v + d * b + p * x),
+                          (i[5] = h * m + d * y + p * E),
+                          (i[8] = h * v + d * b + p * w),
                           this
                         );
                       },
@@ -7746,10 +7762,10 @@ object-assign
                     });
                   var Ut,
                     Ht,
-                    zt,
-                    jt,
                     Vt,
-                    Gt = {
+                    zt,
+                    Gt,
+                    jt = {
                       getDataURL: function(e) {
                         var t;
                         if ("undefined" == typeof HTMLCanvasElement)
@@ -7785,21 +7801,21 @@ object-assign
                       (this.wrapS = void 0 !== n ? n : be),
                       (this.wrapT = void 0 !== r ? r : be),
                       (this.magFilter = void 0 !== i ? i : _e),
-                      (this.minFilter = void 0 !== o ? o : Te),
+                      (this.minFilter = void 0 !== o ? o : Me),
                       (this.anisotropy = void 0 !== l ? l : 1),
-                      (this.format = void 0 !== a ? a : ze),
+                      (this.format = void 0 !== a ? a : Ve),
                       (this.type = void 0 !== s ? s : Se),
                       (this.offset = new It(0, 0)),
                       (this.repeat = new It(1, 1)),
                       (this.center = new It(0, 0)),
                       (this.rotation = 0),
                       (this.matrixAutoUpdate = !0),
-                      (this.matrix = new Nt()),
+                      (this.matrix = new Ft()),
                       (this.generateMipmaps = !0),
                       (this.premultiplyAlpha = !1),
                       (this.flipY = !0),
                       (this.unpackAlignment = 4),
-                      (this.encoding = void 0 !== c ? c : xt),
+                      (this.encoding = void 0 !== c ? c : wt),
                       (this.version = 0),
                       (this.onUpdate = null);
                   }
@@ -7850,23 +7866,23 @@ object-assign
                   function Zt(e, t, n, r, i, o, a, s, l, c, u, h) {
                     qt.call(this, null, o, a, s, l, c, r, i, u, h),
                       (this.image = { data: e, width: t, height: n }),
-                      (this.magFilter = void 0 !== l ? l : we),
-                      (this.minFilter = void 0 !== c ? c : we),
+                      (this.magFilter = void 0 !== l ? l : Ee),
+                      (this.minFilter = void 0 !== c ? c : Ee),
                       (this.generateMipmaps = !1),
                       (this.flipY = !1),
                       (this.unpackAlignment = 1);
                   }
                   function Jt(e, t) {
-                    (this.min = void 0 !== e ? e : new Ft(1 / 0, 1 / 0, 1 / 0)),
+                    (this.min = void 0 !== e ? e : new Nt(1 / 0, 1 / 0, 1 / 0)),
                       (this.max =
-                        void 0 !== t ? t : new Ft(-1 / 0, -1 / 0, -1 / 0));
+                        void 0 !== t ? t : new Nt(-1 / 0, -1 / 0, -1 / 0));
                   }
                   function $t(e, t) {
-                    (this.center = void 0 !== e ? e : new Ft()),
+                    (this.center = void 0 !== e ? e : new Nt()),
                       (this.radius = void 0 !== t ? t : 0);
                   }
                   function en(e, t) {
-                    (this.normal = void 0 !== e ? e : new Ft(1, 0, 0)),
+                    (this.normal = void 0 !== e ? e : new Nt(1, 0, 0)),
                       (this.constant = void 0 !== t ? t : 0);
                   }
                   function tn(e, t, n, r, i, o) {
@@ -7963,8 +7979,8 @@ object-assign
                             if (Array.isArray(r)) {
                               i = [];
                               for (var o = 0, a = r.length; o < a; o++)
-                                i.push(Gt.getDataURL(r[o]));
-                            } else i = Gt.getDataURL(r);
+                                i.push(jt.getDataURL(r[o]));
+                            } else i = jt.getDataURL(r);
                             e.images[r.uuid] = { uuid: r.uuid, url: i };
                           }
                           n.image = r.uuid;
@@ -8255,16 +8271,16 @@ object-assign
                             this
                           );
                         }
-                        var w = Math.sqrt(
+                        var E = Math.sqrt(
                           (p - h) * (p - h) +
                             (l - d) * (l - d) +
                             (c - s) * (c - s)
                         );
                         return (
-                          Math.abs(w) < 0.001 && (w = 1),
-                          (this.x = (p - h) / w),
-                          (this.y = (l - d) / w),
-                          (this.z = (c - s) / w),
+                          Math.abs(E) < 0.001 && (E = 1),
+                          (this.x = (p - h) / E),
+                          (this.y = (l - d) / E),
+                          (this.z = (c - s) / E),
                           (this.w = Math.acos((a + u + f - 1) / 2)),
                           this
                         );
@@ -8576,7 +8592,7 @@ object-assign
                         return this;
                       },
                       setFromCenterAndSize: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t, n) {
                           var r = e.copy(n).multiplyScalar(0.5);
                           return (
@@ -8615,7 +8631,7 @@ object-assign
                             (console.warn(
                               "THREE.Box3: .getCenter() target is now required"
                             ),
-                            (e = new Ft())),
+                            (e = new Nt())),
                           this.isEmpty()
                             ? e.set(0, 0, 0)
                             : e
@@ -8629,7 +8645,7 @@ object-assign
                             (console.warn(
                               "THREE.Box3: .getSize() target is now required"
                             ),
-                            (e = new Ft())),
+                            (e = new Nt())),
                           this.isEmpty()
                             ? e.set(0, 0, 0)
                             : e.subVectors(this.max, this.min)
@@ -8650,7 +8666,7 @@ object-assign
                         var e,
                           t,
                           n,
-                          r = new Ft();
+                          r = new Nt();
                         function i(i) {
                           var o = i.geometry;
                           if (void 0 !== o)
@@ -8705,7 +8721,7 @@ object-assign
                             (console.warn(
                               "THREE.Box3: .getParameter() target is now required"
                             ),
-                            (t = new Ft())),
+                            (t = new Nt())),
                           t.set(
                             (e.x - this.min.x) / (this.max.x - this.min.x),
                             (e.y - this.min.y) / (this.max.y - this.min.y),
@@ -8723,7 +8739,7 @@ object-assign
                           e.min.z > this.max.z
                         );
                       },
-                      intersectsSphere: ((Ht = new Ft()),
+                      intersectsSphere: ((Ht = new Nt()),
                       function(e) {
                         return (
                           this.clampPoint(e.center, Ht),
@@ -8752,16 +8768,16 @@ object-assign
                         );
                       },
                       intersectsTriangle: (function() {
-                        var e = new Ft(),
-                          t = new Ft(),
-                          n = new Ft(),
-                          r = new Ft(),
-                          i = new Ft(),
-                          o = new Ft(),
-                          a = new Ft(),
-                          s = new Ft(),
-                          l = new Ft(),
-                          c = new Ft();
+                        var e = new Nt(),
+                          t = new Nt(),
+                          n = new Nt(),
+                          r = new Nt(),
+                          i = new Nt(),
+                          o = new Nt(),
+                          a = new Nt(),
+                          s = new Nt(),
+                          l = new Nt(),
+                          c = new Nt();
                         function u(r) {
                           var i, o;
                           for (i = 0, o = r.length - 3; i <= o; i += 3) {
@@ -8833,19 +8849,19 @@ object-assign
                             (console.warn(
                               "THREE.Box3: .clampPoint() target is now required"
                             ),
-                            (t = new Ft())),
+                            (t = new Nt())),
                           t.copy(e).clamp(this.min, this.max)
                         );
                       },
                       distanceToPoint: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t) {
                           var n = e.copy(t).clamp(this.min, this.max);
                           return n.sub(t).length();
                         };
                       })(),
                       getBoundingSphere: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t) {
                           return (
                             void 0 === t &&
@@ -8871,14 +8887,14 @@ object-assign
                         return this.min.min(e.min), this.max.max(e.max), this;
                       },
                       applyMatrix4: ((Ut = [
-                        new Ft(),
-                        new Ft(),
-                        new Ft(),
-                        new Ft(),
-                        new Ft(),
-                        new Ft(),
-                        new Ft(),
-                        new Ft(),
+                        new Nt(),
+                        new Nt(),
+                        new Nt(),
+                        new Nt(),
+                        new Nt(),
+                        new Nt(),
+                        new Nt(),
+                        new Nt(),
                       ]),
                       function(e) {
                         return this.isEmpty()
@@ -8921,12 +8937,12 @@ object-assign
                       set: function(e, t) {
                         return this.center.copy(e), (this.radius = t), this;
                       },
-                      setFromPoints: ((zt = new Jt()),
+                      setFromPoints: ((Vt = new Jt()),
                       function(e, t) {
                         var n = this.center;
                         void 0 !== t
                           ? n.copy(t)
-                          : zt.setFromPoints(e).getCenter(n);
+                          : Vt.setFromPoints(e).getCenter(n);
                         for (var r = 0, i = 0, o = e.length; i < o; i++)
                           r = Math.max(r, n.distanceToSquared(e[i]));
                         return (this.radius = Math.sqrt(r)), this;
@@ -8973,7 +8989,7 @@ object-assign
                             (console.warn(
                               "THREE.Sphere: .clampPoint() target is now required"
                             ),
-                            (t = new Ft())),
+                            (t = new Nt())),
                           t.copy(e),
                           n > this.radius * this.radius &&
                             (t.sub(this.center).normalize(),
@@ -9027,8 +9043,8 @@ object-assign
                         );
                       },
                       setFromCoplanarPoints: (function() {
-                        var e = new Ft(),
-                          t = new Ft();
+                        var e = new Nt(),
+                          t = new Nt();
                         return function(n, r, i) {
                           var o = e
                             .subVectors(i, r)
@@ -9072,7 +9088,7 @@ object-assign
                             (console.warn(
                               "THREE.Plane: .projectPoint() target is now required"
                             ),
-                            (t = new Ft())),
+                            (t = new Nt())),
                           t
                             .copy(this.normal)
                             .multiplyScalar(-this.distanceToPoint(e))
@@ -9080,13 +9096,13 @@ object-assign
                         );
                       },
                       intersectLine: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t, n) {
                           void 0 === n &&
                             (console.warn(
                               "THREE.Plane: .intersectLine() target is now required"
                             ),
-                            (n = new Ft()));
+                            (n = new Nt()));
                           var r = t.delta(e),
                             i = this.normal.dot(r);
                           if (0 === i)
@@ -9120,13 +9136,13 @@ object-assign
                             (console.warn(
                               "THREE.Plane: .coplanarPoint() target is now required"
                             ),
-                            (e = new Ft())),
+                            (e = new Nt())),
                           e.copy(this.normal).multiplyScalar(-this.constant)
                         );
                       },
                       applyMatrix4: (function() {
-                        var e = new Ft(),
-                          t = new Nt();
+                        var e = new Nt(),
+                          t = new Ft();
                         return function(n, r) {
                           var i = r || t.getNormalMatrix(n),
                             o = this.coplanarPoint(e).applyMatrix4(n),
@@ -9206,14 +9222,14 @@ object-assign
                           this
                         );
                       },
-                      intersectsObject: ((Vt = new $t()),
+                      intersectsObject: ((Gt = new $t()),
                       function(e) {
                         var t = e.geometry;
                         return (
                           null === t.boundingSphere &&
                             t.computeBoundingSphere(),
-                          Vt.copy(t.boundingSphere).applyMatrix4(e.matrixWorld),
-                          this.intersectsSphere(Vt)
+                          Gt.copy(t.boundingSphere).applyMatrix4(e.matrixWorld),
+                          this.intersectsSphere(Gt)
                         );
                       }),
                       intersectsSprite: (function() {
@@ -9241,15 +9257,15 @@ object-assign
                         }
                         return !0;
                       },
-                      intersectsBox: ((jt = new Ft()),
+                      intersectsBox: ((zt = new Nt()),
                       function(e) {
                         for (var t = this.planes, n = 0; n < 6; n++) {
                           var r = t[n];
                           if (
-                            ((jt.x = r.normal.x > 0 ? e.max.x : e.min.x),
-                            (jt.y = r.normal.y > 0 ? e.max.y : e.min.y),
-                            (jt.z = r.normal.z > 0 ? e.max.z : e.min.z),
-                            r.distanceToPoint(jt) < 0)
+                            ((zt.x = r.normal.x > 0 ? e.max.x : e.min.x),
+                            (zt.y = r.normal.y > 0 ? e.max.y : e.min.y),
+                            (zt.z = r.normal.z > 0 ? e.max.z : e.min.z),
+                            r.distanceToPoint(zt) < 0)
                           )
                             return !1;
                         }
@@ -10056,7 +10072,7 @@ object-assign
                         diffuse: { value: new hn(15658734) },
                         opacity: { value: 1 },
                         map: { value: null },
-                        uvTransform: { value: new Nt() },
+                        uvTransform: { value: new Ft() },
                         alphaMap: { value: null },
                       },
                       specularmap: { specularMap: { value: null } },
@@ -10172,7 +10188,7 @@ object-assign
                         size: { value: 1 },
                         scale: { value: 1 },
                         map: { value: null },
-                        uvTransform: { value: new Nt() },
+                        uvTransform: { value: new Ft() },
                       },
                       sprite: {
                         diffuse: { value: new hn(15658734) },
@@ -10180,7 +10196,7 @@ object-assign
                         center: { value: new It(0.5, 0.5) },
                         rotation: { value: 0 },
                         map: { value: null },
-                        uvTransform: { value: new Nt() },
+                        uvTransform: { value: new Ft() },
                       },
                     },
                     fn = {
@@ -10311,7 +10327,7 @@ object-assign
                       },
                       background: {
                         uniforms: {
-                          uvTransform: { value: new Nt() },
+                          uvTransform: { value: new Ft() },
                           t2D: { value: null },
                         },
                         vertexShader: nn.background_vert,
@@ -10336,7 +10352,7 @@ object-assign
                           pn.common,
                           pn.displacementmap,
                           {
-                            referencePosition: { value: new Ft() },
+                            referencePosition: { value: new Nt() },
                             nearDistance: { value: 1 },
                             farDistance: { value: 1e3 },
                           },
@@ -10464,7 +10480,7 @@ object-assign
                     (this.a = e),
                       (this.b = t),
                       (this.c = n),
-                      (this.normal = r && r.isVector3 ? r : new Ft()),
+                      (this.normal = r && r.isVector3 ? r : new Nt()),
                       (this.vertexNormals = Array.isArray(r) ? r : []),
                       (this.color = i && i.isColor ? i : new hn()),
                       (this.vertexColors = Array.isArray(i) ? i : []),
@@ -10692,7 +10708,7 @@ object-assign
                       toVector3: function(e) {
                         return e
                           ? e.set(this._x, this._y, this._z)
-                          : new Ft(this._x, this._y, this._z);
+                          : new Nt(this._x, this._y, this._z);
                       },
                       onChange: function(e) {
                         return (this.onChangeCallback = e), this;
@@ -10717,22 +10733,22 @@ object-assign
                       },
                     });
                   var An,
+                    En,
                     wn,
                     xn,
-                    En,
                     _n = 0;
-                  function Mn() {
+                  function Tn() {
                     Object.defineProperty(this, "id", { value: _n++ }),
                       (this.uuid = Dt.generateUUID()),
                       (this.name = ""),
                       (this.type = "Object3D"),
                       (this.parent = null),
                       (this.children = []),
-                      (this.up = Mn.DefaultUp.clone());
-                    var e = new Ft(),
+                      (this.up = Tn.DefaultUp.clone());
+                    var e = new Nt(),
                       t = new yn(),
                       n = new kt(),
-                      r = new Ft(1, 1, 1);
+                      r = new Nt(1, 1, 1);
                     t.onChange(function() {
                       n.setFromEuler(t, !1);
                     }),
@@ -10757,11 +10773,11 @@ object-assign
                         },
                         scale: { configurable: !0, enumerable: !0, value: r },
                         modelViewMatrix: { value: new Bt() },
-                        normalMatrix: { value: new Nt() },
+                        normalMatrix: { value: new Ft() },
                       }),
                       (this.matrix = new Bt()),
                       (this.matrixWorld = new Bt()),
-                      (this.matrixAutoUpdate = Mn.DefaultMatrixAutoUpdate),
+                      (this.matrixAutoUpdate = Tn.DefaultMatrixAutoUpdate),
                       (this.matrixWorldNeedsUpdate = !1),
                       (this.layers = new bn()),
                       (this.visible = !0),
@@ -10771,10 +10787,10 @@ object-assign
                       (this.renderOrder = 0),
                       (this.userData = {});
                   }
-                  (Mn.DefaultUp = new Ft(0, 1, 0)),
-                    (Mn.DefaultMatrixAutoUpdate = !0),
-                    (Mn.prototype = Object.assign(Object.create(t.prototype), {
-                      constructor: Mn,
+                  (Tn.DefaultUp = new Nt(0, 1, 0)),
+                    (Tn.DefaultMatrixAutoUpdate = !0),
+                    (Tn.prototype = Object.assign(Object.create(t.prototype), {
+                      constructor: Tn,
                       isObject3D: !0,
                       onBeforeRender: function() {},
                       onAfterRender: function() {},
@@ -10801,11 +10817,11 @@ object-assign
                       setRotationFromQuaternion: function(e) {
                         this.quaternion.copy(e);
                       },
-                      rotateOnAxis: ((En = new kt()),
+                      rotateOnAxis: ((xn = new kt()),
                       function(e, t) {
                         return (
-                          En.setFromAxisAngle(e, t),
-                          this.quaternion.multiply(En),
+                          xn.setFromAxisAngle(e, t),
+                          this.quaternion.multiply(xn),
                           this
                         );
                       }),
@@ -10820,25 +10836,25 @@ object-assign
                         };
                       })(),
                       rotateX: (function() {
-                        var e = new Ft(1, 0, 0);
+                        var e = new Nt(1, 0, 0);
                         return function(t) {
                           return this.rotateOnAxis(e, t);
                         };
                       })(),
                       rotateY: (function() {
-                        var e = new Ft(0, 1, 0);
+                        var e = new Nt(0, 1, 0);
                         return function(t) {
                           return this.rotateOnAxis(e, t);
                         };
                       })(),
                       rotateZ: (function() {
-                        var e = new Ft(0, 0, 1);
+                        var e = new Nt(0, 0, 1);
                         return function(t) {
                           return this.rotateOnAxis(e, t);
                         };
                       })(),
                       translateOnAxis: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t, n) {
                           return (
                             e.copy(t).applyQuaternion(this.quaternion),
@@ -10848,19 +10864,19 @@ object-assign
                         };
                       })(),
                       translateX: (function() {
-                        var e = new Ft(1, 0, 0);
+                        var e = new Nt(1, 0, 0);
                         return function(t) {
                           return this.translateOnAxis(e, t);
                         };
                       })(),
                       translateY: (function() {
-                        var e = new Ft(0, 1, 0);
+                        var e = new Nt(0, 1, 0);
                         return function(t) {
                           return this.translateOnAxis(e, t);
                         };
                       })(),
                       translateZ: (function() {
-                        var e = new Ft(0, 0, 1);
+                        var e = new Nt(0, 0, 1);
                         return function(t) {
                           return this.translateOnAxis(e, t);
                         };
@@ -10868,15 +10884,15 @@ object-assign
                       localToWorld: function(e) {
                         return e.applyMatrix4(this.matrixWorld);
                       },
-                      worldToLocal: ((xn = new Bt()),
+                      worldToLocal: ((wn = new Bt()),
                       function(e) {
-                        return e.applyMatrix4(xn.getInverse(this.matrixWorld));
+                        return e.applyMatrix4(wn.getInverse(this.matrixWorld));
                       }),
                       lookAt: (function() {
                         var e = new kt(),
                           t = new Bt(),
-                          n = new Ft(),
-                          r = new Ft();
+                          n = new Nt(),
+                          r = new Nt();
                         return function(i, o, a) {
                           i.isVector3 ? n.copy(i) : n.set(i, o, a);
                           var s = this.parent;
@@ -10950,13 +10966,13 @@ object-assign
                             (console.warn(
                               "THREE.Object3D: .getWorldPosition() target is now required"
                             ),
-                            (e = new Ft())),
+                            (e = new Nt())),
                           this.updateMatrixWorld(!0),
                           e.setFromMatrixPosition(this.matrixWorld)
                         );
                       },
-                      getWorldQuaternion: ((An = new Ft()),
-                      (wn = new Ft()),
+                      getWorldQuaternion: ((An = new Nt()),
+                      (En = new Nt()),
                       function(e) {
                         return (
                           void 0 === e &&
@@ -10965,12 +10981,12 @@ object-assign
                             ),
                             (e = new kt())),
                           this.updateMatrixWorld(!0),
-                          this.matrixWorld.decompose(An, e, wn),
+                          this.matrixWorld.decompose(An, e, En),
                           e
                         );
                       }),
                       getWorldScale: (function() {
-                        var e = new Ft(),
+                        var e = new Nt(),
                           t = new kt();
                         return function(n) {
                           return (
@@ -10978,7 +10994,7 @@ object-assign
                               (console.warn(
                                 "THREE.Object3D: .getWorldScale() target is now required"
                               ),
-                              (n = new Ft())),
+                              (n = new Nt())),
                             this.updateMatrixWorld(!0),
                             this.matrixWorld.decompose(e, t, n),
                             n
@@ -10990,7 +11006,7 @@ object-assign
                           (console.warn(
                             "THREE.Object3D: .getWorldDirection() target is now required"
                           ),
-                          (e = new Ft())),
+                          (e = new Nt())),
                           this.updateMatrixWorld(!0);
                         var t = this.matrixWorld.elements;
                         return e.set(t[8], t[9], t[10]).normalize();
@@ -11195,7 +11211,7 @@ object-assign
                         return this;
                       },
                     }));
-                  var Tn,
+                  var Mn,
                     Sn,
                     Cn = 0;
                   function Ln() {
@@ -11254,10 +11270,10 @@ object-assign
                   function kn(e, t, n) {
                     Rn.call(this, new Int32Array(e), t, n);
                   }
-                  function Fn(e, t, n) {
+                  function Nn(e, t, n) {
                     Rn.call(this, new Uint32Array(e), t, n);
                   }
-                  function Nn(e, t, n) {
+                  function Fn(e, t, n) {
                     Rn.call(this, new Float32Array(e), t, n);
                   }
                   function Un(e, t, n) {
@@ -11281,7 +11297,7 @@ object-assign
                       (this.uvsNeedUpdate = !1),
                       (this.groupsNeedUpdate = !1);
                   }
-                  function zn(e) {
+                  function Vn(e) {
                     if (0 === e.length) return -1 / 0;
                     for (var t = e[0], n = 1, r = e.length; n < r; ++n)
                       e[n] > t && (t = e[n]);
@@ -11292,7 +11308,7 @@ object-assign
                     isGeometry: !0,
                     applyMatrix: function(e) {
                       for (
-                        var t = new Nt().getNormalMatrix(e),
+                        var t = new Ft().getNormalMatrix(e),
                           n = 0,
                           r = this.vertices.length;
                         n < r;
@@ -11348,7 +11364,7 @@ object-assign
                         return e.makeScale(t, n, r), this.applyMatrix(e), this;
                       };
                     })(),
-                    lookAt: ((Sn = new Mn()),
+                    lookAt: ((Sn = new Tn()),
                     function(e) {
                       Sn.lookAt(e),
                         Sn.updateMatrix(),
@@ -11365,7 +11381,7 @@ object-assign
                         l = void 0 !== r.uv2 ? r.uv2.array : void 0;
                       void 0 !== l && (this.faceVertexUvs[1] = []);
                       for (var c = 0, u = 0; c < i.length; c += 3, u += 2)
-                        t.vertices.push(new Ft().fromArray(i, c)),
+                        t.vertices.push(new Nt().fromArray(i, c)),
                           void 0 !== a &&
                             t.colors.push(new hn().fromArray(a, c));
                       function h(e, n, r, i) {
@@ -11381,9 +11397,9 @@ object-assign
                             void 0 === o
                               ? []
                               : [
-                                  new Ft().fromArray(o, 3 * e),
-                                  new Ft().fromArray(o, 3 * n),
-                                  new Ft().fromArray(o, 3 * r),
+                                  new Nt().fromArray(o, 3 * e),
+                                  new Nt().fromArray(o, 3 * n),
+                                  new Nt().fromArray(o, 3 * r),
                                 ],
                           h = new gn(e, n, r, u, c, i);
                         t.faces.push(h),
@@ -11430,12 +11446,12 @@ object-assign
                         this
                       );
                     },
-                    center: ((Tn = new Ft()),
+                    center: ((Mn = new Nt()),
                     function() {
                       return (
                         this.computeBoundingBox(),
-                        this.boundingBox.getCenter(Tn).negate(),
-                        this.translate(Tn.x, Tn.y, Tn.z),
+                        this.boundingBox.getCenter(Mn).negate(),
+                        this.translate(Mn.x, Mn.y, Mn.z),
                         this
                       );
                     }),
@@ -11470,8 +11486,8 @@ object-assign
                     },
                     computeFaceNormals: function() {
                       for (
-                        var e = new Ft(),
-                          t = new Ft(),
+                        var e = new Nt(),
+                          t = new Nt(),
                           n = 0,
                           r = this.faces.length;
                         n < r;
@@ -11498,13 +11514,13 @@ object-assign
                         t < n;
                         t++
                       )
-                        a[t] = new Ft();
+                        a[t] = new Nt();
                       if (e) {
                         var s,
                           l,
                           c,
-                          u = new Ft(),
-                          h = new Ft();
+                          u = new Nt(),
+                          h = new Nt();
                         for (r = 0, i = this.faces.length; r < i; r++)
                           (o = this.faces[r]),
                             (s = this.vertices[o.a]),
@@ -11596,8 +11612,8 @@ object-assign
                           var a = this.morphNormals[e].faceNormals,
                             s = this.morphNormals[e].vertexNormals;
                           for (n = 0, r = this.faces.length; n < r; n++)
-                            (l = new Ft()),
-                              (c = { a: new Ft(), b: new Ft(), c: new Ft() }),
+                            (l = new Nt()),
+                              (c = { a: new Nt(), b: new Nt(), c: new Nt() }),
                               a.push(l),
                               s.push(c);
                         }
@@ -11648,7 +11664,7 @@ object-assign
                           h = this.colors,
                           d = e.colors;
                         void 0 === n && (n = 0),
-                          void 0 !== t && (r = new Nt().getNormalMatrix(t));
+                          void 0 !== t && (r = new Ft().getNormalMatrix(t));
                         for (var p = 0, f = a.length; p < f; p++) {
                           var m = a[p],
                             v = m.clone();
@@ -11661,29 +11677,29 @@ object-assign
                             y,
                             b,
                             A = l[p],
-                            w = A.vertexNormals,
-                            x = A.vertexColors;
+                            E = A.vertexNormals,
+                            w = A.vertexColors;
                           (g = new gn(A.a + i, A.b + i, A.c + i)).normal.copy(
                             A.normal
                           ),
                             void 0 !== r &&
                               g.normal.applyMatrix3(r).normalize();
-                          for (var E = 0, _ = w.length; E < _; E++)
-                            (y = w[E].clone()),
+                          for (var x = 0, _ = E.length; x < _; x++)
+                            (y = E[x].clone()),
                               void 0 !== r && y.applyMatrix3(r).normalize(),
                               g.vertexNormals.push(y);
                           g.color.copy(A.color);
-                          for (var E = 0, _ = x.length; E < _; E++)
-                            (b = x[E]), g.vertexColors.push(b.clone());
+                          for (var x = 0, _ = w.length; x < _; x++)
+                            (b = w[x]), g.vertexColors.push(b.clone());
                           (g.materialIndex = A.materialIndex + n), s.push(g);
                         }
                         for (p = 0, f = u.length; p < f; p++) {
-                          var M = u[p],
-                            T = [];
-                          if (void 0 !== M) {
-                            for (var E = 0, _ = M.length; E < _; E++)
-                              T.push(M[E].clone());
-                            c.push(T);
+                          var T = u[p],
+                            M = [];
+                          if (void 0 !== T) {
+                            for (var x = 0, _ = T.length; x < _; x++)
+                              M.push(T[x].clone());
+                            c.push(M);
                           }
                         }
                       } else
@@ -11757,7 +11773,7 @@ object-assign
                       this.vertices = [];
                       for (var t = 0, n = e.length; t < n; t++) {
                         var r = e[t];
-                        this.vertices.push(new Ft(r.x, r.y, r.z || 0));
+                        this.vertices.push(new Nt(r.x, r.y, r.z || 0));
                       }
                       return this;
                     },
@@ -11825,32 +11841,32 @@ object-assign
                           y = p.vertexColors.length > 0,
                           b = 0;
                         if (
-                          ((b = E(b, 0, 0)),
-                          (b = E(b, 1, !0)),
-                          (b = E(b, 2, !1)),
-                          (b = E(b, 3, f)),
-                          (b = E(b, 4, m)),
-                          (b = E(b, 5, v)),
-                          (b = E(b, 6, g)),
-                          (b = E(b, 7, y)),
+                          ((b = x(b, 0, 0)),
+                          (b = x(b, 1, !0)),
+                          (b = x(b, 2, !1)),
+                          (b = x(b, 3, f)),
+                          (b = x(b, 4, m)),
+                          (b = x(b, 5, v)),
+                          (b = x(b, 6, g)),
+                          (b = x(b, 7, y)),
                           a.push(b),
                           a.push(p.a, p.b, p.c),
                           a.push(p.materialIndex),
                           f)
                         ) {
                           var A = this.faceVertexUvs[0][i];
-                          a.push(T(A[0]), T(A[1]), T(A[2]));
+                          a.push(M(A[0]), M(A[1]), M(A[2]));
                         }
                         if ((m && a.push(_(p.normal)), v)) {
-                          var w = p.vertexNormals;
-                          a.push(_(w[0]), _(w[1]), _(w[2]));
+                          var E = p.vertexNormals;
+                          a.push(_(E[0]), _(E[1]), _(E[2]));
                         }
-                        if ((g && a.push(M(p.color)), y)) {
-                          var x = p.vertexColors;
-                          a.push(M(x[0]), M(x[1]), M(x[2]));
+                        if ((g && a.push(T(p.color)), y)) {
+                          var w = p.vertexColors;
+                          a.push(T(w[0]), T(w[1]), T(w[2]));
                         }
                       }
-                      function E(e, t, n) {
+                      function x(e, t, n) {
                         return n ? e | (1 << t) : e & ~(1 << t);
                       }
                       function _(e) {
@@ -11862,14 +11878,14 @@ object-assign
                             s.push(e.x, e.y, e.z),
                             l[t]);
                       }
-                      function M(e) {
+                      function T(e) {
                         var t =
                           e.r.toString() + e.g.toString() + e.b.toString();
                         return void 0 !== u[t]
                           ? u[t]
                           : ((u[t] = c.length), c.push(e.getHex()), u[t]);
                       }
-                      function T(e) {
+                      function M(e) {
                         var t = e.x.toString() + e.y.toString();
                         return void 0 !== d[t]
                           ? d[t]
@@ -11981,14 +11997,14 @@ object-assign
                       var A = e.skinWeights;
                       for (t = 0, n = A.length; t < n; t++)
                         this.skinWeights.push(A[t].clone());
-                      var w = e.skinIndices;
+                      var E = e.skinIndices;
+                      for (t = 0, n = E.length; t < n; t++)
+                        this.skinIndices.push(E[t].clone());
+                      var w = e.lineDistances;
                       for (t = 0, n = w.length; t < n; t++)
-                        this.skinIndices.push(w[t].clone());
-                      var x = e.lineDistances;
-                      for (t = 0, n = x.length; t < n; t++)
-                        this.lineDistances.push(x[t]);
-                      var E = e.boundingBox;
-                      null !== E && (this.boundingBox = E.clone());
+                        this.lineDistances.push(w[t]);
+                      var x = e.boundingBox;
+                      null !== x && (this.boundingBox = x.clone());
                       var _ = e.boundingSphere;
                       return (
                         null !== _ && (this.boundingSphere = _.clone()),
@@ -12099,7 +12115,7 @@ object-assign
                               "THREE.BufferAttribute.copyVector3sArray(): vector is undefined",
                               r
                             ),
-                            (o = new Ft())),
+                            (o = new Nt())),
                             (t[n++] = o.x),
                             (t[n++] = o.y),
                             (t[n++] = o.z);
@@ -12204,10 +12220,10 @@ object-assign
                     (Bn.prototype.constructor = Bn),
                     (kn.prototype = Object.create(Rn.prototype)),
                     (kn.prototype.constructor = kn),
-                    (Fn.prototype = Object.create(Rn.prototype)),
-                    (Fn.prototype.constructor = Fn),
                     (Nn.prototype = Object.create(Rn.prototype)),
                     (Nn.prototype.constructor = Nn),
+                    (Fn.prototype = Object.create(Rn.prototype)),
+                    (Fn.prototype.constructor = Fn),
                     (Un.prototype = Object.create(Rn.prototype)),
                     (Un.prototype.constructor = Un),
                     Object.assign(Hn.prototype, {
@@ -12275,13 +12291,13 @@ object-assign
                           if (3 === A.length)
                             this.colors.push(A[0], A[1], A[2]);
                           else {
-                            var w = g.color;
-                            this.colors.push(w, w, w);
+                            var E = g.color;
+                            this.colors.push(E, E, E);
                           }
                           if (!0 === o) {
-                            var x = i[0][c];
-                            void 0 !== x
-                              ? this.uvs.push(x[0], x[1], x[2])
+                            var w = i[0][c];
+                            void 0 !== w
+                              ? this.uvs.push(w[0], w[1], w[2])
                               : (console.warn(
                                   "THREE.DirectGeometry.fromGeometry(): Undefined vertexUv ",
                                   c
@@ -12289,22 +12305,22 @@ object-assign
                                 this.uvs.push(new It(), new It(), new It()));
                           }
                           if (!0 === a) {
-                            var x = i[1][c];
-                            void 0 !== x
-                              ? this.uvs2.push(x[0], x[1], x[2])
+                            var w = i[1][c];
+                            void 0 !== w
+                              ? this.uvs2.push(w[0], w[1], w[2])
                               : (console.warn(
                                   "THREE.DirectGeometry.fromGeometry(): Undefined vertexUv2 ",
                                   c
                                 ),
                                 this.uvs2.push(new It(), new It(), new It()));
                           }
-                          for (var E = 0; E < l; E++) {
-                            var _ = s[E].vertices;
-                            t[E].data.push(_[g.a], _[g.b], _[g.c]);
+                          for (var x = 0; x < l; x++) {
+                            var _ = s[x].vertices;
+                            t[x].data.push(_[g.a], _[g.b], _[g.c]);
                           }
-                          for (var E = 0; E < d; E++) {
-                            var M = h[E].vertexNormals[c];
-                            u[E].data.push(M.a, M.b, M.c);
+                          for (var x = 0; x < d; x++) {
+                            var T = h[x].vertexNormals[c];
+                            u[x].data.push(T.a, T.b, T.c);
                           }
                           m && this.skinIndices.push(p[g.a], p[g.b], p[g.c]),
                             v && this.skinWeights.push(f[g.a], f[g.b], f[g.c]);
@@ -12320,9 +12336,9 @@ object-assign
                         );
                       },
                     });
-                  var jn = 1;
-                  function Vn() {
-                    Object.defineProperty(this, "id", { value: (jn += 2) }),
+                  var zn = 1;
+                  function Gn() {
+                    Object.defineProperty(this, "id", { value: (zn += 2) }),
                       (this.uuid = Dt.generateUUID()),
                       (this.name = ""),
                       (this.type = "BufferGeometry"),
@@ -12335,7 +12351,7 @@ object-assign
                       (this.drawRange = { start: 0, count: 1 / 0 }),
                       (this.userData = {});
                   }
-                  function Gn(e, t, n, r, i, o) {
+                  function jn(e, t, n, r, i, o) {
                     Ln.call(this),
                       (this.type = "BoxGeometry"),
                       (this.parameters = {
@@ -12350,7 +12366,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function Wn(e, t, n, r, i, o) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "BoxBufferGeometry"),
                       (this.parameters = {
                         width: e,
@@ -12377,19 +12393,19 @@ object-assign
                       var y,
                         b,
                         A = o / m,
-                        w = p / v,
-                        x = o / 2,
-                        E = p / 2,
+                        E = p / v,
+                        w = o / 2,
+                        x = p / 2,
                         _ = f / 2,
-                        M = m + 1,
-                        T = v + 1,
+                        T = m + 1,
+                        M = v + 1,
                         S = 0,
                         C = 0,
-                        L = new Ft();
-                      for (b = 0; b < T; b++) {
-                        var R = b * w - E;
-                        for (y = 0; y < M; y++) {
-                          var P = y * A - x;
+                        L = new Nt();
+                      for (b = 0; b < M; b++) {
+                        var R = b * E - x;
+                        for (y = 0; y < T; y++) {
+                          var P = y * A - w;
                           (L[e] = P * r),
                             (L[t] = R * i),
                             (L[n] = _),
@@ -12405,10 +12421,10 @@ object-assign
                       }
                       for (b = 0; b < v; b++)
                         for (y = 0; y < m; y++) {
-                          var O = h + y + M * b,
-                            D = h + y + M * (b + 1),
-                            I = h + (y + 1) + M * (b + 1),
-                            B = h + (y + 1) + M * b;
+                          var O = h + y + T * b,
+                            D = h + y + T * (b + 1),
+                            I = h + (y + 1) + T * (b + 1),
+                            B = h + (y + 1) + T * b;
                           s.push(O, D, B), s.push(D, I, B), (C += 6);
                         }
                       a.addGroup(d, C, g), (d += C), (h += S);
@@ -12420,9 +12436,9 @@ object-assign
                       p("x", "y", "z", 1, -1, e, t, n, r, i, 4),
                       p("x", "y", "z", -1, -1, e, t, -n, r, i, 5),
                       this.setIndex(s),
-                      this.addAttribute("position", new Nn(l, 3)),
-                      this.addAttribute("normal", new Nn(c, 3)),
-                      this.addAttribute("uv", new Nn(u, 2));
+                      this.addAttribute("position", new Fn(l, 3)),
+                      this.addAttribute("normal", new Fn(c, 3)),
+                      this.addAttribute("uv", new Fn(u, 2));
                   }
                   function qn(e, t, n, r) {
                     Ln.call(this),
@@ -12437,7 +12453,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function Xn(e, t, n, r) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "PlaneBufferGeometry"),
                       (this.parameters = {
                         width: e,
@@ -12472,25 +12488,25 @@ object-assign
                     for (o = 0; o < c; o++)
                       for (i = 0; i < l; i++) {
                         var A = i + u * o,
-                          w = i + u * (o + 1),
-                          x = i + 1 + u * (o + 1),
-                          E = i + 1 + u * o;
-                        f.push(A, w, E), f.push(w, x, E);
+                          E = i + u * (o + 1),
+                          w = i + 1 + u * (o + 1),
+                          x = i + 1 + u * o;
+                        f.push(A, E, x), f.push(E, w, x);
                       }
                     this.setIndex(f),
-                      this.addAttribute("position", new Nn(m, 3)),
-                      this.addAttribute("normal", new Nn(v, 3)),
-                      this.addAttribute("uv", new Nn(g, 2));
+                      this.addAttribute("position", new Fn(m, 3)),
+                      this.addAttribute("normal", new Fn(v, 3)),
+                      this.addAttribute("uv", new Fn(g, 2));
                   }
-                  (Vn.prototype = Object.assign(Object.create(t.prototype), {
-                    constructor: Vn,
+                  (Gn.prototype = Object.assign(Object.create(t.prototype), {
+                    constructor: Gn,
                     isBufferGeometry: !0,
                     getIndex: function() {
                       return this.index;
                     },
                     setIndex: function(e) {
                       Array.isArray(e)
-                        ? (this.index = new (zn(e) > 65535 ? Fn : Bn)(e, 1))
+                        ? (this.index = new (Vn(e) > 65535 ? Nn : Bn)(e, 1))
                         : (this.index = e);
                     },
                     addAttribute: function(e, t) {
@@ -12536,7 +12552,7 @@ object-assign
                         (e.applyToBufferAttribute(t), (t.needsUpdate = !0));
                       var n = this.attributes.normal;
                       if (void 0 !== n) {
-                        var r = new Nt().getNormalMatrix(e);
+                        var r = new Ft().getNormalMatrix(e);
                         r.applyToBufferAttribute(n), (n.needsUpdate = !0);
                       }
                       return (
@@ -12579,7 +12595,7 @@ object-assign
                       };
                     })(),
                     lookAt: (function() {
-                      var e = new Mn();
+                      var e = new Tn();
                       return function(t) {
                         e.lookAt(t),
                           e.updateMatrix(),
@@ -12587,7 +12603,7 @@ object-assign
                       };
                     })(),
                     center: (function() {
-                      var e = new Ft();
+                      var e = new Nt();
                       return function() {
                         return (
                           this.computeBoundingBox(),
@@ -12600,8 +12616,8 @@ object-assign
                     setFromObject: function(e) {
                       var t = e.geometry;
                       if (e.isPoints || e.isLine) {
-                        var n = new Nn(3 * t.vertices.length, 3),
-                          r = new Nn(3 * t.colors.length, 3);
+                        var n = new Fn(3 * t.vertices.length, 3),
+                          r = new Fn(3 * t.colors.length, 3);
                         if (
                           (this.addAttribute(
                             "position",
@@ -12614,7 +12630,7 @@ object-assign
                           t.lineDistances &&
                             t.lineDistances.length === t.vertices.length)
                         ) {
-                          var i = new Nn(t.lineDistances.length, 1);
+                          var i = new Fn(t.lineDistances.length, 1);
                           this.addAttribute(
                             "lineDistance",
                             i.copyArray(t.lineDistances)
@@ -12633,7 +12649,7 @@ object-assign
                         var i = e[n];
                         t.push(i.x, i.y, i.z || 0);
                       }
-                      return this.addAttribute("position", new Nn(t, 3)), this;
+                      return this.addAttribute("position", new Fn(t, 3)), this;
                     },
                     updateFromObject: function(e) {
                       var t,
@@ -12742,21 +12758,21 @@ object-assign
                           c++
                         ) {
                           var h = l[c],
-                            d = new Nn(3 * h.data.length, 3);
+                            d = new Fn(3 * h.data.length, 3);
                           (d.name = h.name),
                             s.push(d.copyVector3sArray(h.data));
                         }
                         this.morphAttributes[a] = s;
                       }
                       if (e.skinIndices.length > 0) {
-                        var p = new Nn(4 * e.skinIndices.length, 4);
+                        var p = new Fn(4 * e.skinIndices.length, 4);
                         this.addAttribute(
                           "skinIndex",
                           p.copyVector4sArray(e.skinIndices)
                         );
                       }
                       if (e.skinWeights.length > 0) {
-                        var f = new Nn(4 * e.skinWeights.length, 4);
+                        var f = new Fn(4 * e.skinWeights.length, 4);
                         this.addAttribute(
                           "skinWeight",
                           f.copyVector4sArray(e.skinWeights)
@@ -12787,7 +12803,7 @@ object-assign
                     },
                     computeBoundingSphere: (function() {
                       var e = new Jt(),
-                        t = new Ft();
+                        t = new Nt();
                       return function() {
                         null === this.boundingSphere &&
                           (this.boundingSphere = new $t());
@@ -12831,11 +12847,11 @@ object-assign
                           s,
                           l,
                           c = t.normal.array,
-                          u = new Ft(),
-                          h = new Ft(),
-                          d = new Ft(),
-                          p = new Ft(),
-                          f = new Ft();
+                          u = new Nt(),
+                          h = new Nt(),
+                          d = new Nt(),
+                          p = new Nt(),
+                          f = new Nt();
                         if (e)
                           for (
                             var m = e.array, i = 0, o = e.count;
@@ -12910,7 +12926,7 @@ object-assign
                       );
                     },
                     normalizeNormals: (function() {
-                      var e = new Ft();
+                      var e = new Nt();
                       return function() {
                         for (
                           var t = this.attributes.normal, n = 0, r = t.count;
@@ -12949,7 +12965,7 @@ object-assign
                           ),
                           this
                         );
-                      var t = new Vn(),
+                      var t = new Gn(),
                         n = this.index.array,
                         r = this.attributes;
                       for (var i in r) {
@@ -13034,7 +13050,7 @@ object-assign
                       );
                     },
                     clone: function() {
-                      return new Vn().copy(this);
+                      return new Gn().copy(this);
                     },
                     copy: function(e) {
                       var t, n, r;
@@ -13080,13 +13096,13 @@ object-assign
                       this.dispatchEvent({ type: "dispose" });
                     },
                   })),
-                    (Gn.prototype = Object.create(Ln.prototype)),
-                    (Gn.prototype.constructor = Gn),
-                    (Wn.prototype = Object.create(Vn.prototype)),
+                    (jn.prototype = Object.create(Ln.prototype)),
+                    (jn.prototype.constructor = jn),
+                    (Wn.prototype = Object.create(Gn.prototype)),
                     (Wn.prototype.constructor = Wn),
                     (qn.prototype = Object.create(Ln.prototype)),
                     (qn.prototype.constructor = qn),
-                    (Xn.prototype = Object.create(Vn.prototype)),
+                    (Xn.prototype = Object.create(Gn.prototype)),
                     (Xn.prototype.constructor = Xn);
                   var Yn,
                     Qn,
@@ -13111,11 +13127,11 @@ object-assign
                       (this.blending = S),
                       (this.side = A),
                       (this.flatShading = !1),
-                      (this.vertexColors = E),
+                      (this.vertexColors = x),
                       (this.opacity = 1),
                       (this.transparent = !1),
-                      (this.blendSrc = z),
-                      (this.blendDst = j),
+                      (this.blendSrc = V),
+                      (this.blendDst = z),
                       (this.blendEquation = O),
                       (this.blendSrcAlpha = null),
                       (this.blendDstAlpha = null),
@@ -13178,13 +13194,13 @@ object-assign
                         this.setValues(e));
                   }
                   function cr(e, t) {
-                    (this.origin = void 0 !== e ? e : new Ft()),
-                      (this.direction = void 0 !== t ? t : new Ft());
+                    (this.origin = void 0 !== e ? e : new Nt()),
+                      (this.direction = void 0 !== t ? t : new Nt());
                   }
                   function ur(e, t, n) {
-                    (this.a = void 0 !== e ? e : new Ft()),
-                      (this.b = void 0 !== t ? t : new Ft()),
-                      (this.c = void 0 !== n ? n : new Ft());
+                    (this.a = void 0 !== e ? e : new Nt()),
+                      (this.b = void 0 !== t ? t : new Nt()),
+                      (this.c = void 0 !== n ? n : new Nt());
                   }
                   function hr(e) {
                     sr.call(this),
@@ -13211,9 +13227,9 @@ object-assign
                       this.setValues(e);
                   }
                   function dr(e, t) {
-                    Mn.call(this),
+                    Tn.call(this),
                       (this.type = "Mesh"),
-                      (this.geometry = void 0 !== e ? e : new Vn()),
+                      (this.geometry = void 0 !== e ? e : new Gn()),
                       (this.material =
                         void 0 !== t
                           ? t
@@ -13268,7 +13284,7 @@ object-assign
                                 uniforms: rn(fn.cube.uniforms),
                                 vertexShader: fn.cube.vertexShader,
                                 fragmentShader: fn.cube.fragmentShader,
-                                side: w,
+                                side: E,
                                 depthTest: !1,
                                 depthWrite: !1,
                                 fog: !1,
@@ -13433,7 +13449,7 @@ object-assign
                       r = !1,
                       i = !1,
                       o = new en(),
-                      a = new Nt(),
+                      a = new Ft(),
                       s = { value: null, needsUpdate: !1 };
                     function l() {
                       s.value !== t && ((s.value = t), (s.needsUpdate = n > 0)),
@@ -13570,7 +13586,7 @@ object-assign
                             ? (i = t)
                             : t.isGeometry &&
                               (void 0 === t._bufferGeometry &&
-                                (t._bufferGeometry = new Vn().setFromObject(e)),
+                                (t._bufferGeometry = new Gn().setFromObject(e)),
                               (i = t._bufferGeometry)),
                           (r[t.id] = i),
                           n.memory.geometries++,
@@ -13618,7 +13634,7 @@ object-assign
                             r.push(u, h, h, d, d, u);
                           }
                         return (
-                          (n = new (zn(r) > 65535 ? Fn : Bn)(r, 1)),
+                          (n = new (Vn(r) > 65535 ? Nn : Bn)(r, 1)),
                           t.update(n, 34963),
                           (i[e.id] = n),
                           n
@@ -13704,10 +13720,10 @@ object-assign
                       },
                     };
                   }
-                  function wr(e, t) {
+                  function Er(e, t) {
                     return Math.abs(t[1]) - Math.abs(e[1]);
                   }
-                  function xr(e) {
+                  function wr(e) {
                     var t = {},
                       n = new Float32Array(8);
                     return {
@@ -13736,7 +13752,7 @@ object-assign
                           var p = c[u];
                           (p[0] = u), (p[1] = s[u]);
                         }
-                        c.sort(wr);
+                        c.sort(Er);
                         for (var u = 0; u < 8; u++) {
                           var p = c[u];
                           if (p) {
@@ -13755,7 +13771,7 @@ object-assign
                       },
                     };
                   }
-                  function Er(e, t) {
+                  function xr(e, t) {
                     var n = {};
                     return {
                       update: function(r) {
@@ -13781,11 +13797,11 @@ object-assign
                       qt.call(this, e, t, n, r, i, o, a, s, l, c),
                       (this.flipY = !1);
                   }
-                  function Mr(e, t, n, r) {
+                  function Tr(e, t, n, r) {
                     qt.call(this, null),
                       (this.image = { data: e, width: t, height: n, depth: r }),
-                      (this.magFilter = we),
-                      (this.minFilter = we),
+                      (this.magFilter = Ee),
+                      (this.minFilter = Ee),
                       (this.generateMipmaps = !1),
                       (this.flipY = !1);
                   }
@@ -13929,7 +13945,7 @@ object-assign
                         !0 === this.flatShading &&
                           (n.flatShading = this.flatShading),
                         this.side !== A && (n.side = this.side),
-                        this.vertexColors !== E &&
+                        this.vertexColors !== x &&
                           (n.vertexColors = this.vertexColors),
                         this.opacity < 1 && (n.opacity = this.opacity),
                         !0 === this.transparent &&
@@ -14102,7 +14118,7 @@ object-assign
                             (console.warn(
                               "THREE.Ray: .at() target is now required"
                             ),
-                            (t = new Ft())),
+                            (t = new Nt())),
                           t
                             .copy(this.direction)
                             .multiplyScalar(e)
@@ -14119,7 +14135,7 @@ object-assign
                         );
                       },
                       recast: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t) {
                           return this.origin.copy(this.at(t, e)), this;
                         };
@@ -14129,7 +14145,7 @@ object-assign
                           (console.warn(
                             "THREE.Ray: .closestPointToPoint() target is now required"
                           ),
-                          (t = new Ft())),
+                          (t = new Nt())),
                           t.subVectors(e, this.origin);
                         var n = t.dot(this.direction);
                         return n < 0
@@ -14143,7 +14159,7 @@ object-assign
                         return Math.sqrt(this.distanceSqToPoint(e));
                       },
                       distanceSqToPoint: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t) {
                           var n = e
                             .subVectors(t, this.origin)
@@ -14157,9 +14173,9 @@ object-assign
                               e.distanceToSquared(t));
                         };
                       })(),
-                      distanceSqToSegment: ((Qn = new Ft()),
-                      (Kn = new Ft()),
-                      (Zn = new Ft()),
+                      distanceSqToSegment: ((Qn = new Nt()),
+                      (Kn = new Nt()),
+                      (Zn = new Nt()),
                       function(e, t, n, r) {
                         Qn.copy(e)
                           .add(t)
@@ -14229,7 +14245,7 @@ object-assign
                         );
                       }),
                       intersectSphere: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t, n) {
                           e.subVectors(t.center, this.origin);
                           var r = e.dot(this.direction),
@@ -14309,15 +14325,15 @@ object-assign
                                   r < 0 ? null : this.at(n >= 0 ? n : r, t)))
                         );
                       },
-                      intersectsBox: ((Yn = new Ft()),
+                      intersectsBox: ((Yn = new Nt()),
                       function(e) {
                         return null !== this.intersectBox(e, Yn);
                       }),
                       intersectTriangle: (function() {
-                        var e = new Ft(),
-                          t = new Ft(),
-                          n = new Ft(),
-                          r = new Ft();
+                        var e = new Nt(),
+                          t = new Nt(),
+                          n = new Nt(),
+                          r = new Nt();
                         return function(i, o, a, s, l) {
                           t.subVectors(o, i),
                             n.subVectors(a, i),
@@ -14356,13 +14372,13 @@ object-assign
                       },
                     }),
                     Object.assign(ur, {
-                      getNormal: (($n = new Ft()),
+                      getNormal: (($n = new Nt()),
                       function(e, t, n, r) {
                         void 0 === r &&
                           (console.warn(
                             "THREE.Triangle: .getNormal() target is now required"
                           ),
-                          (r = new Ft())),
+                          (r = new Nt())),
                           r.subVectors(n, t),
                           $n.subVectors(e, t),
                           r.cross($n);
@@ -14372,9 +14388,9 @@ object-assign
                           : r.set(0, 0, 0);
                       }),
                       getBarycoord: (function() {
-                        var e = new Ft(),
-                          t = new Ft(),
-                          n = new Ft();
+                        var e = new Nt(),
+                          t = new Nt(),
+                          n = new Nt();
                         return function(r, i, o, a, s) {
                           e.subVectors(a, i),
                             t.subVectors(o, i),
@@ -14390,7 +14406,7 @@ object-assign
                               (console.warn(
                                 "THREE.Triangle: .getBarycoord() target is now required"
                               ),
-                              (s = new Ft())),
+                              (s = new Nt())),
                             0 === p)
                           )
                             return s.set(-2, -1, -1);
@@ -14401,7 +14417,7 @@ object-assign
                         };
                       })(),
                       containsPoint: (function() {
-                        var e = new Ft();
+                        var e = new Nt();
                         return function(t, n, r, i) {
                           return (
                             ur.getBarycoord(t, n, r, i, e),
@@ -14409,7 +14425,7 @@ object-assign
                           );
                         };
                       })(),
-                      getUV: ((Jn = new Ft()),
+                      getUV: ((Jn = new Nt()),
                       function(e, t, n, r, i, o, a, s) {
                         return (
                           this.getBarycoord(e, t, n, r, Jn),
@@ -14447,8 +14463,8 @@ object-assign
                         );
                       },
                       getArea: (function() {
-                        var e = new Ft(),
-                          t = new Ft();
+                        var e = new Nt(),
+                          t = new Nt();
                         return function() {
                           return (
                             e.subVectors(this.c, this.b),
@@ -14463,7 +14479,7 @@ object-assign
                             (console.warn(
                               "THREE.Triangle: .getMidpoint() target is now required"
                             ),
-                            (e = new Ft())),
+                            (e = new Nt())),
                           e
                             .addVectors(this.a, this.b)
                             .add(this.c)
@@ -14479,7 +14495,7 @@ object-assign
                             (console.warn(
                               "THREE.Triangle: .getPlane() target is now required"
                             ),
-                            (e = new Ft())),
+                            (e = new Nt())),
                           e.setFromCoplanarPoints(this.a, this.b, this.c)
                         );
                       },
@@ -14495,18 +14511,18 @@ object-assign
                       intersectsBox: function(e) {
                         return e.intersectsTriangle(this);
                       },
-                      closestPointToPoint: ((er = new Ft()),
-                      (tr = new Ft()),
-                      (nr = new Ft()),
-                      (rr = new Ft()),
-                      (ir = new Ft()),
-                      (or = new Ft()),
+                      closestPointToPoint: ((er = new Nt()),
+                      (tr = new Nt()),
+                      (nr = new Nt()),
+                      (rr = new Nt()),
+                      (ir = new Nt()),
+                      (or = new Nt()),
                       function(e, t) {
                         void 0 === t &&
                           (console.warn(
                             "THREE.Triangle: .closestPointToPoint() target is now required"
                           ),
-                          (t = new Ft()));
+                          (t = new Nt()));
                         var n,
                           r,
                           i = this.a,
@@ -14588,7 +14604,7 @@ object-assign
                         this
                       );
                     }),
-                    (dr.prototype = Object.assign(Object.create(Mn.prototype), {
+                    (dr.prototype = Object.assign(Object.create(Tn.prototype), {
                       constructor: dr,
                       isMesh: !0,
                       setDrawMode: function(e) {
@@ -14596,7 +14612,7 @@ object-assign
                       },
                       copy: function(e) {
                         return (
-                          Mn.prototype.copy.call(this, e),
+                          Tn.prototype.copy.call(this, e),
                           (this.drawMode = e.drawMode),
                           void 0 !== e.morphTargetInfluences &&
                             (this.morphTargetInfluences = e.morphTargetInfluences.slice()),
@@ -14644,23 +14660,23 @@ object-assign
                         var e = new Bt(),
                           t = new cr(),
                           n = new $t(),
-                          r = new Ft(),
-                          i = new Ft(),
-                          o = new Ft(),
-                          a = new Ft(),
-                          s = new Ft(),
-                          l = new Ft(),
+                          r = new Nt(),
+                          i = new Nt(),
+                          o = new Nt(),
+                          a = new Nt(),
+                          s = new Nt(),
+                          l = new Nt(),
                           c = new It(),
                           u = new It(),
                           h = new It(),
-                          d = new Ft(),
-                          p = new Ft();
+                          d = new Nt(),
+                          p = new Nt();
                         function f(e, t, n, r, i, o, a, s) {
                           if (
                             null ===
-                            (t.side === w
+                            (t.side === E
                               ? r.intersectTriangle(a, o, i, !0, s)
-                              : r.intersectTriangle(i, o, a, t.side !== x, s))
+                              : r.intersectTriangle(i, o, a, t.side !== w, s))
                           )
                             return null;
                           p.copy(s), p.applyMatrix4(e.matrixWorld);
@@ -14703,12 +14719,12 @@ object-assign
                                 !1 !== t.intersectsBox(y.boundingBox)))
                           )
                             if (y.isBufferGeometry) {
-                              var w,
+                              var E,
+                                w,
                                 x,
-                                E,
                                 _,
-                                M,
                                 T,
+                                M,
                                 S,
                                 C,
                                 L,
@@ -14721,7 +14737,7 @@ object-assign
                                 k = y.drawRange;
                               if (null !== O)
                                 if (Array.isArray(b))
-                                  for (_ = 0, T = B.length; _ < T; _++)
+                                  for (_ = 0, M = B.length; _ < M; _++)
                                     for (
                                       C = B[_],
                                         L = b[C.materialIndex],
@@ -14730,16 +14746,16 @@ object-assign
                                           C.start + C.count,
                                           k.start + k.count
                                         ),
-                                        M = R,
+                                        T = R,
                                         S = P;
-                                      M < S;
-                                      M += 3
+                                      T < S;
+                                      T += 3
                                     )
-                                      (w = O.getX(M)),
-                                        (x = O.getX(M + 1)),
-                                        (E = O.getX(M + 2)),
-                                        (g = m(this, L, p, t, D, I, w, x, E)) &&
-                                          ((g.faceIndex = Math.floor(M / 3)),
+                                      (E = O.getX(T)),
+                                        (w = O.getX(T + 1)),
+                                        (x = O.getX(T + 2)),
+                                        (g = m(this, L, p, t, D, I, E, w, x)) &&
+                                          ((g.faceIndex = Math.floor(T / 3)),
                                           (g.face.materialIndex =
                                             C.materialIndex),
                                           v.push(g));
@@ -14748,19 +14764,19 @@ object-assign
                                     R = Math.max(0, k.start),
                                       P = Math.min(O.count, k.start + k.count),
                                       _ = R,
-                                      T = P;
-                                    _ < T;
+                                      M = P;
+                                    _ < M;
                                     _ += 3
                                   )
-                                    (w = O.getX(_)),
-                                      (x = O.getX(_ + 1)),
-                                      (E = O.getX(_ + 2)),
-                                      (g = m(this, b, p, t, D, I, w, x, E)) &&
+                                    (E = O.getX(_)),
+                                      (w = O.getX(_ + 1)),
+                                      (x = O.getX(_ + 2)),
+                                      (g = m(this, b, p, t, D, I, E, w, x)) &&
                                         ((g.faceIndex = Math.floor(_ / 3)),
                                         v.push(g));
                               else if (void 0 !== D)
                                 if (Array.isArray(b))
-                                  for (_ = 0, T = B.length; _ < T; _++)
+                                  for (_ = 0, M = B.length; _ < M; _++)
                                     for (
                                       C = B[_],
                                         L = b[C.materialIndex],
@@ -14769,10 +14785,10 @@ object-assign
                                           C.start + C.count,
                                           k.start + k.count
                                         ),
-                                        M = R,
+                                        T = R,
                                         S = P;
-                                      M < S;
-                                      M += 3
+                                      T < S;
+                                      T += 3
                                     )
                                       (g = m(
                                         this,
@@ -14781,11 +14797,11 @@ object-assign
                                         t,
                                         D,
                                         I,
-                                        (w = M),
-                                        (x = M + 1),
-                                        (E = M + 2)
+                                        (E = T),
+                                        (w = T + 1),
+                                        (x = T + 2)
                                       )) &&
-                                        ((g.faceIndex = Math.floor(M / 3)),
+                                        ((g.faceIndex = Math.floor(T / 3)),
                                         (g.face.materialIndex =
                                           C.materialIndex),
                                         v.push(g));
@@ -14794,8 +14810,8 @@ object-assign
                                     R = Math.max(0, k.start),
                                       P = Math.min(D.count, k.start + k.count),
                                       _ = R,
-                                      T = P;
-                                    _ < T;
+                                      M = P;
+                                    _ < M;
                                     _ += 3
                                   )
                                     (g = m(
@@ -14805,30 +14821,30 @@ object-assign
                                       t,
                                       D,
                                       I,
-                                      (w = _),
-                                      (x = _ + 1),
-                                      (E = _ + 2)
+                                      (E = _),
+                                      (w = _ + 1),
+                                      (x = _ + 2)
                                     )) &&
                                       ((g.faceIndex = Math.floor(_ / 3)),
                                       v.push(g));
                             } else if (y.isGeometry) {
-                              var F,
-                                N,
+                              var N,
+                                F,
                                 U,
                                 H,
-                                z = Array.isArray(b),
-                                j = y.vertices,
-                                V = y.faces,
-                                G = y.faceVertexUvs[0];
-                              G.length > 0 && (H = G);
-                              for (var W = 0, q = V.length; W < q; W++) {
-                                var X = V[W],
-                                  Y = z ? b[X.materialIndex] : b;
+                                V = Array.isArray(b),
+                                z = y.vertices,
+                                G = y.faces,
+                                j = y.faceVertexUvs[0];
+                              j.length > 0 && (H = j);
+                              for (var W = 0, q = G.length; W < q; W++) {
+                                var X = G[W],
+                                  Y = V ? b[X.materialIndex] : b;
                                 if (void 0 !== Y) {
                                   if (
-                                    ((F = j[X.a]),
-                                    (N = j[X.b]),
-                                    (U = j[X.c]),
+                                    ((N = z[X.a]),
+                                    (F = z[X.b]),
+                                    (U = z[X.c]),
                                     !0 === Y.morphTargets)
                                   ) {
                                     var Q = y.morphTargets,
@@ -14841,11 +14857,11 @@ object-assign
                                       if (0 !== $) {
                                         var ee = Q[Z].vertices;
                                         r.addScaledVector(
-                                          a.subVectors(ee[X.a], F),
+                                          a.subVectors(ee[X.a], N),
                                           $
                                         ),
                                           i.addScaledVector(
-                                            s.subVectors(ee[X.b], N),
+                                            s.subVectors(ee[X.b], F),
                                             $
                                           ),
                                           o.addScaledVector(
@@ -14854,14 +14870,14 @@ object-assign
                                           );
                                       }
                                     }
-                                    r.add(F),
-                                      i.add(N),
+                                    r.add(N),
+                                      i.add(F),
                                       o.add(U),
-                                      (F = r),
-                                      (N = i),
+                                      (N = r),
+                                      (F = i),
                                       (U = o);
                                   }
-                                  if ((g = f(this, Y, p, t, F, N, U, d))) {
+                                  if ((g = f(this, Y, p, t, N, F, U, d))) {
                                     if (H && H[W]) {
                                       var te = H[W];
                                       c.copy(te[0]),
@@ -14869,8 +14885,8 @@ object-assign
                                         h.copy(te[2]),
                                         (g.uv = ur.getUV(
                                           d,
-                                          F,
                                           N,
+                                          F,
                                           U,
                                           c,
                                           u,
@@ -14903,11 +14919,11 @@ object-assign
                         this.image = e;
                       },
                     }),
-                    (Mr.prototype = Object.create(qt.prototype)),
-                    (Mr.prototype.constructor = Mr),
-                    (Mr.prototype.isDataTexture3D = !0);
-                  var Tr = new qt(),
-                    Sr = new Mr(),
+                    (Tr.prototype = Object.create(qt.prototype)),
+                    (Tr.prototype.constructor = Tr),
+                    (Tr.prototype.isDataTexture3D = !0);
+                  var Mr = new qt(),
+                    Sr = new Tr(),
                     Cr = new _r();
                   function Lr() {
                     (this.seq = []), (this.map = {});
@@ -14938,10 +14954,10 @@ object-assign
                       if (e[n] !== t[n]) return !1;
                     return !0;
                   }
-                  function Fr(e, t) {
+                  function Nr(e, t) {
                     for (var n = 0, r = t.length; n < r; n++) e[n] = t[n];
                   }
-                  function Nr(e, t) {
+                  function Fr(e, t) {
                     var n = Pr[t];
                     void 0 === n && ((n = new Int32Array(t)), (Pr[t] = n));
                     for (var r = 0; r !== t; ++r) n[r] = e.allocTextureUnit();
@@ -14955,7 +14971,7 @@ object-assign
                     var n = this.cache;
                     n[0] !== t && (e.uniform1i(this.addr, t), (n[0] = t));
                   }
-                  function zr(e, t) {
+                  function Vr(e, t) {
                     var n = this.cache;
                     if (void 0 !== t.x)
                       (n[0] === t.x && n[1] === t.y) ||
@@ -14964,10 +14980,10 @@ object-assign
                         (n[1] = t.y));
                     else {
                       if (kr(n, t)) return;
-                      e.uniform2fv(this.addr, t), Fr(n, t);
+                      e.uniform2fv(this.addr, t), Nr(n, t);
                     }
                   }
-                  function jr(e, t) {
+                  function zr(e, t) {
                     var n = this.cache;
                     if (void 0 !== t.x)
                       (n[0] === t.x && n[1] === t.y && n[2] === t.z) ||
@@ -14983,10 +14999,10 @@ object-assign
                         (n[2] = t.b));
                     else {
                       if (kr(n, t)) return;
-                      e.uniform3fv(this.addr, t), Fr(n, t);
+                      e.uniform3fv(this.addr, t), Nr(n, t);
                     }
                   }
-                  function Vr(e, t) {
+                  function Gr(e, t) {
                     var n = this.cache;
                     if (void 0 !== t.x)
                       (n[0] === t.x &&
@@ -15000,20 +15016,20 @@ object-assign
                         (n[3] = t.w));
                     else {
                       if (kr(n, t)) return;
-                      e.uniform4fv(this.addr, t), Fr(n, t);
+                      e.uniform4fv(this.addr, t), Nr(n, t);
                     }
                   }
-                  function Gr(e, t) {
+                  function jr(e, t) {
                     var n = this.cache,
                       r = t.elements;
                     if (void 0 === r) {
                       if (kr(n, t)) return;
-                      e.uniformMatrix2fv(this.addr, !1, t), Fr(n, t);
+                      e.uniformMatrix2fv(this.addr, !1, t), Nr(n, t);
                     } else {
                       if (kr(n, r)) return;
                       Ir.set(r),
                         e.uniformMatrix2fv(this.addr, !1, Ir),
-                        Fr(n, r);
+                        Nr(n, r);
                     }
                   }
                   function Wr(e, t) {
@@ -15021,12 +15037,12 @@ object-assign
                       r = t.elements;
                     if (void 0 === r) {
                       if (kr(n, t)) return;
-                      e.uniformMatrix3fv(this.addr, !1, t), Fr(n, t);
+                      e.uniformMatrix3fv(this.addr, !1, t), Nr(n, t);
                     } else {
                       if (kr(n, r)) return;
                       Dr.set(r),
                         e.uniformMatrix3fv(this.addr, !1, Dr),
-                        Fr(n, r);
+                        Nr(n, r);
                     }
                   }
                   function qr(e, t) {
@@ -15034,19 +15050,19 @@ object-assign
                       r = t.elements;
                     if (void 0 === r) {
                       if (kr(n, t)) return;
-                      e.uniformMatrix4fv(this.addr, !1, t), Fr(n, t);
+                      e.uniformMatrix4fv(this.addr, !1, t), Nr(n, t);
                     } else {
                       if (kr(n, r)) return;
                       Or.set(r),
                         e.uniformMatrix4fv(this.addr, !1, Or),
-                        Fr(n, r);
+                        Nr(n, r);
                     }
                   }
                   function Xr(e, t, n) {
                     var r = this.cache,
                       i = n.allocTextureUnit();
                     r[0] !== i && (e.uniform1i(this.addr, i), (r[0] = i)),
-                      n.setTexture2D(t || Tr, i);
+                      n.setTexture2D(t || Mr, i);
                   }
                   function Yr(e, t, n) {
                     var r = this.cache,
@@ -15062,23 +15078,23 @@ object-assign
                   }
                   function Kr(e, t) {
                     var n = this.cache;
-                    kr(n, t) || (e.uniform2iv(this.addr, t), Fr(n, t));
+                    kr(n, t) || (e.uniform2iv(this.addr, t), Nr(n, t));
                   }
                   function Zr(e, t) {
                     var n = this.cache;
-                    kr(n, t) || (e.uniform3iv(this.addr, t), Fr(n, t));
+                    kr(n, t) || (e.uniform3iv(this.addr, t), Nr(n, t));
                   }
                   function Jr(e, t) {
                     var n = this.cache;
-                    kr(n, t) || (e.uniform4iv(this.addr, t), Fr(n, t));
+                    kr(n, t) || (e.uniform4iv(this.addr, t), Nr(n, t));
                   }
                   function $r(e, t) {
                     var n = this.cache;
-                    kr(n, t) || (e.uniform1fv(this.addr, t), Fr(n, t));
+                    kr(n, t) || (e.uniform1fv(this.addr, t), Nr(n, t));
                   }
                   function ei(e, t) {
                     var n = this.cache;
-                    kr(n, t) || (e.uniform1iv(this.addr, t), Fr(n, t));
+                    kr(n, t) || (e.uniform1iv(this.addr, t), Nr(n, t));
                   }
                   function ti(e, t) {
                     var n = this.cache,
@@ -15122,16 +15138,16 @@ object-assign
                   function si(e, t, n) {
                     var r = this.cache,
                       i = t.length,
-                      o = Nr(n, i);
-                    !1 === kr(r, o) && (e.uniform1iv(this.addr, o), Fr(r, o));
+                      o = Fr(n, i);
+                    !1 === kr(r, o) && (e.uniform1iv(this.addr, o), Nr(r, o));
                     for (var a = 0; a !== i; ++a)
-                      n.setTexture2D(t[a] || Tr, o[a]);
+                      n.setTexture2D(t[a] || Mr, o[a]);
                   }
                   function li(e, t, n) {
                     var r = this.cache,
                       i = t.length,
-                      o = Nr(n, i);
-                    !1 === kr(r, o) && (e.uniform1iv(this.addr, o), Fr(r, o));
+                      o = Fr(n, i);
+                    !1 === kr(r, o) && (e.uniform1iv(this.addr, o), Nr(r, o));
                     for (var a = 0; a !== i; ++a)
                       n.setTextureCube(t[a] || Cr, o[a]);
                   }
@@ -15144,13 +15160,13 @@ object-assign
                           case 5126:
                             return Ur;
                           case 35664:
-                            return zr;
-                          case 35665:
-                            return jr;
-                          case 35666:
                             return Vr;
-                          case 35674:
+                          case 35665:
+                            return zr;
+                          case 35666:
                             return Gr;
+                          case 35674:
+                            return jr;
                           case 35675:
                             return Wr;
                           case 35676:
@@ -15225,7 +15241,7 @@ object-assign
                     e instanceof Float32Array &&
                       t.length !== e.length &&
                       (this.cache = new Float32Array(e.length)),
-                      Fr(t, e);
+                      Nr(t, e);
                   }),
                     (hi.prototype.setValue = function(e, t, n) {
                       for (
@@ -15326,13 +15342,13 @@ object-assign
                   var gi = 0;
                   function yi(e) {
                     switch (e) {
-                      case xt:
+                      case wt:
                         return ["Linear", "( value )"];
-                      case Et:
+                      case xt:
                         return ["sRGB", "( value )"];
-                      case Mt:
-                        return ["RGBE", "( value )"];
                       case Tt:
+                        return ["RGBE", "( value )"];
+                      case Mt:
                         return ["RGBM", "( value, 7.0 )"];
                       case St:
                         return ["RGBM", "( value, 16.0 )"];
@@ -15385,10 +15401,10 @@ object-assign
                       "ToneMapping( color ); }"
                     );
                   }
-                  function wi(e) {
+                  function Ei(e) {
                     return "" !== e;
                   }
-                  function xi(e, t) {
+                  function wi(e, t) {
                     return e
                       .replace(/NUM_DIR_LIGHTS/g, t.numDirLights)
                       .replace(/NUM_SPOT_LIGHTS/g, t.numSpotLights)
@@ -15396,7 +15412,7 @@ object-assign
                       .replace(/NUM_POINT_LIGHTS/g, t.numPointLights)
                       .replace(/NUM_HEMI_LIGHTS/g, t.numHemiLights);
                   }
-                  function Ei(e, t) {
+                  function xi(e, t) {
                     return e
                       .replace(/NUM_CLIPPING_PLANES/g, t.numClippingPlanes)
                       .replace(
@@ -15417,7 +15433,7 @@ object-assign
                       }
                     );
                   }
-                  function Mi(e) {
+                  function Ti(e) {
                     return e.replace(
                       /#pragma unroll_loop[\s]+?for \( int i \= (\d+)\; i < (\d+)\; i \+\+ \) \{([\s\S]+?)(?=\})\}/g,
                       function(e, t, n, r) {
@@ -15427,7 +15443,7 @@ object-assign
                       }
                     );
                   }
-                  function Ti(e, t, n, r, i, o, a) {
+                  function Mi(e, t, n, r, i, o, a) {
                     var s = e.context,
                       l = r.defines,
                       c = i.vertexShader,
@@ -15477,9 +15493,9 @@ object-assign
                       v,
                       g,
                       A,
-                      w,
-                      x = e.gammaFactor > 0 ? e.gammaFactor : 1,
-                      E = a.isWebGL2
+                      E,
+                      w = e.gammaFactor > 0 ? e.gammaFactor : 1,
+                      x = a.isWebGL2
                         ? ""
                         : (function(e, t, n) {
                             return [
@@ -15502,7 +15518,7 @@ object-assign
                                 ? "#extension GL_EXT_shader_texture_lod : enable"
                                 : "",
                             ]
-                              .filter(wi)
+                              .filter(Ei)
                               .join("\n");
                           })(r.extensions, o, t),
                       _ = (function(e) {
@@ -15513,12 +15529,12 @@ object-assign
                         }
                         return t.join("\n");
                       })(l),
-                      M = s.createProgram();
+                      T = s.createProgram();
                     if (
                       (r.isRawShaderMaterial
-                        ? ((m = [_].filter(wi).join("\n")).length > 0 &&
+                        ? ((m = [_].filter(Ei).join("\n")).length > 0 &&
                             (m += "\n"),
-                          (v = [E, _].filter(wi).join("\n")).length > 0 &&
+                          (v = [x, _].filter(Ei).join("\n")).length > 0 &&
                             (v += "\n"))
                         : ((m = [
                             "precision " + o.precision + " float;",
@@ -15528,7 +15544,7 @@ object-assign
                             o.supportsVertexTextures
                               ? "#define VERTEX_TEXTURES"
                               : "",
-                            "#define GAMMA_FACTOR " + x,
+                            "#define GAMMA_FACTOR " + w,
                             "#define MAX_BONES " + o.maxBones,
                             o.useFog && o.fog ? "#define USE_FOG" : "",
                             o.useFog && o.fogExp ? "#define FOG_EXP2" : "",
@@ -15607,10 +15623,10 @@ object-assign
                             "#endif",
                             "\n",
                           ]
-                            .filter(wi)
+                            .filter(Ei)
                             .join("\n")),
                           (v = [
-                            E,
+                            x,
                             "precision " + o.precision + " float;",
                             "precision " + o.precision + " int;",
                             "#define SHADER_NAME " + i.name,
@@ -15620,7 +15636,7 @@ object-assign
                                 o.alphaTest +
                                 (o.alphaTest % 1 ? "" : ".0")
                               : "",
-                            "#define GAMMA_FACTOR " + x,
+                            "#define GAMMA_FACTOR " + w,
                             o.useFog && o.fog ? "#define USE_FOG" : "",
                             o.useFog && o.fogExp ? "#define FOG_EXP2" : "",
                             o.map ? "#define USE_MAP" : "",
@@ -15700,12 +15716,12 @@ object-assign
                             o.outputEncoding
                               ? ((g = "linearToOutputTexel"),
                                 (A = o.outputEncoding),
-                                (w = yi(A)),
+                                (E = yi(A)),
                                 "vec4 " +
                                   g +
                                   "( vec4 value ) { return LinearTo" +
-                                  w[0] +
-                                  w[1] +
+                                  E[0] +
+                                  E[1] +
                                   "; }")
                               : "",
                             o.depthPacking
@@ -15713,20 +15729,20 @@ object-assign
                               : "",
                             "\n",
                           ]
-                            .filter(wi)
+                            .filter(Ei)
                             .join("\n"))),
-                      (c = Ei((c = xi((c = _i(c)), o)), o)),
-                      (u = Ei((u = xi((u = _i(u)), o)), o)),
-                      (c = Mi(c)),
-                      (u = Mi(u)),
+                      (c = xi((c = wi((c = _i(c)), o)), o)),
+                      (u = xi((u = wi((u = _i(u)), o)), o)),
+                      (c = Ti(c)),
+                      (u = Ti(u)),
                       a.isWebGL2 && !r.isRawShaderMaterial)
                     ) {
-                      var T = !1,
+                      var M = !1,
                         S = /^\s*#version\s+300\s+es\s*\n/;
                       r.isShaderMaterial &&
                         null !== c.match(S) &&
                         null !== u.match(S) &&
-                        ((T = !0),
+                        ((M = !0),
                         (c = c.replace(S, "")),
                         (u = u.replace(S, ""))),
                         (m =
@@ -15742,8 +15758,8 @@ object-assign
                           [
                             "#version 300 es\n",
                             "#define varying in",
-                            T ? "" : "out highp vec4 pc_fragColor;",
-                            T ? "" : "#define gl_FragColor pc_fragColor",
+                            M ? "" : "out highp vec4 pc_fragColor;",
+                            M ? "" : "#define gl_FragColor pc_fragColor",
                             "#define gl_FragDepthEXT gl_FragDepth",
                             "#define texture2D texture",
                             "#define textureCube texture",
@@ -15762,28 +15778,28 @@ object-assign
                       L = v + u,
                       R = vi(s, 35633, C),
                       P = vi(s, 35632, L);
-                    s.attachShader(M, R),
-                      s.attachShader(M, P),
+                    s.attachShader(T, R),
+                      s.attachShader(T, P),
                       void 0 !== r.index0AttributeName
-                        ? s.bindAttribLocation(M, 0, r.index0AttributeName)
+                        ? s.bindAttribLocation(T, 0, r.index0AttributeName)
                         : !0 === o.morphTargets &&
-                          s.bindAttribLocation(M, 0, "position"),
-                      s.linkProgram(M);
+                          s.bindAttribLocation(T, 0, "position"),
+                      s.linkProgram(T);
                     var O,
                       D,
-                      I = s.getProgramInfoLog(M).trim(),
+                      I = s.getProgramInfoLog(T).trim(),
                       B = s.getShaderInfoLog(R).trim(),
                       k = s.getShaderInfoLog(P).trim(),
-                      F = !0,
-                      N = !0;
+                      N = !0,
+                      F = !0;
                     return (
-                      !1 === s.getProgramParameter(M, 35714)
-                        ? ((F = !1),
+                      !1 === s.getProgramParameter(T, 35714)
+                        ? ((N = !1),
                           console.error(
                             "THREE.WebGLProgram: shader error: ",
                             s.getError(),
                             "35715",
-                            s.getProgramParameter(M, 35715),
+                            s.getProgramParameter(T, 35715),
                             "gl.getProgramInfoLog",
                             I,
                             B,
@@ -15794,10 +15810,10 @@ object-assign
                             "THREE.WebGLProgram: gl.getProgramInfoLog()",
                             I
                           )
-                        : ("" !== B && "" !== k) || (N = !1),
-                      N &&
+                        : ("" !== B && "" !== k) || (F = !1),
+                      F &&
                         (this.diagnostics = {
-                          runnable: F,
+                          runnable: N,
                           material: r,
                           programLog: I,
                           vertexShader: { log: B, prefix: m },
@@ -15806,7 +15822,7 @@ object-assign
                       s.deleteShader(R),
                       s.deleteShader(P),
                       (this.getUniforms = function() {
-                        return void 0 === O && (O = new mi(s, M, e)), O;
+                        return void 0 === O && (O = new mi(s, T, e)), O;
                       }),
                       (this.getAttributes = function() {
                         return (
@@ -15824,12 +15840,12 @@ object-assign
                                 n[a] = e.getAttribLocation(t, a);
                               }
                               return n;
-                            })(s, M)),
+                            })(s, T)),
                           D
                         );
                       }),
                       (this.destroy = function() {
-                        s.deleteProgram(M), (this.program = void 0);
+                        s.deleteProgram(T), (this.program = void 0);
                       }),
                       Object.defineProperties(this, {
                         uniforms: {
@@ -15857,7 +15873,7 @@ object-assign
                       (this.id = gi++),
                       (this.code = n),
                       (this.usedTimes = 1),
-                      (this.program = M),
+                      (this.program = T),
                       (this.vertexShader = R),
                       (this.fragmentShader = P),
                       this
@@ -15949,8 +15965,8 @@ object-assign
                                 "THREE.WebGLPrograms.getTextureEncodingFromMap: don't use render targets as textures. Use their .texture property instead."
                               ),
                               (n = e.texture.encoding))
-                          : (n = xt),
-                        n === xt && t && (n = _t),
+                          : (n = wt),
+                        n === wt && t && (n = _t),
                         n
                       );
                     }
@@ -16050,8 +16066,8 @@ object-assign
                           physicallyCorrectLights: e.physicallyCorrectLights,
                           premultipliedAlpha: t.premultipliedAlpha,
                           alphaTest: t.alphaTest,
-                          doubleSided: t.side === x,
-                          flipSided: t.side === w,
+                          doubleSided: t.side === w,
+                          flipSided: t.side === E,
                           depthPacking:
                             void 0 !== t.depthPacking && t.depthPacking,
                         };
@@ -16086,7 +16102,7 @@ object-assign
                         }
                         return (
                           void 0 === l &&
-                            ((l = new Ti(e, t, s, i, o, a, n)), r.push(l)),
+                            ((l = new Mi(e, t, s, i, o, a, n)), r.push(l)),
                           l
                         );
                       }),
@@ -16226,7 +16242,7 @@ object-assign
                         switch (t.type) {
                           case "DirectionalLight":
                             n = {
-                              direction: new Ft(),
+                              direction: new Nt(),
                               color: new hn(),
                               shadow: !1,
                               shadowBias: 0,
@@ -16236,8 +16252,8 @@ object-assign
                             break;
                           case "SpotLight":
                             n = {
-                              position: new Ft(),
-                              direction: new Ft(),
+                              position: new Nt(),
+                              direction: new Nt(),
                               color: new hn(),
                               distance: 0,
                               coneCos: 0,
@@ -16251,7 +16267,7 @@ object-assign
                             break;
                           case "PointLight":
                             n = {
-                              position: new Ft(),
+                              position: new Nt(),
                               color: new hn(),
                               distance: 0,
                               decay: 0,
@@ -16265,7 +16281,7 @@ object-assign
                             break;
                           case "HemisphereLight":
                             n = {
-                              direction: new Ft(),
+                              direction: new Nt(),
                               skyColor: new hn(),
                               groundColor: new hn(),
                             };
@@ -16273,9 +16289,9 @@ object-assign
                           case "RectAreaLight":
                             n = {
                               color: new hn(),
-                              position: new Ft(),
-                              halfWidth: new Ft(),
-                              halfHeight: new Ft(),
+                              position: new Nt(),
+                              halfWidth: new Nt(),
+                              halfHeight: new Nt(),
                             };
                         }
                         return (e[t.id] = n), n;
@@ -16309,7 +16325,7 @@ object-assign
                         pointShadowMatrix: [],
                         hemi: [],
                       },
-                      n = new Ft(),
+                      n = new Nt(),
                       r = new Bt(),
                       i = new Bt();
                     return {
@@ -16331,14 +16347,14 @@ object-assign
                         ) {
                           var b = o[g],
                             A = b.color,
-                            w = b.intensity,
-                            x = b.distance,
-                            E =
+                            E = b.intensity,
+                            w = b.distance,
+                            x =
                               b.shadow && b.shadow.map
                                 ? b.shadow.map.texture
                                 : null;
                           if (b.isAmbientLight)
-                            (l += A.r * w), (c += A.g * w), (u += A.b * w);
+                            (l += A.r * E), (c += A.g * E), (u += A.b * E);
                           else if (b.isDirectionalLight) {
                             var _ = e.get(b);
                             if (
@@ -16352,12 +16368,12 @@ object-assign
                               (_.shadow = b.castShadow),
                               b.castShadow)
                             ) {
-                              var M = b.shadow;
-                              (_.shadowBias = M.bias),
-                                (_.shadowRadius = M.radius),
-                                (_.shadowMapSize = M.mapSize);
+                              var T = b.shadow;
+                              (_.shadowBias = T.bias),
+                                (_.shadowRadius = T.radius),
+                                (_.shadowMapSize = T.mapSize);
                             }
-                            (t.directionalShadowMap[h] = E),
+                            (t.directionalShadowMap[h] = x),
                               (t.directionalShadowMatrix[h] = b.shadow.matrix),
                               (t.directional[h] = _),
                               h++;
@@ -16366,8 +16382,8 @@ object-assign
                             if (
                               (_.position.setFromMatrixPosition(b.matrixWorld),
                               _.position.applyMatrix4(v),
-                              _.color.copy(A).multiplyScalar(w),
-                              (_.distance = x),
+                              _.color.copy(A).multiplyScalar(E),
+                              (_.distance = w),
                               _.direction.setFromMatrixPosition(b.matrixWorld),
                               n.setFromMatrixPosition(b.target.matrixWorld),
                               _.direction.sub(n),
@@ -16380,18 +16396,18 @@ object-assign
                               (_.shadow = b.castShadow),
                               b.castShadow)
                             ) {
-                              var M = b.shadow;
-                              (_.shadowBias = M.bias),
-                                (_.shadowRadius = M.radius),
-                                (_.shadowMapSize = M.mapSize);
+                              var T = b.shadow;
+                              (_.shadowBias = T.bias),
+                                (_.shadowRadius = T.radius),
+                                (_.shadowMapSize = T.mapSize);
                             }
-                            (t.spotShadowMap[p] = E),
+                            (t.spotShadowMap[p] = x),
                               (t.spotShadowMatrix[p] = b.shadow.matrix),
                               (t.spot[p] = _),
                               p++;
                           } else if (b.isRectAreaLight) {
                             var _ = e.get(b);
-                            _.color.copy(A).multiplyScalar(w),
+                            _.color.copy(A).multiplyScalar(E),
                               _.position.setFromMatrixPosition(b.matrixWorld),
                               _.position.applyMatrix4(v),
                               i.identity(),
@@ -16415,14 +16431,14 @@ object-assign
                               (_.shadow = b.castShadow),
                               b.castShadow)
                             ) {
-                              var M = b.shadow;
-                              (_.shadowBias = M.bias),
-                                (_.shadowRadius = M.radius),
-                                (_.shadowMapSize = M.mapSize),
-                                (_.shadowCameraNear = M.camera.near),
-                                (_.shadowCameraFar = M.camera.far);
+                              var T = b.shadow;
+                              (_.shadowBias = T.bias),
+                                (_.shadowRadius = T.radius),
+                                (_.shadowMapSize = T.mapSize),
+                                (_.shadowCameraNear = T.camera.near),
+                                (_.shadowCameraFar = T.camera.far);
                             }
-                            (t.pointShadowMap[d] = E),
+                            (t.pointShadowMap[d] = x),
                               (t.pointShadowMatrix[d] = b.shadow.matrix),
                               (t.point[d] = _),
                               d++;
@@ -16431,10 +16447,10 @@ object-assign
                             _.direction.setFromMatrixPosition(b.matrixWorld),
                               _.direction.transformDirection(v),
                               _.direction.normalize(),
-                              _.skyColor.copy(b.color).multiplyScalar(w),
+                              _.skyColor.copy(b.color).multiplyScalar(E),
                               _.groundColor
                                 .copy(b.groundColor)
-                                .multiplyScalar(w),
+                                .multiplyScalar(E),
                               (t.hemi[m] = _),
                               m++;
                           }
@@ -16479,7 +16495,7 @@ object-assign
                       },
                     };
                   }
-                  function Fi() {
+                  function Ni() {
                     var e = {};
                     function t(n) {
                       var r = n.target;
@@ -16505,7 +16521,7 @@ object-assign
                       },
                     };
                   }
-                  function Ni(e) {
+                  function Fi(e) {
                     sr.call(this),
                       (this.type = "MeshDepthMaterial"),
                       (this.depthPacking = Lt),
@@ -16525,7 +16541,7 @@ object-assign
                   function Ui(e) {
                     sr.call(this),
                       (this.type = "MeshDistanceMaterial"),
-                      (this.referencePosition = new Ft()),
+                      (this.referencePosition = new Nt()),
                       (this.nearDistance = 1),
                       (this.farDistance = 1e3),
                       (this.skinning = !1),
@@ -16545,30 +16561,30 @@ object-assign
                         i = new Bt(),
                         o = new It(),
                         a = new It(n, n),
-                        s = new Ft(),
-                        l = new Ft(),
+                        s = new Nt(),
+                        l = new Nt(),
                         c = 1,
                         u = 2,
                         h = 1 + (c | u),
                         d = new Array(h),
                         p = new Array(h),
                         f = {},
-                        m = { 0: w, 1: A, 2: x },
+                        m = { 0: E, 1: A, 2: w },
                         v = [
-                          new Ft(1, 0, 0),
-                          new Ft(-1, 0, 0),
-                          new Ft(0, 0, 1),
-                          new Ft(0, 0, -1),
-                          new Ft(0, 1, 0),
-                          new Ft(0, -1, 0),
+                          new Nt(1, 0, 0),
+                          new Nt(-1, 0, 0),
+                          new Nt(0, 0, 1),
+                          new Nt(0, 0, -1),
+                          new Nt(0, 1, 0),
+                          new Nt(0, -1, 0),
                         ],
                         g = [
-                          new Ft(0, 1, 0),
-                          new Ft(0, 1, 0),
-                          new Ft(0, 1, 0),
-                          new Ft(0, 1, 0),
-                          new Ft(0, 0, 1),
-                          new Ft(0, 0, -1),
+                          new Nt(0, 1, 0),
+                          new Nt(0, 1, 0),
+                          new Nt(0, 1, 0),
+                          new Nt(0, 1, 0),
+                          new Nt(0, 0, 1),
+                          new Nt(0, 0, -1),
                         ],
                         b = [
                           new Xt(),
@@ -16578,20 +16594,20 @@ object-assign
                           new Xt(),
                           new Xt(),
                         ],
-                        E = 0;
-                      E !== h;
-                      ++E
+                        x = 0;
+                      x !== h;
+                      ++x
                     ) {
-                      var _ = 0 != (E & c),
-                        M = 0 != (E & u),
-                        S = new Ni({
+                      var _ = 0 != (x & c),
+                        T = 0 != (x & u),
+                        S = new Fi({
                           depthPacking: Rt,
                           morphTargets: _,
-                          skinning: M,
+                          skinning: T,
                         });
-                      d[E] = S;
-                      var C = new Ui({ morphTargets: _, skinning: M });
-                      p[E] = C;
+                      d[x] = S;
+                      var C = new Ui({ morphTargets: _, skinning: T });
+                      p[x] = C;
                     }
                     var L = this;
                     function R(t, n, r, i, o, a) {
@@ -16629,11 +16645,11 @@ object-assign
                         0 !== n.clippingPlanes.length
                       ) {
                         var A = l.uuid,
-                          w = n.uuid,
-                          x = f[A];
-                        void 0 === x && ((x = {}), (f[A] = x));
-                        var E = x[w];
-                        void 0 === E && ((E = l.clone()), (x[w] = E)), (l = E);
+                          E = n.uuid,
+                          w = f[A];
+                        void 0 === w && ((w = {}), (f[A] = w));
+                        var x = w[E];
+                        void 0 === x && ((x = l.clone()), (w[E] = x)), (l = x);
                       }
                       return (
                         (l.visible = n.visible),
@@ -16706,7 +16722,7 @@ object-assign
                         ) {
                           var u,
                             h = e.state;
-                          h.setBlending(T),
+                          h.setBlending(M),
                             h.buffers.color.setClear(1, 1, 1, 1),
                             h.buffers.depth.setTest(!0),
                             h.setScissorTest(!1);
@@ -16717,42 +16733,42 @@ object-assign
                             if (void 0 !== m) {
                               var A = m.camera;
                               if ((o.copy(m.mapSize), o.min(a), y)) {
-                                var w = o.x,
-                                  x = o.y;
-                                b[0].set(2 * w, x, w, x),
-                                  b[1].set(0, x, w, x),
-                                  b[2].set(3 * w, x, w, x),
-                                  b[3].set(w, x, w, x),
-                                  b[4].set(3 * w, 0, w, x),
-                                  b[5].set(w, 0, w, x),
+                                var E = o.x,
+                                  w = o.y;
+                                b[0].set(2 * E, w, E, w),
+                                  b[1].set(0, w, E, w),
+                                  b[2].set(3 * E, w, E, w),
+                                  b[3].set(E, w, E, w),
+                                  b[4].set(3 * E, 0, E, w),
+                                  b[5].set(E, 0, E, w),
                                   (o.x *= 4),
                                   (o.y *= 2);
                               }
                               if (null === m.map) {
-                                var E = {
-                                  minFilter: we,
-                                  magFilter: we,
-                                  format: ze,
+                                var x = {
+                                  minFilter: Ee,
+                                  magFilter: Ee,
+                                  format: Ve,
                                 };
-                                (m.map = new Yt(o.x, o.y, E)),
+                                (m.map = new Yt(o.x, o.y, x)),
                                   (m.map.texture.name = f.name + ".shadowMap"),
                                   A.updateProjectionMatrix();
                               }
                               m.isSpotLightShadow && m.update(f);
                               var _ = m.map,
-                                M = m.matrix;
+                                T = m.matrix;
                               l.setFromMatrixPosition(f.matrixWorld),
                                 A.position.copy(l),
                                 y
                                   ? ((u = 6),
-                                    M.makeTranslation(-l.x, -l.y, -l.z))
+                                    T.makeTranslation(-l.x, -l.y, -l.z))
                                   : ((u = 1),
                                     s.setFromMatrixPosition(
                                       f.target.matrixWorld
                                     ),
                                     A.lookAt(s),
                                     A.updateMatrixWorld(),
-                                    M.set(
+                                    T.set(
                                       0.5,
                                       0,
                                       0,
@@ -16770,8 +16786,8 @@ object-assign
                                       0,
                                       1
                                     ),
-                                    M.multiply(A.projectionMatrix),
-                                    M.multiply(A.matrixWorldInverse)),
+                                    T.multiply(A.projectionMatrix),
+                                    T.multiply(A.matrixWorldInverse)),
                                 e.setRenderTarget(_),
                                 e.clear();
                               for (var S = 0; S < u; S++) {
@@ -16802,7 +16818,7 @@ object-assign
                         }
                       });
                   }
-                  function zi(e, t, n, r) {
+                  function Vi(e, t, n, r) {
                     var i = new function() {
                         var t = !1,
                           n = new Xt(),
@@ -16942,27 +16958,27 @@ object-assign
                       y = null,
                       b = null,
                       A = null,
-                      E = null,
+                      x = null,
                       _ = null,
-                      M = null,
+                      T = null,
                       D = null,
                       I = !1,
                       B = null,
                       k = null,
-                      F = null,
                       N = null,
+                      F = null,
                       U = null,
                       H = e.getParameter(35661),
-                      z = !1,
-                      j = 0,
-                      V = e.getParameter(7938);
-                    -1 !== V.indexOf("WebGL")
-                      ? ((j = parseFloat(/^WebGL\ ([0-9])/.exec(V)[1])),
-                        (z = j >= 1))
-                      : -1 !== V.indexOf("OpenGL ES") &&
-                        ((j = parseFloat(/^OpenGL\ ES\ ([0-9])/.exec(V)[1])),
-                        (z = j >= 2));
-                    var G = null,
+                      V = !1,
+                      z = 0,
+                      G = e.getParameter(7938);
+                    -1 !== G.indexOf("WebGL")
+                      ? ((z = parseFloat(/^WebGL\ ([0-9])/.exec(G)[1])),
+                        (V = z >= 1))
+                      : -1 !== G.indexOf("OpenGL ES") &&
+                        ((z = parseFloat(/^OpenGL\ ES\ ([0-9])/.exec(G)[1])),
+                        (V = z >= 2));
+                    var j = null,
                       W = {},
                       q = new Xt(),
                       X = new Xt();
@@ -17002,7 +17018,7 @@ object-assign
                       !1 !== h[t] && (e.disable(t), (h[t] = !1));
                     }
                     function se(t, r, i, o, a, s, l, c) {
-                      if (t !== T) {
+                      if (t !== M) {
                         if ((f || (oe(3042), (f = !0)), t === P))
                           (a = a || r),
                             (s = s || i),
@@ -17014,7 +17030,7 @@ object-assign
                               ),
                               (b = r),
                               (_ = a)),
-                            (i === A && o === E && s === M && l === D) ||
+                            (i === A && o === x && s === T && l === D) ||
                               (e.blendFuncSeparate(
                                 n.convert(i),
                                 n.convert(o),
@@ -17022,8 +17038,8 @@ object-assign
                                 n.convert(l)
                               ),
                               (A = i),
-                              (E = o),
-                              (M = s),
+                              (x = o),
+                              (T = s),
                               (D = l)),
                             (y = t),
                             (I = null);
@@ -17073,8 +17089,8 @@ object-assign
                                 );
                             }
                           (A = null),
-                            (E = null),
-                            (M = null),
+                            (x = null),
+                            (T = null),
                             (D = null),
                             (y = t),
                             (I = c);
@@ -17100,13 +17116,13 @@ object-assign
                     function ue(t, n, r) {
                       t
                         ? (oe(32823),
-                          (N === n && U === r) ||
-                            (e.polygonOffset(n, r), (N = n), (U = r)))
+                          (F === n && U === r) ||
+                            (e.polygonOffset(n, r), (F = n), (U = r)))
                         : ae(32823);
                     }
                     function he(t) {
                       void 0 === t && (t = 33984 + H - 1),
-                        G !== t && (e.activeTexture(t), (G = t));
+                        j !== t && (e.activeTexture(t), (j = t));
                     }
                     return (
                       (re[3553] = ne(3553, 3553, 1)),
@@ -17119,7 +17135,7 @@ object-assign
                       le(!1),
                       ce(v),
                       oe(2884),
-                      se(T),
+                      se(M),
                       {
                         buffers: { color: i, depth: o, stencil: a },
                         initAttributes: function() {
@@ -17158,12 +17174,12 @@ object-assign
                         },
                         setBlending: se,
                         setMaterial: function(e, t) {
-                          e.side === x ? ae(2884) : oe(2884);
-                          var n = e.side === w;
+                          e.side === w ? ae(2884) : oe(2884);
+                          var n = e.side === E;
                           t && (n = !n),
                             le(n),
                             e.blending === S && !1 === e.transparent
-                              ? se(T)
+                              ? se(M)
                               : se(
                                   e.blending,
                                   e.blendEquation,
@@ -17187,7 +17203,7 @@ object-assign
                         setFlipSided: le,
                         setCullFace: ce,
                         setLineWidth: function(t) {
-                          t !== F && (z && e.lineWidth(t), (F = t));
+                          t !== N && (V && e.lineWidth(t), (N = t));
                         },
                         setPolygonOffset: ue,
                         setScissorTest: function(e) {
@@ -17195,11 +17211,11 @@ object-assign
                         },
                         activeTexture: he,
                         bindTexture: function(t, n) {
-                          null === G && he();
-                          var r = W[G];
+                          null === j && he();
+                          var r = W[j];
                           void 0 === r &&
                             ((r = { type: void 0, texture: void 0 }),
-                            (W[G] = r)),
+                            (W[j] = r)),
                             (r.type === t && r.texture === n) ||
                               (e.bindTexture(t, n || re[t]),
                               (r.type = t),
@@ -17240,7 +17256,7 @@ object-assign
                               (e.disableVertexAttribArray(t), (c[t] = 0));
                           (h = {}),
                             (d = null),
-                            (G = null),
+                            (j = null),
                             (W = {}),
                             (p = null),
                             (y = null),
@@ -17253,7 +17269,7 @@ object-assign
                       }
                     );
                   }
-                  function ji(e, t, n, r, i, o, a) {
+                  function zi(e, t, n, r, i, o, a) {
                     var s,
                       l = {};
                     function c(e, t, n, r) {
@@ -17322,7 +17338,7 @@ object-assign
                       return (
                         e.generateMipmaps &&
                         t &&
-                        e.minFilter !== we &&
+                        e.minFilter !== Ee &&
                         e.minFilter !== _e
                       );
                     }
@@ -17357,7 +17373,7 @@ object-assign
                       );
                     }
                     function f(e) {
-                      return e === we || e === xe || e === Ee ? 9728 : 9729;
+                      return e === Ee || e === we || e === xe ? 9728 : 9729;
                     }
                     function m(t) {
                       var n = t.target;
@@ -17445,7 +17461,7 @@ object-assign
                               ),
                             e.texParameteri(n, 10240, f(a.magFilter)),
                             e.texParameteri(n, 10241, f(a.minFilter)),
-                            a.minFilter !== we &&
+                            a.minFilter !== Ee &&
                               a.minFilter !== _e &&
                               console.warn(
                                 "THREE.WebGLRenderer: Texture is not power of two. Texture.minFilter should be set to THREE.NearestFilter or THREE.LinearFilter."
@@ -17492,27 +17508,27 @@ object-assign
                               !i.isWebGL2 &&
                               (e.wrapS !== be ||
                                 e.wrapT !== be ||
-                                (e.minFilter !== we && e.minFilter !== _e))
+                                (e.minFilter !== Ee && e.minFilter !== _e))
                             );
                           })(r) && !1 === u(r.image),
                         v = c(r.image, f, !1, i.maxTextureSize),
                         g = u(v) || i.isWebGL2,
                         b = o.convert(r.format),
                         A = o.convert(r.type),
-                        w = p(b, A);
+                        E = p(b, A);
                       y(l, r, g);
-                      var x,
-                        E = r.mipmaps;
+                      var w,
+                        x = r.mipmaps;
                       if (r.isDepthTexture) {
-                        if (((w = 6402), r.type === De)) {
+                        if (((E = 6402), r.type === De)) {
                           if (!i.isWebGL2)
                             throw new Error(
                               "Float Depth Texture only supported in WebGL2.0"
                             );
-                          w = 36012;
-                        } else i.isWebGL2 && (w = 33189);
+                          E = 36012;
+                        } else i.isWebGL2 && (E = 33189);
                         r.format === We &&
-                          6402 === w &&
+                          6402 === E &&
                           r.type !== Re &&
                           r.type !== Oe &&
                           (console.warn(
@@ -17521,17 +17537,17 @@ object-assign
                           (r.type = Re),
                           (A = o.convert(r.type))),
                           r.format === qe &&
-                            ((w = 34041),
-                            r.type !== Ne &&
+                            ((E = 34041),
+                            r.type !== Fe &&
                               (console.warn(
                                 "THREE.WebGLRenderer: Use UnsignedInt248Type for DepthStencilFormat DepthTexture."
                               ),
-                              (r.type = Ne),
+                              (r.type = Fe),
                               (A = o.convert(r.type)))),
                           n.texImage2D(
                             3553,
                             0,
-                            w,
+                            E,
                             v.width,
                             v.height,
                             0,
@@ -17540,27 +17556,27 @@ object-assign
                             null
                           );
                       } else if (r.isDataTexture)
-                        if (E.length > 0 && g) {
-                          for (var _ = 0, M = E.length; _ < M; _++)
-                            (x = E[_]),
+                        if (x.length > 0 && g) {
+                          for (var _ = 0, T = x.length; _ < T; _++)
+                            (w = x[_]),
                               n.texImage2D(
                                 3553,
                                 _,
-                                w,
-                                x.width,
-                                x.height,
+                                E,
+                                w.width,
+                                w.height,
                                 0,
                                 b,
                                 A,
-                                x.data
+                                w.data
                               );
                           (r.generateMipmaps = !1),
-                            (t.__maxMipLevel = E.length - 1);
+                            (t.__maxMipLevel = x.length - 1);
                         } else
                           n.texImage2D(
                             3553,
                             0,
-                            w,
+                            E,
                             v.width,
                             v.height,
                             0,
@@ -17570,18 +17586,18 @@ object-assign
                           ),
                             (t.__maxMipLevel = 0);
                       else if (r.isCompressedTexture) {
-                        for (var _ = 0, M = E.length; _ < M; _++)
-                          (x = E[_]),
-                            r.format !== ze && r.format !== He
+                        for (var _ = 0, T = x.length; _ < T; _++)
+                          (w = x[_]),
+                            r.format !== Ve && r.format !== He
                               ? n.getCompressedTextureFormats().indexOf(b) > -1
                                 ? n.compressedTexImage2D(
                                     3553,
                                     _,
-                                    w,
-                                    x.width,
-                                    x.height,
+                                    E,
+                                    w.width,
+                                    w.height,
                                     0,
-                                    x.data
+                                    w.data
                                   )
                                 : console.warn(
                                     "THREE.WebGLRenderer: Attempt to load unsupported compressed texture format in .uploadTexture()"
@@ -17589,20 +17605,20 @@ object-assign
                               : n.texImage2D(
                                   3553,
                                   _,
-                                  w,
-                                  x.width,
-                                  x.height,
+                                  E,
+                                  w.width,
+                                  w.height,
                                   0,
                                   b,
                                   A,
-                                  x.data
+                                  w.data
                                 );
-                        t.__maxMipLevel = E.length - 1;
+                        t.__maxMipLevel = x.length - 1;
                       } else if (r.isDataTexture3D)
                         n.texImage3D(
                           32879,
                           0,
-                          w,
+                          E,
                           v.width,
                           v.height,
                           v.depth,
@@ -17612,13 +17628,13 @@ object-assign
                           v.data
                         ),
                           (t.__maxMipLevel = 0);
-                      else if (E.length > 0 && g) {
-                        for (var _ = 0, M = E.length; _ < M; _++)
-                          (x = E[_]), n.texImage2D(3553, _, w, b, A, x);
+                      else if (x.length > 0 && g) {
+                        for (var _ = 0, T = x.length; _ < T; _++)
+                          (w = x[_]), n.texImage2D(3553, _, E, b, A, w);
                         (r.generateMipmaps = !1),
-                          (t.__maxMipLevel = E.length - 1);
+                          (t.__maxMipLevel = x.length - 1);
                       } else
-                        n.texImage2D(3553, 0, w, b, A, v),
+                        n.texImage2D(3553, 0, E, b, A, v),
                           (t.__maxMipLevel = 0);
                       h(r, g) && d(3553, r, v.width, v.height),
                         (t.__version = r.version),
@@ -17639,13 +17655,13 @@ object-assign
                         ),
                         e.bindFramebuffer(36160, null);
                     }
-                    function w(t, n, r) {
+                    function E(t, n, r) {
                       if (
                         (e.bindRenderbuffer(36161, t),
                         n.depthBuffer && !n.stencilBuffer)
                       ) {
                         if (r) {
-                          var i = E(n);
+                          var i = x(n);
                           e.renderbufferStorageMultisample(
                             36161,
                             i,
@@ -17663,7 +17679,7 @@ object-assign
                         e.framebufferRenderbuffer(36160, 36096, 36161, t);
                       } else if (n.depthBuffer && n.stencilBuffer) {
                         if (r) {
-                          var i = E(n);
+                          var i = x(n);
                           e.renderbufferStorageMultisample(
                             36161,
                             i,
@@ -17684,7 +17700,7 @@ object-assign
                           s = o.convert(n.texture.type),
                           l = p(a, s);
                         if (r) {
-                          var i = E(n);
+                          var i = x(n);
                           e.renderbufferStorageMultisample(
                             36161,
                             i,
@@ -17697,7 +17713,7 @@ object-assign
                       }
                       e.bindRenderbuffer(36161, null);
                     }
-                    function x(t) {
+                    function w(t) {
                       var n = r.get(t),
                         i = !0 === t.isWebGLRenderTargetCube;
                       if (t.depthTexture) {
@@ -17738,14 +17754,14 @@ object-assign
                         for (var o = 0; o < 6; o++)
                           e.bindFramebuffer(36160, n.__webglFramebuffer[o]),
                             (n.__webglDepthbuffer[o] = e.createRenderbuffer()),
-                            w(n.__webglDepthbuffer[o], t);
+                            E(n.__webglDepthbuffer[o], t);
                       } else
                         e.bindFramebuffer(36160, n.__webglFramebuffer),
                           (n.__webglDepthbuffer = e.createRenderbuffer()),
-                          w(n.__webglDepthbuffer, t);
+                          E(n.__webglDepthbuffer, t);
                       e.bindFramebuffer(36160, null);
                     }
-                    function E(e) {
+                    function x(e) {
                       return i.isWebGL2 && e.isWebGLMultisampleRenderTarget
                         ? Math.min(i.maxSamples, e.samples)
                         : 0;
@@ -17784,31 +17800,31 @@ object-assign
                                     : t.image[b]
                                   : c(t.image[b], !1, !0, i.maxCubemapSize);
                             var A = g[0],
-                              w = u(A) || i.isWebGL2,
-                              x = o.convert(t.format),
-                              E = o.convert(t.type),
-                              _ = p(x, E);
-                            y(34067, t, w);
+                              E = u(A) || i.isWebGL2,
+                              w = o.convert(t.format),
+                              x = o.convert(t.type),
+                              _ = p(w, x);
+                            y(34067, t, E);
                             for (var b = 0; b < 6; b++)
                               if (f)
                                 for (
-                                  var M, T = g[b].mipmaps, S = 0, C = T.length;
+                                  var T, M = g[b].mipmaps, S = 0, C = M.length;
                                   S < C;
                                   S++
                                 )
-                                  (M = T[S]),
-                                    t.format !== ze && t.format !== He
+                                  (T = M[S]),
+                                    t.format !== Ve && t.format !== He
                                       ? n
                                           .getCompressedTextureFormats()
-                                          .indexOf(x) > -1
+                                          .indexOf(w) > -1
                                         ? n.compressedTexImage2D(
                                             34069 + b,
                                             S,
                                             _,
-                                            M.width,
-                                            M.height,
+                                            T.width,
+                                            T.height,
                                             0,
-                                            M.data
+                                            T.data
                                           )
                                         : console.warn(
                                             "THREE.WebGLRenderer: Attempt to load unsupported compressed texture format in .setTextureCube()"
@@ -17817,12 +17833,12 @@ object-assign
                                           34069 + b,
                                           S,
                                           _,
-                                          M.width,
-                                          M.height,
+                                          T.width,
+                                          T.height,
                                           0,
+                                          w,
                                           x,
-                                          E,
-                                          M.data
+                                          T.data
                                         );
                               else
                                 v
@@ -17833,13 +17849,13 @@ object-assign
                                       g[b].width,
                                       g[b].height,
                                       0,
+                                      w,
                                       x,
-                                      E,
                                       g[b].data
                                     )
-                                  : n.texImage2D(34069 + b, 0, _, x, E, g[b]);
-                            (l.__maxMipLevel = f ? T.length - 1 : 0),
-                              h(t, w) && d(34067, t, A.width, A.height),
+                                  : n.texImage2D(34069 + b, 0, _, w, x, g[b]);
+                            (l.__maxMipLevel = f ? M.length - 1 : 0),
+                              h(t, E) && d(34067, t, A.width, A.height),
                               (l.__version = t.version),
                               t.onUpdate && t.onUpdate(t);
                           } else
@@ -17875,12 +17891,12 @@ object-assign
                               );
                             var b = o.convert(t.texture.format),
                               _ = o.convert(t.texture.type),
-                              M = p(b, _),
-                              T = E(t);
+                              T = p(b, _),
+                              M = x(t);
                             e.renderbufferStorageMultisample(
                               36161,
-                              T,
                               M,
+                              T,
                               t.width,
                               t.height
                             ),
@@ -17897,7 +17913,7 @@ object-assign
                               e.bindRenderbuffer(36161, null),
                               t.depthBuffer &&
                                 ((s.__webglDepthRenderbuffer = e.createRenderbuffer()),
-                                w(s.__webglDepthRenderbuffer, t, !0)),
+                                E(s.__webglDepthRenderbuffer, t, !0)),
                               e.bindFramebuffer(36160, null);
                           } else
                             console.warn(
@@ -17918,7 +17934,7 @@ object-assign
                             h(t.texture, m) &&
                               d(3553, t.texture, t.width, t.height),
                             n.bindTexture(3553, null);
-                        t.depthBuffer && x(t);
+                        t.depthBuffer && w(t);
                       }),
                       (this.updateRenderTargetMipmap = function(e) {
                         var t = e.texture,
@@ -17963,23 +17979,23 @@ object-assign
                             );
                       });
                   }
-                  function Vi(e, t, n) {
+                  function Gi(e, t, n) {
                     return {
                       convert: function(e) {
                         var r;
                         if (e === ye) return 10497;
                         if (e === be) return 33071;
                         if (e === Ae) return 33648;
-                        if (e === we) return 9728;
-                        if (e === xe) return 9984;
-                        if (e === Ee) return 9986;
+                        if (e === Ee) return 9728;
+                        if (e === we) return 9984;
+                        if (e === xe) return 9986;
                         if (e === _e) return 9729;
-                        if (e === Me) return 9985;
-                        if (e === Te) return 9987;
+                        if (e === Te) return 9985;
+                        if (e === Me) return 9987;
                         if (e === Se) return 5121;
                         if (e === Be) return 32819;
                         if (e === ke) return 32820;
-                        if (e === Fe) return 33635;
+                        if (e === Ne) return 33635;
                         if (e === Ce) return 5120;
                         if (e === Le) return 5122;
                         if (e === Re) return 5123;
@@ -17993,23 +18009,23 @@ object-assign
                         }
                         if (e === Ue) return 6406;
                         if (e === He) return 6407;
-                        if (e === ze) return 6408;
-                        if (e === je) return 6409;
-                        if (e === Ve) return 6410;
+                        if (e === Ve) return 6408;
+                        if (e === ze) return 6409;
+                        if (e === Ge) return 6410;
                         if (e === We) return 6402;
                         if (e === qe) return 34041;
                         if (e === Xe) return 6403;
                         if (e === O) return 32774;
                         if (e === D) return 32778;
                         if (e === I) return 32779;
-                        if (e === F) return 0;
-                        if (e === N) return 1;
+                        if (e === N) return 0;
+                        if (e === F) return 1;
                         if (e === U) return 768;
                         if (e === H) return 769;
-                        if (e === z) return 770;
-                        if (e === j) return 771;
-                        if (e === V) return 772;
-                        if (e === G) return 773;
+                        if (e === V) return 770;
+                        if (e === z) return 771;
+                        if (e === G) return 772;
+                        if (e === j) return 773;
                         if (e === W) return 774;
                         if (e === q) return 775;
                         if (e === X) return 776;
@@ -18068,7 +18084,7 @@ object-assign
                             if (e === k) return r.MAX_EXT;
                           }
                         }
-                        if (e === Ne) {
+                        if (e === Fe) {
                           if (n.isWebGL2) return 34042;
                           if (null !== (r = t.get("WEBGL_depth_texture")))
                             return r.UNSIGNED_INT_24_8_WEBGL;
@@ -18077,11 +18093,11 @@ object-assign
                       },
                     };
                   }
-                  function Gi() {
-                    Mn.call(this), (this.type = "Group");
+                  function ji() {
+                    Tn.call(this), (this.type = "Group");
                   }
                   function Wi() {
-                    Mn.call(this),
+                    Tn.call(this),
                       (this.type = "Camera"),
                       (this.matrixWorldInverse = new Bt()),
                       (this.projectionMatrix = new Bt()),
@@ -18104,10 +18120,10 @@ object-assign
                   function Xi(e) {
                     qi.call(this), (this.cameras = e || []);
                   }
-                  (Ni.prototype = Object.create(sr.prototype)),
-                    (Ni.prototype.constructor = Ni),
-                    (Ni.prototype.isMeshDepthMaterial = !0),
-                    (Ni.prototype.copy = function(e) {
+                  (Fi.prototype = Object.create(sr.prototype)),
+                    (Fi.prototype.constructor = Fi),
+                    (Fi.prototype.isMeshDepthMaterial = !0),
+                    (Fi.prototype.copy = function(e) {
                       return (
                         sr.prototype.copy.call(this, e),
                         (this.depthPacking = e.depthPacking),
@@ -18142,16 +18158,16 @@ object-assign
                         this
                       );
                     }),
-                    (Gi.prototype = Object.assign(Object.create(Mn.prototype), {
-                      constructor: Gi,
+                    (ji.prototype = Object.assign(Object.create(Tn.prototype), {
+                      constructor: ji,
                       isGroup: !0,
                     })),
-                    (Wi.prototype = Object.assign(Object.create(Mn.prototype), {
+                    (Wi.prototype = Object.assign(Object.create(Tn.prototype), {
                       constructor: Wi,
                       isCamera: !0,
                       copy: function(e, t) {
                         return (
-                          Mn.prototype.copy.call(this, e, t),
+                          Tn.prototype.copy.call(this, e, t),
                           this.matrixWorldInverse.copy(e.matrixWorldInverse),
                           this.projectionMatrix.copy(e.projectionMatrix),
                           this.projectionMatrixInverse.copy(
@@ -18165,13 +18181,13 @@ object-assign
                           (console.warn(
                             "THREE.Camera: .getWorldDirection() target is now required"
                           ),
-                          (e = new Ft())),
+                          (e = new Nt())),
                           this.updateMatrixWorld(!0);
                         var t = this.matrixWorld.elements;
                         return e.set(-t[8], -t[9], -t[10]).normalize();
                       },
                       updateMatrixWorld: function(e) {
-                        Mn.prototype.updateMatrixWorld.call(this, e),
+                        Tn.prototype.updateMatrixWorld.call(this, e),
                           this.matrixWorldInverse.getInverse(this.matrixWorld);
                       },
                       clone: function() {
@@ -18278,7 +18294,7 @@ object-assign
                           );
                       },
                       toJSON: function(e) {
-                        var t = Mn.prototype.toJSON.call(this, e);
+                        var t = Tn.prototype.toJSON.call(this, e);
                         return (
                           (t.object.fov = this.fov),
                           (t.object.zoom = this.zoom),
@@ -18304,8 +18320,8 @@ object-assign
                     Zi,
                     Ji,
                     $i,
-                    eo = new Ft(),
-                    to = new Ft();
+                    eo = new Nt(),
+                    to = new Nt();
                   function no(e, t, n) {
                     eo.setFromMatrixPosition(t.matrixWorld),
                       to.setFromMatrixPosition(n.matrixWorld);
@@ -18336,8 +18352,8 @@ object-assign
                       y = d - m,
                       b = p + (r - m),
                       A = ((l * s) / g) * v,
-                      w = ((c * s) / g) * v;
-                    e.projectionMatrix.makePerspective(y, b, A, w, v, g);
+                      E = ((c * s) / g) * v;
+                    e.projectionMatrix.makePerspective(y, b, A, E, v, g);
                   }
                   function ro(e) {
                     var t = this,
@@ -18355,7 +18371,7 @@ object-assign
                       window.addEventListener("vrdisplaypresentchange", b, !1));
                     var u = new Bt(),
                       h = new kt(),
-                      d = new Ft(),
+                      d = new Nt(),
                       p = new qi();
                     (p.bounds = new Xt(0, 0, 0.5, 1)), p.layers.enable(1);
                     var f = new qi();
@@ -18374,15 +18390,15 @@ object-assign
                         (v = e.getPixelRatio()),
                           (m = e.getSize()),
                           e.setDrawingBufferSize(2 * i, o, 1),
-                          x.start();
+                          w.start();
                       } else
                         t.enabled &&
                           e.setDrawingBufferSize(m.width, m.height, v),
-                          x.stop();
+                          w.stop();
                     }
                     g.layers.enable(1), g.layers.enable(2);
                     var A = [];
-                    function w(e) {
+                    function E(e) {
                       for (
                         var t =
                             navigator.getGamepads && navigator.getGamepads(),
@@ -18412,7 +18428,7 @@ object-assign
                         var t = o[e];
                         return (
                           void 0 === t &&
-                            (((t = new Gi()).matrixAutoUpdate = !1),
+                            (((t = new ji()).matrixAutoUpdate = !1),
                             (t.visible = !1),
                             (o[e] = t)),
                           t
@@ -18422,7 +18438,7 @@ object-assign
                         return n;
                       }),
                       (this.setDevice = function(e) {
-                        void 0 !== e && (n = e), x.setContext(e);
+                        void 0 !== e && (n = e), w.setContext(e);
                       }),
                       (this.setFramebufferScaleFactor = function(e) {
                         l = e;
@@ -18486,19 +18502,19 @@ object-assign
                           no(g, p, f);
                         var b = n.getLayers();
                         if (b.length) {
-                          var x = b[0];
-                          null !== x.leftBounds &&
-                            4 === x.leftBounds.length &&
-                            p.bounds.fromArray(x.leftBounds),
-                            null !== x.rightBounds &&
-                              4 === x.rightBounds.length &&
-                              f.bounds.fromArray(x.rightBounds);
+                          var w = b[0];
+                          null !== w.leftBounds &&
+                            4 === w.leftBounds.length &&
+                            p.bounds.fromArray(w.leftBounds),
+                            null !== w.rightBounds &&
+                              4 === w.rightBounds.length &&
+                              f.bounds.fromArray(w.rightBounds);
                         }
                         return (
                           (function() {
                             for (var e = 0; e < o.length; e++) {
                               var t = o[e],
-                                n = w(e);
+                                n = E(e);
                               if (void 0 !== n && void 0 !== n.pose) {
                                 if (null === n.pose) return;
                                 var r = n.pose;
@@ -18538,9 +18554,9 @@ object-assign
                         return a;
                       }),
                       (this.isPresenting = y);
-                    var x = new mn();
+                    var w = new mn();
                     (this.setAnimationLoop = function(e) {
-                      x.setAnimationLoop(e);
+                      w.setAnimationLoop(e);
                     }),
                       (this.submitFrame = function() {
                         y() && n.submitFrame();
@@ -18595,7 +18611,7 @@ object-assign
                         var t = c[e];
                         return (
                           void 0 === t &&
-                            (((t = new Gi()).matrixAutoUpdate = !1),
+                            (((t = new ji()).matrixAutoUpdate = !1),
                             (t.visible = !1),
                             (c[e] = t)),
                           t
@@ -18770,11 +18786,11 @@ object-assign
                       y,
                       b,
                       A,
+                      w,
                       x,
-                      E,
                       _,
-                      M,
                       T,
+                      M,
                       S,
                       C,
                       L,
@@ -18785,14 +18801,14 @@ object-assign
                       I = null,
                       B = null,
                       k = null,
-                      F = -1,
-                      N = { geometry: null, program: null, wireframe: !1 },
+                      N = -1,
+                      F = { geometry: null, program: null, wireframe: !1 },
                       U = null,
                       H = null,
+                      V = new Xt(),
                       z = new Xt(),
-                      j = new Xt(),
-                      V = null,
-                      G = 0,
+                      G = null,
+                      j = 0,
                       W = t.width,
                       q = t.height,
                       X = 1,
@@ -18804,7 +18820,7 @@ object-assign
                       $ = !1,
                       ee = !1,
                       te = new Bt(),
-                      ne = new Ft();
+                      ne = new Nt();
                     function re() {
                       return null === B ? X : 1;
                     }
@@ -18850,22 +18866,22 @@ object-assign
                           p.get("OES_element_index_uint"),
                           p.get("ANGLE_instanced_arrays")),
                         p.get("OES_texture_float_linear"),
-                        (P = new Vi(d, p, m)),
-                        (v = new zi(d, p, P, m)).scissor(
-                          j.copy(Q).multiplyScalar(X)
+                        (P = new Gi(d, p, m)),
+                        (v = new Vi(d, p, P, m)).scissor(
+                          z.copy(Q).multiplyScalar(X)
                         ),
-                        v.viewport(z.copy(Y).multiplyScalar(X)),
+                        v.viewport(V.copy(Y).multiplyScalar(X)),
                         (g = new Ar(d)),
                         (y = new Ci()),
-                        (b = new ji(d, p, v, y, m, P, g)),
+                        (b = new zi(d, p, v, y, m, P, g)),
                         (A = new vn(d)),
-                        (x = new yr(d, A, g)),
-                        (E = new Er(x, g)),
-                        (C = new xr(d)),
+                        (w = new yr(d, A, g)),
+                        (x = new xr(w, g)),
+                        (C = new wr(d)),
                         (_ = new Si(O, p, m)),
-                        (M = new Oi()),
-                        (T = new Fi()),
-                        (S = new pr(O, v, E, s)),
+                        (T = new Oi()),
+                        (M = new Ni()),
+                        (S = new pr(O, v, x, s)),
                         (L = new fr(d, p, g, m)),
                         (R = new br(d, p, g, m)),
                         (g.programs = _.programs),
@@ -18873,7 +18889,7 @@ object-assign
                         (O.capabilities = m),
                         (O.extensions = p),
                         (O.properties = y),
-                        (O.renderLists = M),
+                        (O.renderLists = T),
                         (O.state = v),
                         (O.info = g);
                     }
@@ -18882,7 +18898,7 @@ object-assign
                     "undefined" != typeof navigator &&
                       (se = "xr" in navigator ? new io(O) : new ro(O)),
                       (this.vr = se);
-                    var le = new Hi(O, E, m.maxTextureSize);
+                    var le = new Hi(O, x, m.maxTextureSize);
                     function ce(e) {
                       e.preventDefault(),
                         console.log("THREE.WebGLRenderer: Context Lost."),
@@ -18954,15 +18970,15 @@ object-assign
                           this.setViewport(0, 0, e, n);
                       }),
                       (this.getCurrentViewport = function() {
-                        return z;
+                        return V;
                       }),
                       (this.setViewport = function(e, t, n, r) {
                         Y.set(e, q - t - r, n, r),
-                          v.viewport(z.copy(Y).multiplyScalar(X));
+                          v.viewport(V.copy(Y).multiplyScalar(X));
                       }),
                       (this.setScissor = function(e, t, n, r) {
                         Q.set(e, q - t - r, n, r),
-                          v.scissor(j.copy(Q).multiplyScalar(X));
+                          v.scissor(z.copy(Q).multiplyScalar(X));
                       }),
                       (this.setScissorTest = function(e) {
                         v.setScissorTest((K = e));
@@ -18998,10 +19014,10 @@ object-assign
                       (this.dispose = function() {
                         t.removeEventListener("webglcontextlost", ce, !1),
                           t.removeEventListener("webglcontextrestored", ue, !1),
-                          M.dispose(),
                           T.dispose(),
+                          M.dispose(),
                           y.dispose(),
-                          E.dispose(),
+                          x.dispose(),
                           se.dispose(),
                           me.stop();
                       }),
@@ -19048,12 +19064,12 @@ object-assign
                         v.setMaterial(r, a);
                         var s = be(e, t, r, i),
                           l = !1;
-                        (N.geometry === n.id &&
-                          N.program === s.id &&
-                          N.wireframe === (!0 === r.wireframe)) ||
-                          ((N.geometry = n.id),
-                          (N.program = s.id),
-                          (N.wireframe = !0 === r.wireframe),
+                        (F.geometry === n.id &&
+                          F.program === s.id &&
+                          F.wireframe === (!0 === r.wireframe)) ||
+                          ((F.geometry = n.id),
+                          (F.program = s.id),
+                          (F.wireframe = !0 === r.wireframe),
                           (l = !0)),
                           i.morphTargetInfluences &&
                             (C.update(i, n, r, s), (l = !0));
@@ -19062,7 +19078,7 @@ object-assign
                           h = n.attributes.position,
                           f = 1;
                         !0 === r.wireframe &&
-                          ((u = x.getWireframeAttribute(n)), (f = 2));
+                          ((u = w.getWireframeAttribute(n)), (f = 2));
                         var g = L;
                         null !== u && ((c = A.get(u)), (g = R).setIndex(c)),
                           l &&
@@ -19094,8 +19110,8 @@ object-assign
                                         y = h.bytesPerElement;
                                       if (l.isInterleavedBufferAttribute) {
                                         var b = l.data,
-                                          w = b.stride,
-                                          x = l.offset;
+                                          E = b.stride,
+                                          w = l.offset;
                                         b && b.isInstancedInterleavedBuffer
                                           ? (v.enableAttributeAndDivisor(
                                               s,
@@ -19111,8 +19127,8 @@ object-assign
                                             u,
                                             g,
                                             c,
-                                            w * y,
-                                            x * y
+                                            E * y,
+                                            w * y
                                           );
                                       } else
                                         l.isInstancedBufferAttribute
@@ -19134,20 +19150,20 @@ object-assign
                                             0
                                           );
                                     } else if (void 0 !== o) {
-                                      var E = o[a];
-                                      if (void 0 !== E)
-                                        switch (E.length) {
+                                      var x = o[a];
+                                      if (void 0 !== x)
+                                        switch (x.length) {
                                           case 2:
-                                            d.vertexAttrib2fv(s, E);
+                                            d.vertexAttrib2fv(s, x);
                                             break;
                                           case 3:
-                                            d.vertexAttrib3fv(s, E);
+                                            d.vertexAttrib3fv(s, x);
                                             break;
                                           case 4:
-                                            d.vertexAttrib4fv(s, E);
+                                            d.vertexAttrib4fv(s, x);
                                             break;
                                           default:
-                                            d.vertexAttrib1fv(s, E);
+                                            d.vertexAttrib1fv(s, x);
                                         }
                                     }
                                   }
@@ -19161,12 +19177,12 @@ object-assign
                           ? (y = u.count)
                           : void 0 !== h && (y = h.count);
                         var b = n.drawRange.start * f,
-                          w = n.drawRange.count * f,
-                          E = null !== o ? o.start * f : 0,
+                          E = n.drawRange.count * f,
+                          x = null !== o ? o.start * f : 0,
                           _ = null !== o ? o.count * f : 1 / 0,
-                          M = Math.max(b, E),
-                          T = Math.min(y, b + w, E + _) - 1,
-                          S = Math.max(0, T - M + 1);
+                          T = Math.max(b, x),
+                          M = Math.min(y, b + E, x + _) - 1,
+                          S = Math.max(0, M - T + 1);
                         if (0 !== S) {
                           if (i.isMesh)
                             if (!0 === r.wireframe)
@@ -19180,7 +19196,7 @@ object-assign
                                 case At:
                                   g.setMode(5);
                                   break;
-                                case wt:
+                                case Et:
                                   g.setMode(6);
                               }
                           else if (i.isLine) {
@@ -19198,12 +19214,12 @@ object-assign
                               : i.isSprite && g.setMode(4);
                           n && n.isInstancedBufferGeometry
                             ? n.maxInstancedCount > 0 &&
-                              g.renderInstances(n, M, S)
-                            : g.render(M, S);
+                              g.renderInstances(n, T, S)
+                            : g.render(T, S);
                         }
                       }),
                       (this.compile = function(e, t) {
-                        (h = T.get(e, t)).init(),
+                        (h = M.get(e, t)).init(),
                           e.traverse(function(e) {
                             e.isLight &&
                               (h.pushLight(e), e.castShadow && h.pushShadow(e));
@@ -19237,14 +19253,14 @@ object-assign
                             var m = d[p];
                             if (s.layers.test(m.layers)) {
                               if ("viewport" in m)
-                                v.viewport(z.copy(m.viewport));
+                                v.viewport(V.copy(m.viewport));
                               else {
                                 var g = m.bounds,
                                   y = g.x * W,
                                   b = g.y * q,
                                   A = g.z * W,
-                                  w = g.w * q;
-                                v.viewport(z.set(y, b, A, w).multiplyScalar(X));
+                                  E = g.w * q;
+                                v.viewport(V.set(y, b, A, E).multiplyScalar(X));
                               }
                               h.setupLights(m), ge(s, t, m, l, c, u);
                             }
@@ -19255,7 +19271,7 @@ object-assign
                     function ge(e, t, n, r, i, o) {
                       if (
                         (e.onBeforeRender(O, t, n, r, i, o),
-                        (h = T.get(t, H || n)),
+                        (h = M.get(t, H || n)),
                         e.modelViewMatrix.multiplyMatrices(
                           n.matrixWorldInverse,
                           e.matrixWorld
@@ -19265,16 +19281,16 @@ object-assign
                       ) {
                         v.setMaterial(i);
                         var a = be(n, t.fog, i, e);
-                        (N.geometry = null),
-                          (N.program = null),
-                          (N.wireframe = !1),
+                        (F.geometry = null),
+                          (F.program = null),
+                          (F.wireframe = !1),
                           (function(e, t) {
                             e.render(function(e) {
                               O.renderBufferImmediate(e, t);
                             });
                           })(e, a);
                       } else O.renderBufferDirect(n, t.fog, r, i, e, o);
-                      e.onAfterRender(O, t, n, r, i, o), (h = T.get(t, H || n));
+                      e.onAfterRender(O, t, n, r, i, o), (h = M.get(t, H || n));
                     }
                     function ye(e, t, n) {
                       var r = y.get(e),
@@ -19388,13 +19404,13 @@ object-assign
                       r.uniformsList = b;
                     }
                     function be(e, t, n, r) {
-                      G = 0;
+                      j = 0;
                       var i = y.get(n),
                         o = h.state.lights,
                         a = i.lightsHash,
                         s = o.state.hash;
                       if ($ && (ee || e !== U)) {
-                        var l = e === U && n.id === F;
+                        var l = e === U && n.id === N;
                         J.setState(
                           n.clippingPlanes,
                           n.clipIntersection,
@@ -19429,11 +19445,11 @@ object-assign
                         g = !1,
                         b = i.program,
                         A = b.getUniforms(),
-                        x = i.shader.uniforms;
+                        w = i.shader.uniforms;
                       if (
                         (v.useProgram(b.program) &&
                           ((p = !0), (f = !0), (g = !0)),
-                        n.id !== F && ((F = n.id), (f = !0)),
+                        n.id !== N && ((N = n.id), (f = !0)),
                         p || U !== e)
                       ) {
                         if (
@@ -19454,9 +19470,9 @@ object-assign
                             n.isMeshStandardMaterial ||
                             n.envMap)
                         ) {
-                          var E = A.map.cameraPosition;
-                          void 0 !== E &&
-                            E.setValue(
+                          var x = A.map.cameraPosition;
+                          void 0 !== x &&
+                            x.setValue(
                               d,
                               ne.setFromMatrixPosition(e.matrixWorld)
                             );
@@ -19474,18 +19490,18 @@ object-assign
                           A.setOptional(d, r, "bindMatrixInverse");
                         var _ = r.skeleton;
                         if (_) {
-                          var M = _.bones;
+                          var T = _.bones;
                           if (m.floatVertexTextures) {
                             if (void 0 === _.boneTexture) {
-                              var T = Math.sqrt(4 * M.length);
-                              (T = Dt.ceilPowerOfTwo(T)), (T = Math.max(T, 4));
-                              var S = new Float32Array(T * T * 4);
+                              var M = Math.sqrt(4 * T.length);
+                              (M = Dt.ceilPowerOfTwo(M)), (M = Math.max(M, 4));
+                              var S = new Float32Array(M * M * 4);
                               S.set(_.boneMatrices);
-                              var C = new Zt(S, T, T, ze, De);
+                              var C = new Zt(S, M, M, Ve, De);
                               (C.needsUpdate = !0),
                                 (_.boneMatrices = S),
                                 (_.boneTexture = C),
-                                (_.boneTextureSize = T);
+                                (_.boneTextureSize = M);
                             }
                             A.setValue(d, "boneTexture", _.boneTexture),
                               A.setValue(
@@ -19510,7 +19526,7 @@ object-assign
                           ),
                           n.lights &&
                             ((u = g),
-                            ((c = x).ambientLightColor.needsUpdate = u),
+                            ((c = w).ambientLightColor.needsUpdate = u),
                             (c.directionalLights.needsUpdate = u),
                             (c.pointLights.needsUpdate = u),
                             (c.spotLights.needsUpdate = u),
@@ -19525,47 +19541,47 @@ object-assign
                                     (e.fogFar.value = t.far))
                                   : t.isFogExp2 &&
                                     (e.fogDensity.value = t.density);
-                            })(x, t),
+                            })(w, t),
                           n.isMeshBasicMaterial
-                            ? Ae(x, n)
+                            ? Ae(w, n)
                             : n.isMeshLambertMaterial
-                            ? (Ae(x, n),
+                            ? (Ae(w, n),
                               (function(e, t) {
                                 t.emissiveMap &&
                                   (e.emissiveMap.value = t.emissiveMap);
-                              })(x, n))
+                              })(w, n))
                             : n.isMeshPhongMaterial
-                            ? (Ae(x, n),
+                            ? (Ae(w, n),
                               n.isMeshToonMaterial
                                 ? (function(e, t) {
-                                    we(e, t),
+                                    Ee(e, t),
                                       t.gradientMap &&
                                         (e.gradientMap.value = t.gradientMap);
-                                  })(x, n)
-                                : we(x, n))
+                                  })(w, n)
+                                : Ee(w, n))
                             : n.isMeshStandardMaterial
-                            ? (Ae(x, n),
+                            ? (Ae(w, n),
                               n.isMeshPhysicalMaterial
                                 ? (function(e, t) {
-                                    xe(e, t),
+                                    we(e, t),
                                       (e.reflectivity.value = t.reflectivity),
                                       (e.clearCoat.value = t.clearCoat),
                                       (e.clearCoatRoughness.value =
                                         t.clearCoatRoughness);
-                                  })(x, n)
-                                : xe(x, n))
+                                  })(w, n)
+                                : we(w, n))
                             : n.isMeshMatcapMaterial
-                            ? (Ae(x, n),
+                            ? (Ae(w, n),
                               (function(e, t) {
                                 t.matcap && (e.matcap.value = t.matcap),
                                   t.bumpMap &&
                                     ((e.bumpMap.value = t.bumpMap),
                                     (e.bumpScale.value = t.bumpScale),
-                                    t.side === w && (e.bumpScale.value *= -1)),
+                                    t.side === E && (e.bumpScale.value *= -1)),
                                   t.normalMap &&
                                     ((e.normalMap.value = t.normalMap),
                                     e.normalScale.value.copy(t.normalScale),
-                                    t.side === w &&
+                                    t.side === E &&
                                       e.normalScale.value.negate()),
                                   t.displacementMap &&
                                     ((e.displacementMap.value =
@@ -19574,9 +19590,9 @@ object-assign
                                       t.displacementScale),
                                     (e.displacementBias.value =
                                       t.displacementBias));
-                              })(x, n))
+                              })(w, n))
                             : n.isMeshDepthMaterial
-                            ? (Ae(x, n),
+                            ? (Ae(w, n),
                               (function(e, t) {
                                 t.displacementMap &&
                                   ((e.displacementMap.value =
@@ -19585,9 +19601,9 @@ object-assign
                                     t.displacementScale),
                                   (e.displacementBias.value =
                                     t.displacementBias));
-                              })(x, n))
+                              })(w, n))
                             : n.isMeshDistanceMaterial
-                            ? (Ae(x, n),
+                            ? (Ae(w, n),
                               (function(e, t) {
                                 t.displacementMap &&
                                   ((e.displacementMap.value =
@@ -19601,18 +19617,18 @@ object-assign
                                   ),
                                   (e.nearDistance.value = t.nearDistance),
                                   (e.farDistance.value = t.farDistance);
-                              })(x, n))
+                              })(w, n))
                             : n.isMeshNormalMaterial
-                            ? (Ae(x, n),
+                            ? (Ae(w, n),
                               (function(e, t) {
                                 t.bumpMap &&
                                   ((e.bumpMap.value = t.bumpMap),
                                   (e.bumpScale.value = t.bumpScale),
-                                  t.side === w && (e.bumpScale.value *= -1)),
+                                  t.side === E && (e.bumpScale.value *= -1)),
                                   t.normalMap &&
                                     ((e.normalMap.value = t.normalMap),
                                     e.normalScale.value.copy(t.normalScale),
-                                    t.side === w &&
+                                    t.side === E &&
                                       e.normalScale.value.negate()),
                                   t.displacementMap &&
                                     ((e.displacementMap.value =
@@ -19621,19 +19637,19 @@ object-assign
                                       t.displacementScale),
                                     (e.displacementBias.value =
                                       t.displacementBias));
-                              })(x, n))
+                              })(w, n))
                             : n.isLineBasicMaterial
                             ? ((function(e, t) {
                                 (e.diffuse.value = t.color),
                                   (e.opacity.value = t.opacity);
-                              })(x, n),
+                              })(w, n),
                               n.isLineDashedMaterial &&
                                 (function(e, t) {
                                   (e.dashSize.value = t.dashSize),
                                     (e.totalSize.value =
                                       t.dashSize + t.gapSize),
                                     (e.scale.value = t.scale);
-                                })(x, n))
+                                })(w, n))
                             : n.isPointsMaterial
                             ? (function(e, t) {
                                 (e.diffuse.value = t.color),
@@ -19645,7 +19661,7 @@ object-assign
                                     (!0 === t.map.matrixAutoUpdate &&
                                       t.map.updateMatrix(),
                                     e.uvTransform.value.copy(t.map.matrix));
-                              })(x, n)
+                              })(w, n)
                             : n.isSpriteMaterial
                             ? (function(e, t) {
                                 (e.diffuse.value = t.color),
@@ -19656,16 +19672,16 @@ object-assign
                                     (!0 === t.map.matrixAutoUpdate &&
                                       t.map.updateMatrix(),
                                     e.uvTransform.value.copy(t.map.matrix));
-                              })(x, n)
+                              })(w, n)
                             : n.isShadowMaterial &&
-                              ((x.color.value = n.color),
-                              (x.opacity.value = n.opacity)),
-                          void 0 !== x.ltc_1 && (x.ltc_1.value = pn.LTC_1),
-                          void 0 !== x.ltc_2 && (x.ltc_2.value = pn.LTC_2),
-                          mi.upload(d, i.uniformsList, x, O)),
+                              ((w.color.value = n.color),
+                              (w.opacity.value = n.opacity)),
+                          void 0 !== w.ltc_1 && (w.ltc_1.value = pn.LTC_1),
+                          void 0 !== w.ltc_2 && (w.ltc_2.value = pn.LTC_2),
+                          mi.upload(d, i.uniformsList, w, O)),
                         n.isShaderMaterial &&
                           !0 === n.uniformsNeedUpdate &&
-                          (mi.upload(d, i.uniformsList, x, O),
+                          (mi.upload(d, i.uniformsList, w, O),
                           (n.uniformsNeedUpdate = !1)),
                         n.isSpriteMaterial && A.setValue(d, "center", r.center),
                         A.setValue(d, "modelViewMatrix", r.modelViewMatrix),
@@ -19723,24 +19739,24 @@ object-assign
                           !0 === n.matrixAutoUpdate && n.updateMatrix(),
                           e.uvTransform.value.copy(n.matrix));
                     }
-                    function we(e, t) {
+                    function Ee(e, t) {
                       (e.specular.value = t.specular),
                         (e.shininess.value = Math.max(t.shininess, 1e-4)),
                         t.emissiveMap && (e.emissiveMap.value = t.emissiveMap),
                         t.bumpMap &&
                           ((e.bumpMap.value = t.bumpMap),
                           (e.bumpScale.value = t.bumpScale),
-                          t.side === w && (e.bumpScale.value *= -1)),
+                          t.side === E && (e.bumpScale.value *= -1)),
                         t.normalMap &&
                           ((e.normalMap.value = t.normalMap),
                           e.normalScale.value.copy(t.normalScale),
-                          t.side === w && e.normalScale.value.negate()),
+                          t.side === E && e.normalScale.value.negate()),
                         t.displacementMap &&
                           ((e.displacementMap.value = t.displacementMap),
                           (e.displacementScale.value = t.displacementScale),
                           (e.displacementBias.value = t.displacementBias));
                     }
-                    function xe(e, t) {
+                    function we(e, t) {
                       (e.roughness.value = t.roughness),
                         (e.metalness.value = t.metalness),
                         t.roughnessMap &&
@@ -19751,11 +19767,11 @@ object-assign
                         t.bumpMap &&
                           ((e.bumpMap.value = t.bumpMap),
                           (e.bumpScale.value = t.bumpScale),
-                          t.side === w && (e.bumpScale.value *= -1)),
+                          t.side === E && (e.bumpScale.value *= -1)),
                         t.normalMap &&
                           ((e.normalMap.value = t.normalMap),
                           e.normalScale.value.copy(t.normalScale),
-                          t.side === w && e.normalScale.value.negate()),
+                          t.side === E && e.normalScale.value.negate()),
                         t.displacementMap &&
                           ((e.displacementMap.value = t.displacementMap),
                           (e.displacementScale.value = t.displacementScale),
@@ -19773,15 +19789,15 @@ object-assign
                       (this.render = function(e, t, n, r) {
                         if (t && t.isCamera) {
                           if (!D) {
-                            (N.geometry = null),
-                              (N.program = null),
-                              (N.wireframe = !1),
-                              (F = -1),
+                            (F.geometry = null),
+                              (F.program = null),
+                              (F.wireframe = !1),
+                              (N = -1),
                               (U = null),
                               !0 === e.autoUpdate && e.updateMatrixWorld(),
                               null === t.parent && t.updateMatrixWorld(),
                               se.enabled && (t = se.getCamera(t)),
-                              (h = T.get(e, t)).init(),
+                              (h = M.get(e, t)).init(),
                               e.onBeforeRender(O, e, t, n),
                               te.multiplyMatrices(
                                 t.projectionMatrix,
@@ -19790,7 +19806,7 @@ object-assign
                               Z.setFromMatrix(te),
                               (ee = this.localClippingEnabled),
                               ($ = J.init(this.clippingPlanes, ee, t)),
-                              (u = M.get(e, t)).init(),
+                              (u = T.get(e, t)).init(),
                               (function e(t, n, r, i) {
                                 if (!1 !== t.visible) {
                                   var o = t.layers.test(n.layers);
@@ -19810,7 +19826,7 @@ object-assign
                                               t.matrixWorld
                                             )
                                             .applyMatrix4(te);
-                                        var a = E.update(t),
+                                        var a = x.update(t),
                                           s = t.material;
                                         u.push(t, a, s, r, ne.z, null);
                                       }
@@ -19836,7 +19852,7 @@ object-assign
                                         ne
                                           .setFromMatrixPosition(t.matrixWorld)
                                           .applyMatrix4(te);
-                                      var a = E.update(t),
+                                      var a = x.update(t),
                                         s = t.material;
                                       if (Array.isArray(s))
                                         for (
@@ -19898,7 +19914,7 @@ object-assign
                           );
                       }),
                       (this.allocTextureUnit = function() {
-                        var e = G;
+                        var e = j;
                         return (
                           e >= m.maxTextures &&
                             console.warn(
@@ -19907,7 +19923,7 @@ object-assign
                                 " texture units while this GPU supports only " +
                                 m.maxTextures
                             ),
-                          (G += 1),
+                          (j += 1),
                           e
                         );
                       }),
@@ -19974,18 +19990,18 @@ object-assign
                             : (t = e.isWebGLMultisampleRenderTarget
                                 ? y.get(e).__webglMultisampledFramebuffer
                                 : r),
-                            z.copy(e.viewport),
-                            j.copy(e.scissor),
-                            (V = e.scissorTest);
+                            V.copy(e.viewport),
+                            z.copy(e.scissor),
+                            (G = e.scissorTest);
                         } else
-                          z.copy(Y).multiplyScalar(X),
-                            j.copy(Q).multiplyScalar(X),
-                            (V = K);
+                          V.copy(Y).multiplyScalar(X),
+                            z.copy(Q).multiplyScalar(X),
+                            (G = K);
                         if (
                           (k !== t && (d.bindFramebuffer(36160, t), (k = t)),
-                          v.viewport(z),
-                          v.scissor(j),
-                          v.setScissorTest(V),
+                          v.viewport(V),
+                          v.scissor(z),
+                          v.setScissorTest(G),
                           n)
                         ) {
                           var i = y.get(e.texture);
@@ -20016,7 +20032,7 @@ object-assign
                                 c = l.format,
                                 u = l.type;
                               if (
-                                c !== ze &&
+                                c !== Ve &&
                                 P.convert(c) !== d.getParameter(35739)
                               )
                                 return void console.error(
@@ -20113,7 +20129,7 @@ object-assign
                       (this.far = void 0 !== n ? n : 1e3);
                   }
                   function lo() {
-                    Mn.call(this),
+                    Tn.call(this),
                       (this.type = "Scene"),
                       (this.background = null),
                       (this.fog = null),
@@ -20147,9 +20163,9 @@ object-assign
                   }
                   function po(e) {
                     if (
-                      (Mn.call(this), (this.type = "Sprite"), void 0 === Yi)
+                      (Tn.call(this), (this.type = "Sprite"), void 0 === Yi)
                     ) {
-                      Yi = new Vn();
+                      Yi = new Gn();
                       var t = new Float32Array([
                           -0.5,
                           -0.5,
@@ -20182,7 +20198,7 @@ object-assign
                       (this.center = new It(0.5, 0.5));
                   }
                   function fo() {
-                    Mn.call(this),
+                    Tn.call(this),
                       (this.type = "LOD"),
                       Object.defineProperties(this, {
                         levels: { enumerable: !0, value: [] },
@@ -20222,7 +20238,7 @@ object-assign
                     }
                   }
                   function go() {
-                    Mn.call(this), (this.type = "Bone");
+                    Tn.call(this), (this.type = "Bone");
                   }
                   function yo(e) {
                     sr.call(this),
@@ -20239,9 +20255,9 @@ object-assign
                       console.error(
                         "THREE.Line: parameter THREE.LinePieces no longer supported. Use THREE.LineSegments instead."
                       ),
-                      Mn.call(this),
+                      Tn.call(this),
                       (this.type = "Line"),
-                      (this.geometry = void 0 !== e ? e : new Vn()),
+                      (this.geometry = void 0 !== e ? e : new Gn()),
                       (this.material =
                         void 0 !== t
                           ? t
@@ -20250,10 +20266,10 @@ object-assign
                   function Ao(e, t) {
                     bo.call(this, e, t), (this.type = "LineSegments");
                   }
-                  function wo(e, t) {
+                  function Eo(e, t) {
                     bo.call(this, e, t), (this.type = "LineLoop");
                   }
-                  function xo(e) {
+                  function wo(e) {
                     sr.call(this),
                       (this.type = "PointsMaterial"),
                       (this.color = new hn(16777215)),
@@ -20264,14 +20280,14 @@ object-assign
                       (this.lights = !1),
                       this.setValues(e);
                   }
-                  function Eo(e, t) {
-                    Mn.call(this),
+                  function xo(e, t) {
+                    Tn.call(this),
                       (this.type = "Points"),
-                      (this.geometry = void 0 !== e ? e : new Vn()),
+                      (this.geometry = void 0 !== e ? e : new Gn()),
                       (this.material =
                         void 0 !== t
                           ? t
-                          : new xo({ color: 16777215 * Math.random() }));
+                          : new wo({ color: 16777215 * Math.random() }));
                   }
                   function _o(e, t, n, r, i, o, a, s, l) {
                     qt.call(this, e, t, n, r, i, o, a, s, l),
@@ -20280,14 +20296,14 @@ object-assign
                       (this.magFilter = void 0 !== i ? i : _e),
                       (this.generateMipmaps = !1);
                   }
-                  function Mo(e, t, n, r, i, o, a, s, l, c, u, h) {
+                  function To(e, t, n, r, i, o, a, s, l, c, u, h) {
                     qt.call(this, null, o, a, s, l, c, r, i, u, h),
                       (this.image = { width: t, height: n }),
                       (this.mipmaps = e),
                       (this.flipY = !1),
                       (this.generateMipmaps = !1);
                   }
-                  function To(e, t, n, r, i, o, a, s, l) {
+                  function Mo(e, t, n, r, i, o, a, s, l) {
                     qt.call(this, e, t, n, r, i, o, a, s, l),
                       (this.needsUpdate = !0);
                   }
@@ -20297,16 +20313,16 @@ object-assign
                         "DepthTexture format must be either THREE.DepthFormat or THREE.DepthStencilFormat"
                       );
                     void 0 === n && c === We && (n = Re),
-                      void 0 === n && c === qe && (n = Ne),
+                      void 0 === n && c === qe && (n = Fe),
                       qt.call(this, null, r, i, o, a, s, c, n, l),
                       (this.image = { width: e, height: t }),
-                      (this.magFilter = void 0 !== a ? a : we),
-                      (this.minFilter = void 0 !== s ? s : we),
+                      (this.magFilter = void 0 !== a ? a : Ee),
+                      (this.minFilter = void 0 !== s ? s : Ee),
                       (this.flipY = !1),
                       (this.generateMipmaps = !1);
                   }
                   function Co(e) {
-                    Vn.call(this), (this.type = "WireframeGeometry");
+                    Gn.call(this), (this.type = "WireframeGeometry");
                     var t,
                       n,
                       r,
@@ -20341,8 +20357,8 @@ object-assign
                           (u = e.vertices[a.index2]),
                           h.push(u.x, u.y, u.z);
                     } else if (e && e.isBufferGeometry) {
-                      var g, y, b, A, w, x, E, _;
-                      if (((u = new Ft()), null !== e.index)) {
+                      var g, y, b, A, E, w, x, _;
+                      if (((u = new Nt()), null !== e.index)) {
                         for (
                           g = e.attributes.position,
                             y = e.index,
@@ -20357,10 +20373,10 @@ object-assign
                         )
                           for (
                             A = b[i],
-                              w = A.start,
-                              x = A.count,
-                              t = w,
-                              r = w + x;
+                              E = A.start,
+                              w = A.count,
+                              t = E,
+                              r = E + w;
                             t < r;
                             t += 3
                           )
@@ -20385,14 +20401,14 @@ object-assign
                           t++
                         )
                           for (n = 0; n < 3; n++)
-                            (E = 3 * t + n),
-                              u.fromBufferAttribute(g, E),
+                            (x = 3 * t + n),
+                              u.fromBufferAttribute(g, x),
                               h.push(u.x, u.y, u.z),
                               (_ = 3 * t + ((n + 1) % 3)),
                               u.fromBufferAttribute(g, _),
                               h.push(u.x, u.y, u.z);
                     }
-                    this.addAttribute("position", new Nn(h, 3));
+                    this.addAttribute("position", new Fn(h, 3));
                   }
                   function Lo(e, t, n) {
                     Ln.call(this),
@@ -20402,7 +20418,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function Ro(e, t, n) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "ParametricBufferGeometry"),
                       (this.parameters = { func: e, slices: t, stacks: n });
                     var r,
@@ -20411,11 +20427,11 @@ object-assign
                       a = [],
                       s = [],
                       l = [],
-                      c = new Ft(),
-                      u = new Ft(),
-                      h = new Ft(),
-                      d = new Ft(),
-                      p = new Ft();
+                      c = new Nt(),
+                      u = new Nt(),
+                      h = new Nt(),
+                      d = new Nt(),
+                      p = new Nt();
                     e.length < 3 &&
                       console.error(
                         "THREE.ParametricGeometry: Function must now modify a Vector3 as third parameter."
@@ -20447,9 +20463,9 @@ object-assign
                         o.push(g, y, A), o.push(y, b, A);
                       }
                     this.setIndex(o),
-                      this.addAttribute("position", new Nn(a, 3)),
-                      this.addAttribute("normal", new Nn(s, 3)),
-                      this.addAttribute("uv", new Nn(l, 2));
+                      this.addAttribute("position", new Fn(a, 3)),
+                      this.addAttribute("normal", new Fn(s, 3)),
+                      this.addAttribute("uv", new Fn(l, 2));
                   }
                   function Po(e, t, n, r) {
                     Ln.call(this),
@@ -20464,7 +20480,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function Oo(e, t, n, r) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "PolyhedronBufferGeometry"),
                       (this.parameters = {
                         vertices: e,
@@ -20517,7 +20533,7 @@ object-assign
                     }
                     !(function(e) {
                       for (
-                        var n = new Ft(), r = new Ft(), i = new Ft(), o = 0;
+                        var n = new Nt(), r = new Nt(), i = new Nt(), o = 0;
                         o < t.length;
                         o += 3
                       )
@@ -20527,7 +20543,7 @@ object-assign
                           a(n, r, i, e);
                     })((r = r || 0)),
                       (function(e) {
-                        for (var t = new Ft(), n = 0; n < i.length; n += 3)
+                        for (var t = new Nt(), n = 0; n < i.length; n += 3)
                           (t.x = i[n + 0]),
                             (t.y = i[n + 1]),
                             (t.z = i[n + 2]),
@@ -20537,7 +20553,7 @@ object-assign
                             (i[n + 2] = t.z);
                       })(n),
                       (function() {
-                        for (var e = new Ft(), t = 0; t < i.length; t += 3) {
+                        for (var e = new Nt(), t = 0; t < i.length; t += 3) {
                           (e.x = i[t + 0]), (e.y = i[t + 1]), (e.z = i[t + 2]);
                           var n = u(e) / 2 / Math.PI + 0.5,
                             r = ((a = e),
@@ -20549,10 +20565,10 @@ object-assign
                         var a;
                         (function() {
                           for (
-                            var e = new Ft(),
-                              t = new Ft(),
-                              n = new Ft(),
-                              r = new Ft(),
+                            var e = new Nt(),
+                              t = new Nt(),
+                              n = new Nt(),
+                              r = new Nt(),
                               a = new It(),
                               s = new It(),
                               l = new It(),
@@ -20593,9 +20609,9 @@ object-assign
                             }
                           })();
                       })(),
-                      this.addAttribute("position", new Nn(i, 3)),
-                      this.addAttribute("normal", new Nn(i.slice(), 3)),
-                      this.addAttribute("uv", new Nn(o, 2)),
+                      this.addAttribute("position", new Fn(i, 3)),
+                      this.addAttribute("normal", new Fn(i.slice(), 3)),
+                      this.addAttribute("uv", new Fn(o, 2)),
                       0 === r
                         ? this.computeVertexNormals()
                         : this.normalizeNormals();
@@ -20661,14 +20677,14 @@ object-assign
                       (this.type = "OctahedronBufferGeometry"),
                       (this.parameters = { radius: e, detail: t });
                   }
-                  function Fo(e, t) {
+                  function No(e, t) {
                     Ln.call(this),
                       (this.type = "IcosahedronGeometry"),
                       (this.parameters = { radius: e, detail: t }),
-                      this.fromBufferGeometry(new No(e, t)),
+                      this.fromBufferGeometry(new Fo(e, t)),
                       this.mergeVertices();
                   }
-                  function No(e, t) {
+                  function Fo(e, t) {
                     var n = (1 + Math.sqrt(5)) / 2,
                       r = [
                         -1,
@@ -20970,7 +20986,7 @@ object-assign
                       (this.type = "DodecahedronBufferGeometry"),
                       (this.parameters = { radius: e, detail: t });
                   }
-                  function zo(e, t, n, r, i, o) {
+                  function Vo(e, t, n, r, i, o) {
                     Ln.call(this),
                       (this.type = "TubeGeometry"),
                       (this.parameters = {
@@ -20984,15 +21000,15 @@ object-assign
                         console.warn(
                           "THREE.TubeGeometry: taper has been removed."
                         );
-                    var a = new jo(e, t, n, r, i);
+                    var a = new zo(e, t, n, r, i);
                     (this.tangents = a.tangents),
                       (this.normals = a.normals),
                       (this.binormals = a.binormals),
                       this.fromBufferGeometry(a),
                       this.mergeVertices();
                   }
-                  function jo(e, t, n, r, i) {
-                    Vn.call(this),
+                  function zo(e, t, n, r, i) {
+                    Gn.call(this),
                       (this.type = "TubeBufferGeometry"),
                       (this.parameters = {
                         path: e,
@@ -21011,10 +21027,10 @@ object-assign
                       (this.binormals = o.binormals);
                     var a,
                       s,
-                      l = new Ft(),
-                      c = new Ft(),
+                      l = new Nt(),
+                      c = new Nt(),
                       u = new It(),
-                      h = new Ft(),
+                      h = new Nt(),
                       d = [],
                       p = [],
                       f = [],
@@ -21058,11 +21074,11 @@ object-assign
                         })();
                     })(),
                       this.setIndex(m),
-                      this.addAttribute("position", new Nn(d, 3)),
-                      this.addAttribute("normal", new Nn(p, 3)),
-                      this.addAttribute("uv", new Nn(f, 2));
+                      this.addAttribute("position", new Fn(d, 3)),
+                      this.addAttribute("normal", new Fn(p, 3)),
+                      this.addAttribute("uv", new Fn(f, 2));
                   }
-                  function Vo(e, t, n, r, i, o, a) {
+                  function Go(e, t, n, r, i, o, a) {
                     Ln.call(this),
                       (this.type = "TorusKnotGeometry"),
                       (this.parameters = {
@@ -21077,11 +21093,11 @@ object-assign
                         console.warn(
                           "THREE.TorusKnotGeometry: heightScale has been deprecated. Use .scale( x, y, z ) instead."
                         ),
-                      this.fromBufferGeometry(new Go(e, t, n, r, i, o)),
+                      this.fromBufferGeometry(new jo(e, t, n, r, i, o)),
                       this.mergeVertices();
                   }
-                  function Go(e, t, n, r, i, o) {
-                    Vn.call(this),
+                  function jo(e, t, n, r, i, o) {
+                    Gn.call(this),
                       (this.type = "TorusKnotBufferGeometry"),
                       (this.parameters = {
                         radius: e,
@@ -21103,13 +21119,13 @@ object-assign
                       c = [],
                       u = [],
                       h = [],
-                      d = new Ft(),
-                      p = new Ft(),
-                      f = new Ft(),
-                      m = new Ft(),
-                      v = new Ft(),
-                      g = new Ft(),
-                      y = new Ft();
+                      d = new Nt(),
+                      p = new Nt(),
+                      f = new Nt(),
+                      m = new Nt(),
+                      v = new Nt(),
+                      g = new Nt(),
+                      y = new Nt();
                     for (a = 0; a <= n; ++a) {
                       var b = (a / n) * i * Math.PI * 2;
                       for (
@@ -21126,11 +21142,11 @@ object-assign
                         ++s
                       ) {
                         var A = (s / r) * Math.PI * 2,
-                          w = -t * Math.cos(A),
-                          x = t * Math.sin(A);
-                        (d.x = f.x + (w * y.x + x * v.x)),
-                          (d.y = f.y + (w * y.y + x * v.y)),
-                          (d.z = f.z + (w * y.z + x * v.z)),
+                          E = -t * Math.cos(A),
+                          w = t * Math.sin(A);
+                        (d.x = f.x + (E * y.x + w * v.x)),
+                          (d.y = f.y + (E * y.y + w * v.y)),
+                          (d.z = f.z + (E * y.z + w * v.z)),
                           c.push(d.x, d.y, d.z),
                           p.subVectors(d, f).normalize(),
                           u.push(p.x, p.y, p.z),
@@ -21140,11 +21156,11 @@ object-assign
                     }
                     for (s = 1; s <= n; s++)
                       for (a = 1; a <= r; a++) {
-                        var E = (r + 1) * (s - 1) + (a - 1),
+                        var x = (r + 1) * (s - 1) + (a - 1),
                           _ = (r + 1) * s + (a - 1),
-                          M = (r + 1) * s + a,
-                          T = (r + 1) * (s - 1) + a;
-                        l.push(E, _, T), l.push(_, M, T);
+                          T = (r + 1) * s + a,
+                          M = (r + 1) * (s - 1) + a;
+                        l.push(x, _, M), l.push(_, T, M);
                       }
                     function S(e, t, n, r, i) {
                       var o = Math.cos(e),
@@ -21156,9 +21172,9 @@ object-assign
                         (i.z = r * Math.sin(s) * 0.5);
                     }
                     this.setIndex(l),
-                      this.addAttribute("position", new Nn(c, 3)),
-                      this.addAttribute("normal", new Nn(u, 3)),
-                      this.addAttribute("uv", new Nn(h, 2));
+                      this.addAttribute("position", new Fn(c, 3)),
+                      this.addAttribute("normal", new Fn(u, 3)),
+                      this.addAttribute("uv", new Fn(h, 2));
                   }
                   function Wo(e, t, n, r, i) {
                     Ln.call(this),
@@ -21174,7 +21190,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function qo(e, t, n, r, i) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "TorusBufferGeometry"),
                       (this.parameters = {
                         radius: e,
@@ -21194,9 +21210,9 @@ object-assign
                       l = [],
                       c = [],
                       u = [],
-                      h = new Ft(),
-                      d = new Ft(),
-                      p = new Ft();
+                      h = new Nt(),
+                      d = new Nt(),
+                      p = new Nt();
                     for (o = 0; o <= n; o++)
                       for (a = 0; a <= r; a++) {
                         var f = (a / r) * i,
@@ -21221,9 +21237,9 @@ object-assign
                         s.push(v, g, b), s.push(g, y, b);
                       }
                     this.setIndex(s),
-                      this.addAttribute("position", new Nn(l, 3)),
-                      this.addAttribute("normal", new Nn(c, 3)),
-                      this.addAttribute("uv", new Nn(u, 2));
+                      this.addAttribute("position", new Fn(l, 3)),
+                      this.addAttribute("normal", new Fn(c, 3)),
+                      this.addAttribute("uv", new Fn(u, 2));
                   }
                   (ao.prototype.isFogExp2 = !0),
                     (ao.prototype.clone = function() {
@@ -21248,12 +21264,12 @@ object-assign
                         far: this.far,
                       };
                     }),
-                    (lo.prototype = Object.assign(Object.create(Mn.prototype), {
+                    (lo.prototype = Object.assign(Object.create(Tn.prototype), {
                       constructor: lo,
                       isScene: !0,
                       copy: function(e, t) {
                         return (
-                          Mn.prototype.copy.call(this, e, t),
+                          Tn.prototype.copy.call(this, e, t),
                           null !== e.background &&
                             (this.background = e.background.clone()),
                           null !== e.fog && (this.fog = e.fog.clone()),
@@ -21265,7 +21281,7 @@ object-assign
                         );
                       },
                       toJSON: function(e) {
-                        var t = Mn.prototype.toJSON.call(this, e);
+                        var t = Tn.prototype.toJSON.call(this, e);
                         return (
                           null !== this.background &&
                             (t.object.background = this.background.toJSON(e)),
@@ -21435,19 +21451,19 @@ object-assign
                         this
                       );
                     }),
-                    (po.prototype = Object.assign(Object.create(Mn.prototype), {
+                    (po.prototype = Object.assign(Object.create(Tn.prototype), {
                       constructor: po,
                       isSprite: !0,
                       raycast: (function() {
-                        var e = new Ft(),
-                          t = new Ft(),
-                          n = new Ft(),
+                        var e = new Nt(),
+                          t = new Nt(),
+                          n = new Nt(),
                           r = new It(),
                           i = new It(),
                           o = new Bt(),
-                          a = new Ft(),
-                          s = new Ft(),
-                          l = new Ft(),
+                          a = new Nt(),
+                          s = new Nt(),
+                          l = new Nt(),
                           c = new It(),
                           u = new It(),
                           h = new It();
@@ -21508,16 +21524,16 @@ object-assign
                       },
                       copy: function(e) {
                         return (
-                          Mn.prototype.copy.call(this, e),
+                          Tn.prototype.copy.call(this, e),
                           void 0 !== e.center && this.center.copy(e.center),
                           this
                         );
                       },
                     })),
-                    (fo.prototype = Object.assign(Object.create(Mn.prototype), {
+                    (fo.prototype = Object.assign(Object.create(Tn.prototype), {
                       constructor: fo,
                       copy: function(e) {
-                        Mn.prototype.copy.call(this, e, !1);
+                        Tn.prototype.copy.call(this, e, !1);
                         for (
                           var t = e.levels, n = 0, r = t.length;
                           n < r;
@@ -21545,15 +21561,15 @@ object-assign
                         );
                         return t[n - 1].object;
                       },
-                      raycast: ((Qi = new Ft()),
+                      raycast: ((Qi = new Nt()),
                       function(e, t) {
                         Qi.setFromMatrixPosition(this.matrixWorld);
                         var n = e.ray.origin.distanceTo(Qi);
                         this.getObjectForDistance(n).raycast(e, t);
                       }),
                       update: (function() {
-                        var e = new Ft(),
-                          t = new Ft();
+                        var e = new Nt(),
+                          t = new Nt();
                         return function(n) {
                           var r = this.levels;
                           if (r.length > 1) {
@@ -21573,7 +21589,7 @@ object-assign
                         };
                       })(),
                       toJSON: function(e) {
-                        var t = Mn.prototype.toJSON.call(this, e);
+                        var t = Tn.prototype.toJSON.call(this, e);
                         t.object.levels = [];
                         for (
                           var n = this.levels, r = 0, i = n.length;
@@ -21697,7 +21713,7 @@ object-assign
                         }
                       },
                     }),
-                    (go.prototype = Object.assign(Object.create(Mn.prototype), {
+                    (go.prototype = Object.assign(Object.create(Tn.prototype), {
                       constructor: go,
                       isBone: !0,
                     })),
@@ -21714,11 +21730,11 @@ object-assign
                         this
                       );
                     }),
-                    (bo.prototype = Object.assign(Object.create(Mn.prototype), {
+                    (bo.prototype = Object.assign(Object.create(Tn.prototype), {
                       constructor: bo,
                       isLine: !0,
-                      computeLineDistances: ((Ji = new Ft()),
-                      ($i = new Ft()),
+                      computeLineDistances: ((Ji = new Nt()),
+                      ($i = new Nt()),
                       function() {
                         var e = this.geometry;
                         if (e.isBufferGeometry)
@@ -21735,7 +21751,7 @@ object-assign
                                 $i.fromBufferAttribute(t, r),
                                 (n[r] = n[r - 1]),
                                 (n[r] += Ji.distanceTo($i));
-                            e.addAttribute("lineDistance", new Nn(n, 1));
+                            e.addAttribute("lineDistance", new Fn(n, 1));
                           } else
                             console.warn(
                               "THREE.Line.computeLineDistances(): Computation only possible with non-indexed BufferGeometry."
@@ -21772,10 +21788,10 @@ object-assign
                                 ((this.scale.x + this.scale.y + this.scale.z) /
                                   3),
                               c = l * l,
-                              u = new Ft(),
-                              h = new Ft(),
-                              d = new Ft(),
-                              p = new Ft(),
+                              u = new Nt(),
+                              h = new Nt(),
+                              d = new Nt(),
+                              p = new Nt(),
                               f = this && this.isLineSegments ? 2 : 1;
                             if (a.isBufferGeometry) {
                               var m = a.index,
@@ -21787,11 +21803,11 @@ object-assign
                                   b < A;
                                   b += f
                                 ) {
-                                  var w = y[b],
-                                    x = y[b + 1];
-                                  u.fromArray(g, 3 * w), h.fromArray(g, 3 * x);
-                                  var E = t.distanceSqToSegment(u, h, p, d);
-                                  if (!(E > c)) {
+                                  var E = y[b],
+                                    w = y[b + 1];
+                                  u.fromArray(g, 3 * E), h.fromArray(g, 3 * w);
+                                  var x = t.distanceSqToSegment(u, h, p, d);
+                                  if (!(x > c)) {
                                     p.applyMatrix4(this.matrixWorld);
                                     var _ = r.ray.origin.distanceTo(p);
                                     _ < r.near ||
@@ -21816,8 +21832,8 @@ object-assign
                                 ) {
                                   u.fromArray(g, 3 * b),
                                     h.fromArray(g, 3 * b + 3);
-                                  var E = t.distanceSqToSegment(u, h, p, d);
-                                  if (!(E > c)) {
+                                  var x = t.distanceSqToSegment(u, h, p, d);
+                                  if (!(x > c)) {
                                     p.applyMatrix4(this.matrixWorld);
                                     var _ = r.ray.origin.distanceTo(p);
                                     _ < r.near ||
@@ -21836,17 +21852,17 @@ object-assign
                                 }
                             } else if (a.isGeometry)
                               for (
-                                var M = a.vertices, T = M.length, b = 0;
-                                b < T - 1;
+                                var T = a.vertices, M = T.length, b = 0;
+                                b < M - 1;
                                 b += f
                               ) {
-                                var E = t.distanceSqToSegment(
-                                  M[b],
-                                  M[b + 1],
+                                var x = t.distanceSqToSegment(
+                                  T[b],
+                                  T[b + 1],
                                   p,
                                   d
                                 );
-                                if (!(E > c)) {
+                                if (!(x > c)) {
                                   p.applyMatrix4(this.matrixWorld);
                                   var _ = r.ray.origin.distanceTo(p);
                                   _ < r.near ||
@@ -21868,7 +21884,7 @@ object-assign
                       })(),
                       copy: function(e) {
                         return (
-                          Mn.prototype.copy.call(this, e),
+                          Tn.prototype.copy.call(this, e),
                           this.geometry.copy(e.geometry),
                           this.material.copy(e.material),
                           this
@@ -21882,8 +21898,8 @@ object-assign
                       constructor: Ao,
                       isLineSegments: !0,
                       computeLineDistances: (function() {
-                        var e = new Ft(),
-                          t = new Ft();
+                        var e = new Nt(),
+                          t = new Nt();
                         return function() {
                           var n = this.geometry;
                           if (n.isBufferGeometry)
@@ -21900,7 +21916,7 @@ object-assign
                                   t.fromBufferAttribute(r, o + 1),
                                   (i[o] = 0 === o ? 0 : i[o - 1]),
                                   (i[o + 1] = i[o] + e.distanceTo(t));
-                              n.addAttribute("lineDistance", new Nn(i, 1));
+                              n.addAttribute("lineDistance", new Fn(i, 1));
                             } else
                               console.warn(
                                 "THREE.LineSegments.computeLineDistances(): Computation only possible with non-indexed BufferGeometry."
@@ -21922,14 +21938,14 @@ object-assign
                         };
                       })(),
                     })),
-                    (wo.prototype = Object.assign(Object.create(bo.prototype), {
-                      constructor: wo,
+                    (Eo.prototype = Object.assign(Object.create(bo.prototype), {
+                      constructor: Eo,
                       isLineLoop: !0,
                     })),
-                    (xo.prototype = Object.create(sr.prototype)),
-                    (xo.prototype.constructor = xo),
-                    (xo.prototype.isPointsMaterial = !0),
-                    (xo.prototype.copy = function(e) {
+                    (wo.prototype = Object.create(sr.prototype)),
+                    (wo.prototype.constructor = wo),
+                    (wo.prototype.isPointsMaterial = !0),
+                    (wo.prototype.copy = function(e) {
                       return (
                         sr.prototype.copy.call(this, e),
                         this.color.copy(e.color),
@@ -21940,8 +21956,8 @@ object-assign
                         this
                       );
                     }),
-                    (Eo.prototype = Object.assign(Object.create(Mn.prototype), {
-                      constructor: Eo,
+                    (xo.prototype = Object.assign(Object.create(Tn.prototype), {
+                      constructor: xo,
                       isPoints: !0,
                       raycast: (function() {
                         var e = new Bt(),
@@ -21966,8 +21982,8 @@ object-assign
                                 ((this.scale.x + this.scale.y + this.scale.z) /
                                   3),
                               u = c * c,
-                              h = new Ft(),
-                              d = new Ft();
+                              h = new Nt(),
+                              d = new Nt();
                             if (a.isBufferGeometry) {
                               var p = a.index,
                                 f = a.attributes,
@@ -21979,20 +21995,20 @@ object-assign
                                   g++
                                 ) {
                                   var b = v[g];
-                                  h.fromArray(m, 3 * b), x(h, b);
+                                  h.fromArray(m, 3 * b), w(h, b);
                                 }
                               else
                                 for (var g = 0, A = m.length / 3; g < A; g++)
-                                  h.fromArray(m, 3 * g), x(h, g);
+                                  h.fromArray(m, 3 * g), w(h, g);
                             } else
                               for (
-                                var w = a.vertices, g = 0, A = w.length;
+                                var E = a.vertices, g = 0, A = E.length;
                                 g < A;
                                 g++
                               )
-                                x(w[g], g);
+                                w(E[g], g);
                           }
-                          function x(e, n) {
+                          function w(e, n) {
                             var a = t.distanceSqToPoint(e);
                             if (a < u) {
                               t.closestPointToPoint(e, d), d.applyMatrix4(s);
@@ -22026,24 +22042,24 @@ object-assign
                           (this.needsUpdate = !0);
                       },
                     })),
-                    (Mo.prototype = Object.create(qt.prototype)),
-                    (Mo.prototype.constructor = Mo),
-                    (Mo.prototype.isCompressedTexture = !0),
                     (To.prototype = Object.create(qt.prototype)),
                     (To.prototype.constructor = To),
-                    (To.prototype.isCanvasTexture = !0),
+                    (To.prototype.isCompressedTexture = !0),
+                    (Mo.prototype = Object.create(qt.prototype)),
+                    (Mo.prototype.constructor = Mo),
+                    (Mo.prototype.isCanvasTexture = !0),
                     (So.prototype = Object.create(qt.prototype)),
                     (So.prototype.constructor = So),
                     (So.prototype.isDepthTexture = !0),
-                    (Co.prototype = Object.create(Vn.prototype)),
+                    (Co.prototype = Object.create(Gn.prototype)),
                     (Co.prototype.constructor = Co),
                     (Lo.prototype = Object.create(Ln.prototype)),
                     (Lo.prototype.constructor = Lo),
-                    (Ro.prototype = Object.create(Vn.prototype)),
+                    (Ro.prototype = Object.create(Gn.prototype)),
                     (Ro.prototype.constructor = Ro),
                     (Po.prototype = Object.create(Ln.prototype)),
                     (Po.prototype.constructor = Po),
-                    (Oo.prototype = Object.create(Vn.prototype)),
+                    (Oo.prototype = Object.create(Gn.prototype)),
                     (Oo.prototype.constructor = Oo),
                     (Do.prototype = Object.create(Ln.prototype)),
                     (Do.prototype.constructor = Do),
@@ -22053,25 +22069,25 @@ object-assign
                     (Bo.prototype.constructor = Bo),
                     (ko.prototype = Object.create(Oo.prototype)),
                     (ko.prototype.constructor = ko),
-                    (Fo.prototype = Object.create(Ln.prototype)),
-                    (Fo.prototype.constructor = Fo),
-                    (No.prototype = Object.create(Oo.prototype)),
+                    (No.prototype = Object.create(Ln.prototype)),
                     (No.prototype.constructor = No),
+                    (Fo.prototype = Object.create(Oo.prototype)),
+                    (Fo.prototype.constructor = Fo),
                     (Uo.prototype = Object.create(Ln.prototype)),
                     (Uo.prototype.constructor = Uo),
                     (Ho.prototype = Object.create(Oo.prototype)),
                     (Ho.prototype.constructor = Ho),
-                    (zo.prototype = Object.create(Ln.prototype)),
-                    (zo.prototype.constructor = zo),
-                    (jo.prototype = Object.create(Vn.prototype)),
-                    (jo.prototype.constructor = jo),
                     (Vo.prototype = Object.create(Ln.prototype)),
                     (Vo.prototype.constructor = Vo),
-                    (Go.prototype = Object.create(Vn.prototype)),
+                    (zo.prototype = Object.create(Gn.prototype)),
+                    (zo.prototype.constructor = zo),
+                    (Go.prototype = Object.create(Ln.prototype)),
                     (Go.prototype.constructor = Go),
+                    (jo.prototype = Object.create(Gn.prototype)),
+                    (jo.prototype.constructor = jo),
                     (Wo.prototype = Object.create(Ln.prototype)),
                     (Wo.prototype.constructor = Wo),
-                    (qo.prototype = Object.create(Vn.prototype)),
+                    (qo.prototype = Object.create(Gn.prototype)),
                     (qo.prototype.constructor = qo);
                   var Xo = {
                     triangulate: function(e, t, n) {
@@ -22597,7 +22613,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function ba(e, t) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "ExtrudeBufferGeometry"),
                       (this.parameters = { shapes: e, options: t }),
                       (e = Array.isArray(e) ? e : [e]);
@@ -22631,29 +22647,29 @@ object-assign
                         y,
                         b,
                         A,
+                        E,
                         w,
-                        x,
-                        E = !1;
+                        x = !1;
                       p &&
                         ((m = p.getSpacedPoints(s)),
-                        (E = !0),
+                        (x = !0),
                         (c = !1),
                         (v = p.computeFrenetFrames(s, !1)),
-                        (g = new Ft()),
-                        (y = new Ft()),
-                        (b = new Ft())),
+                        (g = new Nt()),
+                        (y = new Nt()),
+                        (b = new Nt())),
                         c || ((d = 0), (u = 0), (h = 0));
                       var _ = e.extractPoints(a),
-                        M = _.shape,
-                        T = _.holes,
-                        S = !ma.isClockWise(M);
+                        T = _.shape,
+                        M = _.holes,
+                        S = !ma.isClockWise(T);
                       if (S)
-                        for (M = M.reverse(), w = 0, x = T.length; w < x; w++)
-                          (A = T[w]), ma.isClockWise(A) && (T[w] = A.reverse());
-                      var C = ma.triangulateShape(M, T),
-                        L = M;
-                      for (w = 0, x = T.length; w < x; w++)
-                        (A = T[w]), (M = M.concat(A));
+                        for (T = T.reverse(), E = 0, w = M.length; E < w; E++)
+                          (A = M[E]), ma.isClockWise(A) && (M[E] = A.reverse());
+                      var C = ma.triangulateShape(T, M),
+                        L = T;
+                      for (E = 0, w = M.length; E < w; E++)
+                        (A = M[E]), (T = T.concat(A));
                       function R(e, t, n) {
                         return (
                           t ||
@@ -22672,8 +22688,8 @@ object-assign
                         I,
                         B,
                         k,
-                        F = M.length,
-                        N = C.length;
+                        N = T.length,
+                        F = C.length;
                       function U(e, t, n) {
                         var r,
                           i,
@@ -22710,31 +22726,31 @@ object-assign
                         return new It(r / o, i / o);
                       }
                       for (
-                        var H = [], z = 0, j = L.length, V = j - 1, G = z + 1;
-                        z < j;
-                        z++, V++, G++
+                        var H = [], V = 0, z = L.length, G = z - 1, j = V + 1;
+                        V < z;
+                        V++, G++, j++
                       )
-                        V === j && (V = 0),
-                          G === j && (G = 0),
-                          (H[z] = U(L[z], L[V], L[G]));
+                        G === z && (G = 0),
+                          j === z && (j = 0),
+                          (H[V] = U(L[V], L[G], L[j]));
                       var W,
                         q,
                         X = [],
                         Y = H.concat();
-                      for (w = 0, x = T.length; w < x; w++) {
+                      for (E = 0, w = M.length; E < w; E++) {
                         for (
-                          A = T[w],
+                          A = M[E],
                             W = [],
-                            z = 0,
-                            j = A.length,
-                            V = j - 1,
-                            G = z + 1;
-                          z < j;
-                          z++, V++, G++
+                            V = 0,
+                            z = A.length,
+                            G = z - 1,
+                            j = V + 1;
+                          V < z;
+                          V++, G++, j++
                         )
-                          V === j && (V = 0),
-                            G === j && (G = 0),
-                            (W[z] = U(A[z], A[V], A[G]));
+                          G === z && (G = 0),
+                            j === z && (j = 0),
+                            (W[V] = U(A[V], A[G], A[j]));
                         X.push(W), (Y = Y.concat(W));
                       }
                       for (P = 0; P < d; P++) {
@@ -22742,23 +22758,23 @@ object-assign
                           D = P / d,
                             I = u * Math.cos((D * Math.PI) / 2),
                             O = h * Math.sin((D * Math.PI) / 2),
-                            z = 0,
-                            j = L.length;
-                          z < j;
-                          z++
+                            V = 0,
+                            z = L.length;
+                          V < z;
+                          V++
                         )
-                          K((B = R(L[z], H[z], O)).x, B.y, -I);
-                        for (w = 0, x = T.length; w < x; w++)
+                          K((B = R(L[V], H[V], O)).x, B.y, -I);
+                        for (E = 0, w = M.length; E < w; E++)
                           for (
-                            A = T[w], W = X[w], z = 0, j = A.length;
-                            z < j;
-                            z++
+                            A = M[E], W = X[E], V = 0, z = A.length;
+                            V < z;
+                            V++
                           )
-                            K((B = R(A[z], W[z], O)).x, B.y, -I);
+                            K((B = R(A[V], W[V], O)).x, B.y, -I);
                       }
-                      for (O = h, z = 0; z < F; z++)
-                        (B = c ? R(M[z], Y[z], O) : M[z]),
-                          E
+                      for (O = h, V = 0; V < N; V++)
+                        (B = c ? R(T[V], Y[V], O) : T[V]),
+                          x
                             ? (y.copy(v.normals[0]).multiplyScalar(B.x),
                               g.copy(v.binormals[0]).multiplyScalar(B.y),
                               b
@@ -22768,9 +22784,9 @@ object-assign
                               K(b.x, b.y, b.z))
                             : K(B.x, B.y, 0);
                       for (q = 1; q <= s; q++)
-                        for (z = 0; z < F; z++)
-                          (B = c ? R(M[z], Y[z], O) : M[z]),
-                            E
+                        for (V = 0; V < N; V++)
+                          (B = c ? R(T[V], Y[V], O) : T[V]),
+                            x
                               ? (y.copy(v.normals[q]).multiplyScalar(B.x),
                                 g.copy(v.binormals[q]).multiplyScalar(B.y),
                                 b
@@ -22784,32 +22800,32 @@ object-assign
                           D = P / d,
                             I = u * Math.cos((D * Math.PI) / 2),
                             O = h * Math.sin((D * Math.PI) / 2),
-                            z = 0,
-                            j = L.length;
-                          z < j;
-                          z++
+                            V = 0,
+                            z = L.length;
+                          V < z;
+                          V++
                         )
-                          K((B = R(L[z], H[z], O)).x, B.y, l + I);
-                        for (w = 0, x = T.length; w < x; w++)
+                          K((B = R(L[V], H[V], O)).x, B.y, l + I);
+                        for (E = 0, w = M.length; E < w; E++)
                           for (
-                            A = T[w], W = X[w], z = 0, j = A.length;
-                            z < j;
-                            z++
+                            A = M[E], W = X[E], V = 0, z = A.length;
+                            V < z;
+                            V++
                           )
-                            (B = R(A[z], W[z], O)),
-                              E
+                            (B = R(A[V], W[V], O)),
+                              x
                                 ? K(B.x, B.y + m[s - 1].y, m[s - 1].x + I)
                                 : K(B.x, B.y, l + I);
                       }
                       function Q(e, t) {
                         var n, r;
-                        for (z = e.length; --z >= 0; ) {
-                          (n = z), (r = z - 1) < 0 && (r = e.length - 1);
+                        for (V = e.length; --V >= 0; ) {
+                          (n = V), (r = V - 1) < 0 && (r = e.length - 1);
                           var i = 0,
                             o = s + 2 * d;
                           for (i = 0; i < o; i++) {
-                            var a = F * i,
-                              l = F * (i + 1),
+                            var a = N * i,
+                              l = N * (i + 1),
                               c = t + n + a,
                               u = t + r + a,
                               h = t + r + l,
@@ -22857,18 +22873,18 @@ object-assign
                         var e = r.length / 3;
                         if (c) {
                           var t = 0,
-                            i = F * t;
-                          for (z = 0; z < N; z++)
-                            Z((k = C[z])[2] + i, k[1] + i, k[0] + i);
-                          for (i = F * (t = s + 2 * d), z = 0; z < N; z++)
-                            Z((k = C[z])[0] + i, k[1] + i, k[2] + i);
+                            i = N * t;
+                          for (V = 0; V < F; V++)
+                            Z((k = C[V])[2] + i, k[1] + i, k[0] + i);
+                          for (i = N * (t = s + 2 * d), V = 0; V < F; V++)
+                            Z((k = C[V])[0] + i, k[1] + i, k[2] + i);
                         } else {
-                          for (z = 0; z < N; z++) Z((k = C[z])[2], k[1], k[0]);
-                          for (z = 0; z < N; z++)
+                          for (V = 0; V < F; V++) Z((k = C[V])[2], k[1], k[0]);
+                          for (V = 0; V < F; V++)
                             Z(
-                              (k = C[z])[0] + F * s,
-                              k[1] + F * s,
-                              k[2] + F * s
+                              (k = C[V])[0] + N * s,
+                              k[1] + N * s,
+                              k[2] + N * s
                             );
                         }
                         n.addGroup(e, r.length / 3 - e, 0);
@@ -22877,16 +22893,16 @@ object-assign
                           var e = r.length / 3,
                             t = 0;
                           for (
-                            Q(L, t), t += L.length, w = 0, x = T.length;
-                            w < x;
-                            w++
+                            Q(L, t), t += L.length, E = 0, w = M.length;
+                            E < w;
+                            E++
                           )
-                            Q((A = T[w]), t), (t += A.length);
+                            Q((A = M[E]), t), (t += A.length);
                           n.addGroup(e, r.length / 3 - e, 1);
                         })();
                     }
-                    this.addAttribute("position", new Nn(r, 3)),
-                      this.addAttribute("uv", new Nn(i, 2)),
+                    this.addAttribute("position", new Fn(r, 3)),
+                      this.addAttribute("uv", new Fn(i, 2)),
                       this.computeVertexNormals();
                   }
                   (ya.prototype = Object.create(Ln.prototype)),
@@ -22895,15 +22911,15 @@ object-assign
                       var e = Ln.prototype.toJSON.call(this),
                         t = this.parameters.shapes,
                         n = this.parameters.options;
-                      return wa(t, n, e);
+                      return Ea(t, n, e);
                     }),
-                    (ba.prototype = Object.create(Vn.prototype)),
+                    (ba.prototype = Object.create(Gn.prototype)),
                     (ba.prototype.constructor = ba),
                     (ba.prototype.toJSON = function() {
-                      var e = Vn.prototype.toJSON.call(this),
+                      var e = Gn.prototype.toJSON.call(this),
                         t = this.parameters.shapes,
                         n = this.parameters.options;
-                      return wa(t, n, e);
+                      return Ea(t, n, e);
                     });
                   var Aa = {
                     generateTopUV: function(e, t, n, r, i) {
@@ -22943,7 +22959,7 @@ object-assign
                           ];
                     },
                   };
-                  function wa(e, t, n) {
+                  function Ea(e, t, n) {
                     if (((n.shapes = []), Array.isArray(e)))
                       for (var r = 0, i = e.length; r < i; r++) {
                         var o = e[r];
@@ -22956,14 +22972,14 @@ object-assign
                       n
                     );
                   }
-                  function xa(e, t) {
+                  function wa(e, t) {
                     Ln.call(this),
                       (this.type = "TextGeometry"),
                       (this.parameters = { text: e, parameters: t }),
-                      this.fromBufferGeometry(new Ea(e, t)),
+                      this.fromBufferGeometry(new xa(e, t)),
                       this.mergeVertices();
                   }
-                  function Ea(e, t) {
+                  function xa(e, t) {
                     var n = (t = t || {}).font;
                     if (!n || !n.isFont)
                       return (
@@ -22992,11 +23008,11 @@ object-assign
                         thetaStart: o,
                         thetaLength: a,
                       }),
-                      this.fromBufferGeometry(new Ma(e, t, n, r, i, o, a)),
+                      this.fromBufferGeometry(new Ta(e, t, n, r, i, o, a)),
                       this.mergeVertices();
                   }
-                  function Ma(e, t, n, r, i, o, a) {
-                    Vn.call(this),
+                  function Ta(e, t, n, r, i, o, a) {
+                    Gn.call(this),
                       (this.type = "SphereBufferGeometry"),
                       (this.parameters = {
                         radius: e,
@@ -23019,8 +23035,8 @@ object-assign
                       c = o + a,
                       u = 0,
                       h = [],
-                      d = new Ft(),
-                      p = new Ft(),
+                      d = new Nt(),
+                      p = new Nt(),
                       f = [],
                       m = [],
                       v = [],
@@ -23043,19 +23059,19 @@ object-assign
                     }
                     for (l = 0; l < n; l++)
                       for (s = 0; s < t; s++) {
-                        var w = h[l][s + 1],
-                          x = h[l][s],
-                          E = h[l + 1][s],
+                        var E = h[l][s + 1],
+                          w = h[l][s],
+                          x = h[l + 1][s],
                           _ = h[l + 1][s + 1];
-                        (0 !== l || o > 0) && f.push(w, x, _),
-                          (l !== n - 1 || c < Math.PI) && f.push(x, E, _);
+                        (0 !== l || o > 0) && f.push(E, w, _),
+                          (l !== n - 1 || c < Math.PI) && f.push(w, x, _);
                       }
                     this.setIndex(f),
-                      this.addAttribute("position", new Nn(m, 3)),
-                      this.addAttribute("normal", new Nn(v, 3)),
-                      this.addAttribute("uv", new Nn(g, 2));
+                      this.addAttribute("position", new Fn(m, 3)),
+                      this.addAttribute("normal", new Fn(v, 3)),
+                      this.addAttribute("uv", new Fn(g, 2));
                   }
-                  function Ta(e, t, n, r, i, o) {
+                  function Ma(e, t, n, r, i, o) {
                     Ln.call(this),
                       (this.type = "RingGeometry"),
                       (this.parameters = {
@@ -23070,7 +23086,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function Sa(e, t, n, r, i, o) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "RingBufferGeometry"),
                       (this.parameters = {
                         innerRadius: e,
@@ -23095,7 +23111,7 @@ object-assign
                       d = [],
                       p = e,
                       f = (t - e) / r,
-                      m = new Ft(),
+                      m = new Nt(),
                       v = new It();
                     for (s = 0; s <= r; s++) {
                       for (l = 0; l <= n; l++)
@@ -23115,14 +23131,14 @@ object-assign
                         var y = (a = l + g),
                           b = a + n + 1,
                           A = a + n + 2,
-                          w = a + 1;
-                        c.push(y, b, w), c.push(b, A, w);
+                          E = a + 1;
+                        c.push(y, b, E), c.push(b, A, E);
                       }
                     }
                     this.setIndex(c),
-                      this.addAttribute("position", new Nn(u, 3)),
-                      this.addAttribute("normal", new Nn(h, 3)),
-                      this.addAttribute("uv", new Nn(d, 2));
+                      this.addAttribute("position", new Fn(u, 3)),
+                      this.addAttribute("normal", new Fn(h, 3)),
+                      this.addAttribute("uv", new Fn(d, 2));
                   }
                   function Ca(e, t, n, r) {
                     Ln.call(this),
@@ -23137,7 +23153,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function La(e, t, n, r) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "LatheBufferGeometry"),
                       (this.parameters = {
                         points: e,
@@ -23156,7 +23172,7 @@ object-assign
                       l = [],
                       c = [],
                       u = 1 / t,
-                      h = new Ft(),
+                      h = new Nt(),
                       d = new It();
                     for (o = 0; o <= t; o++) {
                       var p = n + o * u * r,
@@ -23181,30 +23197,30 @@ object-assign
                       }
                     if (
                       (this.setIndex(s),
-                      this.addAttribute("position", new Nn(l, 3)),
-                      this.addAttribute("uv", new Nn(c, 2)),
+                      this.addAttribute("position", new Fn(l, 3)),
+                      this.addAttribute("uv", new Fn(c, 2)),
                       this.computeVertexNormals(),
                       r === 2 * Math.PI)
                     ) {
                       var A = this.attributes.normal.array,
-                        w = new Ft(),
-                        x = new Ft(),
-                        E = new Ft();
+                        E = new Nt(),
+                        w = new Nt(),
+                        x = new Nt();
                       for (
                         i = t * e.length * 3, o = 0, a = 0;
                         o < e.length;
                         o++, a += 3
                       )
-                        (w.x = A[a + 0]),
-                          (w.y = A[a + 1]),
-                          (w.z = A[a + 2]),
-                          (x.x = A[i + a + 0]),
-                          (x.y = A[i + a + 1]),
-                          (x.z = A[i + a + 2]),
-                          E.addVectors(w, x).normalize(),
-                          (A[a + 0] = A[i + a + 0] = E.x),
-                          (A[a + 1] = A[i + a + 1] = E.y),
-                          (A[a + 2] = A[i + a + 2] = E.z);
+                        (E.x = A[a + 0]),
+                          (E.y = A[a + 1]),
+                          (E.z = A[a + 2]),
+                          (w.x = A[i + a + 0]),
+                          (w.y = A[i + a + 1]),
+                          (w.z = A[i + a + 2]),
+                          x.addVectors(E, w).normalize(),
+                          (A[a + 0] = A[i + a + 0] = x.x),
+                          (A[a + 1] = A[i + a + 1] = x.y),
+                          (A[a + 2] = A[i + a + 2] = x.z);
                     }
                   }
                   function Ra(e, t) {
@@ -23220,7 +23236,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function Pa(e, t) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "ShapeBufferGeometry"),
                       (this.parameters = { shapes: e, curveSegments: t }),
                       (t = t || 12);
@@ -23267,9 +23283,9 @@ object-assign
                       }
                     }
                     this.setIndex(n),
-                      this.addAttribute("position", new Nn(r, 3)),
-                      this.addAttribute("normal", new Nn(i, 3)),
-                      this.addAttribute("uv", new Nn(o, 2));
+                      this.addAttribute("position", new Fn(r, 3)),
+                      this.addAttribute("normal", new Fn(i, 3)),
+                      this.addAttribute("uv", new Fn(o, 2));
                   }
                   function Oa(e, t) {
                     if (((t.shapes = []), Array.isArray(e)))
@@ -23281,7 +23297,7 @@ object-assign
                     return t;
                   }
                   function Da(e, t) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "EdgesGeometry"),
                       (this.parameters = { thresholdAngle: t }),
                       (t = void 0 !== t ? t : 1);
@@ -23330,7 +23346,7 @@ object-assign
                           a.push(y.x, y.y, y.z);
                       }
                     }
-                    this.addAttribute("position", new Nn(a, 3));
+                    this.addAttribute("position", new Fn(a, 3));
                   }
                   function Ia(e, t, n, r, i, o, a, s) {
                     Ln.call(this),
@@ -23349,7 +23365,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function Ba(e, t, n, r, i, o, a, s) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "CylinderBufferGeometry"),
                       (this.parameters = {
                         radiusTop: e,
@@ -23383,34 +23399,34 @@ object-assign
                         o,
                         f,
                         g = new It(),
-                        y = new Ft(),
+                        y = new Nt(),
                         b = 0,
                         A = !0 === n ? e : t,
-                        w = !0 === n ? 1 : -1;
+                        E = !0 === n ? 1 : -1;
                       for (o = p, i = 1; i <= r; i++)
-                        u.push(0, m * w, 0),
-                          h.push(0, w, 0),
+                        u.push(0, m * E, 0),
+                          h.push(0, E, 0),
                           d.push(0.5, 0.5),
                           p++;
                       for (f = p, i = 0; i <= r; i++) {
-                        var x = i / r,
-                          E = x * s + a,
-                          _ = Math.cos(E),
-                          M = Math.sin(E);
-                        (y.x = A * M),
-                          (y.y = m * w),
+                        var w = i / r,
+                          x = w * s + a,
+                          _ = Math.cos(x),
+                          T = Math.sin(x);
+                        (y.x = A * T),
+                          (y.y = m * E),
                           (y.z = A * _),
                           u.push(y.x, y.y, y.z),
-                          h.push(0, w, 0),
+                          h.push(0, E, 0),
                           (g.x = 0.5 * _ + 0.5),
-                          (g.y = 0.5 * M * w + 0.5),
+                          (g.y = 0.5 * T * E + 0.5),
                           d.push(g.x, g.y),
                           p++;
                       }
                       for (i = 0; i < r; i++) {
-                        var T = o + i,
+                        var M = o + i,
                           S = f + i;
-                        !0 === n ? c.push(S, S + 1, T) : c.push(S + 1, S, T),
+                        !0 === n ? c.push(S, S + 1, M) : c.push(S + 1, S, M),
                           (b += 3);
                       }
                       l.addGroup(v, b, !0 === n ? 1 : 2), (v += b);
@@ -23418,29 +23434,29 @@ object-assign
                     !(function() {
                       var o,
                         g,
-                        y = new Ft(),
-                        b = new Ft(),
+                        y = new Nt(),
+                        b = new Nt(),
                         A = 0,
-                        w = (t - e) / n;
+                        E = (t - e) / n;
                       for (g = 0; g <= i; g++) {
-                        var x = [],
-                          E = g / i,
-                          _ = E * (t - e) + e;
+                        var w = [],
+                          x = g / i,
+                          _ = x * (t - e) + e;
                         for (o = 0; o <= r; o++) {
-                          var M = o / r,
-                            T = M * s + a,
-                            S = Math.sin(T),
-                            C = Math.cos(T);
+                          var T = o / r,
+                            M = T * s + a,
+                            S = Math.sin(M),
+                            C = Math.cos(M);
                           (b.x = _ * S),
-                            (b.y = -E * n + m),
+                            (b.y = -x * n + m),
                             (b.z = _ * C),
                             u.push(b.x, b.y, b.z),
-                            y.set(S, w, C).normalize(),
+                            y.set(S, E, C).normalize(),
                             h.push(y.x, y.y, y.z),
-                            d.push(M, 1 - E),
-                            x.push(p++);
+                            d.push(T, 1 - x),
+                            w.push(p++);
                         }
-                        f.push(x);
+                        f.push(w);
                       }
                       for (o = 0; o < r; o++)
                         for (g = 0; g < i; g++) {
@@ -23454,9 +23470,9 @@ object-assign
                     })(),
                       !1 === o && (e > 0 && g(!0), t > 0 && g(!1)),
                       this.setIndex(c),
-                      this.addAttribute("position", new Nn(u, 3)),
-                      this.addAttribute("normal", new Nn(h, 3)),
-                      this.addAttribute("uv", new Nn(d, 2));
+                      this.addAttribute("position", new Fn(u, 3)),
+                      this.addAttribute("normal", new Fn(h, 3)),
+                      this.addAttribute("uv", new Fn(d, 2));
                   }
                   function ka(e, t, n, r, i, o, a) {
                     Ia.call(this, 0, e, t, n, r, i, o, a),
@@ -23471,7 +23487,7 @@ object-assign
                         thetaLength: a,
                       });
                   }
-                  function Fa(e, t, n, r, i, o, a) {
+                  function Na(e, t, n, r, i, o, a) {
                     Ba.call(this, 0, e, t, n, r, i, o, a),
                       (this.type = "ConeBufferGeometry"),
                       (this.parameters = {
@@ -23484,7 +23500,7 @@ object-assign
                         thetaLength: a,
                       });
                   }
-                  function Na(e, t, n, r) {
+                  function Fa(e, t, n, r) {
                     Ln.call(this),
                       (this.type = "CircleGeometry"),
                       (this.parameters = {
@@ -23497,7 +23513,7 @@ object-assign
                       this.mergeVertices();
                   }
                   function Ua(e, t, n, r) {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "CircleBufferGeometry"),
                       (this.parameters = {
                         radius: e,
@@ -23515,7 +23531,7 @@ object-assign
                       s = [],
                       l = [],
                       c = [],
-                      u = new Ft(),
+                      u = new Nt(),
                       h = new It();
                     for (
                       s.push(0, 0, 0),
@@ -23537,25 +23553,25 @@ object-assign
                     }
                     for (i = 1; i <= t; i++) a.push(i, i + 1, 0);
                     this.setIndex(a),
-                      this.addAttribute("position", new Nn(s, 3)),
-                      this.addAttribute("normal", new Nn(l, 3)),
-                      this.addAttribute("uv", new Nn(c, 2));
+                      this.addAttribute("position", new Fn(s, 3)),
+                      this.addAttribute("normal", new Fn(l, 3)),
+                      this.addAttribute("uv", new Fn(c, 2));
                   }
-                  (xa.prototype = Object.create(Ln.prototype)),
+                  (wa.prototype = Object.create(Ln.prototype)),
+                    (wa.prototype.constructor = wa),
+                    (xa.prototype = Object.create(ba.prototype)),
                     (xa.prototype.constructor = xa),
-                    (Ea.prototype = Object.create(ba.prototype)),
-                    (Ea.prototype.constructor = Ea),
                     (_a.prototype = Object.create(Ln.prototype)),
                     (_a.prototype.constructor = _a),
-                    (Ma.prototype = Object.create(Vn.prototype)),
-                    (Ma.prototype.constructor = Ma),
-                    (Ta.prototype = Object.create(Ln.prototype)),
+                    (Ta.prototype = Object.create(Gn.prototype)),
                     (Ta.prototype.constructor = Ta),
-                    (Sa.prototype = Object.create(Vn.prototype)),
+                    (Ma.prototype = Object.create(Ln.prototype)),
+                    (Ma.prototype.constructor = Ma),
+                    (Sa.prototype = Object.create(Gn.prototype)),
                     (Sa.prototype.constructor = Sa),
                     (Ca.prototype = Object.create(Ln.prototype)),
                     (Ca.prototype.constructor = Ca),
-                    (La.prototype = Object.create(Vn.prototype)),
+                    (La.prototype = Object.create(Gn.prototype)),
                     (La.prototype.constructor = La),
                     (Ra.prototype = Object.create(Ln.prototype)),
                     (Ra.prototype.constructor = Ra),
@@ -23564,26 +23580,26 @@ object-assign
                         t = this.parameters.shapes;
                       return Oa(t, e);
                     }),
-                    (Pa.prototype = Object.create(Vn.prototype)),
+                    (Pa.prototype = Object.create(Gn.prototype)),
                     (Pa.prototype.constructor = Pa),
                     (Pa.prototype.toJSON = function() {
-                      var e = Vn.prototype.toJSON.call(this),
+                      var e = Gn.prototype.toJSON.call(this),
                         t = this.parameters.shapes;
                       return Oa(t, e);
                     }),
-                    (Da.prototype = Object.create(Vn.prototype)),
+                    (Da.prototype = Object.create(Gn.prototype)),
                     (Da.prototype.constructor = Da),
                     (Ia.prototype = Object.create(Ln.prototype)),
                     (Ia.prototype.constructor = Ia),
-                    (Ba.prototype = Object.create(Vn.prototype)),
+                    (Ba.prototype = Object.create(Gn.prototype)),
                     (Ba.prototype.constructor = Ba),
                     (ka.prototype = Object.create(Ia.prototype)),
                     (ka.prototype.constructor = ka),
-                    (Fa.prototype = Object.create(Ba.prototype)),
-                    (Fa.prototype.constructor = Fa),
-                    (Na.prototype = Object.create(Ln.prototype)),
+                    (Na.prototype = Object.create(Ba.prototype)),
                     (Na.prototype.constructor = Na),
-                    (Ua.prototype = Object.create(Vn.prototype)),
+                    (Fa.prototype = Object.create(Ln.prototype)),
+                    (Fa.prototype.constructor = Fa),
+                    (Ua.prototype = Object.create(Gn.prototype)),
                     (Ua.prototype.constructor = Ua);
                   var Ha = Object.freeze({
                     WireframeGeometry: Co,
@@ -23593,23 +23609,23 @@ object-assign
                     TetrahedronBufferGeometry: Io,
                     OctahedronGeometry: Bo,
                     OctahedronBufferGeometry: ko,
-                    IcosahedronGeometry: Fo,
-                    IcosahedronBufferGeometry: No,
+                    IcosahedronGeometry: No,
+                    IcosahedronBufferGeometry: Fo,
                     DodecahedronGeometry: Uo,
                     DodecahedronBufferGeometry: Ho,
                     PolyhedronGeometry: Po,
                     PolyhedronBufferGeometry: Oo,
-                    TubeGeometry: zo,
-                    TubeBufferGeometry: jo,
-                    TorusKnotGeometry: Vo,
-                    TorusKnotBufferGeometry: Go,
+                    TubeGeometry: Vo,
+                    TubeBufferGeometry: zo,
+                    TorusKnotGeometry: Go,
+                    TorusKnotBufferGeometry: jo,
                     TorusGeometry: Wo,
                     TorusBufferGeometry: qo,
-                    TextGeometry: xa,
-                    TextBufferGeometry: Ea,
+                    TextGeometry: wa,
+                    TextBufferGeometry: xa,
                     SphereGeometry: _a,
-                    SphereBufferGeometry: Ma,
-                    RingGeometry: Ta,
+                    SphereBufferGeometry: Ta,
+                    RingGeometry: Ma,
                     RingBufferGeometry: Sa,
                     PlaneGeometry: qn,
                     PlaneBufferGeometry: Xn,
@@ -23621,25 +23637,25 @@ object-assign
                     ExtrudeBufferGeometry: ba,
                     EdgesGeometry: Da,
                     ConeGeometry: ka,
-                    ConeBufferGeometry: Fa,
+                    ConeBufferGeometry: Na,
                     CylinderGeometry: Ia,
                     CylinderBufferGeometry: Ba,
-                    CircleGeometry: Na,
+                    CircleGeometry: Fa,
                     CircleBufferGeometry: Ua,
-                    BoxGeometry: Gn,
+                    BoxGeometry: jn,
                     BoxBufferGeometry: Wn,
                   });
-                  function za(e) {
+                  function Va(e) {
                     sr.call(this),
                       (this.type = "ShadowMaterial"),
                       (this.color = new hn(0)),
                       (this.transparent = !0),
                       this.setValues(e);
                   }
-                  function ja(e) {
+                  function za(e) {
                     lr.call(this, e), (this.type = "RawShaderMaterial");
                   }
-                  function Va(e) {
+                  function Ga(e) {
                     sr.call(this),
                       (this.defines = { STANDARD: "" }),
                       (this.type = "MeshStandardMaterial"),
@@ -23677,8 +23693,8 @@ object-assign
                       (this.morphNormals = !1),
                       this.setValues(e);
                   }
-                  function Ga(e) {
-                    Va.call(this),
+                  function ja(e) {
+                    Ga.call(this),
                       (this.defines = { PHYSICAL: "" }),
                       (this.type = "MeshPhysicalMaterial"),
                       (this.reflectivity = 0.5),
@@ -23807,23 +23823,23 @@ object-assign
                       (this.gapSize = 1),
                       this.setValues(e);
                   }
-                  (za.prototype = Object.create(sr.prototype)),
-                    (za.prototype.constructor = za),
-                    (za.prototype.isShadowMaterial = !0),
-                    (za.prototype.copy = function(e) {
+                  (Va.prototype = Object.create(sr.prototype)),
+                    (Va.prototype.constructor = Va),
+                    (Va.prototype.isShadowMaterial = !0),
+                    (Va.prototype.copy = function(e) {
                       return (
                         sr.prototype.copy.call(this, e),
                         this.color.copy(e.color),
                         this
                       );
                     }),
-                    (ja.prototype = Object.create(lr.prototype)),
-                    (ja.prototype.constructor = ja),
-                    (ja.prototype.isRawShaderMaterial = !0),
-                    (Va.prototype = Object.create(sr.prototype)),
-                    (Va.prototype.constructor = Va),
-                    (Va.prototype.isMeshStandardMaterial = !0),
-                    (Va.prototype.copy = function(e) {
+                    (za.prototype = Object.create(lr.prototype)),
+                    (za.prototype.constructor = za),
+                    (za.prototype.isRawShaderMaterial = !0),
+                    (Ga.prototype = Object.create(sr.prototype)),
+                    (Ga.prototype.constructor = Ga),
+                    (Ga.prototype.isMeshStandardMaterial = !0),
+                    (Ga.prototype.copy = function(e) {
                       return (
                         sr.prototype.copy.call(this, e),
                         (this.defines = { STANDARD: "" }),
@@ -23862,12 +23878,12 @@ object-assign
                         this
                       );
                     }),
-                    (Ga.prototype = Object.create(Va.prototype)),
-                    (Ga.prototype.constructor = Ga),
-                    (Ga.prototype.isMeshPhysicalMaterial = !0),
-                    (Ga.prototype.copy = function(e) {
+                    (ja.prototype = Object.create(Ga.prototype)),
+                    (ja.prototype.constructor = ja),
+                    (ja.prototype.isMeshPhysicalMaterial = !0),
+                    (ja.prototype.copy = function(e) {
                       return (
-                        Va.prototype.copy.call(this, e),
+                        Ga.prototype.copy.call(this, e),
                         (this.defines = { PHYSICAL: "" }),
                         (this.reflectivity = e.reflectivity),
                         (this.clearCoat = e.clearCoat),
@@ -24017,18 +24033,18 @@ object-assign
                       );
                     });
                   var Za = Object.freeze({
-                      ShadowMaterial: za,
+                      ShadowMaterial: Va,
                       SpriteMaterial: ho,
-                      RawShaderMaterial: ja,
+                      RawShaderMaterial: za,
                       ShaderMaterial: lr,
-                      PointsMaterial: xo,
-                      MeshPhysicalMaterial: Ga,
-                      MeshStandardMaterial: Va,
+                      PointsMaterial: wo,
+                      MeshPhysicalMaterial: ja,
+                      MeshStandardMaterial: Ga,
                       MeshPhongMaterial: Wa,
                       MeshToonMaterial: qa,
                       MeshNormalMaterial: Xa,
                       MeshLambertMaterial: Ya,
-                      MeshDepthMaterial: Ni,
+                      MeshDepthMaterial: Fi,
                       MeshDistanceMaterial: Ui,
                       MeshBasicMaterial: hr,
                       MeshMatcapMaterial: Qa,
@@ -24968,19 +24984,19 @@ object-assign
                     (this.manager = void 0 !== e ? e : ms),
                       (this._parser = null);
                   }
+                  function Es(e) {
+                    this.manager = void 0 !== e ? e : ms;
+                  }
                   function ws(e) {
                     this.manager = void 0 !== e ? e : ms;
                   }
                   function xs(e) {
                     this.manager = void 0 !== e ? e : ms;
                   }
-                  function Es(e) {
-                    this.manager = void 0 !== e ? e : ms;
-                  }
                   function _s() {
                     (this.type = "Curve"), (this.arcLengthDivisions = 200);
                   }
-                  function Ms(e, t, n, r, i, o, a, s) {
+                  function Ts(e, t, n, r, i, o, a, s) {
                     _s.call(this),
                       (this.type = "EllipseCurve"),
                       (this.aX = e || 0),
@@ -24992,8 +25008,8 @@ object-assign
                       (this.aClockwise = a || !1),
                       (this.aRotation = s || 0);
                   }
-                  function Ts(e, t, n, r, i, o) {
-                    Ms.call(this, e, t, n, n, r, i, o),
+                  function Ms(e, t, n, r, i, o) {
+                    Ts.call(this, e, t, n, n, r, i, o),
                       (this.type = "ArcCurve");
                   }
                   function Ss() {
@@ -25223,7 +25239,7 @@ object-assign
                       load: function(e, t, n, r) {
                         var i = this,
                           o = [],
-                          a = new Mo();
+                          a = new To();
                         a.image = o;
                         var s = new gs(this.manager);
                         function l(l) {
@@ -25316,7 +25332,7 @@ object-assign
                                 (o.magFilter =
                                   void 0 !== n.magFilter ? n.magFilter : _e),
                                 (o.minFilter =
-                                  void 0 !== n.minFilter ? n.minFilter : Te),
+                                  void 0 !== n.minFilter ? n.minFilter : Me),
                                 (o.anisotropy =
                                   void 0 !== n.anisotropy ? n.anisotropy : 1),
                                 void 0 !== n.format && (o.format = n.format),
@@ -25336,7 +25352,7 @@ object-assign
                         return (this.path = e), this;
                       },
                     }),
-                    Object.assign(ws.prototype, {
+                    Object.assign(Es.prototype, {
                       crossOrigin: "anonymous",
                       load: function(e, t, n, r) {
                         void 0 === e && (e = ""),
@@ -25388,11 +25404,11 @@ object-assign
                         return (this.path = e), this;
                       },
                     }),
-                    Object.assign(xs.prototype, {
+                    Object.assign(ws.prototype, {
                       crossOrigin: "anonymous",
                       load: function(e, t, n, r) {
                         var i = new _r(),
-                          o = new ws(this.manager);
+                          o = new Es(this.manager);
                         o.setCrossOrigin(this.crossOrigin),
                           o.setPath(this.path);
                         var a = 0;
@@ -25417,11 +25433,11 @@ object-assign
                         return (this.path = e), this;
                       },
                     }),
-                    Object.assign(Es.prototype, {
+                    Object.assign(xs.prototype, {
                       crossOrigin: "anonymous",
                       load: function(e, t, n, r) {
                         var i = new qt(),
-                          o = new ws(this.manager);
+                          o = new Es(this.manager);
                         return (
                           o.setCrossOrigin(this.crossOrigin),
                           o.setPath(this.path),
@@ -25432,7 +25448,7 @@ object-assign
                               var r =
                                 e.search(/\.jpe?g($|\?)/i) > 0 ||
                                 0 === e.search(/^data\:image\/jpeg/);
-                              (i.format = r ? He : ze),
+                              (i.format = r ? He : Ve),
                                 (i.needsUpdate = !0),
                                 void 0 !== t && t(i);
                             },
@@ -25546,17 +25562,17 @@ object-assign
                         var n,
                           r,
                           i,
-                          o = new Ft(),
+                          o = new Nt(),
                           a = [],
                           s = [],
                           l = [],
-                          c = new Ft(),
+                          c = new Nt(),
                           u = new Bt();
                         for (n = 0; n <= e; n++)
                           (r = n / e),
                             (a[n] = this.getTangentAt(r)),
                             a[n].normalize();
-                        (s[0] = new Ft()), (l[0] = new Ft());
+                        (s[0] = new Nt()), (l[0] = new Nt());
                         var h = Number.MAX_VALUE,
                           d = Math.abs(a[0].x),
                           p = Math.abs(a[0].y),
@@ -25624,10 +25640,10 @@ object-assign
                         );
                       },
                     }),
-                    (Ms.prototype = Object.create(_s.prototype)),
-                    (Ms.prototype.constructor = Ms),
-                    (Ms.prototype.isEllipseCurve = !0),
-                    (Ms.prototype.getPoint = function(e, t) {
+                    (Ts.prototype = Object.create(_s.prototype)),
+                    (Ts.prototype.constructor = Ts),
+                    (Ts.prototype.isEllipseCurve = !0),
+                    (Ts.prototype.getPoint = function(e, t) {
                       for (
                         var n = t || new It(),
                           r = 2 * Math.PI,
@@ -25655,7 +25671,7 @@ object-assign
                       }
                       return n.set(s, l);
                     }),
-                    (Ms.prototype.copy = function(e) {
+                    (Ts.prototype.copy = function(e) {
                       return (
                         _s.prototype.copy.call(this, e),
                         (this.aX = e.aX),
@@ -25669,7 +25685,7 @@ object-assign
                         this
                       );
                     }),
-                    (Ms.prototype.toJSON = function() {
+                    (Ts.prototype.toJSON = function() {
                       var e = _s.prototype.toJSON.call(this);
                       return (
                         (e.aX = this.aX),
@@ -25683,7 +25699,7 @@ object-assign
                         e
                       );
                     }),
-                    (Ms.prototype.fromJSON = function(e) {
+                    (Ts.prototype.fromJSON = function(e) {
                       return (
                         _s.prototype.fromJSON.call(this, e),
                         (this.aX = e.aX),
@@ -25697,10 +25713,10 @@ object-assign
                         this
                       );
                     }),
-                    (Ts.prototype = Object.create(Ms.prototype)),
-                    (Ts.prototype.constructor = Ts),
-                    (Ts.prototype.isArcCurve = !0);
-                  var Cs = new Ft(),
+                    (Ms.prototype = Object.create(Ts.prototype)),
+                    (Ms.prototype.constructor = Ms),
+                    (Ms.prototype.isArcCurve = !0);
+                  var Cs = new Nt(),
                     Ls = new Ss(),
                     Rs = new Ss(),
                     Ps = new Ss();
@@ -25764,15 +25780,15 @@ object-assign
                       (this.v2 = n || new It()),
                       (this.v3 = r || new It());
                   }
-                  function Fs(e, t, n, r) {
+                  function Ns(e, t, n, r) {
                     _s.call(this),
                       (this.type = "CubicBezierCurve3"),
-                      (this.v0 = e || new Ft()),
-                      (this.v1 = t || new Ft()),
-                      (this.v2 = n || new Ft()),
-                      (this.v3 = r || new Ft());
+                      (this.v0 = e || new Nt()),
+                      (this.v1 = t || new Nt()),
+                      (this.v2 = n || new Nt()),
+                      (this.v3 = r || new Nt());
                   }
-                  function Ns(e, t) {
+                  function Fs(e, t) {
                     _s.call(this),
                       (this.type = "LineCurve"),
                       (this.v1 = e || new It()),
@@ -25781,8 +25797,8 @@ object-assign
                   function Us(e, t) {
                     _s.call(this),
                       (this.type = "LineCurve3"),
-                      (this.v1 = e || new Ft()),
-                      (this.v2 = t || new Ft());
+                      (this.v1 = e || new Nt()),
+                      (this.v2 = t || new Nt());
                   }
                   function Hs(e, t, n) {
                     _s.call(this),
@@ -25791,14 +25807,14 @@ object-assign
                       (this.v1 = t || new It()),
                       (this.v2 = n || new It());
                   }
-                  function zs(e, t, n) {
+                  function Vs(e, t, n) {
                     _s.call(this),
                       (this.type = "QuadraticBezierCurve3"),
-                      (this.v0 = e || new Ft()),
-                      (this.v1 = t || new Ft()),
-                      (this.v2 = n || new Ft());
+                      (this.v0 = e || new Nt()),
+                      (this.v1 = t || new Nt()),
+                      (this.v2 = n || new Nt());
                   }
-                  function js(e) {
+                  function zs(e) {
                     _s.call(this),
                       (this.type = "SplineCurve"),
                       (this.points = e || []);
@@ -25811,7 +25827,7 @@ object-assign
                         r,
                         i,
                         o,
-                        a = t || new Ft(),
+                        a = t || new Nt(),
                         s = this.points,
                         l = s.length,
                         c = (l - (this.closed ? 0 : 1)) * e,
@@ -25906,7 +25922,7 @@ object-assign
                       _s.prototype.fromJSON.call(this, e), (this.points = []);
                       for (var t = 0, n = e.points.length; t < n; t++) {
                         var r = e.points[t];
-                        this.points.push(new Ft().fromArray(r));
+                        this.points.push(new Nt().fromArray(r));
                       }
                       return (
                         (this.closed = e.closed),
@@ -25962,11 +25978,11 @@ object-assign
                         this
                       );
                     }),
-                    (Fs.prototype = Object.create(_s.prototype)),
-                    (Fs.prototype.constructor = Fs),
-                    (Fs.prototype.isCubicBezierCurve3 = !0),
-                    (Fs.prototype.getPoint = function(e, t) {
-                      var n = t || new Ft(),
+                    (Ns.prototype = Object.create(_s.prototype)),
+                    (Ns.prototype.constructor = Ns),
+                    (Ns.prototype.isCubicBezierCurve3 = !0),
+                    (Ns.prototype.getPoint = function(e, t) {
+                      var n = t || new Nt(),
                         r = this.v0,
                         i = this.v1,
                         o = this.v2,
@@ -25980,7 +25996,7 @@ object-assign
                         n
                       );
                     }),
-                    (Fs.prototype.copy = function(e) {
+                    (Ns.prototype.copy = function(e) {
                       return (
                         _s.prototype.copy.call(this, e),
                         this.v0.copy(e.v0),
@@ -25990,7 +26006,7 @@ object-assign
                         this
                       );
                     }),
-                    (Fs.prototype.toJSON = function() {
+                    (Ns.prototype.toJSON = function() {
                       var e = _s.prototype.toJSON.call(this);
                       return (
                         (e.v0 = this.v0.toArray()),
@@ -26000,7 +26016,7 @@ object-assign
                         e
                       );
                     }),
-                    (Fs.prototype.fromJSON = function(e) {
+                    (Ns.prototype.fromJSON = function(e) {
                       return (
                         _s.prototype.fromJSON.call(this, e),
                         this.v0.fromArray(e.v0),
@@ -26010,10 +26026,10 @@ object-assign
                         this
                       );
                     }),
-                    (Ns.prototype = Object.create(_s.prototype)),
-                    (Ns.prototype.constructor = Ns),
-                    (Ns.prototype.isLineCurve = !0),
-                    (Ns.prototype.getPoint = function(e, t) {
+                    (Fs.prototype = Object.create(_s.prototype)),
+                    (Fs.prototype.constructor = Fs),
+                    (Fs.prototype.isLineCurve = !0),
+                    (Fs.prototype.getPoint = function(e, t) {
                       var n = t || new It();
                       return (
                         1 === e
@@ -26023,14 +26039,14 @@ object-assign
                         n
                       );
                     }),
-                    (Ns.prototype.getPointAt = function(e, t) {
+                    (Fs.prototype.getPointAt = function(e, t) {
                       return this.getPoint(e, t);
                     }),
-                    (Ns.prototype.getTangent = function() {
+                    (Fs.prototype.getTangent = function() {
                       var e = this.v2.clone().sub(this.v1);
                       return e.normalize();
                     }),
-                    (Ns.prototype.copy = function(e) {
+                    (Fs.prototype.copy = function(e) {
                       return (
                         _s.prototype.copy.call(this, e),
                         this.v1.copy(e.v1),
@@ -26038,7 +26054,7 @@ object-assign
                         this
                       );
                     }),
-                    (Ns.prototype.toJSON = function() {
+                    (Fs.prototype.toJSON = function() {
                       var e = _s.prototype.toJSON.call(this);
                       return (
                         (e.v1 = this.v1.toArray()),
@@ -26046,7 +26062,7 @@ object-assign
                         e
                       );
                     }),
-                    (Ns.prototype.fromJSON = function(e) {
+                    (Fs.prototype.fromJSON = function(e) {
                       return (
                         _s.prototype.fromJSON.call(this, e),
                         this.v1.fromArray(e.v1),
@@ -26058,7 +26074,7 @@ object-assign
                     (Us.prototype.constructor = Us),
                     (Us.prototype.isLineCurve3 = !0),
                     (Us.prototype.getPoint = function(e, t) {
-                      var n = t || new Ft();
+                      var n = t || new Nt();
                       return (
                         1 === e
                           ? n.copy(this.v2)
@@ -26133,11 +26149,11 @@ object-assign
                         this
                       );
                     }),
-                    (zs.prototype = Object.create(_s.prototype)),
-                    (zs.prototype.constructor = zs),
-                    (zs.prototype.isQuadraticBezierCurve3 = !0),
-                    (zs.prototype.getPoint = function(e, t) {
-                      var n = t || new Ft(),
+                    (Vs.prototype = Object.create(_s.prototype)),
+                    (Vs.prototype.constructor = Vs),
+                    (Vs.prototype.isQuadraticBezierCurve3 = !0),
+                    (Vs.prototype.getPoint = function(e, t) {
+                      var n = t || new Nt(),
                         r = this.v0,
                         i = this.v1,
                         o = this.v2;
@@ -26150,7 +26166,7 @@ object-assign
                         n
                       );
                     }),
-                    (zs.prototype.copy = function(e) {
+                    (Vs.prototype.copy = function(e) {
                       return (
                         _s.prototype.copy.call(this, e),
                         this.v0.copy(e.v0),
@@ -26159,7 +26175,7 @@ object-assign
                         this
                       );
                     }),
-                    (zs.prototype.toJSON = function() {
+                    (Vs.prototype.toJSON = function() {
                       var e = _s.prototype.toJSON.call(this);
                       return (
                         (e.v0 = this.v0.toArray()),
@@ -26168,7 +26184,7 @@ object-assign
                         e
                       );
                     }),
-                    (zs.prototype.fromJSON = function(e) {
+                    (Vs.prototype.fromJSON = function(e) {
                       return (
                         _s.prototype.fromJSON.call(this, e),
                         this.v0.fromArray(e.v0),
@@ -26177,10 +26193,10 @@ object-assign
                         this
                       );
                     }),
-                    (js.prototype = Object.create(_s.prototype)),
-                    (js.prototype.constructor = js),
-                    (js.prototype.isSplineCurve = !0),
-                    (js.prototype.getPoint = function(e, t) {
+                    (zs.prototype = Object.create(_s.prototype)),
+                    (zs.prototype.constructor = zs),
+                    (zs.prototype.isSplineCurve = !0),
+                    (zs.prototype.getPoint = function(e, t) {
                       var n = t || new It(),
                         r = this.points,
                         i = (r.length - 1) * e,
@@ -26198,7 +26214,7 @@ object-assign
                         n
                       );
                     }),
-                    (js.prototype.copy = function(e) {
+                    (zs.prototype.copy = function(e) {
                       _s.prototype.copy.call(this, e), (this.points = []);
                       for (var t = 0, n = e.points.length; t < n; t++) {
                         var r = e.points[t];
@@ -26206,7 +26222,7 @@ object-assign
                       }
                       return this;
                     }),
-                    (js.prototype.toJSON = function() {
+                    (zs.prototype.toJSON = function() {
                       var e = _s.prototype.toJSON.call(this);
                       e.points = [];
                       for (var t = 0, n = this.points.length; t < n; t++) {
@@ -26215,7 +26231,7 @@ object-assign
                       }
                       return e;
                     }),
-                    (js.prototype.fromJSON = function(e) {
+                    (zs.prototype.fromJSON = function(e) {
                       _s.prototype.fromJSON.call(this, e), (this.points = []);
                       for (var t = 0, n = e.points.length; t < n; t++) {
                         var r = e.points[t];
@@ -26223,26 +26239,26 @@ object-assign
                       }
                       return this;
                     });
-                  var Vs = Object.freeze({
-                    ArcCurve: Ts,
+                  var Gs = Object.freeze({
+                    ArcCurve: Ms,
                     CatmullRomCurve3: Os,
                     CubicBezierCurve: ks,
-                    CubicBezierCurve3: Fs,
-                    EllipseCurve: Ms,
-                    LineCurve: Ns,
+                    CubicBezierCurve3: Ns,
+                    EllipseCurve: Ts,
+                    LineCurve: Fs,
                     LineCurve3: Us,
                     QuadraticBezierCurve: Hs,
-                    QuadraticBezierCurve3: zs,
-                    SplineCurve: js,
+                    QuadraticBezierCurve3: Vs,
+                    SplineCurve: zs,
                   });
-                  function Gs() {
+                  function js() {
                     _s.call(this),
                       (this.type = "CurvePath"),
                       (this.curves = []),
                       (this.autoClose = !1);
                   }
                   function Ws(e) {
-                    Gs.call(this),
+                    js.call(this),
                       (this.type = "Path"),
                       (this.currentPoint = new It()),
                       e && this.setFromPoints(e);
@@ -26254,7 +26270,7 @@ object-assign
                       (this.holes = []);
                   }
                   function Xs(e, t) {
-                    Mn.call(this),
+                    Tn.call(this),
                       (this.type = "Light"),
                       (this.color = new hn(e)),
                       (this.intensity = void 0 !== t ? t : 1),
@@ -26264,7 +26280,7 @@ object-assign
                     Xs.call(this, e, n),
                       (this.type = "HemisphereLight"),
                       (this.castShadow = void 0),
-                      this.position.copy(Mn.DefaultUp),
+                      this.position.copy(Tn.DefaultUp),
                       this.updateMatrix(),
                       (this.groundColor = new hn(t));
                   }
@@ -26282,9 +26298,9 @@ object-assign
                   function Zs(e, t, n, r, i, o) {
                     Xs.call(this, e, t),
                       (this.type = "SpotLight"),
-                      this.position.copy(Mn.DefaultUp),
+                      this.position.copy(Tn.DefaultUp),
                       this.updateMatrix(),
-                      (this.target = new Mn()),
+                      (this.target = new Tn()),
                       Object.defineProperty(this, "power", {
                         get: function() {
                           return this.intensity * Math.PI;
@@ -26333,9 +26349,9 @@ object-assign
                   function tl(e, t) {
                     Xs.call(this, e, t),
                       (this.type = "DirectionalLight"),
-                      this.position.copy(Mn.DefaultUp),
+                      this.position.copy(Tn.DefaultUp),
                       this.updateMatrix(),
-                      (this.target = new Mn()),
+                      (this.target = new Tn()),
                       (this.shadow = new el());
                   }
                   function nl(e, t) {
@@ -26353,15 +26369,15 @@ object-assign
                     (this.manager = void 0 !== e ? e : ms),
                       (this.textures = {});
                   }
-                  (Gs.prototype = Object.assign(Object.create(_s.prototype), {
-                    constructor: Gs,
+                  (js.prototype = Object.assign(Object.create(_s.prototype), {
+                    constructor: js,
                     add: function(e) {
                       this.curves.push(e);
                     },
                     closePath: function() {
                       var e = this.curves[0].getPoint(0),
                         t = this.curves[this.curves.length - 1].getPoint(1);
-                      e.equals(t) || this.curves.push(new Ns(t, e));
+                      e.equals(t) || this.curves.push(new Fs(t, e));
                     },
                     getPoint: function(e) {
                       for (
@@ -26467,12 +26483,12 @@ object-assign
                         (this.curves = []);
                       for (var t = 0, n = e.curves.length; t < n; t++) {
                         var r = e.curves[t];
-                        this.curves.push(new Vs[r.type]().fromJSON(r));
+                        this.curves.push(new Gs[r.type]().fromJSON(r));
                       }
                       return this;
                     },
                   })),
-                    (Ws.prototype = Object.assign(Object.create(Gs.prototype), {
+                    (Ws.prototype = Object.assign(Object.create(js.prototype), {
                       constructor: Ws,
                       setFromPoints: function(e) {
                         this.moveTo(e[0].x, e[0].y);
@@ -26483,7 +26499,7 @@ object-assign
                         this.currentPoint.set(e, t);
                       },
                       lineTo: function(e, t) {
-                        var n = new Ns(this.currentPoint.clone(), new It(e, t));
+                        var n = new Fs(this.currentPoint.clone(), new It(e, t));
                         this.curves.push(n), this.currentPoint.set(e, t);
                       },
                       quadraticCurveTo: function(e, t, n, r) {
@@ -26505,7 +26521,7 @@ object-assign
                       },
                       splineThru: function(e) {
                         var t = [this.currentPoint.clone()].concat(e),
-                          n = new js(t);
+                          n = new zs(t);
                         this.curves.push(n),
                           this.currentPoint.copy(e[e.length - 1]);
                       },
@@ -26523,7 +26539,7 @@ object-assign
                         this.absellipse(e + l, t + c, n, r, i, o, a, s);
                       },
                       absellipse: function(e, t, n, r, i, o, a, s) {
-                        var l = new Ms(e, t, n, r, i, o, a, s);
+                        var l = new Ts(e, t, n, r, i, o, a, s);
                         if (this.curves.length > 0) {
                           var c = l.getPoint(0);
                           c.equals(this.currentPoint) || this.lineTo(c.x, c.y);
@@ -26534,20 +26550,20 @@ object-assign
                       },
                       copy: function(e) {
                         return (
-                          Gs.prototype.copy.call(this, e),
+                          js.prototype.copy.call(this, e),
                           this.currentPoint.copy(e.currentPoint),
                           this
                         );
                       },
                       toJSON: function() {
-                        var e = Gs.prototype.toJSON.call(this);
+                        var e = js.prototype.toJSON.call(this);
                         return (
                           (e.currentPoint = this.currentPoint.toArray()), e
                         );
                       },
                       fromJSON: function(e) {
                         return (
-                          Gs.prototype.fromJSON.call(this, e),
+                          js.prototype.fromJSON.call(this, e),
                           this.currentPoint.fromArray(e.currentPoint),
                           this
                         );
@@ -26598,19 +26614,19 @@ object-assign
                         return this;
                       },
                     })),
-                    (Xs.prototype = Object.assign(Object.create(Mn.prototype), {
+                    (Xs.prototype = Object.assign(Object.create(Tn.prototype), {
                       constructor: Xs,
                       isLight: !0,
                       copy: function(e) {
                         return (
-                          Mn.prototype.copy.call(this, e),
+                          Tn.prototype.copy.call(this, e),
                           this.color.copy(e.color),
                           (this.intensity = e.intensity),
                           this
                         );
                       },
                       toJSON: function(e) {
-                        var t = Mn.prototype.toJSON.call(this, e);
+                        var t = Tn.prototype.toJSON.call(this, e);
                         return (
                           (t.object.color = this.color.getHex()),
                           (t.object.intensity = this.intensity),
@@ -26789,7 +26805,7 @@ object-assign
                           );
                       },
                       toJSON: function(e) {
-                        var t = Mn.prototype.toJSON.call(this, e);
+                        var t = Tn.prototype.toJSON.call(this, e);
                         return (
                           (t.object.zoom = this.zoom),
                           (t.object.left = this.left),
@@ -26942,7 +26958,7 @@ object-assign
                                 );
                                 break;
                               case "v3":
-                                r.uniforms[i].value = new Ft().fromArray(
+                                r.uniforms[i].value = new Nt().fromArray(
                                   o.value
                                 );
                                 break;
@@ -26952,7 +26968,7 @@ object-assign
                                 );
                                 break;
                               case "m3":
-                                r.uniforms[i].value = new Nt().fromArray(
+                                r.uniforms[i].value = new Ft().fromArray(
                                   o.value
                                 );
                               case "m4":
@@ -27067,7 +27083,7 @@ object-assign
                         );
                     },
                     parse: function(e) {
-                      var t = new Vn(),
+                      var t = new Gn(),
                         n = e.data.index;
                       if (void 0 !== n) {
                         var r = new sl[n.type](n.array);
@@ -27088,7 +27104,7 @@ object-assign
                         }
                       var h = e.data.boundingSphere;
                       if (void 0 !== h) {
-                        var d = new Ft();
+                        var d = new Nt();
                         void 0 !== h.center && d.fromArray(h.center),
                           (t.boundingSphere = new $t(d, h.radius));
                       }
@@ -27356,7 +27372,7 @@ object-assign
                               }
                               var d = s.options.extrudePath;
                               void 0 !== d &&
-                                (s.options.extrudePath = new Vs[
+                                (s.options.extrudePath = new Gs[
                                   d.type
                                 ]().fromJSON(d)),
                                 (a = new Ha[s.type](l, s.options));
@@ -27447,7 +27463,7 @@ object-assign
                       }
                       if (void 0 !== e && e.length > 0) {
                         var o = new fs(t),
-                          a = new ws(o);
+                          a = new Es(o);
                         a.setCrossOrigin(this.crossOrigin);
                         for (var s = 0, l = e.length; s < l; s++) {
                           var c = e[s],
@@ -27649,23 +27665,23 @@ object-assign
                           r = new bo(i(e.geometry), o(e.material), e.mode);
                           break;
                         case "LineLoop":
-                          r = new wo(i(e.geometry), o(e.material));
+                          r = new Eo(i(e.geometry), o(e.material));
                           break;
                         case "LineSegments":
                           r = new Ao(i(e.geometry), o(e.material));
                           break;
                         case "PointCloud":
                         case "Points":
-                          r = new Eo(i(e.geometry), o(e.material));
+                          r = new xo(i(e.geometry), o(e.material));
                           break;
                         case "Sprite":
                           r = new po(o(e.material));
                           break;
                         case "Group":
-                          r = new Gi();
+                          r = new ji();
                           break;
                         default:
-                          r = new Mn();
+                          r = new Tn();
                       }
                       if (
                         ((r.uuid = e.uuid),
@@ -27743,12 +27759,12 @@ object-assign
                       MirroredRepeatWrapping: Ae,
                     },
                     vl = {
-                      NearestFilter: we,
-                      NearestMipMapNearestFilter: xe,
-                      NearestMipMapLinearFilter: Ee,
+                      NearestFilter: Ee,
+                      NearestMipMapNearestFilter: we,
+                      NearestMipMapLinearFilter: xe,
                       LinearFilter: _e,
-                      LinearMipMapNearestFilter: Me,
-                      LinearMipMapLinearFilter: Te,
+                      LinearMipMapNearestFilter: Te,
+                      LinearMipMapLinearFilter: Me,
                     };
                   function gl(e) {
                     "undefined" == typeof createImageBitmap &&
@@ -27825,10 +27841,10 @@ object-assign
                       return { offsetX: o.ha * t, path: f };
                     }
                   }
-                  function wl(e) {
+                  function El(e) {
                     this.manager = void 0 !== e ? e : ms;
                   }
-                  function xl() {}
+                  function wl() {}
                   (gl.prototype = {
                     constructor: gl,
                     setOptions: function(e) {
@@ -27972,23 +27988,23 @@ object-assign
                         if (!f[0]) return n(o);
                         if (f.length > 1) {
                           for (
-                            var b = !1, A = [], w = 0, x = f.length;
-                            w < x;
-                            w++
+                            var b = !1, A = [], E = 0, w = f.length;
+                            E < w;
+                            E++
                           )
-                            p[w] = [];
-                          for (var w = 0, x = f.length; w < x; w++)
-                            for (var E = m[w], _ = 0; _ < E.length; _++) {
+                            p[E] = [];
+                          for (var E = 0, w = f.length; E < w; E++)
+                            for (var x = m[E], _ = 0; _ < x.length; _++) {
                               for (
-                                var M = E[_], T = !0, S = 0;
+                                var T = x[_], M = !0, S = 0;
                                 S < f.length;
                                 S++
                               )
-                                r(M.p, f[S].p) &&
-                                  (w !== S &&
-                                    A.push({ froms: w, tos: S, hole: _ }),
-                                  T ? ((T = !1), p[S].push(M)) : (b = !0));
-                              T && p[w].push(M);
+                                r(T.p, f[S].p) &&
+                                  (E !== S &&
+                                    A.push({ froms: E, tos: S, hole: _ }),
+                                  M ? ((M = !1), p[S].push(T)) : (b = !0));
+                              M && p[E].push(T);
                             }
                           A.length > 0 && (b || (m = p));
                         }
@@ -28042,7 +28058,7 @@ object-assign
                         return n;
                       },
                     }),
-                    Object.assign(wl.prototype, {
+                    Object.assign(El.prototype, {
                       load: function(e, t, n, r) {
                         var i = this,
                           o = new gs(this.manager);
@@ -28075,7 +28091,7 @@ object-assign
                         return (this.path = e), this;
                       },
                     }),
-                    (xl.Handlers = {
+                    (wl.Handlers = {
                       handlers: [],
                       add: function(e, t) {
                         this.handlers.push(e, t);
@@ -28093,7 +28109,7 @@ object-assign
                         return null;
                       },
                     }),
-                    Object.assign(xl.prototype, {
+                    Object.assign(wl.prototype, {
                       crossOrigin: "anonymous",
                       onLoadStart: function() {},
                       onLoadProgress: function() {},
@@ -28104,7 +28120,7 @@ object-assign
                         return r;
                       },
                       createMaterial: ((cl = {
-                        NoBlending: T,
+                        NoBlending: M,
                         NormalBlending: S,
                         AdditiveBlending: C,
                         SubtractiveBlending: L,
@@ -28112,14 +28128,14 @@ object-assign
                         CustomBlending: P,
                       }),
                       (ul = new hn()),
-                      (hl = new Es()),
+                      (hl = new xs()),
                       (dl = new il()),
                       function(e, t, n) {
                         var r = {};
                         function i(e, i, o, a, s) {
                           var l,
                             c = t + e,
-                            u = xl.Handlers.get(c);
+                            u = wl.Handlers.get(c);
                           null !== u
                             ? (l = u.load(c))
                             : (hl.setCrossOrigin(n), (l = hl.load(c))),
@@ -28330,10 +28346,10 @@ object-assign
                             case "mapAlphaAnisotropy":
                               break;
                             case "flipSided":
-                              o.side = w;
+                              o.side = E;
                               break;
                             case "doubleSided":
-                              o.side = x;
+                              o.side = w;
                               break;
                             case "transparency":
                               console.warn(
@@ -28352,7 +28368,7 @@ object-assign
                               o[a] = s;
                               break;
                             case "vertexColors":
-                              !0 === s && (o.vertexColors = M),
+                              !0 === s && (o.vertexColors = T),
                                 "face" === s && (o.vertexColors = _);
                               break;
                             default:
@@ -28372,10 +28388,10 @@ object-assign
                         );
                       }),
                     });
-                  var El,
+                  var xl,
                     _l,
-                    Ml,
                     Tl,
+                    Ml,
                     Sl,
                     Cl,
                     Ll,
@@ -28386,14 +28402,14 @@ object-assign
                     Il,
                     Bl,
                     kl,
-                    Fl,
                     Nl,
+                    Fl,
                     Ul,
                     Hl,
-                    zl,
-                    jl,
                     Vl,
+                    zl,
                     Gl,
+                    jl,
                     Wl,
                     ql,
                     Xl,
@@ -28425,20 +28441,20 @@ object-assign
                       (this.cameraR.matrixAutoUpdate = !1);
                   }
                   function Zl(e, t, n, r) {
-                    Mn.call(this), (this.type = "CubeCamera");
+                    Tn.call(this), (this.type = "CubeCamera");
                     var i = new qi(90, 1, e, t);
-                    i.up.set(0, -1, 0), i.lookAt(new Ft(1, 0, 0)), this.add(i);
+                    i.up.set(0, -1, 0), i.lookAt(new Nt(1, 0, 0)), this.add(i);
                     var o = new qi(90, 1, e, t);
-                    o.up.set(0, -1, 0), o.lookAt(new Ft(-1, 0, 0)), this.add(o);
+                    o.up.set(0, -1, 0), o.lookAt(new Nt(-1, 0, 0)), this.add(o);
                     var a = new qi(90, 1, e, t);
-                    a.up.set(0, 0, 1), a.lookAt(new Ft(0, 1, 0)), this.add(a);
+                    a.up.set(0, 0, 1), a.lookAt(new Nt(0, 1, 0)), this.add(a);
                     var s = new qi(90, 1, e, t);
-                    s.up.set(0, 0, -1), s.lookAt(new Ft(0, -1, 0)), this.add(s);
+                    s.up.set(0, 0, -1), s.lookAt(new Nt(0, -1, 0)), this.add(s);
                     var l = new qi(90, 1, e, t);
-                    l.up.set(0, -1, 0), l.lookAt(new Ft(0, 0, 1)), this.add(l);
+                    l.up.set(0, -1, 0), l.lookAt(new Nt(0, 0, 1)), this.add(l);
                     var c = new qi(90, 1, e, t);
                     c.up.set(0, -1, 0),
-                      c.lookAt(new Ft(0, 0, -1)),
+                      c.lookAt(new Nt(0, 0, -1)),
                       this.add(c),
                       (r = r || { format: He, magFilter: _e, minFilter: _e }),
                       (this.renderTarget = new Kt(n, n, r)),
@@ -28486,7 +28502,7 @@ object-assign
                       (this.running = !1);
                   }
                   function $l() {
-                    Mn.call(this),
+                    Tn.call(this),
                       (this.type = "AudioListener"),
                       (this.context = Yl.getContext()),
                       (this.gain = this.context.createGain()),
@@ -28495,7 +28511,7 @@ object-assign
                       (this.timeDelta = 0);
                   }
                   function ec(e) {
-                    Mn.call(this),
+                    Tn.call(this),
                       (this.type = "Audio"),
                       (this.listener = e),
                       (this.context = e.context),
@@ -28640,7 +28656,7 @@ object-assign
                       (this.value = e);
                   }
                   function uc() {
-                    Vn.call(this),
+                    Gn.call(this),
                       (this.type = "InstancedBufferGeometry"),
                       (this.maxInstancedCount = void 0);
                   }
@@ -28710,15 +28726,15 @@ object-assign
                       (this.max = void 0 !== t ? t : new It(-1 / 0, -1 / 0));
                   }
                   function bc(e, t) {
-                    (this.start = void 0 !== e ? e : new Ft()),
-                      (this.end = void 0 !== t ? t : new Ft());
+                    (this.start = void 0 !== e ? e : new Nt()),
+                      (this.end = void 0 !== t ? t : new Nt());
                   }
                   function Ac(e) {
-                    Mn.call(this),
+                    Tn.call(this),
                       (this.material = e),
                       (this.render = function() {});
                   }
-                  function wc(e, t, n, r) {
+                  function Ec(e, t, n, r) {
                     (this.object = e), (this.size = void 0 !== t ? t : 1);
                     var i = void 0 !== n ? n : 16711680,
                       o = void 0 !== r ? r : 1,
@@ -28729,22 +28745,22 @@ object-assign
                       : s &&
                         s.isBufferGeometry &&
                         (a = s.attributes.normal.count);
-                    var l = new Vn(),
-                      c = new Nn(2 * a * 3, 3);
+                    var l = new Gn(),
+                      c = new Fn(2 * a * 3, 3);
                     l.addAttribute("position", c),
                       Ao.call(this, l, new yo({ color: i, linewidth: o })),
                       (this.matrixAutoUpdate = !1),
                       this.update();
                   }
-                  function xc(e, t) {
-                    Mn.call(this),
+                  function wc(e, t) {
+                    Tn.call(this),
                       (this.light = e),
                       this.light.updateMatrixWorld(),
                       (this.matrix = e.matrixWorld),
                       (this.matrixAutoUpdate = !1),
                       (this.color = t);
                     for (
-                      var n = new Vn(),
+                      var n = new Gn(),
                         r = [
                           0,
                           0,
@@ -28793,13 +28809,13 @@ object-assign
                         1
                       );
                     }
-                    n.addAttribute("position", new Nn(r, 3));
+                    n.addAttribute("position", new Fn(r, 3));
                     var l = new yo({ fog: !1 });
                     (this.cone = new Ao(n, l)),
                       this.add(this.cone),
                       this.update();
                   }
-                  function Ec(e) {
+                  function xc(e) {
                     for (
                       var t = (function e(t) {
                           var n = [];
@@ -28808,7 +28824,7 @@ object-assign
                             n.push.apply(n, e(t.children[r]));
                           return n;
                         })(e),
-                        n = new Vn(),
+                        n = new Gn(),
                         r = [],
                         i = [],
                         o = new hn(0, 0, 1),
@@ -28825,10 +28841,10 @@ object-assign
                         i.push(o.r, o.g, o.b),
                         i.push(a.r, a.g, a.b));
                     }
-                    n.addAttribute("position", new Nn(r, 3)),
-                      n.addAttribute("color", new Nn(i, 3));
+                    n.addAttribute("position", new Fn(r, 3)),
+                      n.addAttribute("color", new Fn(i, 3));
                     var c = new yo({
-                      vertexColors: M,
+                      vertexColors: T,
                       depthTest: !1,
                       depthWrite: !1,
                       transparent: !0,
@@ -28843,21 +28859,21 @@ object-assign
                     (this.light = e),
                       this.light.updateMatrixWorld(),
                       (this.color = n);
-                    var r = new Ma(t, 4, 2),
+                    var r = new Ta(t, 4, 2),
                       i = new hr({ wireframe: !0, fog: !1 });
                     dr.call(this, r, i),
                       (this.matrix = this.light.matrixWorld),
                       (this.matrixAutoUpdate = !1),
                       this.update();
                   }
-                  function Mc(e, t) {
+                  function Tc(e, t) {
                     (this.type = "RectAreaLightHelper"),
                       (this.light = e),
                       (this.color = t);
-                    var n = new Vn();
+                    var n = new Gn();
                     n.addAttribute(
                       "position",
-                      new Nn(
+                      new Fn(
                         [1, 1, 0, -1, 1, 0, -1, -1, 0, 1, -1, 0, 1, 1, 0],
                         3
                       )
@@ -28865,10 +28881,10 @@ object-assign
                       n.computeBoundingSphere();
                     var r = new yo({ fog: !1 });
                     bo.call(this, n, r);
-                    var i = new Vn();
+                    var i = new Gn();
                     i.addAttribute(
                       "position",
-                      new Nn(
+                      new Fn(
                         [
                           1,
                           1,
@@ -28893,11 +28909,11 @@ object-assign
                       )
                     ),
                       i.computeBoundingSphere(),
-                      this.add(new dr(i, new hr({ side: w, fog: !1 }))),
+                      this.add(new dr(i, new hr({ side: E, fog: !1 }))),
                       this.update();
                   }
-                  function Tc(e, t, n) {
-                    Mn.call(this),
+                  function Mc(e, t, n) {
+                    Tn.call(this),
                       (this.light = e),
                       this.light.updateMatrixWorld(),
                       (this.matrix = e.matrixWorld),
@@ -28906,7 +28922,7 @@ object-assign
                     var r = new ko(t);
                     r.rotateY(0.5 * Math.PI),
                       (this.material = new hr({ wireframe: !0, fog: !1 })),
-                      void 0 === this.color && (this.material.vertexColors = M);
+                      void 0 === this.color && (this.material.vertexColors = T);
                     var i = r.getAttribute("position"),
                       o = new Float32Array(3 * i.count);
                     r.addAttribute("color", new Rn(o, 3)),
@@ -28941,10 +28957,10 @@ object-assign
                         d.toArray(l, u),
                         (u += 3);
                     }
-                    var p = new Vn();
-                    p.addAttribute("position", new Nn(s, 3)),
-                      p.addAttribute("color", new Nn(l, 3));
-                    var f = new yo({ vertexColors: M });
+                    var p = new Gn();
+                    p.addAttribute("position", new Fn(s, 3)),
+                      p.addAttribute("color", new Fn(l, 3));
+                    var f = new yo({ vertexColors: T });
                     Ao.call(this, p, f);
                   }
                   function Cc(e, t, n, r, i, o) {
@@ -28988,10 +29004,10 @@ object-assign
                           (s = Math.cos(l) * h),
                           p.push(a, 0, s),
                           f.push(d.r, d.g, d.b);
-                    var m = new Vn();
-                    m.addAttribute("position", new Nn(p, 3)),
-                      m.addAttribute("color", new Nn(f, 3));
-                    var v = new yo({ vertexColors: M });
+                    var m = new Gn();
+                    m.addAttribute("position", new Fn(p, 3)),
+                      m.addAttribute("color", new Fn(f, 3));
+                    var v = new yo({ vertexColors: T });
                     Ao.call(this, m, v);
                   }
                   function Lc(e, t, n, r) {
@@ -29005,25 +29021,25 @@ object-assign
                       : console.warn(
                           "THREE.FaceNormalsHelper: only THREE.Geometry is supported. Use THREE.VertexNormalsHelper, instead."
                         );
-                    var l = new Vn(),
-                      c = new Nn(2 * a * 3, 3);
+                    var l = new Gn(),
+                      c = new Fn(2 * a * 3, 3);
                     l.addAttribute("position", c),
                       Ao.call(this, l, new yo({ color: i, linewidth: o })),
                       (this.matrixAutoUpdate = !1),
                       this.update();
                   }
                   function Rc(e, t, n) {
-                    Mn.call(this),
+                    Tn.call(this),
                       (this.light = e),
                       this.light.updateMatrixWorld(),
                       (this.matrix = e.matrixWorld),
                       (this.matrixAutoUpdate = !1),
                       (this.color = n),
                       void 0 === t && (t = 1);
-                    var r = new Vn();
+                    var r = new Gn();
                     r.addAttribute(
                       "position",
-                      new Nn(
+                      new Fn(
                         [-t, t, 0, t, t, 0, t, -t, 0, -t, -t, 0, -t, t, 0],
                         3
                       )
@@ -29031,16 +29047,16 @@ object-assign
                     var i = new yo({ fog: !1 });
                     (this.lightPlane = new bo(r, i)),
                       this.add(this.lightPlane),
-                      (r = new Vn()).addAttribute(
+                      (r = new Gn()).addAttribute(
                         "position",
-                        new Nn([0, 0, 0, 0, 0, 1], 3)
+                        new Fn([0, 0, 0, 0, 0, 1], 3)
                       ),
                       (this.targetLine = new bo(r, i)),
                       this.add(this.targetLine),
                       this.update();
                   }
                   function Pc(e) {
-                    var t = new Vn(),
+                    var t = new Gn(),
                       n = new yo({ color: 16777215, vertexColors: _ }),
                       r = [],
                       i = [],
@@ -29084,8 +29100,8 @@ object-assign
                       h("cn3", "cn4", u),
                       h("cf1", "cf2", u),
                       h("cf3", "cf4", u),
-                      t.addAttribute("position", new Nn(r, 3)),
-                      t.addAttribute("color", new Nn(i, 3)),
+                      t.addAttribute("position", new Fn(r, 3)),
+                      t.addAttribute("color", new Fn(i, 3)),
                       Ao.call(this, t, n),
                       (this.camera = e),
                       this.camera.updateProjectionMatrix &&
@@ -29124,7 +29140,7 @@ object-assign
                         7,
                       ]),
                       r = new Float32Array(24),
-                      i = new Vn();
+                      i = new Gn();
                     i.setIndex(new Rn(n, 1)),
                       i.addAttribute("position", new Rn(r, 3)),
                       Ao.call(this, i, new yo({ color: t })),
@@ -29160,11 +29176,11 @@ object-assign
                         3,
                         7,
                       ]),
-                      i = new Vn();
+                      i = new Gn();
                     i.setIndex(new Rn(r, 1)),
                       i.addAttribute(
                         "position",
-                        new Nn(
+                        new Fn(
                           [
                             1,
                             1,
@@ -29202,10 +29218,10 @@ object-assign
                       (this.plane = e),
                       (this.size = void 0 === t ? 1 : t);
                     var r = void 0 !== n ? n : 16776960,
-                      i = new Vn();
+                      i = new Gn();
                     i.addAttribute(
                       "position",
-                      new Nn(
+                      new Fn(
                         [
                           1,
                           -1,
@@ -29243,10 +29259,10 @@ object-assign
                     ),
                       i.computeBoundingSphere(),
                       bo.call(this, i, new yo({ color: r }));
-                    var o = new Vn();
+                    var o = new Gn();
                     o.addAttribute(
                       "position",
-                      new Nn(
+                      new Fn(
                         [
                           1,
                           1,
@@ -29284,21 +29300,21 @@ object-assign
                       );
                   }
                   function Bc(e, t, n, r, i, o) {
-                    Mn.call(this),
-                      void 0 === e && (e = new Ft(0, 0, 1)),
-                      void 0 === t && (t = new Ft(0, 0, 0)),
+                    Tn.call(this),
+                      void 0 === e && (e = new Nt(0, 0, 1)),
+                      void 0 === t && (t = new Nt(0, 0, 0)),
                       void 0 === n && (n = 1),
                       void 0 === r && (r = 16776960),
                       void 0 === i && (i = 0.2 * n),
                       void 0 === o && (o = 0.2 * i),
-                      void 0 === Gl &&
-                        ((Gl = new Vn()).addAttribute(
+                      void 0 === jl &&
+                        ((jl = new Gn()).addAttribute(
                           "position",
-                          new Nn([0, 0, 0, 0, 1, 0], 3)
+                          new Fn([0, 0, 0, 0, 1, 0], 3)
                         ),
                         (Wl = new Ba(0, 0.5, 1, 5, 1)).translate(0, -0.5, 0)),
                       this.position.copy(t),
-                      (this.line = new bo(Gl, new yo({ color: r }))),
+                      (this.line = new bo(jl, new yo({ color: r }))),
                       (this.line.matrixAutoUpdate = !1),
                       this.add(this.line),
                       (this.cone = new dr(Wl, new hr({ color: r }))),
@@ -29328,11 +29344,11 @@ object-assign
                         0,
                         e,
                       ],
-                      n = new Vn();
-                    n.addAttribute("position", new Nn(t, 3)),
+                      n = new Gn();
+                    n.addAttribute("position", new Fn(t, 3)),
                       n.addAttribute(
                         "color",
-                        new Nn(
+                        new Fn(
                           [
                             1,
                             0,
@@ -29356,10 +29372,10 @@ object-assign
                           3
                         )
                       );
-                    var r = new yo({ vertexColors: M });
+                    var r = new yo({ vertexColors: T });
                     Ao.call(this, n, r);
                   }
-                  function Fc(e) {
+                  function Nc(e) {
                     console.warn(
                       "THREE.ClosedSplineCurve3 has been deprecated. Use THREE.CatmullRomCurve3 instead."
                     ),
@@ -29367,7 +29383,7 @@ object-assign
                       (this.type = "catmullrom"),
                       (this.closed = !0);
                   }
-                  function Nc(e) {
+                  function Fc(e) {
                     console.warn(
                       "THREE.SplineCurve3 has been deprecated. Use THREE.CatmullRomCurve3 instead."
                     ),
@@ -29408,19 +29424,19 @@ object-assign
                       (Ol = new Bt()),
                       function(e) {
                         var t =
-                          El !== this ||
+                          xl !== this ||
                           _l !== e.focus ||
-                          Ml !== e.fov ||
-                          Tl !== e.aspect * this.aspect ||
+                          Tl !== e.fov ||
+                          Ml !== e.aspect * this.aspect ||
                           Sl !== e.near ||
                           Cl !== e.far ||
                           Ll !== e.zoom ||
                           Rl !== this.eyeSep;
                         if (t) {
-                          (El = this),
+                          (xl = this),
                             (_l = e.focus),
-                            (Ml = e.fov),
-                            (Tl = e.aspect * this.aspect),
+                            (Tl = e.fov),
+                            (Ml = e.aspect * this.aspect),
                             (Sl = e.near),
                             (Cl = e.far),
                             (Ll = e.zoom);
@@ -29428,16 +29444,16 @@ object-assign
                             r,
                             i = e.projectionMatrix.clone(),
                             o = ((Rl = this.eyeSep / 2) * Sl) / _l,
-                            a = (Sl * Math.tan(Dt.DEG2RAD * Ml * 0.5)) / Ll;
+                            a = (Sl * Math.tan(Dt.DEG2RAD * Tl * 0.5)) / Ll;
                           (Ol.elements[12] = -Rl),
                             (Pl.elements[12] = Rl),
-                            (n = -a * Tl + o),
-                            (r = a * Tl + o),
+                            (n = -a * Ml + o),
+                            (r = a * Ml + o),
                             (i.elements[0] = (2 * Sl) / (r - n)),
                             (i.elements[8] = (r + n) / (r - n)),
                             this.cameraL.projectionMatrix.copy(i),
-                            (n = -a * Tl - o),
-                            (r = a * Tl - o),
+                            (n = -a * Ml - o),
+                            (r = a * Ml - o),
                             (i.elements[0] = (2 * Sl) / (r - n)),
                             (i.elements[8] = (r + n) / (r - n)),
                             this.cameraR.projectionMatrix.copy(i);
@@ -29450,7 +29466,7 @@ object-assign
                             .multiply(Pl);
                       }),
                     }),
-                    (Zl.prototype = Object.create(Mn.prototype)),
+                    (Zl.prototype = Object.create(Tn.prototype)),
                     (Zl.prototype.constructor = Zl),
                     Object.assign(Jl.prototype, {
                       start: function() {
@@ -29486,7 +29502,7 @@ object-assign
                         return e;
                       },
                     }),
-                    ($l.prototype = Object.assign(Object.create(Mn.prototype), {
+                    ($l.prototype = Object.assign(Object.create(Tn.prototype), {
                       constructor: $l,
                       getInput: function() {
                         return this.gain;
@@ -29530,13 +29546,13 @@ object-assign
                         );
                       },
                       updateMatrixWorld: (function() {
-                        var e = new Ft(),
+                        var e = new Nt(),
                           t = new kt(),
-                          n = new Ft(),
-                          r = new Ft(),
+                          n = new Nt(),
+                          r = new Nt(),
                           i = new Jl();
                         return function(o) {
-                          Mn.prototype.updateMatrixWorld.call(this, o);
+                          Tn.prototype.updateMatrixWorld.call(this, o);
                           var a = this.context.listener,
                             s = this.up;
                           if (
@@ -29561,7 +29577,7 @@ object-assign
                         };
                       })(),
                     })),
-                    (ec.prototype = Object.assign(Object.create(Mn.prototype), {
+                    (ec.prototype = Object.assign(Object.create(Tn.prototype), {
                       constructor: ec,
                       getOutput: function() {
                         return this.gain;
@@ -29799,13 +29815,13 @@ object-assign
                         );
                       },
                       updateMatrixWorld: (function() {
-                        var e = new Ft(),
+                        var e = new Nt(),
                           t = new kt(),
-                          n = new Ft(),
-                          r = new Ft();
+                          n = new Nt(),
+                          r = new Nt();
                         return function(i) {
                           if (
-                            (Mn.prototype.updateMatrixWorld.call(this, i),
+                            (Tn.prototype.updateMatrixWorld.call(this, i),
                             !1 !== this.isPlaying)
                           ) {
                             this.matrixWorld.decompose(e, t, n),
@@ -29949,23 +29965,23 @@ object-assign
                           ? new oc.Composite(e, t, n)
                           : new oc(e, t, n);
                       },
-                      sanitizeNodeName: ((zl = new RegExp(
+                      sanitizeNodeName: ((Vl = new RegExp(
                         "[\\[\\]\\.:\\/]",
                         "g"
                       )),
                       function(e) {
-                        return e.replace(/\s/g, "_").replace(zl, "");
+                        return e.replace(/\s/g, "_").replace(Vl, "");
                       }),
                       parseTrackName: ((Dl = "[^\\[\\]\\.:\\/]"),
                       (Il = "[^" + "\\[\\]\\.:\\/".replace("\\.", "") + "]"),
                       (Bl = /((?:WC+[\/:])*)/.source.replace("WC", Dl)),
                       (kl = /(WCOD+)?/.source.replace("WCOD", Il)),
-                      (Fl = /(?:\.(WC+)(?:\[(.+)\])?)?/.source.replace(
+                      (Nl = /(?:\.(WC+)(?:\[(.+)\])?)?/.source.replace(
                         "WC",
                         Dl
                       )),
-                      (Nl = /\.(WC+)(?:\[(.+)\])?/.source.replace("WC", Dl)),
-                      (Ul = new RegExp("^" + Bl + kl + Fl + Nl + "$")),
+                      (Fl = /\.(WC+)(?:\[(.+)\])?/.source.replace("WC", Dl)),
+                      (Ul = new RegExp("^" + Bl + kl + Nl + Fl + "$")),
                       (Hl = ["material", "materials", "bones"]),
                       function(e) {
                         var t = Ul.exec(e);
@@ -31143,12 +31159,12 @@ object-assign
                           : this.value.clone()
                       );
                     }),
-                    (uc.prototype = Object.assign(Object.create(Vn.prototype), {
+                    (uc.prototype = Object.assign(Object.create(Gn.prototype), {
                       constructor: uc,
                       isInstancedBufferGeometry: !0,
                       copy: function(e) {
                         return (
-                          Vn.prototype.copy.call(this, e),
+                          Gn.prototype.copy.call(this, e),
                           (this.maxInstancedCount = e.maxInstancedCount),
                           this
                         );
@@ -31465,7 +31481,7 @@ object-assign
                             (console.warn(
                               "THREE.Line3: .getCenter() target is now required"
                             ),
-                            (e = new Ft())),
+                            (e = new Nt())),
                           e.addVectors(this.start, this.end).multiplyScalar(0.5)
                         );
                       },
@@ -31475,7 +31491,7 @@ object-assign
                             (console.warn(
                               "THREE.Line3: .delta() target is now required"
                             ),
-                            (e = new Ft())),
+                            (e = new Nt())),
                           e.subVectors(this.end, this.start)
                         );
                       },
@@ -31491,19 +31507,19 @@ object-assign
                             (console.warn(
                               "THREE.Line3: .at() target is now required"
                             ),
-                            (t = new Ft())),
+                            (t = new Nt())),
                           this.delta(t)
                             .multiplyScalar(e)
                             .add(this.start)
                         );
                       },
-                      closestPointToPointParameter: ((jl = new Ft()),
-                      (Vl = new Ft()),
+                      closestPointToPointParameter: ((zl = new Nt()),
+                      (Gl = new Nt()),
                       function(e, t) {
-                        jl.subVectors(e, this.start),
-                          Vl.subVectors(this.end, this.start);
-                        var n = Vl.dot(Vl),
-                          r = Vl.dot(jl),
+                        zl.subVectors(e, this.start),
+                          Gl.subVectors(this.end, this.start);
+                        var n = Gl.dot(Gl),
+                          r = Gl.dot(zl),
                           i = r / n;
                         return t && (i = Dt.clamp(i, 0, 1)), i;
                       }),
@@ -31514,7 +31530,7 @@ object-assign
                             (console.warn(
                               "THREE.Line3: .closestPointToPoint() target is now required"
                             ),
-                            (n = new Ft())),
+                            (n = new Nt())),
                           this.delta(n)
                             .multiplyScalar(r)
                             .add(this.start)
@@ -31533,15 +31549,15 @@ object-assign
                         );
                       },
                     }),
-                    (Ac.prototype = Object.create(Mn.prototype)),
+                    (Ac.prototype = Object.create(Tn.prototype)),
                     (Ac.prototype.constructor = Ac),
                     (Ac.prototype.isImmediateRenderObject = !0),
-                    (wc.prototype = Object.create(Ao.prototype)),
-                    (wc.prototype.constructor = wc),
-                    (wc.prototype.update = (function() {
-                      var e = new Ft(),
-                        t = new Ft(),
-                        n = new Nt();
+                    (Ec.prototype = Object.create(Ao.prototype)),
+                    (Ec.prototype.constructor = Ec),
+                    (Ec.prototype.update = (function() {
+                      var e = new Nt(),
+                        t = new Nt(),
+                        n = new Ft();
                       return function() {
                         var r = ["a", "b", "c"];
                         this.object.updateMatrixWorld(!0),
@@ -31604,14 +31620,14 @@ object-assign
                         o.needsUpdate = !0;
                       };
                     })()),
-                    (xc.prototype = Object.create(Mn.prototype)),
-                    (xc.prototype.constructor = xc),
-                    (xc.prototype.dispose = function() {
+                    (wc.prototype = Object.create(Tn.prototype)),
+                    (wc.prototype.constructor = wc),
+                    (wc.prototype.dispose = function() {
                       this.cone.geometry.dispose(),
                         this.cone.material.dispose();
                     }),
-                    (xc.prototype.update = (function() {
-                      var e = new Ft();
+                    (wc.prototype.update = (function() {
+                      var e = new Nt();
                       return function() {
                         this.light.updateMatrixWorld();
                         var t = this.light.distance ? this.light.distance : 1e3,
@@ -31626,10 +31642,10 @@ object-assign
                             : this.cone.material.color.copy(this.light.color);
                       };
                     })()),
-                    (Ec.prototype = Object.create(Ao.prototype)),
-                    (Ec.prototype.constructor = Ec),
-                    (Ec.prototype.updateMatrixWorld = (function() {
-                      var e = new Ft(),
+                    (xc.prototype = Object.create(Ao.prototype)),
+                    (xc.prototype.constructor = xc),
+                    (xc.prototype.updateMatrixWorld = (function() {
+                      var e = new Nt(),
                         t = new Bt(),
                         n = new Bt();
                       return function(r) {
@@ -31650,7 +31666,7 @@ object-assign
                             (l += 2));
                         }
                         (o.getAttribute("position").needsUpdate = !0),
-                          Mn.prototype.updateMatrixWorld.call(this, r);
+                          Tn.prototype.updateMatrixWorld.call(this, r);
                       };
                     })()),
                     (_c.prototype = Object.create(dr.prototype)),
@@ -31663,9 +31679,9 @@ object-assign
                         ? this.material.color.set(this.color)
                         : this.material.color.copy(this.light.color);
                     }),
-                    (Mc.prototype = Object.create(bo.prototype)),
-                    (Mc.prototype.constructor = Mc),
-                    (Mc.prototype.update = function() {
+                    (Tc.prototype = Object.create(bo.prototype)),
+                    (Tc.prototype.constructor = Tc),
+                    (Tc.prototype.update = function() {
                       if (
                         (this.scale.set(
                           0.5 * this.light.width,
@@ -31688,20 +31704,20 @@ object-assign
                           );
                       }
                     }),
-                    (Mc.prototype.dispose = function() {
+                    (Tc.prototype.dispose = function() {
                       this.geometry.dispose(),
                         this.material.dispose(),
                         this.children[0].geometry.dispose(),
                         this.children[0].material.dispose();
                     }),
-                    (Tc.prototype = Object.create(Mn.prototype)),
-                    (Tc.prototype.constructor = Tc),
-                    (Tc.prototype.dispose = function() {
+                    (Mc.prototype = Object.create(Tn.prototype)),
+                    (Mc.prototype.constructor = Mc),
+                    (Mc.prototype.dispose = function() {
                       this.children[0].geometry.dispose(),
                         this.children[0].material.dispose();
                     }),
-                    (Tc.prototype.update = (function() {
-                      var e = new Ft(),
+                    (Mc.prototype.update = (function() {
+                      var e = new Nt(),
                         t = new hn(),
                         n = new hn();
                       return function() {
@@ -31732,9 +31748,9 @@ object-assign
                     (Lc.prototype = Object.create(Ao.prototype)),
                     (Lc.prototype.constructor = Lc),
                     (Lc.prototype.update = (function() {
-                      var e = new Ft(),
-                        t = new Ft(),
-                        n = new Nt();
+                      var e = new Nt(),
+                        t = new Nt(),
+                        n = new Ft();
                       return function() {
                         this.object.updateMatrixWorld(!0),
                           n.getNormalMatrix(this.object.matrixWorld);
@@ -31772,7 +31788,7 @@ object-assign
                         i.needsUpdate = !0;
                       };
                     })()),
-                    (Rc.prototype = Object.create(Mn.prototype)),
+                    (Rc.prototype = Object.create(Tn.prototype)),
                     (Rc.prototype.constructor = Rc),
                     (Rc.prototype.dispose = function() {
                       this.lightPlane.geometry.dispose(),
@@ -31781,9 +31797,9 @@ object-assign
                         this.targetLine.material.dispose();
                     }),
                     (Rc.prototype.update = (function() {
-                      var e = new Ft(),
-                        t = new Ft(),
-                        n = new Ft();
+                      var e = new Nt(),
+                        t = new Nt(),
+                        n = new Nt();
                       return function() {
                         e.setFromMatrixPosition(this.light.matrixWorld),
                           t.setFromMatrixPosition(
@@ -31809,7 +31825,7 @@ object-assign
                     (Pc.prototype.update = (function() {
                       var e,
                         t,
-                        n = new Ft(),
+                        n = new Nt(),
                         r = new Wi();
                       function i(i, o, a, s) {
                         n.set(o, a, s).unproject(r);
@@ -31920,7 +31936,7 @@ object-assign
                         (t.getCenter(this.position),
                         t.getSize(this.scale),
                         this.scale.multiplyScalar(0.5),
-                        Mn.prototype.updateMatrixWorld.call(this, e));
+                        Tn.prototype.updateMatrixWorld.call(this, e));
                     }),
                     (Ic.prototype = Object.create(bo.prototype)),
                     (Ic.prototype.constructor = Ic),
@@ -31928,13 +31944,13 @@ object-assign
                       var t = -this.plane.constant;
                       Math.abs(t) < 1e-8 && (t = 1e-8),
                         this.scale.set(0.5 * this.size, 0.5 * this.size, t),
-                        (this.children[0].material.side = t < 0 ? w : A),
+                        (this.children[0].material.side = t < 0 ? E : A),
                         this.lookAt(this.plane.normal),
-                        Mn.prototype.updateMatrixWorld.call(this, e);
+                        Tn.prototype.updateMatrixWorld.call(this, e);
                     }),
-                    (Bc.prototype = Object.create(Mn.prototype)),
+                    (Bc.prototype = Object.create(Tn.prototype)),
                     (Bc.prototype.constructor = Bc),
-                    (Bc.prototype.setDirection = ((Xl = new Ft()),
+                    (Bc.prototype.setDirection = ((Xl = new Nt()),
                     function(e) {
                       e.y > 0.99999
                         ? this.quaternion.set(0, 0, 0, 1)
@@ -31959,7 +31975,7 @@ object-assign
                     }),
                     (Bc.prototype.copy = function(e) {
                       return (
-                        Mn.prototype.copy.call(this, e, !1),
+                        Tn.prototype.copy.call(this, e, !1),
                         this.line.copy(e.line),
                         this.cone.copy(e.cone),
                         this
@@ -31979,7 +31995,7 @@ object-assign
                         e
                       );
                     }),
-                    Object.assign(Gs.prototype, {
+                    Object.assign(js.prototype, {
                       createPointsGeometry: function(e) {
                         console.warn(
                           "THREE.CurvePath: .createPointsGeometry() has been removed. Use new THREE.Geometry().setFromPoints( points ) instead."
@@ -32004,7 +32020,7 @@ object-assign
                           n++
                         ) {
                           var i = e[n];
-                          t.vertices.push(new Ft(i.x, i.y, i.z || 0));
+                          t.vertices.push(new Nt(i.x, i.y, i.z || 0));
                         }
                         return t;
                       },
@@ -32017,8 +32033,8 @@ object-assign
                           this.setFromPoints(e);
                       },
                     }),
-                    (Fc.prototype = Object.create(Os.prototype)),
                     (Nc.prototype = Object.create(Os.prototype)),
+                    (Fc.prototype = Object.create(Os.prototype)),
                     (Uc.prototype = Object.create(Os.prototype)),
                     Object.assign(Uc.prototype, {
                       initFromArray: function() {
@@ -32042,12 +32058,12 @@ object-assign
                         "THREE.GridHelper: setColors() has been deprecated, pass them in the constructor instead."
                       );
                     }),
-                    (Ec.prototype.update = function() {
+                    (xc.prototype.update = function() {
                       console.error(
                         "THREE.SkeletonHelper: update() no longer needs to be called."
                       );
                     }),
-                    Object.assign(xl.prototype, {
+                    Object.assign(wl.prototype, {
                       extractUrlBase: function(e) {
                         return (
                           console.warn(
@@ -32177,7 +32193,7 @@ object-assign
                         );
                       },
                     }),
-                    Object.assign(Nt.prototype, {
+                    Object.assign(Ft.prototype, {
                       flattenToArrayOffset: function(e, t) {
                         return (
                           console.warn(
@@ -32234,7 +32250,7 @@ object-assign
                         var e;
                         return function() {
                           return (
-                            void 0 === e && (e = new Ft()),
+                            void 0 === e && (e = new Nt()),
                             console.warn(
                               "THREE.Matrix4: .getPosition() has been removed. Use Vector3.setFromMatrixPosition( matrix ) instead."
                             ),
@@ -32491,7 +32507,7 @@ object-assign
                         );
                       },
                     }),
-                    Object.assign(Ft.prototype, {
+                    Object.assign(Nt.prototype, {
                       setEulerFromRotationMatrix: function() {
                         console.error(
                           "THREE.Vector3: .setEulerFromRotationMatrix() has been removed. Use Euler.setFromRotationMatrix() instead."
@@ -32589,7 +32605,7 @@ object-assign
                         );
                       },
                     }),
-                    Object.assign(Mn.prototype, {
+                    Object.assign(Tn.prototype, {
                       getChildByName: function(e) {
                         return (
                           console.warn(
@@ -32617,7 +32633,7 @@ object-assign
                         );
                       },
                     }),
-                    Object.defineProperties(Mn.prototype, {
+                    Object.defineProperties(Tn.prototype, {
                       eulerOrder: {
                         get: function() {
                           return (
@@ -32823,7 +32839,7 @@ object-assign
                         );
                       },
                     }),
-                    Object.assign(Vn.prototype, {
+                    Object.assign(Gn.prototype, {
                       addIndex: function(e) {
                         console.warn(
                           "THREE.BufferGeometry: .addIndex() has been renamed to .setIndex()."
@@ -32857,7 +32873,7 @@ object-assign
                         );
                       },
                     }),
-                    Object.defineProperties(Vn.prototype, {
+                    Object.defineProperties(Gn.prototype, {
                       drawcalls: {
                         get: function() {
                           return (
@@ -33447,36 +33463,36 @@ object-assign
                       );
                     },
                   };
-                  (Gt.crossOrigin = void 0),
-                    (Gt.loadTexture = function(e, t, n, r) {
+                  (jt.crossOrigin = void 0),
+                    (jt.loadTexture = function(e, t, n, r) {
                       console.warn(
                         "THREE.ImageUtils.loadTexture has been deprecated. Use THREE.TextureLoader() instead."
-                      );
-                      var i = new Es();
-                      i.setCrossOrigin(this.crossOrigin);
-                      var o = i.load(e, n, void 0, r);
-                      return t && (o.mapping = t), o;
-                    }),
-                    (Gt.loadTextureCube = function(e, t, n, r) {
-                      console.warn(
-                        "THREE.ImageUtils.loadTextureCube has been deprecated. Use THREE.CubeTextureLoader() instead."
                       );
                       var i = new xs();
                       i.setCrossOrigin(this.crossOrigin);
                       var o = i.load(e, n, void 0, r);
                       return t && (o.mapping = t), o;
                     }),
-                    (Gt.loadCompressedTexture = function() {
+                    (jt.loadTextureCube = function(e, t, n, r) {
+                      console.warn(
+                        "THREE.ImageUtils.loadTextureCube has been deprecated. Use THREE.CubeTextureLoader() instead."
+                      );
+                      var i = new ws();
+                      i.setCrossOrigin(this.crossOrigin);
+                      var o = i.load(e, n, void 0, r);
+                      return t && (o.mapping = t), o;
+                    }),
+                    (jt.loadCompressedTexture = function() {
                       console.error(
                         "THREE.ImageUtils.loadCompressedTexture has been removed. Use THREE.DDSLoader instead."
                       );
                     }),
-                    (Gt.loadCompressedTextureCube = function() {
+                    (jt.loadCompressedTextureCube = function() {
                       console.error(
                         "THREE.ImageUtils.loadCompressedTextureCube has been removed. Use THREE.DDSLoader instead."
                       );
                     });
-                  var zc = {
+                  var Vc = {
                     createMultiMaterialObject: function() {
                       console.error(
                         "THREE.SceneUtils has been moved to /examples/js/utils/SceneUtils.js"
@@ -33511,33 +33527,33 @@ object-assign
                     (e.Bone = go),
                     (e.Mesh = dr),
                     (e.LineSegments = Ao),
-                    (e.LineLoop = wo),
+                    (e.LineLoop = Eo),
                     (e.Line = bo),
-                    (e.Points = Eo),
-                    (e.Group = Gi),
+                    (e.Points = xo),
+                    (e.Group = ji),
                     (e.VideoTexture = _o),
                     (e.DataTexture = Zt),
-                    (e.DataTexture3D = Mr),
-                    (e.CompressedTexture = Mo),
+                    (e.DataTexture3D = Tr),
+                    (e.CompressedTexture = To),
                     (e.CubeTexture = _r),
-                    (e.CanvasTexture = To),
+                    (e.CanvasTexture = Mo),
                     (e.DepthTexture = So),
                     (e.Texture = qt),
                     (e.AnimationLoader = ys),
                     (e.CompressedTextureLoader = bs),
                     (e.DataTextureLoader = As),
-                    (e.CubeTextureLoader = xs),
-                    (e.TextureLoader = Es),
+                    (e.CubeTextureLoader = ws),
+                    (e.TextureLoader = xs),
                     (e.ObjectLoader = ll),
                     (e.MaterialLoader = il),
                     (e.BufferGeometryLoader = al),
                     (e.DefaultLoadingManager = ms),
                     (e.LoadingManager = fs),
-                    (e.ImageLoader = ws),
+                    (e.ImageLoader = Es),
                     (e.ImageBitmapLoader = gl),
-                    (e.FontLoader = wl),
+                    (e.FontLoader = El),
                     (e.FileLoader = gs),
-                    (e.Loader = xl),
+                    (e.Loader = wl),
                     (e.LoaderUtils = ol),
                     (e.Cache = ps),
                     (e.AudioLoader = Ql),
@@ -33577,14 +33593,14 @@ object-assign
                     (e.AnimationClip = hs),
                     (e.Uniform = cc),
                     (e.InstancedBufferGeometry = uc),
-                    (e.BufferGeometry = Vn),
+                    (e.BufferGeometry = Gn),
                     (e.Geometry = Ln),
                     (e.InterleavedBufferAttribute = uo),
                     (e.InstancedInterleavedBuffer = hc),
                     (e.InterleavedBuffer = co),
                     (e.InstancedBufferAttribute = dc),
                     (e.Face3 = gn),
-                    (e.Object3D = Mn),
+                    (e.Object3D = Tn),
                     (e.Raycaster = pc),
                     (e.Layers = bn),
                     (e.EventDispatcher = t),
@@ -33603,23 +33619,23 @@ object-assign
                     (e.Sphere = $t),
                     (e.Ray = cr),
                     (e.Matrix4 = Bt),
-                    (e.Matrix3 = Nt),
+                    (e.Matrix3 = Ft),
                     (e.Box3 = Jt),
                     (e.Box2 = yc),
                     (e.Line3 = bc),
                     (e.Euler = yn),
                     (e.Vector4 = Xt),
-                    (e.Vector3 = Ft),
+                    (e.Vector3 = Nt),
                     (e.Vector2 = It),
                     (e.Quaternion = kt),
                     (e.Color = hn),
                     (e.ImmediateRenderObject = Ac),
-                    (e.VertexNormalsHelper = wc),
-                    (e.SpotLightHelper = xc),
-                    (e.SkeletonHelper = Ec),
+                    (e.VertexNormalsHelper = Ec),
+                    (e.SpotLightHelper = wc),
+                    (e.SkeletonHelper = xc),
                     (e.PointLightHelper = _c),
-                    (e.RectAreaLightHelper = Mc),
-                    (e.HemisphereLightHelper = Tc),
+                    (e.RectAreaLightHelper = Tc),
+                    (e.HemisphereLightHelper = Mc),
                     (e.GridHelper = Sc),
                     (e.PolarGridHelper = Cc),
                     (e.FaceNormalsHelper = Lc),
@@ -33634,11 +33650,11 @@ object-assign
                     (e.Path = Ws),
                     (e.ShapePath = yl),
                     (e.Font = bl),
-                    (e.CurvePath = Gs),
+                    (e.CurvePath = js),
                     (e.Curve = _s),
-                    (e.ImageUtils = Gt),
+                    (e.ImageUtils = jt),
                     (e.ShapeUtils = ma),
-                    (e.WebGLUtils = Vi),
+                    (e.WebGLUtils = Gi),
                     (e.WireframeGeometry = Co),
                     (e.ParametricGeometry = Lo),
                     (e.ParametricBufferGeometry = Ro),
@@ -33646,23 +33662,23 @@ object-assign
                     (e.TetrahedronBufferGeometry = Io),
                     (e.OctahedronGeometry = Bo),
                     (e.OctahedronBufferGeometry = ko),
-                    (e.IcosahedronGeometry = Fo),
-                    (e.IcosahedronBufferGeometry = No),
+                    (e.IcosahedronGeometry = No),
+                    (e.IcosahedronBufferGeometry = Fo),
                     (e.DodecahedronGeometry = Uo),
                     (e.DodecahedronBufferGeometry = Ho),
                     (e.PolyhedronGeometry = Po),
                     (e.PolyhedronBufferGeometry = Oo),
-                    (e.TubeGeometry = zo),
-                    (e.TubeBufferGeometry = jo),
-                    (e.TorusKnotGeometry = Vo),
-                    (e.TorusKnotBufferGeometry = Go),
+                    (e.TubeGeometry = Vo),
+                    (e.TubeBufferGeometry = zo),
+                    (e.TorusKnotGeometry = Go),
+                    (e.TorusKnotBufferGeometry = jo),
                     (e.TorusGeometry = Wo),
                     (e.TorusBufferGeometry = qo),
-                    (e.TextGeometry = xa),
-                    (e.TextBufferGeometry = Ea),
+                    (e.TextGeometry = wa),
+                    (e.TextBufferGeometry = xa),
                     (e.SphereGeometry = _a),
-                    (e.SphereBufferGeometry = Ma),
-                    (e.RingGeometry = Ta),
+                    (e.SphereBufferGeometry = Ta),
+                    (e.RingGeometry = Ma),
                     (e.RingBufferGeometry = Sa),
                     (e.PlaneGeometry = qn),
                     (e.PlaneBufferGeometry = Xn),
@@ -33674,25 +33690,25 @@ object-assign
                     (e.ExtrudeBufferGeometry = ba),
                     (e.EdgesGeometry = Da),
                     (e.ConeGeometry = ka),
-                    (e.ConeBufferGeometry = Fa),
+                    (e.ConeBufferGeometry = Na),
                     (e.CylinderGeometry = Ia),
                     (e.CylinderBufferGeometry = Ba),
-                    (e.CircleGeometry = Na),
+                    (e.CircleGeometry = Fa),
                     (e.CircleBufferGeometry = Ua),
-                    (e.BoxGeometry = Gn),
+                    (e.BoxGeometry = jn),
                     (e.BoxBufferGeometry = Wn),
-                    (e.ShadowMaterial = za),
+                    (e.ShadowMaterial = Va),
                     (e.SpriteMaterial = ho),
-                    (e.RawShaderMaterial = ja),
+                    (e.RawShaderMaterial = za),
                     (e.ShaderMaterial = lr),
-                    (e.PointsMaterial = xo),
-                    (e.MeshPhysicalMaterial = Ga),
-                    (e.MeshStandardMaterial = Va),
+                    (e.PointsMaterial = wo),
+                    (e.MeshPhysicalMaterial = ja),
+                    (e.MeshStandardMaterial = Ga),
                     (e.MeshPhongMaterial = Wa),
                     (e.MeshToonMaterial = qa),
                     (e.MeshNormalMaterial = Xa),
                     (e.MeshLambertMaterial = Ya),
-                    (e.MeshDepthMaterial = Ni),
+                    (e.MeshDepthMaterial = Fi),
                     (e.MeshDistanceMaterial = Ui),
                     (e.MeshBasicMaterial = hr),
                     (e.MeshMatcapMaterial = Qa),
@@ -33700,8 +33716,8 @@ object-assign
                     (e.LineBasicMaterial = yo),
                     (e.Material = sr),
                     (e.Float64BufferAttribute = Un),
-                    (e.Float32BufferAttribute = Nn),
-                    (e.Uint32BufferAttribute = Fn),
+                    (e.Float32BufferAttribute = Fn),
+                    (e.Uint32BufferAttribute = Nn),
                     (e.Int32BufferAttribute = kn),
                     (e.Uint16BufferAttribute = Bn),
                     (e.Int16BufferAttribute = In),
@@ -33709,16 +33725,16 @@ object-assign
                     (e.Uint8BufferAttribute = On),
                     (e.Int8BufferAttribute = Pn),
                     (e.BufferAttribute = Rn),
-                    (e.ArcCurve = Ts),
+                    (e.ArcCurve = Ms),
                     (e.CatmullRomCurve3 = Os),
                     (e.CubicBezierCurve = ks),
-                    (e.CubicBezierCurve3 = Fs),
-                    (e.EllipseCurve = Ms),
-                    (e.LineCurve = Ns),
+                    (e.CubicBezierCurve3 = Ns),
+                    (e.EllipseCurve = Ts),
+                    (e.LineCurve = Fs),
                     (e.LineCurve3 = Us),
                     (e.QuadraticBezierCurve = Hs),
-                    (e.QuadraticBezierCurve3 = zs),
-                    (e.SplineCurve = js),
+                    (e.QuadraticBezierCurve3 = Vs),
+                    (e.SplineCurve = zs),
                     (e.REVISION = f),
                     (e.MOUSE = { LEFT: 0, MIDDLE: 1, RIGHT: 2 }),
                     (e.CullFaceNone = m),
@@ -33731,14 +33747,14 @@ object-assign
                     (e.PCFShadowMap = y),
                     (e.PCFSoftShadowMap = b),
                     (e.FrontSide = A),
-                    (e.BackSide = w),
-                    (e.DoubleSide = x),
+                    (e.BackSide = E),
+                    (e.DoubleSide = w),
                     (e.FlatShading = 1),
                     (e.SmoothShading = 2),
-                    (e.NoColors = E),
+                    (e.NoColors = x),
                     (e.FaceColors = _),
-                    (e.VertexColors = M),
-                    (e.NoBlending = T),
+                    (e.VertexColors = T),
+                    (e.NoBlending = M),
                     (e.NormalBlending = S),
                     (e.AdditiveBlending = C),
                     (e.SubtractiveBlending = L),
@@ -33749,14 +33765,14 @@ object-assign
                     (e.ReverseSubtractEquation = I),
                     (e.MinEquation = B),
                     (e.MaxEquation = k),
-                    (e.ZeroFactor = F),
-                    (e.OneFactor = N),
+                    (e.ZeroFactor = N),
+                    (e.OneFactor = F),
                     (e.SrcColorFactor = U),
                     (e.OneMinusSrcColorFactor = H),
-                    (e.SrcAlphaFactor = z),
-                    (e.OneMinusSrcAlphaFactor = j),
-                    (e.DstAlphaFactor = V),
-                    (e.OneMinusDstAlphaFactor = G),
+                    (e.SrcAlphaFactor = V),
+                    (e.OneMinusSrcAlphaFactor = z),
+                    (e.DstAlphaFactor = G),
+                    (e.OneMinusDstAlphaFactor = j),
                     (e.DstColorFactor = W),
                     (e.OneMinusDstColorFactor = q),
                     (e.SrcAlphaSaturateFactor = X),
@@ -33788,12 +33804,12 @@ object-assign
                     (e.RepeatWrapping = ye),
                     (e.ClampToEdgeWrapping = be),
                     (e.MirroredRepeatWrapping = Ae),
-                    (e.NearestFilter = we),
-                    (e.NearestMipMapNearestFilter = xe),
-                    (e.NearestMipMapLinearFilter = Ee),
+                    (e.NearestFilter = Ee),
+                    (e.NearestMipMapNearestFilter = we),
+                    (e.NearestMipMapLinearFilter = xe),
                     (e.LinearFilter = _e),
-                    (e.LinearMipMapNearestFilter = Me),
-                    (e.LinearMipMapLinearFilter = Te),
+                    (e.LinearMipMapNearestFilter = Te),
+                    (e.LinearMipMapLinearFilter = Me),
                     (e.UnsignedByteType = Se),
                     (e.ByteType = Ce),
                     (e.ShortType = Le),
@@ -33804,14 +33820,14 @@ object-assign
                     (e.HalfFloatType = Ie),
                     (e.UnsignedShort4444Type = Be),
                     (e.UnsignedShort5551Type = ke),
-                    (e.UnsignedShort565Type = Fe),
-                    (e.UnsignedInt248Type = Ne),
+                    (e.UnsignedShort565Type = Ne),
+                    (e.UnsignedInt248Type = Fe),
                     (e.AlphaFormat = Ue),
                     (e.RGBFormat = He),
-                    (e.RGBAFormat = ze),
-                    (e.LuminanceFormat = je),
-                    (e.LuminanceAlphaFormat = Ve),
-                    (e.RGBEFormat = Ge),
+                    (e.RGBAFormat = Ve),
+                    (e.LuminanceFormat = ze),
+                    (e.LuminanceAlphaFormat = Ge),
+                    (e.RGBEFormat = je),
                     (e.DepthFormat = We),
                     (e.DepthStencilFormat = qe),
                     (e.RedFormat = Xe),
@@ -33849,20 +33865,20 @@ object-assign
                     (e.WrapAroundEnding = 2402),
                     (e.TrianglesDrawMode = bt),
                     (e.TriangleStripDrawMode = At),
-                    (e.TriangleFanDrawMode = wt),
-                    (e.LinearEncoding = xt),
-                    (e.sRGBEncoding = Et),
+                    (e.TriangleFanDrawMode = Et),
+                    (e.LinearEncoding = wt),
+                    (e.sRGBEncoding = xt),
                     (e.GammaEncoding = _t),
-                    (e.RGBEEncoding = Mt),
+                    (e.RGBEEncoding = Tt),
                     (e.LogLuvEncoding = 3003),
-                    (e.RGBM7Encoding = Tt),
+                    (e.RGBM7Encoding = Mt),
                     (e.RGBM16Encoding = St),
                     (e.RGBDEncoding = Ct),
                     (e.BasicDepthPacking = Lt),
                     (e.RGBADepthPacking = Rt),
                     (e.TangentSpaceNormalMap = Pt),
                     (e.ObjectSpaceNormalMap = Ot),
-                    (e.CubeGeometry = Gn),
+                    (e.CubeGeometry = jn),
                     (e.Face4 = function(e, t, n, r, i, o, a) {
                       return (
                         console.warn(
@@ -33900,7 +33916,7 @@ object-assign
                         console.warn(
                           "THREE.PointCloud has been renamed to THREE.Points."
                         ),
-                        new Eo(e, t)
+                        new xo(e, t)
                       );
                     }),
                     (e.Particle = function(e) {
@@ -33916,7 +33932,7 @@ object-assign
                         console.warn(
                           "THREE.ParticleSystem has been renamed to THREE.Points."
                         ),
-                        new Eo(e, t)
+                        new xo(e, t)
                       );
                     }),
                     (e.PointCloudMaterial = function(e) {
@@ -33924,7 +33940,7 @@ object-assign
                         console.warn(
                           "THREE.PointCloudMaterial has been renamed to THREE.PointsMaterial."
                         ),
-                        new xo(e)
+                        new wo(e)
                       );
                     }),
                     (e.ParticleBasicMaterial = function(e) {
@@ -33932,7 +33948,7 @@ object-assign
                         console.warn(
                           "THREE.ParticleBasicMaterial has been renamed to THREE.PointsMaterial."
                         ),
-                        new xo(e)
+                        new wo(e)
                       );
                     }),
                     (e.ParticleSystemMaterial = function(e) {
@@ -33940,7 +33956,7 @@ object-assign
                         console.warn(
                           "THREE.ParticleSystemMaterial has been renamed to THREE.PointsMaterial."
                         ),
-                        new xo(e)
+                        new wo(e)
                       );
                     }),
                     (e.Vertex = function(e, t, n) {
@@ -33948,7 +33964,7 @@ object-assign
                         console.warn(
                           "THREE.Vertex has been removed. Use THREE.Vector3 instead."
                         ),
-                        new Ft(e, t, n)
+                        new Nt(e, t, n)
                       );
                     }),
                     (e.DynamicBufferAttribute = function(e, t) {
@@ -34012,7 +34028,7 @@ object-assign
                         console.warn(
                           "THREE.Uint32Attribute has been removed. Use new THREE.Uint32BufferAttribute() instead."
                         ),
-                        new Fn(e, t)
+                        new Nn(e, t)
                       );
                     }),
                     (e.Float32Attribute = function(e, t) {
@@ -34020,7 +34036,7 @@ object-assign
                         console.warn(
                           "THREE.Float32Attribute has been removed. Use new THREE.Float32BufferAttribute() instead."
                         ),
-                        new Nn(e, t)
+                        new Fn(e, t)
                       );
                     }),
                     (e.Float64Attribute = function(e, t) {
@@ -34031,8 +34047,8 @@ object-assign
                         new Un(e, t)
                       );
                     }),
-                    (e.ClosedSplineCurve3 = Fc),
-                    (e.SplineCurve3 = Nc),
+                    (e.ClosedSplineCurve3 = Nc),
+                    (e.SplineCurve3 = Fc),
                     (e.Spline = Uc),
                     (e.AxisHelper = function(e) {
                       return (
@@ -34117,7 +34133,7 @@ object-assign
                     (e.JSONLoader = function() {
                       console.error("THREE.JSONLoader has been removed.");
                     }),
-                    (e.SceneUtils = zc),
+                    (e.SceneUtils = Vc),
                     (e.LensFlare = function() {
                       console.error(
                         "THREE.LensFlare has been moved to /examples/js/objects/Lensflare.js"
@@ -34313,26 +34329,26 @@ object-assign
                       for (var y in i) {
                         var b = o[y],
                           A = i[y],
-                          w = t.GetAttributeByUniqueId(a, A);
-                        this.addAttributeToGeometry(e, t, a, y, b, w, g, v);
+                          E = t.GetAttributeByUniqueId(a, A);
+                        this.addAttributeToGeometry(e, t, a, y, b, E, g, v);
                       }
                     else
                       for (var y in this.nativeAttributeMap) {
-                        var x = t.GetAttributeId(
+                        var w = t.GetAttributeId(
                           a,
                           e[this.nativeAttributeMap[y]]
                         );
-                        if (-1 !== x) {
+                        if (-1 !== w) {
                           this.verbosity > 0 &&
                             console.log("Loaded " + y + " attribute.");
-                          var w = t.GetAttribute(a, x);
+                          var E = t.GetAttribute(a, w);
                           this.addAttributeToGeometry(
                             e,
                             t,
                             a,
                             y,
                             Float32Array,
-                            w,
+                            E,
                             g,
                             v
                           );
@@ -34340,27 +34356,27 @@ object-assign
                       }
                     if (n == e.TRIANGULAR_MESH)
                       if (this.drawMode === THREE.TriangleStripDrawMode) {
-                        var E = new e.DracoInt32Array();
-                        t.GetTriangleStripsFromMesh(a, E),
-                          (v.indices = new Uint32Array(E.size()));
-                        for (var _ = 0; _ < E.size(); ++_)
-                          v.indices[_] = E.GetValue(_);
-                        e.destroy(E);
+                        var x = new e.DracoInt32Array();
+                        t.GetTriangleStripsFromMesh(a, x),
+                          (v.indices = new Uint32Array(x.size()));
+                        for (var _ = 0; _ < x.size(); ++_)
+                          v.indices[_] = x.GetValue(_);
+                        e.destroy(x);
                       } else {
-                        var M = 3 * u;
-                        v.indices = new Uint32Array(M);
+                        var T = 3 * u;
+                        v.indices = new Uint32Array(T);
                         for (
-                          var T = new e.DracoInt32Array(), _ = 0;
+                          var M = new e.DracoInt32Array(), _ = 0;
                           _ < u;
                           ++_
                         ) {
-                          t.GetFaceFromMesh(a, _, T);
+                          t.GetFaceFromMesh(a, _, M);
                           var S = 3 * _;
-                          (v.indices[S] = T.GetValue(0)),
-                            (v.indices[S + 1] = T.GetValue(1)),
-                            (v.indices[S + 2] = T.GetValue(2));
+                          (v.indices[S] = M.GetValue(0)),
+                            (v.indices[S + 1] = M.GetValue(1)),
+                            (v.indices[S + 2] = M.GetValue(2));
                         }
-                        e.destroy(T);
+                        e.destroy(M);
                       }
                     (g.drawMode = this.drawMode),
                       n == e.TRIANGULAR_MESH &&
@@ -34633,7 +34649,7 @@ object-assign
                           parser: A,
                           userData: {},
                         };
-                        M(f, o, i), s(o);
+                        T(f, o, i), s(o);
                       }, l);
                     }
                   },
@@ -35127,10 +35143,10 @@ object-assign
                       b++
                     ) {
                       var A = o[f + b + a],
-                        w = o[f + b + s] * c,
-                        x = o[p + b + a],
-                        E = o[p + b] * c;
-                      i[b] = g * A + y * w + m * x + v * E;
+                        E = o[f + b + s] * c,
+                        w = o[p + b + a],
+                        x = o[p + b] * c;
+                      i[b] = g * A + y * E + m * w + v * x;
                     }
                     return i;
                   });
@@ -35230,13 +35246,13 @@ object-assign
                     rotation: "quaternion",
                     weights: "morphTargetInfluences",
                   },
-                  w = {
+                  E = {
                     CUBICSPLINE: THREE.InterpolateSmooth,
                     LINEAR: THREE.InterpolateLinear,
                     STEP: THREE.InterpolateDiscrete,
                   },
-                  x = { OPAQUE: "OPAQUE", MASK: "MASK", BLEND: "BLEND" },
-                  E = {
+                  w = { OPAQUE: "OPAQUE", MASK: "MASK", BLEND: "BLEND" },
+                  x = {
                     "image/png": THREE.RGBAFormat,
                     "image/jpeg": THREE.RGBFormat,
                   };
@@ -35251,14 +35267,14 @@ object-assign
                     ? e
                     : t + e;
                 }
-                function M(e, t, n) {
+                function T(e, t, n) {
                   for (var r in n.extensions)
                     void 0 === e[r] &&
                       ((t.userData.gltfExtensions =
                         t.userData.gltfExtensions || {}),
                       (t.userData.gltfExtensions[r] = n.extensions[r]));
                 }
-                function T(e, t) {
+                function M(e, t) {
                   void 0 !== t.extras &&
                     ("object" == typeof t.extras
                       ? (e.userData = t.extras)
@@ -35377,7 +35393,7 @@ object-assign
                     i.push(l);
                   }
                   return (
-                    T(e, t),
+                    M(e, t),
                     Promise.all(i).then(function() {
                       return void 0 !== t.targets
                         ? (function(e, t, n) {
@@ -35698,17 +35714,17 @@ object-assign
                           var g = y.SCALAR,
                             b = m[r.sparse.indices.componentType],
                             A = r.sparse.indices.byteOffset || 0,
-                            w = r.sparse.values.byteOffset || 0,
-                            x = new b(e[1], A, r.sparse.count * g),
-                            E = new l(e[2], w, r.sparse.count * s);
+                            E = r.sparse.values.byteOffset || 0,
+                            w = new b(e[1], A, r.sparse.count * g),
+                            x = new l(e[2], E, r.sparse.count * s);
                           null !== a && o.setArray(o.array.slice());
-                          for (var _ = 0, M = x.length; _ < M; _++) {
-                            var T = x[_];
+                          for (var _ = 0, T = w.length; _ < T; _++) {
+                            var M = w[_];
                             if (
-                              (o.setX(T, E[_ * s]),
-                              s >= 2 && o.setY(T, E[_ * s + 1]),
-                              s >= 3 && o.setZ(T, E[_ * s + 2]),
-                              s >= 4 && o.setW(T, E[_ * s + 3]),
+                              (o.setX(M, x[_ * s]),
+                              s >= 2 && o.setY(M, x[_ * s + 1]),
+                              s >= 3 && o.setZ(M, x[_ * s + 2]),
+                              s >= 4 && o.setW(M, x[_ * s + 3]),
                               s >= 5)
                             )
                               throw new Error(
@@ -35759,7 +35775,7 @@ object-assign
                           !0 === h && s.revokeObjectURL(u),
                             (e.flipY = !1),
                             void 0 !== l.name && (e.name = l.name),
-                            t.mimeType in E && (e.format = E[t.mimeType]);
+                            t.mimeType in x && (e.format = x[t.mimeType]);
                           var n = i.samplers || {},
                             r = n[l.sampler] || {};
                           return (
@@ -35844,12 +35860,12 @@ object-assign
                           ));
                     }
                     !0 === o.doubleSided && (a.side = THREE.DoubleSide);
-                    var p = o.alphaMode || x.OPAQUE;
+                    var p = o.alphaMode || w.OPAQUE;
                     return (
-                      p === x.BLEND
+                      p === w.BLEND
                         ? (a.transparent = !0)
                         : ((a.transparent = !1),
-                          p === x.MASK &&
+                          p === w.MASK &&
                             (a.alphaTest =
                               void 0 !== o.alphaCutoff ? o.alphaCutoff : 0.5)),
                       void 0 !== o.normalTexture &&
@@ -35900,8 +35916,8 @@ object-assign
                             (e.emissiveMap.encoding = THREE.sRGBEncoding),
                           e.specularMap &&
                             (e.specularMap.encoding = THREE.sRGBEncoding),
-                          T(e, o),
-                          o.extensions && M(i, e, o),
+                          M(e, o),
+                          o.extensions && T(i, e, o),
                           e
                         );
                       })
@@ -36105,53 +36121,53 @@ object-assign
                             S(d, o),
                             (d.name = o.name || "mesh_" + e),
                             s.length > 1 && (d.name += "_" + u),
-                            T(d, o),
+                            M(d, o),
                             c.push(d);
                           for (
                             var g = l ? d.material : [d.material],
                               y = void 0 !== p.attributes.color,
                               b = void 0 === p.attributes.normal,
                               A = !0 === d.isSkinnedMesh,
-                              w = Object.keys(p.morphAttributes).length > 0,
-                              x = w && void 0 !== p.morphAttributes.normal,
-                              E = 0,
+                              E = Object.keys(p.morphAttributes).length > 0,
+                              w = E && void 0 !== p.morphAttributes.normal,
+                              x = 0,
                               _ = g.length;
-                            E < _;
-                            E++
+                            x < _;
+                            x++
                           ) {
-                            var v = g[E];
+                            var v = g[x];
                             if (d.isPoints) {
-                              var M = "PointsMaterial:" + v.uuid,
-                                C = t.cache.get(M);
+                              var T = "PointsMaterial:" + v.uuid,
+                                C = t.cache.get(T);
                               C ||
                                 ((C = new THREE.PointsMaterial()),
                                 THREE.Material.prototype.copy.call(C, v),
                                 C.color.copy(v.color),
                                 (C.map = v.map),
                                 (C.lights = !1),
-                                t.cache.add(M, C)),
+                                t.cache.add(T, C)),
                                 (v = C);
                             } else if (d.isLine) {
-                              var M = "LineBasicMaterial:" + v.uuid,
-                                L = t.cache.get(M);
+                              var T = "LineBasicMaterial:" + v.uuid,
+                                L = t.cache.get(T);
                               L ||
                                 ((L = new THREE.LineBasicMaterial()),
                                 THREE.Material.prototype.copy.call(L, v),
                                 L.color.copy(v.color),
                                 (L.lights = !1),
-                                t.cache.add(M, L)),
+                                t.cache.add(T, L)),
                                 (v = L);
                             }
-                            if (y || b || A || w) {
-                              var M = "ClonedMaterial:" + v.uuid + ":";
+                            if (y || b || A || E) {
+                              var T = "ClonedMaterial:" + v.uuid + ":";
                               v.isGLTFSpecularGlossinessMaterial &&
-                                (M += "specular-glossiness:"),
-                                A && (M += "skinning:"),
-                                y && (M += "vertex-colors:"),
-                                b && (M += "flat-shading:"),
-                                w && (M += "morph-targets:"),
-                                x && (M += "morph-normals:");
-                              var R = t.cache.get(M);
+                                (T += "specular-glossiness:"),
+                                A && (T += "skinning:"),
+                                y && (T += "vertex-colors:"),
+                                b && (T += "flat-shading:"),
+                                E && (T += "morph-targets:"),
+                                w && (T += "morph-normals:");
+                              var R = t.cache.get(T);
                               R ||
                                 ((R = v.isGLTFSpecularGlossinessMaterial
                                   ? i[
@@ -36161,12 +36177,12 @@ object-assign
                                 A && (R.skinning = !0),
                                 y && (R.vertexColors = THREE.VertexColors),
                                 b && (R.flatShading = !0),
-                                w && (R.morphTargets = !0),
-                                x && (R.morphNormals = !0),
-                                t.cache.add(M, R)),
+                                E && (R.morphTargets = !0),
+                                w && (R.morphNormals = !0),
+                                t.cache.add(T, R)),
                                 (v = R);
                             }
-                            (g[E] = v),
+                            (g[x] = v),
                               v.aoMap &&
                                 void 0 === p.attributes.uv2 &&
                                 void 0 !== p.attributes.uv &&
@@ -36222,7 +36238,7 @@ object-assign
                               r.zfar
                             )),
                         void 0 !== n.name && (t.name = n.name),
-                        T(t, n),
+                        M(t, n),
                         Promise.resolve(t)
                       );
                     console.warn(
@@ -36318,25 +36334,25 @@ object-assign
                           var y = h.name ? h.name : h.uuid,
                             b =
                               void 0 !== m.interpolation
-                                ? w[m.interpolation]
+                                ? E[m.interpolation]
                                 : THREE.InterpolateLinear,
-                            x = [];
+                            w = [];
                           A[v.path] === A.weights
                             ? h.traverse(function(e) {
                                 !0 === e.isMesh &&
                                   e.morphTargetInfluences &&
-                                  x.push(e.name ? e.name : e.uuid);
+                                  w.push(e.name ? e.name : e.uuid);
                               })
-                            : x.push(y);
-                          for (var E = 0, _ = x.length; E < _; E++) {
-                            var M = new g(
-                              x[E] + "." + A[v.path],
+                            : w.push(y);
+                          for (var x = 0, _ = w.length; x < _; x++) {
+                            var T = new g(
+                              w[x] + "." + A[v.path],
                               THREE.AnimationUtils.arraySlice(d.array, 0),
                               THREE.AnimationUtils.arraySlice(f.array, 0),
                               b
                             );
                             "CUBICSPLINE" === m.interpolation &&
-                              ((M.createInterpolant = function(e) {
+                              ((T.createInterpolant = function(e) {
                                 return new p(
                                   this.times,
                                   this.values,
@@ -36344,13 +36360,13 @@ object-assign
                                   e
                                 );
                               }),
-                              (M.createInterpolant.isInterpolantFactoryMethodGLTFCubicSpline = !0)),
-                              l.push(M);
+                              (T.createInterpolant.isInterpolantFactoryMethodGLTFCubicSpline = !0)),
+                              l.push(T);
                           }
                         }
                       }
-                      var T = void 0 !== n.name ? n.name : "animation_" + e;
-                      return new THREE.AnimationClip(T, void 0, l);
+                      var M = void 0 !== n.name ? n.name : "animation_" + e;
+                      return new THREE.AnimationClip(M, void 0, l);
                     });
                   }),
                   (O.prototype.loadNode = function(e) {
@@ -36404,8 +36420,8 @@ object-assign
                           (e.name = THREE.PropertyBinding.sanitizeNodeName(
                             s.name
                           )),
-                        T(e, s),
-                        s.extensions && M(r, e, s),
+                        M(e, s),
+                        s.extensions && T(r, e, s),
                         void 0 !== s.matrix)
                       ) {
                         var t = new THREE.Matrix4();
@@ -36500,8 +36516,8 @@ object-assign
                         i = this.json.scenes[t],
                         o = new THREE.Scene();
                       void 0 !== i.name && (o.name = i.name),
-                        T(o, i),
-                        i.extensions && M(r, o, i);
+                        M(o, i),
+                        i.extensions && T(r, o, i);
                       for (
                         var a = i.nodes || [], s = [], l = 0, c = a.length;
                         l < c;
@@ -37121,22 +37137,22 @@ object-assign
                               }
                             }
                             for (
-                              var w = v[0], g = 1, y = v.length - 1;
+                              var E = v[0], g = 1, y = v.length - 1;
                               g < y;
                               g++
                             ) {
-                              var x = v[g],
-                                E = v[g + 1];
+                              var w = v[g],
+                                x = v[g + 1];
                               o.addFace(
+                                E[0],
                                 w[0],
                                 x[0],
-                                E[0],
+                                E[1],
                                 w[1],
                                 x[1],
-                                E[1],
+                                E[2],
                                 w[2],
-                                x[2],
-                                E[2]
+                                x[2]
                               );
                             }
                           } else if ("l" === l) {
@@ -37144,16 +37160,16 @@ object-assign
                                 .substring(1)
                                 .trim()
                                 .split(" "),
-                              M = [],
-                              T = [];
-                            if (-1 === s.indexOf("/")) M = _;
+                              T = [],
+                              M = [];
+                            if (-1 === s.indexOf("/")) T = _;
                             else
                               for (var S = 0, C = _.length; S < C; S++) {
                                 var L = _[S].split("/");
-                                "" !== L[0] && M.push(L[0]),
-                                  "" !== L[1] && T.push(L[1]);
+                                "" !== L[0] && T.push(L[0]),
+                                  "" !== L[1] && M.push(L[1]);
                               }
-                            o.addLineGeometry(M, T);
+                            o.addLineGeometry(T, M);
                           } else if ("p" === l) {
                             var f = s.substr(1).trim(),
                               R = f.split(" ");
@@ -37188,40 +37204,40 @@ object-assign
                       for (var h = 0, d = o.objects.length; h < d; h++) {
                         var B = o.objects[h],
                           k = B.geometry,
-                          F = B.materials,
-                          N = "Line" === k.type,
+                          N = B.materials,
+                          F = "Line" === k.type,
                           U = "Points" === k.type,
                           H = !1;
                         if (0 !== k.vertices.length) {
-                          var z = new THREE.BufferGeometry();
-                          z.addAttribute(
+                          var V = new THREE.BufferGeometry();
+                          V.addAttribute(
                             "position",
                             new THREE.Float32BufferAttribute(k.vertices, 3)
                           ),
                             k.normals.length > 0
-                              ? z.addAttribute(
+                              ? V.addAttribute(
                                   "normal",
                                   new THREE.Float32BufferAttribute(k.normals, 3)
                                 )
-                              : z.computeVertexNormals(),
+                              : V.computeVertexNormals(),
                             k.colors.length > 0 &&
                               ((H = !0),
-                              z.addAttribute(
+                              V.addAttribute(
                                 "color",
                                 new THREE.Float32BufferAttribute(k.colors, 3)
                               )),
                             k.uvs.length > 0 &&
-                              z.addAttribute(
+                              V.addAttribute(
                                 "uv",
                                 new THREE.Float32BufferAttribute(k.uvs, 2)
                               );
-                          for (var j, V = [], G = 0, W = F.length; G < W; G++) {
-                            var q = F[G],
+                          for (var z, G = [], j = 0, W = N.length; j < W; j++) {
+                            var q = N[j],
                               D = void 0;
                             if (null !== this.materials)
                               if (
                                 ((D = this.materials.create(q.name)),
-                                !N ||
+                                !F ||
                                   !D ||
                                   D instanceof THREE.LineBasicMaterial)
                               ) {
@@ -37248,7 +37264,7 @@ object-assign
                                   (D = Y);
                               }
                             D ||
-                              ((D = N
+                              ((D = F
                                 ? new THREE.LineBasicMaterial()
                                 : U
                                 ? new THREE.PointsMaterial({
@@ -37260,25 +37276,25 @@ object-assign
                               (D.vertexColors = H
                                 ? THREE.VertexColors
                                 : THREE.NoColors),
-                              V.push(D);
+                              G.push(D);
                           }
-                          if (V.length > 1) {
-                            for (var G = 0, W = F.length; G < W; G++) {
-                              var q = F[G];
-                              z.addGroup(q.groupStart, q.groupCount, G);
+                          if (G.length > 1) {
+                            for (var j = 0, W = N.length; j < W; j++) {
+                              var q = N[j];
+                              V.addGroup(q.groupStart, q.groupCount, j);
                             }
-                            j = N
-                              ? new THREE.LineSegments(z, V)
+                            z = F
+                              ? new THREE.LineSegments(V, G)
                               : U
-                              ? new THREE.Points(z, V)
-                              : new THREE.Mesh(z, V);
+                              ? new THREE.Points(V, G)
+                              : new THREE.Mesh(V, G);
                           } else
-                            j = N
-                              ? new THREE.LineSegments(z, V[0])
+                            z = F
+                              ? new THREE.LineSegments(V, G[0])
                               : U
-                              ? new THREE.Points(z, V[0])
-                              : new THREE.Mesh(z, V[0]);
-                          (j.name = B.name), I.add(j);
+                              ? new THREE.Points(V, G[0])
+                              : new THREE.Mesh(V, G[0]);
+                          (z.name = B.name), I.add(z);
                         }
                       }
                       return console.timeEnd("OBJLoader"), I;
@@ -37966,12 +37982,12 @@ object-assign
                               t
                             );
                           },
-                          w = function(e, t) {
+                          E = function(e, t) {
                             for (var n in t)
                               t.hasOwnProperty(n) && (e[n] = t[n]);
                             return e;
                           },
-                          x = function(e) {
+                          w = function(e) {
                             if (l()) {
                               var t = e.style.width,
                                 n = e.style.height;
@@ -37983,7 +37999,7 @@ object-assign
                             }
                             window.canvas = e;
                           },
-                          E = (function() {
+                          x = (function() {
                             var e = Math.PI / 180,
                               t = 0.25 * Math.PI,
                               n = new Float32Array([0, 0, 0, 1]),
@@ -38024,12 +38040,12 @@ object-assign
                                 y,
                                 b,
                                 A,
+                                E,
                                 w,
                                 x,
-                                E,
                                 _,
-                                M,
                                 T,
+                                M,
                                 S,
                                 C,
                                 L = a.orientation || n,
@@ -38041,25 +38057,25 @@ object-assign
                                 (m = h[2]),
                                 (v = h[3]),
                                 (A = p * (g = p + p)),
-                                (w = p * (y = f + f)),
-                                (x = p * (b = m + m)),
-                                (E = f * y),
+                                (E = p * (y = f + f)),
+                                (w = p * (b = m + m)),
+                                (x = f * y),
                                 (_ = f * b),
-                                (M = m * b),
-                                (T = v * g),
+                                (T = m * b),
+                                (M = v * g),
                                 (S = v * y),
                                 (C = v * b),
-                                (u[0] = 1 - (E + M)),
-                                (u[1] = w + C),
-                                (u[2] = x - S),
+                                (u[0] = 1 - (x + T)),
+                                (u[1] = E + C),
+                                (u[2] = w - S),
                                 (u[3] = 0),
-                                (u[4] = w - C),
-                                (u[5] = 1 - (A + M)),
-                                (u[6] = _ + T),
+                                (u[4] = E - C),
+                                (u[5] = 1 - (A + T)),
+                                (u[6] = _ + M),
                                 (u[7] = 0),
-                                (u[8] = x + S),
-                                (u[9] = _ - T),
-                                (u[10] = 1 - (A + E)),
+                                (u[8] = w + S),
+                                (u[9] = _ - M),
+                                (u[10] = 1 - (A + x)),
                                 (u[11] = 0),
                                 (u[12] = d[0]),
                                 (u[13] = d[1]),
@@ -38153,12 +38169,12 @@ object-assign
                                     y = n * s - r * a,
                                     b = n * l - i * a,
                                     A = n * c - o * a,
-                                    w = r * l - i * s,
-                                    x = r * c - o * s,
-                                    E = i * c - o * l,
+                                    E = r * l - i * s,
+                                    w = r * c - o * s,
+                                    x = i * c - o * l,
                                     _ = u * m - h * f,
-                                    M = u * v - d * f,
-                                    T = u * g - p * f,
+                                    T = u * v - d * f,
+                                    M = u * g - p * f,
                                     S = h * v - d * m,
                                     C = h * g - p * m,
                                     L = d * g - p * v,
@@ -38166,27 +38182,27 @@ object-assign
                                       y * L -
                                       b * C +
                                       A * S +
-                                      w * T -
-                                      x * M +
-                                      E * _;
+                                      E * M -
+                                      w * T +
+                                      x * _;
                                   if (!R) return null;
                                   (R = 1 / R),
                                     (e[0] = (s * L - l * C + c * S) * R),
                                     (e[1] = (i * C - r * L - o * S) * R),
-                                    (e[2] = (m * E - v * x + g * w) * R),
-                                    (e[3] = (d * x - h * E - p * w) * R),
-                                    (e[4] = (l * T - a * L - c * M) * R),
-                                    (e[5] = (n * L - i * T + o * M) * R),
-                                    (e[6] = (v * A - f * E - g * b) * R),
-                                    (e[7] = (u * E - d * A + p * b) * R),
-                                    (e[8] = (a * C - s * T + c * _) * R),
-                                    (e[9] = (r * T - n * C - o * _) * R),
-                                    (e[10] = (f * x - m * A + g * y) * R),
-                                    (e[11] = (h * A - u * x - p * y) * R),
-                                    (e[12] = (s * M - a * S - l * _) * R),
-                                    (e[13] = (n * S - r * M + i * _) * R),
-                                    (e[14] = (m * b - f * w - v * y) * R),
-                                    (e[15] = (u * w - h * b + d * y) * R);
+                                    (e[2] = (m * x - v * w + g * E) * R),
+                                    (e[3] = (d * w - h * x - p * E) * R),
+                                    (e[4] = (l * M - a * L - c * T) * R),
+                                    (e[5] = (n * L - i * M + o * T) * R),
+                                    (e[6] = (v * A - f * x - g * b) * R),
+                                    (e[7] = (u * x - d * A + p * b) * R),
+                                    (e[8] = (a * C - s * M + c * _) * R),
+                                    (e[9] = (r * M - n * C - o * _) * R),
+                                    (e[10] = (f * w - m * A + g * y) * R),
+                                    (e[11] = (h * A - u * w - p * y) * R),
+                                    (e[12] = (s * T - a * S - l * _) * R),
+                                    (e[13] = (n * S - r * T + i * _) * R),
+                                    (e[14] = (m * b - f * E - v * y) * R),
+                                    (e[15] = (u * E - h * b + d * y) * R);
                                 })(o, o);
                             }
                             return function(e, t, n) {
@@ -38224,15 +38240,15 @@ object-assign
                               -1 === r && (r = e.length), e.substring(0, r)
                             );
                           },
-                          M = ((e = {}),
+                          T = ((e = {}),
                           function(t, n) {
                             void 0 === e[t] &&
                               (console.warn("webvr-polyfill: " + n),
                               (e[t] = !0));
                           }),
-                          T = function(e, t) {
+                          M = function(e, t) {
                             var n = t ? "Please use " + t + " instead." : "";
-                            M(
+                            T(
                               e,
                               e +
                                 " has been deprecated. This may not work on native WebVR displays. " +
@@ -38686,7 +38702,7 @@ object-assign
                                     e.realViewport.call(n, t, r, i, o);
                                 }),
                                 (this.isPatched = !0),
-                                x(t);
+                                w(t);
                             }
                           }),
                           (R.prototype.unpatch = function() {
@@ -38716,7 +38732,7 @@ object-assign
                                   e.bindFramebuffer(e.FRAMEBUFFER, null),
                                 (this.isPatched = !1),
                                 setTimeout(function() {
-                                  x(t);
+                                  w(t);
                                 }, 1);
                             }
                           }),
@@ -38910,9 +38926,9 @@ object-assign
                                     y = Math.sqrt(v * v + g * g),
                                     b = n.distortion.distortInverse(y),
                                     A = (v * b) / y,
-                                    w = (g * b) / y;
+                                    E = (g * b) / y;
                                   (d = (A - o[0]) / (o[2] - o[0])),
-                                    (p = (w - o[3]) / (o[1] - o[3])),
+                                    (p = (E - o[3]) / (o[1] - o[3])),
                                     (d = 2 * (a.x + d * a.width - 0.5)),
                                     (p = 2 * (a.y + p * a.height - 0.5)),
                                     (r[5 * l + 0] = d),
@@ -38921,12 +38937,12 @@ object-assign
                                     (r[5 * l + 3] = m),
                                     (r[5 * l + 4] = c);
                                 }
-                              var x = i[2] - i[0];
-                              (i[0] = -(x + i[0])),
-                                (i[2] = x - i[2]),
-                                (x = o[2] - o[0]),
-                                (o[0] = -(x + o[0])),
-                                (o[2] = x - o[2]),
+                              var w = i[2] - i[0];
+                              (i[0] = -(w + i[0])),
+                                (i[2] = w - i[2]),
+                                (w = o[2] - o[0]),
+                                (o[0] = -(w + o[0])),
+                                (o[2] = w - o[2]),
                                 (a.x = 1 - (a.x + a.width));
                             }
                             return r;
@@ -39219,8 +39235,8 @@ object-assign
                               n = t * (n + this.coefficients[r]);
                             return (n + 1) * e;
                           });
-                        var F = Math.PI / 180,
-                          N = 180 / Math.PI,
+                        var N = Math.PI / 180,
+                          F = 180 / Math.PI,
                           U = function(e, t, n) {
                             (this.x = e || 0),
                               (this.y = t || 0),
@@ -39297,22 +39313,22 @@ object-assign
                           },
                         };
                         var H,
-                          z,
-                          j = function(e, t, n, r) {
+                          V,
+                          z = function(e, t, n, r) {
                             (this.x = e || 0),
                               (this.y = t || 0),
                               (this.z = n || 0),
                               (this.w = void 0 !== r ? r : 1);
                           };
-                        function V(e) {
+                        function G(e) {
                           (this.width = e.width || m()),
                             (this.height = e.height || v()),
                             (this.widthMeters = e.widthMeters),
                             (this.heightMeters = e.heightMeters),
                             (this.bevelMeters = e.bevelMeters);
                         }
-                        j.prototype = {
-                          constructor: j,
+                        z.prototype = {
+                          constructor: z,
                           set: function(e, t, n, r) {
                             return (
                               (this.x = e),
@@ -39470,8 +39486,8 @@ object-assign
                           setFromUnitVectors: function(e, t) {
                             return (
                               void 0 === H && (H = new U()),
-                              (z = e.dot(t) + 1) < 1e-6
-                                ? ((z = 0),
+                              (V = e.dot(t) + 1) < 1e-6
+                                ? ((V = 0),
                                   Math.abs(e.x) > Math.abs(e.z)
                                     ? H.set(-e.y, e.x, 0)
                                     : H.set(0, -e.z, e.y))
@@ -39479,18 +39495,18 @@ object-assign
                               (this.x = H.x),
                               (this.y = H.y),
                               (this.z = H.z),
-                              (this.w = z),
+                              (this.w = V),
                               this.normalize(),
                               this
                             );
                           },
                         };
-                        var G = new V({
+                        var j = new G({
                             widthMeters: 0.11,
                             heightMeters: 0.062,
                             bevelMeters: 0.004,
                           }),
-                          W = new V({
+                          W = new G({
                             widthMeters: 0.1038,
                             heightMeters: 0.0584,
                             bevelMeters: 0.004,
@@ -39588,12 +39604,12 @@ object-assign
                                 : (console.warn(
                                     "Using fallback Android device measurements."
                                   ),
-                                  G);
+                                  j);
                             var t = 0.0254 / e.xdpi,
                               n = 0.0254 / e.ydpi,
                               r = m(),
                               i = v();
-                            return new V({
+                            return new G({
                               widthMeters: t * r,
                               heightMeters: n * i,
                               bevelMeters: 0.001 * e.bevelMm,
@@ -39608,10 +39624,10 @@ object-assign
                               o = e.interLensDistance / 2,
                               a = e.baselineLensDistance - t.bevelMeters,
                               s = t.heightMeters - a,
-                              l = N * Math.atan(n.distort(i / r)),
-                              c = N * Math.atan(n.distort(o / r)),
-                              u = N * Math.atan(n.distort(a / r)),
-                              h = N * Math.atan(n.distort(s / r));
+                              l = F * Math.atan(n.distort(i / r)),
+                              c = F * Math.atan(n.distort(o / r)),
+                              u = F * Math.atan(n.distort(a / r)),
+                              h = F * Math.atan(n.distort(s / r));
                             return {
                               leftDegrees: Math.min(l, e.fov),
                               rightDegrees: Math.min(c, e.fov),
@@ -39623,10 +39639,10 @@ object-assign
                             var e = this.viewer,
                               t = this.device,
                               n = this.distortion,
-                              r = Math.tan(-F * e.fov),
-                              i = Math.tan(F * e.fov),
-                              o = Math.tan(F * e.fov),
-                              a = Math.tan(-F * e.fov),
+                              r = Math.tan(-N * e.fov),
+                              i = Math.tan(N * e.fov),
+                              o = Math.tan(N * e.fov),
+                              a = Math.tan(-N * e.fov),
                               s = t.widthMeters / 4,
                               l = t.heightMeters / 2,
                               c = e.baselineLensDistance - t.bevelMeters - l,
@@ -39651,10 +39667,10 @@ object-assign
                               t = this.device,
                               n = this.distortion,
                               r = new Float32Array(4),
-                              i = n.distortInverse(Math.tan(-F * e.fov)),
-                              o = n.distortInverse(Math.tan(F * e.fov)),
-                              a = n.distortInverse(Math.tan(F * e.fov)),
-                              s = n.distortInverse(Math.tan(-F * e.fov)),
+                              i = n.distortInverse(Math.tan(-N * e.fov)),
+                              o = n.distortInverse(Math.tan(N * e.fov)),
+                              a = n.distortInverse(Math.tan(N * e.fov)),
+                              s = n.distortInverse(Math.tan(-N * e.fov)),
                               l = t.widthMeters / 4,
                               c = t.heightMeters / 2,
                               u = e.baselineLensDistance - t.bevelMeters - c,
@@ -39704,10 +39720,10 @@ object-assign
                           (X.prototype.getUndistortedFieldOfViewLeftEye = function() {
                             var e = this.getUndistortedParams_();
                             return {
-                              leftDegrees: N * Math.atan(e.outerDist),
-                              rightDegrees: N * Math.atan(e.innerDist),
-                              downDegrees: N * Math.atan(e.bottomDist),
-                              upDegrees: N * Math.atan(e.topDist),
+                              leftDegrees: F * Math.atan(e.outerDist),
+                              rightDegrees: F * Math.atan(e.innerDist),
+                              downDegrees: F * Math.atan(e.bottomDist),
+                              upDegrees: F * Math.atan(e.topDist),
                             };
                           }),
                           (X.prototype.getUndistortedViewportLeftEye = function() {
@@ -39741,7 +39757,7 @@ object-assign
                               s = o / 2 - i,
                               l = (e.baselineLensDistance - t.bevelMeters) / r,
                               c = e.fov,
-                              u = n.distortInverse(Math.tan(F * c)),
+                              u = n.distortInverse(Math.tan(N * c)),
                               h = Math.min(s, u),
                               d = Math.min(i, u),
                               p = Math.min(l, u),
@@ -40871,23 +40887,23 @@ object-assign
                             (this.currentGyroMeasurement = new J()),
                             (this.previousGyroMeasurement = new J()),
                             l()
-                              ? (this.filterQ = new j(-1, 0, 0, 1))
-                              : (this.filterQ = new j(1, 0, 0, 1)),
-                            (this.previousFilterQ = new j()),
+                              ? (this.filterQ = new z(-1, 0, 0, 1))
+                              : (this.filterQ = new z(1, 0, 0, 1)),
+                            (this.previousFilterQ = new z()),
                             this.previousFilterQ.copy(this.filterQ),
-                            (this.accelQ = new j()),
+                            (this.accelQ = new z()),
                             (this.isOrientationInitialized = !1),
                             (this.estimatedGravity = new U()),
                             (this.measuredGravity = new U()),
-                            (this.gyroIntegralQ = new j());
+                            (this.gyroIntegralQ = new z());
                         }
                         function ee(e, t) {
                           (this.predictionTimeS = e),
                             (this.isDebug = t),
-                            (this.previousQ = new j()),
+                            (this.previousQ = new z()),
                             (this.previousTimestampS = null),
-                            (this.deltaQ = new j()),
-                            (this.outQ = new j());
+                            (this.deltaQ = new z()),
+                            (this.outQ = new z());
                         }
                         function te(e, t, n, r) {
                           (this.yawOnly = n),
@@ -40901,7 +40917,7 @@ object-assign
                           (this.isDeviceMotionInRadians =
                             !this.isIOS && i && i < 66),
                             (this.isWithoutDeviceMotion = d()),
-                            (this.filterToWorldQ = new j()),
+                            (this.filterToWorldQ = new z()),
                             l()
                               ? this.filterToWorldQ.setFromAxisAngle(
                                   new U(1, 0, 0),
@@ -40911,9 +40927,9 @@ object-assign
                                   new U(1, 0, 0),
                                   -Math.PI / 2
                                 ),
-                            (this.inverseWorldToScreenQ = new j()),
-                            (this.worldToScreenQ = new j()),
-                            (this.originalPoseAdjustQ = new j()),
+                            (this.inverseWorldToScreenQ = new z()),
+                            (this.worldToScreenQ = new z()),
+                            (this.originalPoseAdjustQ = new z()),
                             this.originalPoseAdjustQ.setFromAxisAngle(
                               new U(0, 0, 1),
                               (-window.orientation * Math.PI) / 180
@@ -40923,7 +40939,7 @@ object-assign
                               this.filterToWorldQ.multiply(
                                 this.inverseWorldToScreenQ
                               ),
-                            (this.resetQ = new j()),
+                            (this.resetQ = new z()),
                             (this.orientationOut_ = new Float32Array(4)),
                             this.start();
                         }
@@ -41065,7 +41081,7 @@ object-assign
                             this.gyroIntegralQ.multiply(t),
                               this.filterQ.copy(this.previousFilterQ),
                               this.filterQ.multiply(t);
-                            var n = new j();
+                            var n = new z();
                             n.copy(this.filterQ),
                               n.inverse(),
                               this.estimatedGravity.set(0, 0, -1),
@@ -41076,7 +41092,7 @@ object-assign
                               ),
                               this.measuredGravity.normalize();
                             var r,
-                              i = new j();
+                              i = new z();
                             i.setFromUnitVectors(
                               this.estimatedGravity,
                               this.measuredGravity
@@ -41085,7 +41101,7 @@ object-assign
                               this.isDebug &&
                                 console.log(
                                   "Delta: %d deg, G_est: (%s, %s, %s), G_meas: (%s, %s, %s)",
-                                  N *
+                                  F *
                                     ((r = i).w > 1
                                       ? (console.warn(
                                           "getQuaternionAngle: w > 1"
@@ -41099,7 +41115,7 @@ object-assign
                                   this.measuredGravity.y.toFixed(1),
                                   this.measuredGravity.z.toFixed(1)
                                 );
-                            var o = new j();
+                            var o = new z();
                             o.copy(this.filterQ),
                               o.multiply(i),
                               this.filterQ.slerp(o, 1 - this.kFilter),
@@ -41111,7 +41127,7 @@ object-assign
                           ($.prototype.accelToQuaternion_ = function(e) {
                             var t = new U();
                             t.copy(e), t.normalize();
-                            var n = new j();
+                            var n = new z();
                             return (
                               n.setFromUnitVectors(new U(0, 0, -1), t),
                               n.inverse(),
@@ -41119,7 +41135,7 @@ object-assign
                             );
                           }),
                           ($.prototype.gyroToQuaternionDelta_ = function(e, t) {
-                            var n = new j(),
+                            var n = new z(),
                               r = new U();
                             return (
                               r.copy(e),
@@ -41138,12 +41154,12 @@ object-assign
                             var r = new U();
                             r.copy(t), r.normalize();
                             var i = t.length();
-                            if (i < 20 * F)
+                            if (i < 20 * N)
                               return (
                                 this.isDebug &&
                                   console.log(
                                     "Moving slowly, at %s deg/s: no prediction",
-                                    (N * i).toFixed(1)
+                                    (F * i).toFixed(1)
                                   ),
                                 this.outQ.copy(e),
                                 this.previousQ.copy(e),
@@ -41170,11 +41186,11 @@ object-assign
                             ) {
                               (this.deviceOrientationFixQ =
                                 this.deviceOrientationFixQ ||
-                                ((r = new j().setFromAxisAngle(
+                                ((r = new z().setFromAxisAngle(
                                   new U(0, 0, -1),
                                   0
                                 )),
-                                (i = new j()),
+                                (i = new z()),
                                 -90 === window.orientation
                                   ? i.setFromAxisAngle(
                                       new U(0, 1, 0),
@@ -41187,13 +41203,13 @@ object-assign
                                 r.multiply(i))),
                                 (this.deviceOrientationFilterToWorldQ =
                                   this.deviceOrientationFilterToWorldQ ||
-                                  ((n = new j()).setFromAxisAngle(
+                                  ((n = new z()).setFromAxisAngle(
                                     new U(1, 0, 0),
                                     -Math.PI / 2
                                   ),
                                   n)),
                                 (e = this._deviceOrientationQ);
-                              var t = new j();
+                              var t = new z();
                               return (
                                 t.copy(e),
                                 t.multiply(
@@ -41223,7 +41239,7 @@ object-assign
                               this.gyroscope,
                               this.previousTimestampS
                             );
-                            var t = new j();
+                            var t = new z();
                             return (
                               t.copy(this.filterToWorldQ),
                               t.multiply(this.resetQ),
@@ -41252,7 +41268,7 @@ object-assign
                           }),
                           (te.prototype.onDeviceOrientation_ = function(e) {
                             this._deviceOrientationQ =
-                              this._deviceOrientationQ || new j();
+                              this._deviceOrientationQ || new z();
                             var t = e.alpha,
                               n = e.beta,
                               r = e.gamma;
@@ -41274,13 +41290,13 @@ object-assign
                               r = e.timeStamp / 1e3,
                               i = r - this.previousTimestampS;
                             return i < 0
-                              ? (M(
+                              ? (T(
                                   "fusion-pose-sensor:invalid:non-monotonic",
                                   "Invalid timestamps detected: non-monotonic timestamp from devicemotion"
                                 ),
                                 void (this.previousTimestampS = r))
                               : i <= 0.001 || i > 1
-                              ? (M(
+                              ? (T(
                                   "fusion-pose-sensor:invalid:outside-threshold",
                                   "Invalid timestamps detected: Timestamp from devicemotion outside expected range."
                                 ),
@@ -41401,10 +41417,10 @@ object-assign
                           });
                         var ne = new U(1, 0, 0),
                           re = new U(0, 0, 1),
-                          ie = new j();
+                          ie = new z();
                         ie.setFromAxisAngle(ne, -Math.PI / 2),
                           ie.multiply(
-                            new j().setFromAxisAngle(re, Math.PI / 2)
+                            new z().setFromAxisAngle(re, Math.PI / 2)
                           );
                         var oe = (function() {
                           function e(t) {
@@ -41415,8 +41431,8 @@ object-assign
                               (this._out = new Float32Array(4)),
                               (this.api = null),
                               (this.errors = []),
-                              (this._sensorQ = new j()),
-                              (this._outQ = new j()),
+                              (this._sensorQ = new z()),
+                              (this._outQ = new z()),
                               (this._onSensorRead = this._onSensorRead.bind(
                                 this
                               )),
@@ -42000,7 +42016,7 @@ object-assign
                               enumerable: !0,
                               get: function() {
                                 return (
-                                  T(
+                                  M(
                                     "VRDisplayCapabilities.prototype.hasOrientation",
                                     "VRDisplay.prototype.getFrameData"
                                   ),
@@ -42021,7 +42037,7 @@ object-assign
                             Object.defineProperty(this, "isConnected", {
                               get: function() {
                                 return (
-                                  T(
+                                  M(
                                     "VRDisplay.prototype.isConnected",
                                     "VRDisplayCapabilities.prototype.hasExternalDisplay"
                                   ),
@@ -42049,11 +42065,11 @@ object-assign
                             t && A() && (this.wakelock_ = new de());
                         }
                         (be.prototype.getFrameData = function(e) {
-                          return E(e, this._getPose(), this);
+                          return x(e, this._getPose(), this);
                         }),
                           (be.prototype.getPose = function() {
                             return (
-                              T(
+                              M(
                                 "VRDisplay.prototype.getPose",
                                 "VRDisplay.prototype.getFrameData"
                               ),
@@ -42062,13 +42078,13 @@ object-assign
                           }),
                           (be.prototype.resetPose = function() {
                             return (
-                              T("VRDisplay.prototype.resetPose"),
+                              M("VRDisplay.prototype.resetPose"),
                               this._resetPose()
                             );
                           }),
                           (be.prototype.getImmediatePose = function() {
                             return (
-                              T(
+                              M(
                                 "VRDisplay.prototype.getImmediatePose",
                                 "VRDisplay.prototype.getFrameData"
                               ),
@@ -42194,7 +42210,7 @@ object-assign
                               n = this;
                             return (
                               e instanceof Array ||
-                                (T(
+                                (M(
                                   "VRDisplay.prototype.requestPresent with non-array argument",
                                   "an array of VRLayers as the first argument"
                                 ),
@@ -42494,10 +42510,10 @@ object-assign
                             BUFFER_SCALE: 0.5,
                             DIRTY_SUBMIT_FRAME_BINDINGS: !1,
                           },
-                          we = { LEFT: "left", RIGHT: "right" };
-                        function xe(e) {
-                          var t = w({}, Ae);
-                          (e = w(t, e || {})),
+                          Ee = { LEFT: "left", RIGHT: "right" };
+                        function we(e) {
+                          var t = E({}, Ae);
+                          (e = E(t, e || {})),
                             be.call(this, { wakelock: e.MOBILE_WAKE_LOCK }),
                             (this.config = e),
                             (this.displayName = "Cardboard VRDisplay"),
@@ -42537,8 +42553,8 @@ object-assign
                               );
                         }
                         return (
-                          (xe.prototype = Object.create(be.prototype)),
-                          (xe.prototype._getPose = function() {
+                          (we.prototype = Object.create(be.prototype)),
+                          (we.prototype._getPose = function() {
                             return {
                               position: null,
                               orientation: this.poseSensor_.getOrientation(),
@@ -42548,16 +42564,16 @@ object-assign
                               angularAcceleration: null,
                             };
                           }),
-                          (xe.prototype._resetPose = function() {
+                          (we.prototype._resetPose = function() {
                             this.poseSensor_.resetPose &&
                               this.poseSensor_.resetPose();
                           }),
-                          (xe.prototype._getFieldOfView = function(e) {
+                          (we.prototype._getFieldOfView = function(e) {
                             var t;
-                            if (e == we.LEFT)
+                            if (e == Ee.LEFT)
                               t = this.deviceInfo_.getFieldOfViewLeftEye();
                             else {
-                              if (e != we.RIGHT)
+                              if (e != Ee.RIGHT)
                                 return (
                                   console.error("Invalid eye provided: %s", e),
                                   null
@@ -42566,9 +42582,9 @@ object-assign
                             }
                             return t;
                           }),
-                          (xe.prototype._getEyeOffset = function(e) {
+                          (we.prototype._getEyeOffset = function(e) {
                             var t;
-                            if (e == we.LEFT)
+                            if (e == Ee.LEFT)
                               t = [
                                 0.5 *
                                   -this.deviceInfo_.viewer.interLensDistance,
@@ -42576,7 +42592,7 @@ object-assign
                                 0,
                               ];
                             else {
-                              if (e != we.RIGHT)
+                              if (e != Ee.RIGHT)
                                 return (
                                   console.error("Invalid eye provided: %s", e),
                                   null
@@ -42589,7 +42605,7 @@ object-assign
                             }
                             return t;
                           }),
-                          (xe.prototype.getEyeParameters = function(e) {
+                          (we.prototype.getEyeParameters = function(e) {
                             var t = this._getEyeOffset(e),
                               n = this._getFieldOfView(e),
                               r = {
@@ -42607,7 +42623,7 @@ object-assign
                                 enumerable: !0,
                                 get: function() {
                                   return (
-                                    T(
+                                    M(
                                       "VRFieldOfView",
                                       "VRFrameData's projection matrices"
                                     ),
@@ -42618,7 +42634,7 @@ object-assign
                               r
                             );
                           }),
-                          (xe.prototype.onDeviceParamsUpdated_ = function(e) {
+                          (we.prototype.onDeviceParamsUpdated_ = function(e) {
                             this.config.DEBUG &&
                               console.log(
                                 "DPDB reported that device params were updated."
@@ -42629,7 +42645,7 @@ object-assign
                                   this.deviceInfo_
                                 );
                           }),
-                          (xe.prototype.updateBounds_ = function() {
+                          (we.prototype.updateBounds_ = function() {
                             this.layer_ &&
                               this.distorter_ &&
                               (this.layer_.leftBounds ||
@@ -42639,7 +42655,7 @@ object-assign
                                 this.layer_.rightBounds
                               );
                           }),
-                          (xe.prototype.beginPresent_ = function() {
+                          (we.prototype.beginPresent_ = function() {
                             var e = this.layer_.source.getContext("webgl");
                             e ||
                               (e = this.layer_.source.getContext(
@@ -42702,7 +42718,7 @@ object-assign
                                 ),
                                 this.fireVRDisplayDeviceParamsChange_());
                           }),
-                          (xe.prototype.endPresent_ = function() {
+                          (we.prototype.endPresent_ = function() {
                             this.distorter_ &&
                               (this.distorter_.destroy(),
                               (this.distorter_ = null)),
@@ -42721,10 +42737,10 @@ object-assign
                                 this.vrdisplaypresentchangeHandler
                               );
                           }),
-                          (xe.prototype.updatePresent_ = function() {
+                          (we.prototype.updatePresent_ = function() {
                             this.endPresent_(), this.beginPresent_();
                           }),
-                          (xe.prototype.submitFrame = function(e) {
+                          (we.prototype.submitFrame = function(e) {
                             if (this.distorter_)
                               this.updateBounds_(),
                                 this.distorter_.submitFrame();
@@ -42739,13 +42755,13 @@ object-assign
                                 this.cardboardUI_.render();
                             }
                           }),
-                          (xe.prototype.onOrientationChange_ = function(e) {
+                          (we.prototype.onOrientationChange_ = function(e) {
                             this.viewerSelector_.hide(),
                               this.rotateInstructions_ &&
                                 this.rotateInstructions_.update(),
                               this.onResize_();
                           }),
-                          (xe.prototype.onResize_ = function(e) {
+                          (we.prototype.onResize_ = function(e) {
                             if (this.layer_) {
                               var t = this.layer_.source.getContext("webgl");
                               t.canvas.setAttribute(
@@ -42762,10 +42778,10 @@ object-assign
                                   "box-sizing: content-box",
                                 ].join("; ") + ";"
                               ),
-                                x(t.canvas);
+                                w(t.canvas);
                             }
                           }),
-                          (xe.prototype.onViewerChanged_ = function(e) {
+                          (we.prototype.onViewerChanged_ = function(e) {
                             this.deviceInfo_.setViewer(e),
                               this.distorter_ &&
                                 this.distorter_.updateDeviceInfo(
@@ -42773,7 +42789,7 @@ object-assign
                                 ),
                               this.fireVRDisplayDeviceParamsChange_();
                           }),
-                          (xe.prototype.fireVRDisplayDeviceParamsChange_ = function() {
+                          (we.prototype.fireVRDisplayDeviceParamsChange_ = function() {
                             var e = new CustomEvent(
                               "vrdisplaydeviceparamschange",
                               {
@@ -42785,7 +42801,7 @@ object-assign
                             );
                             window.dispatchEvent(e);
                           }),
-                          (xe.VRFrameData = function() {
+                          (we.VRFrameData = function() {
                             (this.leftProjectionMatrix = new Float32Array(16)),
                               (this.leftViewMatrix = new Float32Array(16)),
                               (this.rightProjectionMatrix = new Float32Array(
@@ -42794,8 +42810,8 @@ object-assign
                               (this.rightViewMatrix = new Float32Array(16)),
                               (this.pose = null);
                           }),
-                          (xe.VRDisplay = be),
-                          xe
+                          (we.VRDisplay = be),
+                          we
                         );
                       })();
                     })((t = { exports: {} })),
@@ -43410,14 +43426,14 @@ object-assign
               }
               function b(e, t) {
                 var n, r, i;
-                for (r = w(t), i = e, n = 0; n < r.length; n++) i = i[r[n]];
+                for (r = E(t), i = e, n = 0; n < r.length; n++) i = i[r[n]];
                 return i;
               }
               function A(e, t, n, r) {
                 var i, o, s, l;
                 for (
                   t.startsWith("object3D.rotation") && (n = a.Math.degToRad(n)),
-                    o = w(t),
+                    o = E(t),
                     l = e,
                     i = 0;
                   i < o.length - 1;
@@ -43431,10 +43447,10 @@ object-assign
                     ? ((l[s].r = n.r), (l[s].g = n.g), (l[s].b = n.b))
                     : ((l[s].x = n.r), (l[s].y = n.g), (l[s].z = n.b));
               }
-              function w(e) {
+              function E(e) {
                 return e in d ? d[e] : ((d[e] = e.split(".")), d[e]);
               }
-              function x(e) {
+              function w(e) {
                 return (
                   e.isRawProperty ||
                   e.property.startsWith(f) ||
@@ -43620,7 +43636,7 @@ object-assign
                   ) ||
                     ((e =
                       "" === o.from
-                        ? x(o)
+                        ? w(o)
                           ? b(a, o.property)
                           : u(a, o.property)
                         : o.from),
@@ -43643,7 +43659,7 @@ object-assign
                       (n = e.animatables[0].target.aframeProperty) !== r &&
                         ((r = n),
                         t && (n = n >= 1),
-                        x(o)
+                        w(o)
                           ? A(a, o.property, n, o.type)
                           : h(a, o.property, n));
                     }));
@@ -43709,7 +43725,7 @@ object-assign
                         ? r.schema[s].type
                         : r.schema.type
                       : null),
-                    x(this.data) && this.data.type === p
+                    w(this.data) && this.data.type === p
                       ? this.updateConfigForRawColor()
                       : "vec2" === e || "vec3" === e || "vec4" === e
                       ? this.updateConfigForVector()
@@ -43723,7 +43739,7 @@ object-assign
                   return (
                     "" === n.from &&
                     !!n.property.startsWith(f) &&
-                    ((t = w(n.property)[1]),
+                    ((t = E(n.property)[1]),
                     !i.components[t] &&
                       (i.addEventListener("componentinitialized", function n(
                         a
@@ -48225,9 +48241,9 @@ object-assign
                   };
                 }(),
                 A = {},
-                w = {},
-                x = /^\w+:/;
-              function E(e, t, n) {
+                E = {},
+                w = /^\w+:/;
+              function x(e, t, n) {
                 return e || (0.5 + t) * n;
               }
               t.exports.Component = o("text", {
@@ -48284,9 +48300,9 @@ object-assign
                 update: function(e) {
                   var t = this.data,
                     n = this.currentFont;
-                  w[t.font]
-                    ? (this.texture = w[t.font])
-                    : ((this.texture = w[t.font] = new s.Texture()),
+                  E[t.font]
+                    ? (this.texture = E[t.font])
+                    : ((this.texture = E[t.font] = new s.Texture()),
                       (this.texture.anisotropy = 16)),
                     this.createOrUpdateMaterial(),
                     e.font === t.font
@@ -48433,7 +48449,7 @@ object-assign
                               var r = o.texture;
                               (r.image = e),
                                 (r.needsUpdate = !0),
-                                (w[t.font] = r),
+                                (E[t.font] = r),
                                 (o.texture = r),
                                 (o.mesh.visible = !0),
                                 n.emit("textfontset", {
@@ -48455,7 +48471,7 @@ object-assign
                       this.lookupFont(this.data.font || "roboto") ||
                       this.data.font,
                     t = this.currentFont.pages[0];
-                  return t.match(x) && 0 !== t.indexOf("http")
+                  return t.match(w) && 0 !== t.indexOf("http")
                     ? e.replace(/(\.fnt)|(\.json)/, ".png")
                     : s.LoaderUtils.extractUrlBase(e) + t;
                 },
@@ -48478,7 +48494,7 @@ object-assign
                     if (
                       ((n = u.getAttribute("geometry")),
                       (s = h.width || (n && n.width) || 1),
-                      (o = E(
+                      (o = x(
                         h.wrapPixels,
                         h.wrapCount,
                         this.currentFont.widthFactor
@@ -48537,7 +48553,7 @@ object-assign
                       .toString()
                       .replace(g, "\n")
                       .replace(y, "\t")),
-                    (v.width = E(n.wrapPixels, n.wrapCount, t.widthFactor)),
+                    (v.width = x(n.wrapPixels, n.wrapCount, t.widthFactor)),
                     e.update(l.extend(m, n, v));
                 }),
               });
@@ -51170,7 +51186,7 @@ object-assign
                         !this.attrValue &&
                         (this.attrValue = this.objectPool.use()),
                         a.objectPool.clearObject(this.attrValue),
-                        (this.attrValue = x(
+                        (this.attrValue = w(
                           this.attrValue,
                           n,
                           this.isObjectBased
@@ -51220,7 +51236,7 @@ object-assign
                         this.init(),
                         (this.initialized = !0),
                         delete t.initializingComponents[this.name],
-                        (this.oldData = x(
+                        (this.oldData = w(
                           this.oldData,
                           this.data,
                           this.isObjectBased
@@ -51280,13 +51296,13 @@ object-assign
                     this.previousOldData instanceof Object &&
                       a.objectPool.clearObject(this.previousOldData),
                       this.isObjectBased
-                        ? w(this.previousOldData, this.oldData)
+                        ? E(this.previousOldData, this.oldData)
                         : (this.previousOldData = this.oldData),
                       (e = !a.deepEqual(this.oldData, this.data)),
                       (this.isPositionRotationScale || e) &&
                         (this.oldData instanceof Object &&
                           a.objectPool.clearObject(this.oldData),
-                        (this.oldData = x(
+                        (this.oldData = w(
                           this.oldData,
                           this.data,
                           this.isObjectBased
@@ -51333,26 +51349,26 @@ object-assign
                       this.isSingleProperty)
                     )
                       i = this.isObjectBased
-                        ? w(p, f.default)
-                        : M(f.default)
+                        ? E(p, f.default)
+                        : T(f.default)
                         ? a.clone(f.default)
                         : f.default;
                     else
                       for (s in ((d = !t && this.attrValue),
-                      (i = d instanceof Object ? w(p, d) : p),
+                      (i = d instanceof Object ? E(p, d) : p),
                       f))
                         (o = f[s].default),
-                          void 0 === i[s] && (i[s] = M(o) ? a.clone(o) : o);
+                          void 0 === i[s] && (i[s] = T(o) ? a.clone(o) : o);
                     for (h = 0; h < m.length; h++)
                       (u = m[h].getAttribute(this.attrName)) &&
-                        (i = x(i, u, this.isObjectBased));
+                        (i = w(i, u, this.isObjectBased));
                     if (r) {
                       if (this.isSingleProperty)
                         return _(e)
-                          ? (w(this.parsingAttrValue, e),
+                          ? (E(this.parsingAttrValue, e),
                             c(this.parsingAttrValue, f))
                           : c(e, f);
-                      i = x(i, e, this.isObjectBased);
+                      i = w(i, e, this.isObjectBased);
                     } else if (this.isSingleProperty) return c(i, f);
                     return l(i, f, void 0, this.name, n);
                   },
@@ -51360,14 +51376,14 @@ object-assign
                 window.debug)
               )
                 var A = (t.exports.registrationOrderWarnings = {});
-              function w(e, t) {
+              function E(e, t) {
                 var n, r;
                 for (r in t)
                   void 0 !== t[r] &&
-                    ((n = t[r]), (e[r] = M(n) ? a.clone(n) : n));
+                    ((n = t[r]), (e[r] = T(n) ? a.clone(n) : n));
                 return e;
               }
-              function x(e, t, n) {
+              function w(e, t, n) {
                 var r;
                 if (n && t.constructor === Object) {
                   for (r in t)
@@ -51379,7 +51395,7 @@ object-assign
                 }
                 return t;
               }
-              function E(e) {
+              function x(e) {
                 return e.tick || e.tock;
               }
               function _(e) {
@@ -51389,7 +51405,7 @@ object-assign
                   !(e instanceof window.HTMLElement)
                 );
               }
-              function M(e) {
+              function T(e) {
                 return (
                   e &&
                   (e.constructor === Object || e.constructor === Array) &&
@@ -51404,7 +51420,7 @@ object-assign
                   d,
                   p,
                   f,
-                  w = {};
+                  E = {};
                 if (
                   (document.currentScript &&
                     document.currentScript !== v &&
@@ -51436,7 +51452,7 @@ object-assign
                   );
                 if (
                   (Object.keys(t).forEach(function(e) {
-                    w[e] = { value: t[e], writable: !0 };
+                    E[e] = { value: t[e], writable: !0 };
                   }),
                   s[e])
                 )
@@ -51448,7 +51464,7 @@ object-assign
                 if (
                   ((((n = function(e, t, n) {
                     b.call(this, e, t, n);
-                  }).prototype = Object.create(b.prototype, w)).name = e),
+                  }).prototype = Object.create(b.prototype, E)).name = e),
                   (n.prototype.isPositionRotationScale =
                     "position" === e || "rotation" === e || "scale" === e),
                   (n.prototype.constructor = n),
@@ -51461,7 +51477,7 @@ object-assign
                       t &&
                       (d.call(this),
                       (this.isPlaying = !0),
-                      E(this) && e.addBehavior(this));
+                      x(this) && e.addBehavior(this));
                   })),
                   (n.prototype.pause = ((p = n.prototype.pause),
                   function() {
@@ -51469,7 +51485,7 @@ object-assign
                     this.isPlaying &&
                       (p.call(this),
                       (this.isPlaying = !1),
-                      E(this) && e.removeBehavior(this));
+                      x(this) && e.removeBehavior(this));
                   })),
                   (n.prototype.remove = ((f = n.prototype.remove),
                   function() {
@@ -51767,7 +51783,7 @@ object-assign
                       );
                     })(n, r);
               }
-              function w(e) {
+              function E(e) {
                 var t;
                 function n() {
                   var t =
@@ -51835,7 +51851,7 @@ object-assign
                   attachedCallback: {
                     value: function() {
                       var e = this;
-                      w(this),
+                      E(this),
                         this.setupRenderer(),
                         this.resize(),
                         this.addFullScreenStyles(),
@@ -52318,7 +52334,7 @@ object-assign
                   },
                 }),
               })),
-                (t.exports.setupCanvas = w);
+                (t.exports.setupCanvas = E);
             },
             {
               "../../lib/three": 151,
@@ -52373,9 +52389,9 @@ object-assign
                       : void 0,
                     b = (y && y.dotsColor) || "white",
                     A = (y && y.backgroundColor) || "#24CAFF",
-                    w =
+                    E =
                       void 0 === y || !0 === y.enabled || void 0 === y.enabled;
-                  w &&
+                  E &&
                     ((n = new THREE.Scene()),
                     (a = new THREE.SphereGeometry(
                       0.2,
@@ -53922,13 +53938,13 @@ object-assign
                 y = e("./core/shader").shaders,
                 b = e("./core/system").systems,
                 A = (window.THREE = e("./lib/three")),
-                w = e("../package");
+                E = e("../package");
               e("./components/index"),
                 e("./geometries/index"),
                 e("./shaders/index"),
                 e("./systems/index");
-              var x = e("./core/a-node"),
-                E = e("./core/a-entity");
+              var w = e("./core/a-node"),
+                x = e("./core/a-entity");
               e("./core/a-assets"),
                 e("./core/a-cubemap"),
                 e("./core/a-mixin"),
@@ -53939,16 +53955,16 @@ object-assign
                 ),
                 console.log(
                   "three Version (https://github.com/supermedium/three.js):",
-                  w.dependencies["super-three"]
+                  E.dependencies["super-three"]
                 ),
                 console.log(
                   "WebVR Polyfill Version:",
-                  w.dependencies["webvr-polyfill"]
+                  E.dependencies["webvr-polyfill"]
                 ),
                 (t.exports = window.AFRAME = {
                   AComponent: e("./core/component").Component,
-                  AEntity: E,
-                  ANode: x,
+                  AEntity: x,
+                  ANode: w,
                   ANIME: e("animejs"),
                   AScene: h,
                   components: d,
@@ -53970,7 +53986,7 @@ object-assign
                   systems: b,
                   THREE: A,
                   utils: s,
-                  version: w.version,
+                  version: E.version,
                 });
             },
             {
@@ -56626,12 +56642,12 @@ object-assign
                           ((l = c / d), (c = 0), (u = t), (d = 0));
                       }
                     }
-                    function w() {
+                    function E() {
                       (r = performance.now()),
                         n.userTimingAPI && performance.mark(i + "-start"),
                         (b = !0);
                     }
-                    function x() {
+                    function w() {
                       (o = performance.now() - r),
                         n.userTimingAPI &&
                           (performance.mark(i + "-end"),
@@ -56652,11 +56668,11 @@ object-assign
                         set: function(e) {
                           A((o = e));
                         },
-                        start: w,
+                        start: E,
                         tick: function() {
-                          x(), w();
+                          w(), E();
                         },
-                        end: x,
+                        end: w,
                         frame: function() {
                           var e = performance.now(),
                             t = e - r;
@@ -56906,10 +56922,10 @@ object-assign
         {},
         [149]
       )(149);
-    }.call(this, r(2), r(11).setImmediate));
+    }.call(this, r(3), r(12).setImmediate));
   },
   function(e, t, n) {
-    var r = n(14);
+    var r = n(15);
     if ("undefined" == typeof AFRAME)
       throw new Error(
         "Component attempted to register before AFRAME was available."
@@ -57147,7 +57163,7 @@ object-assign
           console.error(e);
         }
     })(),
-      (e.exports = n(8));
+      (e.exports = n(9));
   },
   function(e, t, n) {
     "use strict";
@@ -57158,7 +57174,7 @@ object-assign
      *
      * This source code is licensed under the MIT license found in the
      * LICENSE file in the root directory of this source tree.
-     */ var r = n(3),
+     */ var r = n(4),
       i = "function" == typeof Symbol && Symbol.for,
       o = i ? Symbol.for("react.element") : 60103,
       a = i ? Symbol.for("react.portal") : 60106,
@@ -57216,32 +57232,32 @@ object-assign
         enqueueSetState: function() {},
       },
       A = {};
-    function w(e, t, n) {
-      (this.props = e),
-        (this.context = t),
-        (this.refs = A),
-        (this.updater = n || b);
-    }
-    function x() {}
     function E(e, t, n) {
       (this.props = e),
         (this.context = t),
         (this.refs = A),
         (this.updater = n || b);
     }
-    (w.prototype.isReactComponent = {}),
-      (w.prototype.setState = function(e, t) {
+    function w() {}
+    function x(e, t, n) {
+      (this.props = e),
+        (this.context = t),
+        (this.refs = A),
+        (this.updater = n || b);
+    }
+    (E.prototype.isReactComponent = {}),
+      (E.prototype.setState = function(e, t) {
         "object" != typeof e && "function" != typeof e && null != e && y("85"),
           this.updater.enqueueSetState(this, e, t, "setState");
       }),
-      (w.prototype.forceUpdate = function(e) {
+      (E.prototype.forceUpdate = function(e) {
         this.updater.enqueueForceUpdate(this, e, "forceUpdate");
       }),
-      (x.prototype = w.prototype);
-    var _ = (E.prototype = new x());
-    (_.constructor = E), r(_, w.prototype), (_.isPureReactComponent = !0);
-    var M = { current: null },
-      T = { current: null },
+      (w.prototype = E.prototype);
+    var _ = (x.prototype = new w());
+    (_.constructor = x), r(_, E.prototype), (_.isPureReactComponent = !0);
+    var T = { current: null },
+      M = { current: null },
       S = Object.prototype.hasOwnProperty,
       C = { key: !0, ref: !0, __self: !0, __source: !0 };
     function L(e, t, n) {
@@ -57268,7 +57284,7 @@ object-assign
         key: a,
         ref: s,
         props: i,
-        _owner: T.current,
+        _owner: M.current,
       };
     }
     function R(e) {
@@ -57361,10 +57377,10 @@ object-assign
           })(e.key)
         : t.toString(36);
     }
-    function F(e, t) {
+    function N(e, t) {
       e.func.call(e.context, t, e.count++);
     }
-    function N(e, t, n) {
+    function F(e, t, n) {
       var r = e.result,
         i = e.keyPrefix;
       (e = e.func.call(e.context, t, e.count++)),
@@ -57396,14 +57412,14 @@ object-assign
     function U(e, t, n, r, i) {
       var o = "";
       null != n && (o = ("" + n).replace(P, "$&/") + "/"),
-        B(e, N, (t = D(t, o, r, i))),
+        B(e, F, (t = D(t, o, r, i))),
         I(t);
     }
     function H() {
-      var e = M.current;
+      var e = T.current;
       return null === e && y("307"), e;
     }
-    var z = {
+    var V = {
         Children: {
           map: function(e, t, n) {
             if (null == e) return e;
@@ -57412,7 +57428,7 @@ object-assign
           },
           forEach: function(e, t, n) {
             if (null == e) return e;
-            B(e, F, (t = D(null, null, t, n))), I(t);
+            B(e, N, (t = D(null, null, t, n))), I(t);
           },
           count: function(e) {
             return B(
@@ -57439,8 +57455,8 @@ object-assign
         createRef: function() {
           return { current: null };
         },
-        Component: w,
-        PureComponent: E,
+        Component: E,
+        PureComponent: x,
         createContext: function(e, t) {
           return (
             void 0 === t && (t = null),
@@ -57505,7 +57521,7 @@ object-assign
             l = e.ref,
             c = e._owner;
           if (null != t) {
-            void 0 !== t.ref && ((l = t.ref), (c = T.current)),
+            void 0 !== t.ref && ((l = t.ref), (c = M.current)),
               void 0 !== t.key && (s = "" + t.key);
             var u = void 0;
             for (i in (e.type &&
@@ -57540,14 +57556,14 @@ object-assign
         unstable_ConcurrentMode: d,
         unstable_Profiler: c,
         __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: {
-          ReactCurrentDispatcher: M,
-          ReactCurrentOwner: T,
+          ReactCurrentDispatcher: T,
+          ReactCurrentOwner: M,
           assign: r,
         },
       },
-      j = { default: z },
-      V = (j && z) || j;
-    e.exports = V.default || V;
+      z = { default: V },
+      G = (z && V) || z;
+    e.exports = G.default || G;
   },
   function(e, t, n) {
     "use strict";
@@ -57559,8 +57575,8 @@ object-assign
      * This source code is licensed under the MIT license found in the
      * LICENSE file in the root directory of this source tree.
      */ var r = n(0),
-      i = n(3),
-      o = n(9);
+      i = n(4),
+      o = n(10);
     function a(e) {
       for (
         var t = arguments.length - 1,
@@ -57652,12 +57668,12 @@ object-assign
       y = {},
       b = {},
       A = {},
+      E = null,
       w = null,
-      x = null,
-      E = null;
+      x = null;
     function _(e, t, n) {
       var r = e.type || "unknown-event";
-      (e.currentTarget = E(n)),
+      (e.currentTarget = x(n)),
         (function(e, t, n, r, i, o, h, p, f) {
           if ((d.apply(this, arguments), s)) {
             if (s) {
@@ -57669,7 +57685,7 @@ object-assign
         })(r, t, void 0, e),
         (e.currentTarget = null);
     }
-    function M(e, t) {
+    function T(e, t) {
       return (
         null == t && a("30"),
         null == e
@@ -57683,7 +57699,7 @@ object-assign
           : [e, t]
       );
     }
-    function T(e, t, n) {
+    function M(e, t, n) {
       Array.isArray(e) ? e.forEach(t, n) : e && t.call(n, e);
     }
     var S = null;
@@ -57719,7 +57735,7 @@ object-assign
     function R(e, t) {
       var n = e.stateNode;
       if (!n) return null;
-      var r = w(n);
+      var r = E(n);
       if (!r) return null;
       n = r[t];
       e: switch (t) {
@@ -57751,10 +57767,10 @@ object-assign
     }
     function P(e) {
       if (
-        (null !== e && (S = M(S, e)),
+        (null !== e && (S = T(S, e)),
         (e = S),
         (S = null),
-        e && (T(e, C), S && a("95"), c))
+        e && (M(e, C), S && a("95"), c))
       )
         throw ((e = u), (c = !1), (u = null), e);
     }
@@ -57774,11 +57790,11 @@ object-assign
     function k(e) {
       return !(e = e[D]) || (5 !== e.tag && 6 !== e.tag) ? null : e;
     }
-    function F(e) {
+    function N(e) {
       if (5 === e.tag || 6 === e.tag) return e.stateNode;
       a("33");
     }
-    function N(e) {
+    function F(e) {
       return e[I] || null;
     }
     function U(e) {
@@ -57789,29 +57805,29 @@ object-assign
     }
     function H(e, t, n) {
       (t = R(e, n.dispatchConfig.phasedRegistrationNames[t])) &&
-        ((n._dispatchListeners = M(n._dispatchListeners, t)),
-        (n._dispatchInstances = M(n._dispatchInstances, e)));
+        ((n._dispatchListeners = T(n._dispatchListeners, t)),
+        (n._dispatchInstances = T(n._dispatchInstances, e)));
     }
-    function z(e) {
+    function V(e) {
       if (e && e.dispatchConfig.phasedRegistrationNames) {
         for (var t = e._targetInst, n = []; t; ) n.push(t), (t = U(t));
         for (t = n.length; 0 < t--; ) H(n[t], "captured", e);
         for (t = 0; t < n.length; t++) H(n[t], "bubbled", e);
       }
     }
-    function j(e, t, n) {
+    function z(e, t, n) {
       e &&
         n &&
         n.dispatchConfig.registrationName &&
         (t = R(e, n.dispatchConfig.registrationName)) &&
-        ((n._dispatchListeners = M(n._dispatchListeners, t)),
-        (n._dispatchInstances = M(n._dispatchInstances, e)));
-    }
-    function V(e) {
-      e && e.dispatchConfig.registrationName && j(e._targetInst, null, e);
+        ((n._dispatchListeners = T(n._dispatchListeners, t)),
+        (n._dispatchInstances = T(n._dispatchInstances, e)));
     }
     function G(e) {
-      T(e, z);
+      e && e.dispatchConfig.registrationName && z(e._targetInst, null, e);
+    }
+    function j(e) {
+      M(e, V);
     }
     var W = !(
       "undefined" == typeof window ||
@@ -58025,8 +58041,8 @@ object-assign
           ),
         },
       },
-      we = !1;
-    function xe(e, t) {
+      Ee = !1;
+    function we(e, t) {
       switch (e) {
         case "keyup":
           return -1 !== fe.indexOf(t.keyCode);
@@ -58040,11 +58056,11 @@ object-assign
           return !1;
       }
     }
-    function Ee(e) {
+    function xe(e) {
       return "object" == typeof (e = e.detail) && "data" in e ? e.data : null;
     }
     var _e = !1;
-    var Me = {
+    var Te = {
         eventTypes: Ae,
         extractEvents: function(e, t, n, r) {
           var i = void 0,
@@ -58066,7 +58082,7 @@ object-assign
             }
           else
             _e
-              ? xe(e, n) && (i = Ae.compositionEnd)
+              ? we(e, n) && (i = Ae.compositionEnd)
               : "keydown" === e &&
                 229 === n.keyCode &&
                 (i = Ae.compositionStart);
@@ -58079,26 +58095,26 @@ object-assign
                     : ((re = "value" in (ne = r) ? ne.value : ne.textContent),
                       (_e = !0))),
                 (i = de.getPooled(i, t, n, r)),
-                o ? (i.data = o) : null !== (o = Ee(n)) && (i.data = o),
-                G(i),
+                o ? (i.data = o) : null !== (o = xe(n)) && (i.data = o),
+                j(i),
                 (o = i))
               : (o = null),
             (e = ge
               ? (function(e, t) {
                   switch (e) {
                     case "compositionend":
-                      return Ee(t);
+                      return xe(t);
                     case "keypress":
-                      return 32 !== t.which ? null : ((we = !0), be);
+                      return 32 !== t.which ? null : ((Ee = !0), be);
                     case "textInput":
-                      return (e = t.data) === be && we ? null : e;
+                      return (e = t.data) === be && Ee ? null : e;
                     default:
                       return null;
                   }
                 })(e, n)
               : (function(e, t) {
                   if (_e)
-                    return "compositionend" === e || (!me && xe(e, t))
+                    return "compositionend" === e || (!me && we(e, t))
                       ? ((e = oe()), (ie = re = ne = null), (_e = !1), e)
                       : null;
                   switch (e) {
@@ -58119,20 +58135,20 @@ object-assign
                       return null;
                   }
                 })(e, n))
-              ? (((t = pe.getPooled(Ae.beforeInput, t, n, r)).data = e), G(t))
+              ? (((t = pe.getPooled(Ae.beforeInput, t, n, r)).data = e), j(t))
               : (t = null),
             null === o ? t : null === t ? o : [o, t]
           );
         },
       },
-      Te = null,
+      Me = null,
       Se = null,
       Ce = null;
     function Le(e) {
-      if ((e = x(e))) {
-        "function" != typeof Te && a("280");
-        var t = w(e.stateNode);
-        Te(e.stateNode, e.type, t);
+      if ((e = w(e))) {
+        "function" != typeof Me && a("280");
+        var t = E(e.stateNode);
+        Me(e.stateNode, e.type, t);
       }
     }
     function Re(e) {
@@ -58163,7 +58179,7 @@ object-assign
         (Be = !1), (null !== Se || null !== Ce) && (Ie(), Pe());
       }
     }
-    var Fe = {
+    var Ne = {
       color: !0,
       date: !0,
       datetime: !0,
@@ -58180,9 +58196,9 @@ object-assign
       url: !0,
       week: !0,
     };
-    function Ne(e) {
+    function Fe(e) {
       var t = e && e.nodeName && e.nodeName.toLowerCase();
-      return "input" === t ? !!Fe[e.type] : "textarea" === t;
+      return "input" === t ? !!Ne[e.type] : "textarea" === t;
     }
     function Ue(e) {
       return (
@@ -58201,7 +58217,7 @@ object-assign
         t
       );
     }
-    function ze(e) {
+    function Ve(e) {
       var t = e.type;
       return (
         (e = e.nodeName) &&
@@ -58209,10 +58225,10 @@ object-assign
         ("checkbox" === t || "radio" === t)
       );
     }
-    function je(e) {
+    function ze(e) {
       e._valueTracker ||
         (e._valueTracker = (function(e) {
-          var t = ze(e) ? "checked" : "value",
+          var t = Ve(e) ? "checked" : "value",
             n = Object.getOwnPropertyDescriptor(e.constructor.prototype, t),
             r = "" + e[t];
           if (
@@ -58249,20 +58265,20 @@ object-assign
           }
         })(e));
     }
-    function Ve(e) {
+    function Ge(e) {
       if (!e) return !1;
       var t = e._valueTracker;
       if (!t) return !0;
       var n = t.getValue(),
         r = "";
       return (
-        e && (r = ze(e) ? (e.checked ? "true" : "false") : e.value),
+        e && (r = Ve(e) ? (e.checked ? "true" : "false") : e.value),
         (e = r) !== n && (t.setValue(e), !0)
       );
     }
-    var Ge = r.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-    Ge.hasOwnProperty("ReactCurrentDispatcher") ||
-      (Ge.ReactCurrentDispatcher = { current: null });
+    var je = r.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+    je.hasOwnProperty("ReactCurrentDispatcher") ||
+      (je.ReactCurrentDispatcher = { current: null });
     var We = /^(.*)[\\\/]/,
       qe = "function" == typeof Symbol && Symbol.for,
       Xe = qe ? Symbol.for("react.element") : 60103,
@@ -58516,11 +58532,11 @@ object-assign
               : null != t.value,
         });
     }
-    function wt(e, t) {
+    function Et(e, t) {
       null != (t = t.checked) && gt(e, "checked", t, !1);
     }
-    function xt(e, t) {
-      wt(e, t);
+    function wt(e, t) {
+      Et(e, t);
       var n = yt(t.value),
         r = t.type;
       if (null != n)
@@ -58536,7 +58552,7 @@ object-assign
           null != t.defaultChecked &&
           (e.defaultChecked = !!t.defaultChecked);
     }
-    function Et(e, t, n) {
+    function xt(e, t, n) {
       if (t.hasOwnProperty("value") || t.hasOwnProperty("defaultValue")) {
         var r = t.type;
         if (
@@ -58578,7 +58594,7 @@ object-assign
         ft[t] = new pt(t, 1, !1, e, "http://www.w3.org/XML/1998/namespace");
       }),
       (ft.tabIndex = new pt("tabIndex", 1, !1, "tabindex", null));
-    var Mt = {
+    var Tt = {
       change: {
         phasedRegistrationNames: {
           bubbled: "onChange",
@@ -58589,9 +58605,9 @@ object-assign
         ),
       },
     };
-    function Tt(e, t, n) {
+    function Mt(e, t, n) {
       return (
-        ((e = le.getPooled(Mt.change, e, t, n)).type = "change"), Re(n), G(e), e
+        ((e = le.getPooled(Tt.change, e, t, n)).type = "change"), Re(n), j(e), e
       );
     }
     var St = null,
@@ -58600,7 +58616,7 @@ object-assign
       P(e);
     }
     function Rt(e) {
-      if (Ve(F(e))) return e;
+      if (Ge(N(e))) return e;
     }
     function Pt(e, t) {
       if ("change" === e) return t;
@@ -58610,7 +58626,7 @@ object-assign
       St && (St.detachEvent("onpropertychange", It), (Ct = St = null));
     }
     function It(e) {
-      "value" === e.propertyName && Rt(Ct) && ke(Lt, (e = Tt(Ct, e, Ue(e))));
+      "value" === e.propertyName && Rt(Ct) && ke(Lt, (e = Mt(Ct, e, Ue(e))));
     }
     function Bt(e, t, n) {
       "focus" === e
@@ -58621,37 +58637,37 @@ object-assign
       if ("selectionchange" === e || "keyup" === e || "keydown" === e)
         return Rt(Ct);
     }
-    function Ft(e, t) {
+    function Nt(e, t) {
       if ("click" === e) return Rt(t);
     }
-    function Nt(e, t) {
+    function Ft(e, t) {
       if ("input" === e || "change" === e) return Rt(t);
     }
     W &&
       (Ot =
         He("input") && (!document.documentMode || 9 < document.documentMode));
     var Ut = {
-        eventTypes: Mt,
+        eventTypes: Tt,
         _isInputEventSupported: Ot,
         extractEvents: function(e, t, n, r) {
-          var i = t ? F(t) : window,
+          var i = t ? N(t) : window,
             o = void 0,
             a = void 0,
             s = i.nodeName && i.nodeName.toLowerCase();
           if (
             ("select" === s || ("input" === s && "file" === i.type)
               ? (o = Pt)
-              : Ne(i)
+              : Fe(i)
               ? Ot
-                ? (o = Nt)
+                ? (o = Ft)
                 : ((o = kt), (a = Bt))
               : (s = i.nodeName) &&
                 "input" === s.toLowerCase() &&
                 ("checkbox" === i.type || "radio" === i.type) &&
-                (o = Ft),
+                (o = Nt),
             o && (o = o(e, t)))
           )
-            return Tt(o, n, r);
+            return Mt(o, n, r);
           a && a(e, i, t),
             "blur" === e &&
               (e = i._wrapperState) &&
@@ -58661,22 +58677,22 @@ object-assign
         },
       },
       Ht = le.extend({ view: null, detail: null }),
-      zt = {
+      Vt = {
         Alt: "altKey",
         Control: "ctrlKey",
         Meta: "metaKey",
         Shift: "shiftKey",
       };
-    function jt(e) {
+    function zt(e) {
       var t = this.nativeEvent;
       return t.getModifierState
         ? t.getModifierState(e)
-        : !!(e = zt[e]) && !!t[e];
+        : !!(e = Vt[e]) && !!t[e];
     }
-    function Vt() {
-      return jt;
+    function Gt() {
+      return zt;
     }
-    var Gt = 0,
+    var jt = 0,
       Wt = 0,
       qt = !1,
       Xt = !1,
@@ -58691,7 +58707,7 @@ object-assign
         shiftKey: null,
         altKey: null,
         metaKey: null,
-        getModifierState: Vt,
+        getModifierState: Gt,
         button: null,
         buttons: null,
         relatedTarget: function(e) {
@@ -58702,9 +58718,9 @@ object-assign
         },
         movementX: function(e) {
           if ("movementX" in e) return e.movementX;
-          var t = Gt;
+          var t = jt;
           return (
-            (Gt = e.screenX),
+            (jt = e.screenX),
             qt ? ("mousemove" === e.type ? e.screenX - t : 0) : ((qt = !0), 0)
           );
         },
@@ -58782,9 +58798,9 @@ object-assign
               (s = Kt.pointerLeave),
               (l = Kt.pointerEnter),
               (c = "pointer"));
-          var u = null == o ? i : F(o);
+          var u = null == o ? i : N(o);
           if (
-            ((i = null == t ? i : F(t)),
+            ((i = null == t ? i : N(t)),
             ((e = a.getPooled(s, o, n, r)).type = c + "leave"),
             (e.target = u),
             (e.relatedTarget = i),
@@ -58818,8 +58834,8 @@ object-assign
 
           )
             o.push(r), (r = U(r));
-          for (r = 0; r < t.length; r++) j(t[r], "bubbled", e);
-          for (r = o.length; 0 < r--; ) j(o[r], "captured", n);
+          for (r = 0; r < t.length; r++) z(t[r], "bubbled", e);
+          for (r = o.length; 0 < r--; ) z(o[r], "captured", n);
           return [e, n];
         },
       };
@@ -59015,7 +59031,7 @@ object-assign
         metaKey: null,
         repeat: null,
         locale: null,
-        getModifierState: Vt,
+        getModifierState: Gt,
         charCode: function(e) {
           return "keypress" === e.type ? ln(e) : 0;
         },
@@ -59039,7 +59055,7 @@ object-assign
         metaKey: null,
         ctrlKey: null,
         shiftKey: null,
-        getModifierState: Vt,
+        getModifierState: Gt,
       }),
       fn = le.extend({
         propertyName: null,
@@ -59241,12 +59257,12 @@ object-assign
             default:
               e = le;
           }
-          return G((t = e.getPooled(i, t, n, r))), t;
+          return j((t = e.getPooled(i, t, n, r))), t;
         },
       },
-      wn = An.isInteractiveTopLevelEventType,
-      xn = [];
-    function En(e) {
+      En = An.isInteractiveTopLevelEventType,
+      wn = [];
+    function xn(e) {
       var t = e.targetInst,
         n = t;
       do {
@@ -59265,20 +59281,20 @@ object-assign
         r = e.topLevelType;
         for (var o = e.nativeEvent, a = null, s = 0; s < g.length; s++) {
           var l = g[s];
-          l && (l = l.extractEvents(r, t, o, i)) && (a = M(a, l));
+          l && (l = l.extractEvents(r, t, o, i)) && (a = T(a, l));
         }
         P(a);
       }
     }
     var _n = !0;
-    function Mn(e, t) {
-      if (!t) return null;
-      var n = (wn(e) ? Sn : Cn).bind(null, e);
-      t.addEventListener(e, n, !1);
-    }
     function Tn(e, t) {
       if (!t) return null;
-      var n = (wn(e) ? Sn : Cn).bind(null, e);
+      var n = (En(e) ? Sn : Cn).bind(null, e);
+      t.addEventListener(e, n, !1);
+    }
+    function Mn(e, t) {
+      if (!t) return null;
+      var n = (En(e) ? Sn : Cn).bind(null, e);
       t.addEventListener(e, n, !0);
     }
     function Sn(e, t) {
@@ -59292,9 +59308,9 @@ object-assign
             "number" != typeof n.tag ||
             2 === tn(n) ||
             (n = null),
-          xn.length)
+          wn.length)
         ) {
-          var r = xn.pop();
+          var r = wn.pop();
           (r.topLevelType = e),
             (r.nativeEvent = t),
             (r.targetInst = n),
@@ -59302,13 +59318,13 @@ object-assign
         } else
           e = { topLevelType: e, nativeEvent: t, targetInst: n, ancestors: [] };
         try {
-          ke(En, e);
+          ke(xn, e);
         } finally {
           (e.topLevelType = null),
             (e.nativeEvent = null),
             (e.targetInst = null),
             (e.ancestors.length = 0),
-            10 > xn.length && xn.push(e);
+            10 > wn.length && wn.push(e);
         }
       }
     }
@@ -59371,7 +59387,7 @@ object-assign
       }
       return t;
     }
-    function Fn(e) {
+    function Nn(e) {
       var t = e && e.nodeName && e.nodeName.toLowerCase();
       return (
         t &&
@@ -59385,7 +59401,7 @@ object-assign
           "true" === e.contentEditable)
       );
     }
-    var Nn = W && "documentMode" in document && 11 >= document.documentMode,
+    var Fn = W && "documentMode" in document && 11 >= document.documentMode,
       Un = {
         select: {
           phasedRegistrationNames: {
@@ -59398,15 +59414,15 @@ object-assign
         },
       },
       Hn = null,
+      Vn = null,
       zn = null,
-      jn = null,
-      Vn = !1;
-    function Gn(e, t) {
+      Gn = !1;
+    function jn(e, t) {
       var n =
         t.window === t ? t.document : 9 === t.nodeType ? t : t.ownerDocument;
-      return Vn || null == Hn || Hn !== Dn(n)
+      return Gn || null == Hn || Hn !== Dn(n)
         ? null
-        : ("selectionStart" in (n = Hn) && Fn(n)
+        : ("selectionStart" in (n = Hn) && Nn(n)
             ? (n = { start: n.selectionStart, end: n.selectionEnd })
             : (n = {
                 anchorNode: (n = (
@@ -59417,12 +59433,12 @@ object-assign
                 focusNode: n.focusNode,
                 focusOffset: n.focusOffset,
               }),
-          jn && en(jn, n)
+          zn && en(zn, n)
             ? null
-            : ((jn = n),
-              ((e = le.getPooled(Un.select, zn, e, t)).type = "select"),
+            : ((zn = n),
+              ((e = le.getPooled(Un.select, Vn, e, t)).type = "select"),
               (e.target = Hn),
-              G(e),
+              j(e),
               e));
     }
     var Wn = {
@@ -59450,26 +59466,26 @@ object-assign
           i = !o;
         }
         if (i) return null;
-        switch (((o = t ? F(t) : window), e)) {
+        switch (((o = t ? N(t) : window), e)) {
           case "focus":
-            (Ne(o) || "true" === o.contentEditable) &&
-              ((Hn = o), (zn = t), (jn = null));
+            (Fe(o) || "true" === o.contentEditable) &&
+              ((Hn = o), (Vn = t), (zn = null));
             break;
           case "blur":
-            jn = zn = Hn = null;
+            zn = Vn = Hn = null;
             break;
           case "mousedown":
-            Vn = !0;
+            Gn = !0;
             break;
           case "contextmenu":
           case "mouseup":
           case "dragend":
-            return (Vn = !1), Gn(n, r);
+            return (Gn = !1), jn(n, r);
           case "selectionchange":
-            if (Nn) break;
+            if (Fn) break;
           case "keydown":
           case "keyup":
-            return Gn(n, r);
+            return jn(n, r);
         }
         return null;
       },
@@ -59546,15 +59562,15 @@ object-assign
         " "
       )
     ),
-      (w = N),
-      (x = k),
       (E = F),
+      (w = k),
+      (x = N),
       L.injectEventPluginsByName({
         SimpleEventPlugin: An,
         EnterLeaveEventPlugin: Zt,
         ChangeEventPlugin: Ut,
         SelectEventPlugin: Wn,
-        BeforeInputEventPlugin: Me,
+        BeforeInputEventPlugin: Te,
       });
     var Jn = {
       html: "http://www.w3.org/1999/xhtml",
@@ -59736,22 +59752,22 @@ object-assign
         if (!n.hasOwnProperty(i) || !n[i]) {
           switch (i) {
             case "scroll":
-              Tn("scroll", e);
+              Mn("scroll", e);
               break;
             case "focus":
             case "blur":
-              Tn("focus", e), Tn("blur", e), (n.blur = !0), (n.focus = !0);
+              Mn("focus", e), Mn("blur", e), (n.blur = !0), (n.focus = !0);
               break;
             case "cancel":
             case "close":
-              He(i) && Tn(i, e);
+              He(i) && Mn(i, e);
               break;
             case "invalid":
             case "submit":
             case "reset":
               break;
             default:
-              -1 === te.indexOf(i) && Mn(i, e);
+              -1 === te.indexOf(i) && Tn(i, e);
           }
           n[i] = !0;
         }
@@ -59785,25 +59801,25 @@ object-assign
     var yr = "function" == typeof setTimeout ? setTimeout : void 0,
       br = "function" == typeof clearTimeout ? clearTimeout : void 0,
       Ar = o.unstable_scheduleCallback,
-      wr = o.unstable_cancelCallback;
-    function xr(e) {
+      Er = o.unstable_cancelCallback;
+    function wr(e) {
       for (e = e.nextSibling; e && 1 !== e.nodeType && 3 !== e.nodeType; )
         e = e.nextSibling;
       return e;
     }
-    function Er(e) {
+    function xr(e) {
       for (e = e.firstChild; e && 1 !== e.nodeType && 3 !== e.nodeType; )
         e = e.nextSibling;
       return e;
     }
     new Set();
     var _r = [],
-      Mr = -1;
-    function Tr(e) {
-      0 > Mr || ((e.current = _r[Mr]), (_r[Mr] = null), Mr--);
+      Tr = -1;
+    function Mr(e) {
+      0 > Tr || ((e.current = _r[Tr]), (_r[Tr] = null), Tr--);
     }
     function Sr(e, t) {
-      (_r[++Mr] = e.current), (e.current = t);
+      (_r[++Tr] = e.current), (e.current = t);
     }
     var Cr = {},
       Lr = { current: Cr },
@@ -59829,15 +59845,15 @@ object-assign
       return null != (e = e.childContextTypes);
     }
     function Ir(e) {
-      Tr(Rr), Tr(Lr);
+      Mr(Rr), Mr(Lr);
     }
     function Br(e) {
-      Tr(Rr), Tr(Lr);
+      Mr(Rr), Mr(Lr);
     }
     function kr(e, t, n) {
       Lr.current !== Cr && a("168"), Sr(Lr, t), Sr(Rr, n);
     }
-    function Fr(e, t, n) {
+    function Nr(e, t, n) {
       var r = e.stateNode;
       if (((e = t.childContextTypes), "function" != typeof r.getChildContext))
         return n;
@@ -59845,7 +59861,7 @@ object-assign
         o in e || a("108", st(t) || "Unknown", o);
       return i({}, n, r);
     }
-    function Nr(e) {
+    function Fr(e) {
       var t = e.stateNode;
       return (
         (t = (t && t.__reactInternalMemoizedMergedChildContext) || Cr),
@@ -59859,24 +59875,24 @@ object-assign
       var r = e.stateNode;
       r || a("169"),
         n
-          ? ((t = Fr(e, t, Pr)),
+          ? ((t = Nr(e, t, Pr)),
             (r.__reactInternalMemoizedMergedChildContext = t),
-            Tr(Rr),
-            Tr(Lr),
+            Mr(Rr),
+            Mr(Lr),
             Sr(Lr, t))
-          : Tr(Rr),
+          : Mr(Rr),
         Sr(Rr, n);
     }
     var Hr = null,
-      zr = null;
-    function jr(e) {
+      Vr = null;
+    function zr(e) {
       return function(t) {
         try {
           return e(t);
         } catch (e) {}
       };
     }
-    function Vr(e, t, n, r) {
+    function Gr(e, t, n, r) {
       (this.tag = e),
         (this.key = n),
         (this.sibling = this.child = this.return = this.stateNode = this.type = this.elementType = null),
@@ -59890,8 +59906,8 @@ object-assign
         (this.childExpirationTime = this.expirationTime = 0),
         (this.alternate = null);
     }
-    function Gr(e, t, n, r) {
-      return new Vr(e, t, n, r);
+    function jr(e, t, n, r) {
+      return new Gr(e, t, n, r);
     }
     function Wr(e) {
       return !(!(e = e.prototype) || !e.isReactComponent);
@@ -59900,7 +59916,7 @@ object-assign
       var n = e.alternate;
       return (
         null === n
-          ? (((n = Gr(e.tag, t, e.key, e.mode)).elementType = e.elementType),
+          ? (((n = jr(e.tag, t, e.key, e.mode)).elementType = e.elementType),
             (n.type = e.type),
             (n.stateNode = e.stateNode),
             (n.alternate = e),
@@ -59937,14 +59953,14 @@ object-assign
             return Qr(n, 2 | i, o, t);
           case Ze:
             return (
-              ((e = Gr(12, n, t, 4 | i)).elementType = Ze),
+              ((e = jr(12, n, t, 4 | i)).elementType = Ze),
               (e.type = Ze),
               (e.expirationTime = o),
               e
             );
           case nt:
             return (
-              ((e = Gr(13, n, t, i)).elementType = nt),
+              ((e = jr(13, n, t, i)).elementType = nt),
               (e.type = nt),
               (e.expirationTime = o),
               e
@@ -59971,18 +59987,18 @@ object-assign
             a("130", null == e ? e : typeof e, "");
         }
       return (
-        ((t = Gr(s, n, t, i)).elementType = e),
+        ((t = jr(s, n, t, i)).elementType = e),
         (t.type = r),
         (t.expirationTime = o),
         t
       );
     }
     function Yr(e, t, n, r) {
-      return ((e = Gr(7, e, r, t)).expirationTime = n), e;
+      return ((e = jr(7, e, r, t)).expirationTime = n), e;
     }
     function Qr(e, t, n, r) {
       return (
-        (e = Gr(8, e, r, t)),
+        (e = jr(8, e, r, t)),
         (t = 0 == (1 & t) ? Ke : et),
         (e.elementType = t),
         (e.type = t),
@@ -59991,11 +60007,11 @@ object-assign
       );
     }
     function Kr(e, t, n) {
-      return ((e = Gr(6, e, null, t)).expirationTime = n), e;
+      return ((e = jr(6, e, null, t)).expirationTime = n), e;
     }
     function Zr(e, t, n) {
       return (
-        ((t = Gr(
+        ((t = jr(
           4,
           null !== e.children ? e.children : [],
           e.key,
@@ -60081,7 +60097,7 @@ object-assign
         e = e._reactInternalFiber;
         var r = bs(),
           i = Qo((r = Wa(r, e)));
-        (i.tag = Vo),
+        (i.tag = Go),
           (i.payload = t),
           null != n && (i.callback = n),
           Ha(),
@@ -60092,7 +60108,7 @@ object-assign
         e = e._reactInternalFiber;
         var n = bs(),
           r = Qo((n = Wa(n, e)));
-        (r.tag = Go), null != t && (r.callback = t), Ha(), Zo(e, r), Ya(e, n);
+        (r.tag = jo), null != t && (r.callback = t), Ha(), Zo(e, r), Ya(e, n);
       },
     };
     function ai(e, t, n, r, i, o, a) {
@@ -60108,7 +60124,7 @@ object-assign
         o = t.contextType;
       return (
         "object" == typeof o && null !== o
-          ? (o = zo(o))
+          ? (o = Vo(o))
           : ((i = Dr(t) ? Pr : Lr.current),
             (o = (r = null != (r = t.contextTypes)) ? Or(e, i) : Cr)),
         (t = new t(n, o)),
@@ -60136,7 +60152,7 @@ object-assign
       (i.props = n), (i.state = e.memoizedState), (i.refs = ri);
       var o = t.contextType;
       "object" == typeof o && null !== o
-        ? (i.context = zo(o))
+        ? (i.context = Vo(o))
         : ((o = Dr(t) ? Pr : Lr.current), (i.context = Or(e, o))),
         null !== (o = e.updateQueue) &&
           (ta(e, o, n, i, r), (i.state = e.memoizedState)),
@@ -60508,7 +60524,7 @@ object-assign
     function Ai(e) {
       return e === vi && a("174"), e;
     }
-    function wi(e, t) {
+    function Ei(e, t) {
       Sr(bi, t), Sr(yi, e), Sr(gi, vi);
       var n = t.nodeType;
       switch (n) {
@@ -60522,40 +60538,40 @@ object-assign
             (n = n.tagName)
           );
       }
-      Tr(gi), Sr(gi, t);
+      Mr(gi), Sr(gi, t);
+    }
+    function wi(e) {
+      Mr(gi), Mr(yi), Mr(bi);
     }
     function xi(e) {
-      Tr(gi), Tr(yi), Tr(bi);
-    }
-    function Ei(e) {
       Ai(bi.current);
       var t = Ai(gi.current),
         n = er(t, e.type);
       t !== n && (Sr(yi, e), Sr(gi, n));
     }
     function _i(e) {
-      yi.current === e && (Tr(gi), Tr(yi));
+      yi.current === e && (Mr(gi), Mr(yi));
     }
-    var Mi = 0,
-      Ti = 2,
+    var Ti = 0,
+      Mi = 2,
       Si = 4,
       Ci = 8,
       Li = 16,
       Ri = 32,
       Pi = 64,
       Oi = 128,
-      Di = Ge.ReactCurrentDispatcher,
+      Di = je.ReactCurrentDispatcher,
       Ii = 0,
       Bi = null,
       ki = null,
-      Fi = null,
       Ni = null,
+      Fi = null,
       Ui = null,
       Hi = null,
-      zi = 0,
-      ji = null,
       Vi = 0,
-      Gi = !1,
+      zi = null,
+      Gi = 0,
+      ji = !1,
       Wi = null,
       qi = 0;
     function Xi() {
@@ -60571,34 +60587,34 @@ object-assign
       if (
         ((Ii = o),
         (Bi = t),
-        (Fi = null !== e ? e.memoizedState : null),
-        (Di.current = null === Fi ? lo : co),
+        (Ni = null !== e ? e.memoizedState : null),
+        (Di.current = null === Ni ? lo : co),
         (t = n(r, i)),
-        Gi)
+        ji)
       ) {
         do {
-          (Gi = !1),
+          (ji = !1),
             (qi += 1),
-            (Fi = null !== e ? e.memoizedState : null),
-            (Hi = Ni),
-            (ji = Ui = ki = null),
+            (Ni = null !== e ? e.memoizedState : null),
+            (Hi = Fi),
+            (zi = Ui = ki = null),
             (Di.current = co),
             (t = n(r, i));
-        } while (Gi);
+        } while (ji);
         (Wi = null), (qi = 0);
       }
       return (
         (Di.current = so),
-        ((e = Bi).memoizedState = Ni),
-        (e.expirationTime = zi),
-        (e.updateQueue = ji),
-        (e.effectTag |= Vi),
+        ((e = Bi).memoizedState = Fi),
+        (e.expirationTime = Vi),
+        (e.updateQueue = zi),
+        (e.effectTag |= Gi),
         (e = null !== ki && null !== ki.next),
         (Ii = 0),
-        (Hi = Ui = Ni = Fi = ki = Bi = null),
-        (zi = 0),
-        (ji = null),
+        (Hi = Ui = Fi = Ni = ki = Bi = null),
         (Vi = 0),
+        (zi = null),
+        (Gi = 0),
         e && a("300"),
         t
       );
@@ -60606,11 +60622,11 @@ object-assign
     function Ki() {
       (Di.current = so),
         (Ii = 0),
-        (Hi = Ui = Ni = Fi = ki = Bi = null),
-        (zi = 0),
-        (ji = null),
+        (Hi = Ui = Fi = Ni = ki = Bi = null),
         (Vi = 0),
-        (Gi = !1),
+        (zi = null),
+        (Gi = 0),
+        (ji = !1),
         (Wi = null),
         (qi = 0);
     }
@@ -60622,21 +60638,21 @@ object-assign
         baseUpdate: null,
         next: null,
       };
-      return null === Ui ? (Ni = Ui = e) : (Ui = Ui.next = e), Ui;
+      return null === Ui ? (Fi = Ui = e) : (Ui = Ui.next = e), Ui;
     }
     function Ji() {
       if (null !== Hi)
-        (Hi = (Ui = Hi).next), (Fi = null !== (ki = Fi) ? ki.next : null);
+        (Hi = (Ui = Hi).next), (Ni = null !== (ki = Ni) ? ki.next : null);
       else {
-        null === Fi && a("310");
+        null === Ni && a("310");
         var e = {
-          memoizedState: (ki = Fi).memoizedState,
+          memoizedState: (ki = Ni).memoizedState,
           baseState: ki.baseState,
           queue: ki.queue,
           baseUpdate: ki.baseUpdate,
           next: null,
         };
-        (Ui = null === Ui ? (Ni = e) : (Ui.next = e)), (Fi = ki.next);
+        (Ui = null === Ui ? (Fi = e) : (Ui.next = e)), (Ni = ki.next);
       }
       return Ui;
     }
@@ -60657,7 +60673,7 @@ object-assign
               (o = e(o, i.action)), (i = i.next);
             } while (null !== i);
             return (
-              Jt(o, t.memoizedState) || (wo = !0),
+              Jt(o, t.memoizedState) || (Eo = !0),
               (t.memoizedState = o),
               t.baseUpdate === n.last && (t.baseState = o),
               [o, r]
@@ -60681,13 +60697,13 @@ object-assign
         do {
           var h = c.expirationTime;
           h < Ii
-            ? (u || ((u = !0), (l = s), (i = o)), h > zi && (zi = h))
+            ? (u || ((u = !0), (l = s), (i = o)), h > Vi && (Vi = h))
             : (o = c.eagerReducer === e ? c.eagerState : e(o, c.action)),
             (s = c),
             (c = c.next);
         } while (null !== c && c !== r);
         u || ((l = s), (i = o)),
-          Jt(o, t.memoizedState) || (wo = !0),
+          Jt(o, t.memoizedState) || (Eo = !0),
           (t.memoizedState = o),
           (t.baseUpdate = l),
           (t.baseState = i),
@@ -60699,17 +60715,17 @@ object-assign
     function to(e, t, n, r) {
       return (
         (e = { tag: e, create: t, destroy: n, deps: r, next: null }),
-        null === ji
-          ? ((ji = { lastEffect: null }).lastEffect = e.next = e)
-          : null === (t = ji.lastEffect)
-          ? (ji.lastEffect = e.next = e)
-          : ((n = t.next), (t.next = e), (e.next = n), (ji.lastEffect = e)),
+        null === zi
+          ? ((zi = { lastEffect: null }).lastEffect = e.next = e)
+          : null === (t = zi.lastEffect)
+          ? (zi.lastEffect = e.next = e)
+          : ((n = t.next), (t.next = e), (e.next = n), (zi.lastEffect = e)),
         e
       );
     }
     function no(e, t, n, r) {
       var i = Zi();
-      (Vi |= e), (i.memoizedState = to(t, n, void 0, void 0 === r ? null : r));
+      (Gi |= e), (i.memoizedState = to(t, n, void 0, void 0 === r ? null : r));
     }
     function ro(e, t, n, r) {
       var i = Ji();
@@ -60718,9 +60734,9 @@ object-assign
       if (null !== ki) {
         var a = ki.memoizedState;
         if (((o = a.destroy), null !== r && Yi(r, a.deps)))
-          return void to(Mi, n, o, r);
+          return void to(Ti, n, o, r);
       }
-      (Vi |= e), (i.memoizedState = to(t, n, o, r));
+      (Gi |= e), (i.memoizedState = to(t, n, o, r));
     }
     function io(e, t) {
       return "function" == typeof t
@@ -60743,7 +60759,7 @@ object-assign
       var r = e.alternate;
       if (e === Bi || (null !== r && r === Bi))
         if (
-          ((Gi = !0),
+          ((ji = !0),
           (e = {
             expirationTime: Ii,
             action: n,
@@ -60790,7 +60806,7 @@ object-assign
       }
     }
     var so = {
-        readContext: zo,
+        readContext: Vo,
         useCallback: Xi,
         useContext: Xi,
         useEffect: Xi,
@@ -60803,11 +60819,11 @@ object-assign
         useDebugValue: Xi,
       },
       lo = {
-        readContext: zo,
+        readContext: Vo,
         useCallback: function(e, t) {
           return (Zi().memoizedState = [e, void 0 === t ? null : t]), e;
         },
-        useContext: zo,
+        useContext: Vo,
         useEffect: function(e, t) {
           return no(516, Oi | Pi, e, t);
         },
@@ -60863,7 +60879,7 @@ object-assign
         useDebugValue: oo,
       },
       co = {
-        readContext: zo,
+        readContext: Vo,
         useCallback: function(e, t) {
           var n = Ji();
           t = void 0 === t ? null : t;
@@ -60872,7 +60888,7 @@ object-assign
             ? r[0]
             : ((n.memoizedState = [e, t]), e);
         },
-        useContext: zo,
+        useContext: Vo,
         useEffect: function(e, t) {
           return ro(516, Oi | Pi, e, t);
         },
@@ -60906,7 +60922,7 @@ object-assign
       ho = null,
       po = !1;
     function fo(e, t) {
-      var n = Gr(5, null, null, 0);
+      var n = jr(5, null, null, 0);
       (n.elementType = "DELETED"),
         (n.type = "DELETED"),
         (n.stateNode = t),
@@ -60943,11 +60959,11 @@ object-assign
         if (t) {
           var n = t;
           if (!mo(e, t)) {
-            if (!(t = xr(n)) || !mo(e, t))
+            if (!(t = wr(n)) || !mo(e, t))
               return (e.effectTag |= 2), (po = !1), void (uo = e);
             fo(uo, n);
           }
-          (uo = e), (ho = Er(t));
+          (uo = e), (ho = xr(t));
         } else (e.effectTag |= 2), (po = !1), (uo = e);
       }
     }
@@ -60964,25 +60980,25 @@ object-assign
         5 !== e.tag ||
         ("head" !== t && "body" !== t && !gr(t, e.memoizedProps))
       )
-        for (t = ho; t; ) fo(e, t), (t = xr(t));
-      return go(e), (ho = uo ? xr(e.stateNode) : null), !0;
+        for (t = ho; t; ) fo(e, t), (t = wr(t));
+      return go(e), (ho = uo ? wr(e.stateNode) : null), !0;
     }
     function bo() {
       (ho = uo = null), (po = !1);
     }
-    var Ao = Ge.ReactCurrentOwner,
-      wo = !1;
-    function xo(e, t, n, r) {
+    var Ao = je.ReactCurrentOwner,
+      Eo = !1;
+    function wo(e, t, n, r) {
       t.child = null === e ? mi(t, null, n, r) : fi(t, e.child, n, r);
     }
-    function Eo(e, t, n, r, i) {
+    function xo(e, t, n, r, i) {
       n = n.render;
       var o = t.ref;
       return (
         Ho(t, i),
         (r = Qi(e, t, n, r, o, i)),
-        null === e || wo
-          ? ((t.effectTag |= 1), xo(e, t, r, i), t.child)
+        null === e || Eo
+          ? ((t.effectTag |= 1), wo(e, t, r, i), t.child)
           : ((t.updateQueue = e.updateQueue),
             (t.effectTag &= -517),
             e.expirationTime <= i && (e.expirationTime = 0),
@@ -61000,7 +61016,7 @@ object-assign
           ? (((e = Xr(n.type, null, r, null, t.mode, o)).ref = t.ref),
             (e.return = t),
             (t.child = e))
-          : ((t.tag = 15), (t.type = a), Mo(e, t, a, r, i, o));
+          : ((t.tag = 15), (t.type = a), To(e, t, a, r, i, o));
       }
       return (
         (a = e.child),
@@ -61014,15 +61030,15 @@ object-assign
             (t.child = e))
       );
     }
-    function Mo(e, t, n, r, i, o) {
+    function To(e, t, n, r, i, o) {
       return null !== e &&
         en(e.memoizedProps, r) &&
         e.ref === t.ref &&
-        ((wo = !1), i < o)
+        ((Eo = !1), i < o)
         ? Oo(e, t, o)
         : So(e, t, n, r, o);
     }
-    function To(e, t) {
+    function Mo(e, t) {
       var n = t.ref;
       ((null === e && null !== n) || (null !== e && e.ref !== n)) &&
         (t.effectTag |= 128);
@@ -61033,8 +61049,8 @@ object-assign
         (o = Or(t, o)),
         Ho(t, i),
         (n = Qi(e, t, n, r, o, i)),
-        null === e || wo
-          ? ((t.effectTag |= 1), xo(e, t, n, i), t.child)
+        null === e || Eo
+          ? ((t.effectTag |= 1), wo(e, t, n, i), t.child)
           : ((t.updateQueue = e.updateQueue),
             (t.effectTag &= -517),
             e.expirationTime <= i && (e.expirationTime = 0),
@@ -61044,7 +61060,7 @@ object-assign
     function Co(e, t, n, r, i) {
       if (Dr(n)) {
         var o = !0;
-        Nr(t);
+        Fr(t);
       } else o = !1;
       if ((Ho(t, i), null === t.stateNode))
         null !== e &&
@@ -61059,7 +61075,7 @@ object-assign
         var l = a.context,
           c = n.contextType;
         "object" == typeof c && null !== c
-          ? (c = zo(c))
+          ? (c = Vo(c))
           : (c = Or(t, (c = Dr(n) ? Pr : Lr.current)));
         var u = n.getDerivedStateFromProps,
           h =
@@ -61103,7 +61119,7 @@ object-assign
           (a.props = t.type === t.elementType ? s : ni(t.type, s)),
           (l = a.context),
           "object" == typeof (c = n.contextType) && null !== c
-            ? (c = zo(c))
+            ? (c = Vo(c))
             : (c = Or(t, (c = Dr(n) ? Pr : Lr.current))),
           (h =
             "function" == typeof (u = n.getDerivedStateFromProps) ||
@@ -61153,7 +61169,7 @@ object-assign
       return Lo(e, t, n, r, o, i);
     }
     function Lo(e, t, n, r, i, o) {
-      To(e, t);
+      Mo(e, t);
       var a = 0 != (64 & t.effectTag);
       if (!r && !a) return i && Ur(t, n, !1), Oo(e, t, o);
       (r = t.stateNode), (Ao.current = t);
@@ -61165,7 +61181,7 @@ object-assign
         (t.effectTag |= 1),
         null !== e && a
           ? ((t.child = fi(t, e.child, null, o)), (t.child = fi(t, null, s, o)))
-          : xo(e, t, s, o),
+          : wo(e, t, s, o),
         (t.memoizedState = r.state),
         i && Ur(t, n, !0),
         t.child
@@ -61176,7 +61192,7 @@ object-assign
       t.pendingContext
         ? kr(0, t.pendingContext, t.pendingContext !== t.context)
         : t.context && kr(0, t.context, !1),
-        wi(e, t.containerInfo);
+        Ei(e, t.containerInfo);
     }
     function Po(e, t, n) {
       var r = t.mode,
@@ -61256,23 +61272,23 @@ object-assign
     function Do(e, t, n) {
       var r = t.expirationTime;
       if (null !== e) {
-        if (e.memoizedProps !== t.pendingProps || Rr.current) wo = !0;
+        if (e.memoizedProps !== t.pendingProps || Rr.current) Eo = !0;
         else if (r < n) {
-          switch (((wo = !1), t.tag)) {
+          switch (((Eo = !1), t.tag)) {
             case 3:
               Ro(t), bo();
               break;
             case 5:
-              Ei(t);
+              xi(t);
               break;
             case 1:
-              Dr(t.type) && Nr(t);
+              Dr(t.type) && Fr(t);
               break;
             case 4:
-              wi(t, t.stateNode.containerInfo);
+              Ei(t, t.stateNode.containerInfo);
               break;
             case 10:
-              No(t, t.memoizedProps.value);
+              Fo(t, t.memoizedProps.value);
               break;
             case 13:
               if (null !== t.memoizedState)
@@ -61284,7 +61300,7 @@ object-assign
           }
           return Oo(e, t, n);
         }
-      } else wo = !1;
+      } else Eo = !1;
       switch (((t.expirationTime = 0), t.tag)) {
         case 2:
           (r = t.elementType),
@@ -61303,7 +61319,7 @@ object-assign
           ) {
             if (((t.tag = 1), Ki(), Dr(r))) {
               var o = !0;
-              Nr(t);
+              Fr(t);
             } else o = !1;
             t.memoizedState =
               null !== i.state && void 0 !== i.state ? i.state : null;
@@ -61314,7 +61330,7 @@ object-assign
               (i._reactInternalFiber = t),
               ci(t, r, e, n),
               (t = Lo(null, t, r, !0, o, n));
-          } else (t.tag = 0), xo(null, t, i, n), (t = t.child);
+          } else (t.tag = 0), wo(null, t, i, n), (t = t.child);
           return t;
         case 16:
           switch (
@@ -61372,7 +61388,7 @@ object-assign
               s = Co(null, t, e, o, n);
               break;
             case 11:
-              s = Eo(null, t, e, o, n);
+              s = xo(null, t, e, o, n);
               break;
             case 14:
               s = _o(null, t, e, ni(e.type, o), r, n);
@@ -61403,18 +61419,18 @@ object-assign
               ? (bo(), (t = Oo(e, t, n)))
               : ((i = t.stateNode),
                 (i = (null === e || null === e.child) && i.hydrate) &&
-                  ((ho = Er(t.stateNode.containerInfo)),
+                  ((ho = xr(t.stateNode.containerInfo)),
                   (uo = t),
                   (i = po = !0)),
                 i
                   ? ((t.effectTag |= 2), (t.child = mi(t, null, r, n)))
-                  : (xo(e, t, r, n), bo()),
+                  : (wo(e, t, r, n), bo()),
                 (t = t.child)),
             t
           );
         case 5:
           return (
-            Ei(t),
+            xi(t),
             null === e && vo(t),
             (r = t.type),
             (i = t.pendingProps),
@@ -61423,10 +61439,10 @@ object-assign
             gr(r, i)
               ? (s = null)
               : null !== o && gr(r, o) && (t.effectTag |= 16),
-            To(e, t),
+            Mo(e, t),
             1 !== n && 1 & t.mode && i.hidden
               ? ((t.expirationTime = t.childExpirationTime = 1), (t = null))
-              : (xo(e, t, s, n), (t = t.child)),
+              : (wo(e, t, s, n), (t = t.child)),
             t
           );
         case 6:
@@ -61435,29 +61451,29 @@ object-assign
           return Po(e, t, n);
         case 4:
           return (
-            wi(t, t.stateNode.containerInfo),
+            Ei(t, t.stateNode.containerInfo),
             (r = t.pendingProps),
-            null === e ? (t.child = fi(t, null, r, n)) : xo(e, t, r, n),
+            null === e ? (t.child = fi(t, null, r, n)) : wo(e, t, r, n),
             t.child
           );
         case 11:
           return (
             (r = t.type),
             (i = t.pendingProps),
-            Eo(e, t, r, (i = t.elementType === r ? i : ni(r, i)), n)
+            xo(e, t, r, (i = t.elementType === r ? i : ni(r, i)), n)
           );
         case 7:
-          return xo(e, t, t.pendingProps, n), t.child;
+          return wo(e, t, t.pendingProps, n), t.child;
         case 8:
         case 12:
-          return xo(e, t, t.pendingProps.children, n), t.child;
+          return wo(e, t, t.pendingProps.children, n), t.child;
         case 10:
           e: {
             if (
               ((r = t.type._context),
               (i = t.pendingProps),
               (s = t.memoizedProps),
-              No(t, (o = i.value)),
+              Fo(t, (o = i.value)),
               null !== s)
             ) {
               var l = s.value;
@@ -61481,7 +61497,7 @@ object-assign
                     s = l.child;
                     for (var u = c.first; null !== u; ) {
                       if (u.context === r && 0 != (u.observedBits & o)) {
-                        1 === l.tag && (((u = Qo(n)).tag = Go), Zo(l, u)),
+                        1 === l.tag && (((u = Qo(n)).tag = jo), Zo(l, u)),
                           l.expirationTime < n && (l.expirationTime = n),
                           null !== (u = l.alternate) &&
                             u.expirationTime < n &&
@@ -61521,7 +61537,7 @@ object-assign
                   l = s;
                 }
             }
-            xo(e, t, i.children, n), (t = t.child);
+            wo(e, t, i.children, n), (t = t.child);
           }
           return t;
         case 9:
@@ -61529,9 +61545,9 @@ object-assign
             (i = t.type),
             (r = (o = t.pendingProps).children),
             Ho(t, n),
-            (r = r((i = zo(i, o.unstable_observedBits)))),
+            (r = r((i = Vo(i, o.unstable_observedBits)))),
             (t.effectTag |= 1),
-            xo(e, t, r, n),
+            wo(e, t, r, n),
             t.child
           );
         case 14:
@@ -61540,7 +61556,7 @@ object-assign
             _o(e, t, i, (o = ni(i.type, o)), r, n)
           );
         case 15:
-          return Mo(e, t, t.type, t.pendingProps, r, n);
+          return To(e, t, t.type, t.pendingProps, r, n);
         case 17:
           return (
             (r = t.type),
@@ -61549,7 +61565,7 @@ object-assign
             null !== e &&
               ((e.alternate = null), (t.alternate = null), (t.effectTag |= 2)),
             (t.tag = 1),
-            Dr(r) ? ((e = !0), Nr(t)) : (e = !1),
+            Dr(r) ? ((e = !0), Fr(t)) : (e = !1),
             Ho(t, n),
             si(t, r, i),
             ci(t, r, i, n),
@@ -61562,28 +61578,28 @@ object-assign
     var Io = { current: null },
       Bo = null,
       ko = null,
-      Fo = null;
-    function No(e, t) {
+      No = null;
+    function Fo(e, t) {
       var n = e.type._context;
       Sr(Io, n._currentValue), (n._currentValue = t);
     }
     function Uo(e) {
       var t = Io.current;
-      Tr(Io), (e.type._context._currentValue = t);
+      Mr(Io), (e.type._context._currentValue = t);
     }
     function Ho(e, t) {
-      (Bo = e), (Fo = ko = null);
+      (Bo = e), (No = ko = null);
       var n = e.contextDependencies;
-      null !== n && n.expirationTime >= t && (wo = !0),
+      null !== n && n.expirationTime >= t && (Eo = !0),
         (e.contextDependencies = null);
     }
-    function zo(e, t) {
+    function Vo(e, t) {
       return (
-        Fo !== e &&
+        No !== e &&
           !1 !== t &&
           0 !== t &&
           (("number" == typeof t && 1073741823 !== t) ||
-            ((Fo = e), (t = 1073741823)),
+            ((No = e), (t = 1073741823)),
           (t = { context: e, observedBits: t, next: null }),
           null === ko
             ? (null === Bo && a("308"),
@@ -61593,9 +61609,9 @@ object-assign
         e._currentValue
       );
     }
-    var jo = 0,
-      Vo = 1,
-      Go = 2,
+    var zo = 0,
+      Go = 1,
+      jo = 2,
       Wo = 3,
       qo = !1;
     function Xo(e) {
@@ -61627,7 +61643,7 @@ object-assign
     function Qo(e) {
       return {
         expirationTime: e,
-        tag: jo,
+        tag: zo,
         payload: null,
         callback: null,
         next: null,
@@ -61676,18 +61692,18 @@ object-assign
     }
     function ea(e, t, n, r, o, a) {
       switch (n.tag) {
-        case Vo:
+        case Go:
           return "function" == typeof (e = n.payload) ? e.call(a, r, o) : e;
         case Wo:
           e.effectTag = (-2049 & e.effectTag) | 64;
-        case jo:
+        case zo:
           if (
             null ==
             (o = "function" == typeof (e = n.payload) ? e.call(a, r, o) : e)
           )
             break;
           return i({}, r, o);
-        case Go:
+        case jo:
           qo = !0;
       }
       return r;
@@ -61890,7 +61906,7 @@ object-assign
           try {
             t(null);
           } catch (t) {
-            Ga(e, t);
+            ja(e, t);
           }
         else t.current = null;
     }
@@ -61898,17 +61914,17 @@ object-assign
       if (null !== (n = null !== (n = n.updateQueue) ? n.lastEffect : null)) {
         var r = (n = n.next);
         do {
-          if ((r.tag & e) !== Mi) {
+          if ((r.tag & e) !== Ti) {
             var i = r.destroy;
             (r.destroy = void 0), void 0 !== i && i();
           }
-          (r.tag & t) !== Mi && ((i = r.create), (r.destroy = i())),
+          (r.tag & t) !== Ti && ((i = r.create), (r.destroy = i())),
             (r = r.next);
         } while (r !== n);
       }
     }
     function fa(e) {
-      switch (("function" == typeof zr && zr(e), e.tag)) {
+      switch (("function" == typeof Vr && Vr(e), e.tag)) {
         case 0:
         case 11:
         case 14:
@@ -61923,7 +61939,7 @@ object-assign
                 try {
                   r();
                 } catch (e) {
-                  Ga(i, e);
+                  ja(i, e);
                 }
               }
               n = n.next;
@@ -61939,7 +61955,7 @@ object-assign
                 (t.state = e.memoizedState),
                 t.componentWillUnmount();
             } catch (t) {
-              Ga(e, t);
+              ja(e, t);
             }
           break;
         case 5:
@@ -62106,7 +62122,7 @@ object-assign
                     "input" === n &&
                       "radio" === i.type &&
                       null != i.name &&
-                      wt(e, i),
+                      Et(e, i),
                     hr(n, r),
                     (r = hr(n, i));
                   for (var o = 0; o < t.length; o += 2) {
@@ -62122,7 +62138,7 @@ object-assign
                   }
                   switch (n) {
                     case "input":
-                      xt(e, i);
+                      wt(e, i);
                       break;
                     case "textarea":
                       Kn(e, i);
@@ -62226,7 +62242,7 @@ object-assign
         n
       );
     }
-    function wa(e, t, n) {
+    function Ea(e, t, n) {
       (n = Qo(n)).tag = Wo;
       var r = e.type.getDerivedStateFromError;
       if ("function" == typeof r) {
@@ -62241,7 +62257,7 @@ object-assign
           "function" == typeof o.componentDidCatch &&
           (n.callback = function() {
             "function" != typeof r &&
-              (null === Na ? (Na = new Set([this])) : Na.add(this));
+              (null === Fa ? (Fa = new Set([this])) : Fa.add(this));
             var n = t.value,
               i = t.stack;
             ha(e, t),
@@ -62252,7 +62268,7 @@ object-assign
         n
       );
     }
-    function xa(e) {
+    function wa(e) {
       switch (e.tag) {
         case 1:
           Dr(e.type) && Ir();
@@ -62260,7 +62276,7 @@ object-assign
           return 2048 & t ? ((e.effectTag = (-2049 & t) | 64), e) : null;
         case 3:
           return (
-            xi(),
+            wi(),
             Br(),
             0 != (64 & (t = e.effectTag)) && a("285"),
             (e.effectTag = (-2049 & t) | 64),
@@ -62273,17 +62289,17 @@ object-assign
             ? ((e.effectTag = (-2049 & t) | 64), e)
             : null;
         case 4:
-          return xi(), null;
+          return wi(), null;
         case 10:
           return Uo(e), null;
         default:
           return null;
       }
     }
-    var Ea = Ge.ReactCurrentDispatcher,
-      _a = Ge.ReactCurrentOwner,
-      Ma = 1073741822,
-      Ta = 0,
+    var xa = je.ReactCurrentDispatcher,
+      _a = je.ReactCurrentOwner,
+      Ta = 1073741822,
+      Ma = 0,
       Sa = !1,
       Ca = null,
       La = null,
@@ -62294,8 +62310,8 @@ object-assign
       Ia = !1,
       Ba = null,
       ka = null,
-      Fa = null,
-      Na = null;
+      Na = null,
+      Fa = null;
     function Ua() {
       if (null !== Ca)
         for (var e = Ca.return; null !== e; ) {
@@ -62306,13 +62322,13 @@ object-assign
               null != n && Ir();
               break;
             case 3:
-              xi(), Br();
+              wi(), Br();
               break;
             case 5:
               _i(t);
               break;
             case 4:
-              xi();
+              wi();
               break;
             case 10:
               Uo(t);
@@ -62322,9 +62338,9 @@ object-assign
       (La = null), (Ra = 0), (Pa = -1), (Oa = !1), (Ca = null);
     }
     function Ha() {
-      null !== ka && wr(ka), null !== Fa && Fa();
+      null !== ka && Er(ka), null !== Na && Na();
     }
-    function za(e) {
+    function Va(e) {
       for (;;) {
         var t = e.alternate,
           n = e.return,
@@ -62346,7 +62362,7 @@ object-assign
                 Dr(t.type) && Ir();
                 break;
               case 3:
-                xi(),
+                wi(),
                   Br(),
                   (l = t.stateNode).pendingContext &&
                     ((l.context = l.pendingContext), (l.pendingContext = null)),
@@ -62369,36 +62385,36 @@ object-assign
                     switch (((o[D] = l), (o[I] = d), (s = void 0), (c = h))) {
                       case "iframe":
                       case "object":
-                        Mn("load", o);
+                        Tn("load", o);
                         break;
                       case "video":
                       case "audio":
-                        for (h = 0; h < te.length; h++) Mn(te[h], o);
+                        for (h = 0; h < te.length; h++) Tn(te[h], o);
                         break;
                       case "source":
-                        Mn("error", o);
+                        Tn("error", o);
                         break;
                       case "img":
                       case "image":
                       case "link":
-                        Mn("error", o), Mn("load", o);
+                        Tn("error", o), Tn("load", o);
                         break;
                       case "form":
-                        Mn("reset", o), Mn("submit", o);
+                        Tn("reset", o), Tn("submit", o);
                         break;
                       case "details":
-                        Mn("toggle", o);
+                        Tn("toggle", o);
                         break;
                       case "input":
-                        At(o, d), Mn("invalid", o), dr(p, "onChange");
+                        At(o, d), Tn("invalid", o), dr(p, "onChange");
                         break;
                       case "select":
                         (o._wrapperState = { wasMultiple: !!d.multiple }),
-                          Mn("invalid", o),
+                          Tn("invalid", o),
                           dr(p, "onChange");
                         break;
                       case "textarea":
-                        Qn(o, d), Mn("invalid", o), dr(p, "onChange");
+                        Qn(o, d), Tn("invalid", o), dr(p, "onChange");
                     }
                     for (s in (ur(c, d), (h = null), d))
                       d.hasOwnProperty(s) &&
@@ -62412,10 +62428,10 @@ object-assign
                           : b.hasOwnProperty(s) && null != u && dr(p, s));
                     switch (c) {
                       case "input":
-                        je(o), Et(o, d, !0);
+                        ze(o), xt(o, d, !0);
                         break;
                       case "textarea":
-                        je(o), Zn(o);
+                        ze(o), Zn(o);
                         break;
                       case "select":
                       case "option":
@@ -62449,31 +62465,31 @@ object-assign
                     switch (h) {
                       case "iframe":
                       case "object":
-                        Mn("load", p), (c = d);
+                        Tn("load", p), (c = d);
                         break;
                       case "video":
                       case "audio":
-                        for (c = 0; c < te.length; c++) Mn(te[c], p);
+                        for (c = 0; c < te.length; c++) Tn(te[c], p);
                         c = d;
                         break;
                       case "source":
-                        Mn("error", p), (c = d);
+                        Tn("error", p), (c = d);
                         break;
                       case "img":
                       case "image":
                       case "link":
-                        Mn("error", p), Mn("load", p), (c = d);
+                        Tn("error", p), Tn("load", p), (c = d);
                         break;
                       case "form":
-                        Mn("reset", p), Mn("submit", p), (c = d);
+                        Tn("reset", p), Tn("submit", p), (c = d);
                         break;
                       case "details":
-                        Mn("toggle", p), (c = d);
+                        Tn("toggle", p), (c = d);
                         break;
                       case "input":
                         At(p, d),
                           (c = bt(p, d)),
-                          Mn("invalid", p),
+                          Tn("invalid", p),
                           dr(f, "onChange");
                         break;
                       case "option":
@@ -62482,13 +62498,13 @@ object-assign
                       case "select":
                         (p._wrapperState = { wasMultiple: !!d.multiple }),
                           (c = i({}, d, { value: void 0 })),
-                          Mn("invalid", p),
+                          Tn("invalid", p),
                           dr(f, "onChange");
                         break;
                       case "textarea":
                         Qn(p, d),
                           (c = Yn(p, d)),
-                          Mn("invalid", p),
+                          Tn("invalid", p),
                           dr(f, "onChange");
                         break;
                       default:
@@ -62518,10 +62534,10 @@ object-assign
                       }
                     switch (h) {
                       case "input":
-                        je(p), Et(p, d, !1);
+                        ze(p), xt(p, d, !1);
                         break;
                       case "textarea":
-                        je(p), Zn(p);
+                        ze(p), Zn(p);
                         break;
                       case "option":
                         null != d.value &&
@@ -62585,7 +62601,7 @@ object-assign
               case 12:
                 break;
               case 4:
-                xi(), sa(t);
+                wi(), sa(t);
                 break;
               case 10:
                 Uo(t);
@@ -62622,7 +62638,7 @@ object-assign
                 : (n.firstEffect = e),
               (n.lastEffect = e)));
         } else {
-          if (null !== (e = xa(e))) return (e.effectTag &= 1023), e;
+          if (null !== (e = wa(e))) return (e.effectTag &= 1023), e;
           null !== n &&
             ((n.firstEffect = n.lastEffect = null), (n.effectTag |= 1024));
         }
@@ -62632,19 +62648,19 @@ object-assign
       }
       return null;
     }
-    function ja(e) {
+    function za(e) {
       var t = Do(e.alternate, e, Ra);
       return (
         (e.memoizedProps = e.pendingProps),
-        null === t && (t = za(e)),
+        null === t && (t = Va(e)),
         (_a.current = null),
         t
       );
     }
-    function Va(e, t) {
+    function Ga(e, t) {
       Sa && a("243"), Ha(), (Sa = !0);
-      var n = Ea.current;
-      Ea.current = so;
+      var n = xa.current;
+      xa.current = so;
       var r = e.nextExpirationTimeToWorkOn;
       (r === Ra && e === La && null !== Ca) ||
         (Ua(),
@@ -62653,10 +62669,10 @@ object-assign
         (e.pendingCommitExpirationTime = 0));
       for (var i = !1; ; ) {
         try {
-          if (t) for (; null !== Ca && !Es(); ) Ca = ja(Ca);
-          else for (; null !== Ca; ) Ca = ja(Ca);
+          if (t) for (; null !== Ca && !xs(); ) Ca = za(Ca);
+          else for (; null !== Ca; ) Ca = za(Ca);
         } catch (t) {
-          if (((Fo = ko = Bo = null), Ki(), null === Ca)) (i = !0), Ls(t);
+          if (((No = ko = Bo = null), Ki(), null === Ca)) (i = !0), Ls(t);
           else {
             null === Ca && a("271");
             var o = Ca,
@@ -62711,7 +62727,7 @@ object-assign
                           1 === u.tag &&
                             (null === u.alternate
                               ? (u.tag = 17)
-                              : (((s = Qo(1073741823)).tag = Go), Zo(u, s))),
+                              : (((s = Qo(1073741823)).tag = jo), Zo(u, s))),
                           (u.expirationTime = 1073741823);
                         break e;
                       }
@@ -62760,18 +62776,18 @@ object-assign
                           ("function" == typeof p.getDerivedStateFromError ||
                             (null !== f &&
                               "function" == typeof f.componentDidCatch &&
-                              (null === Na || !Na.has(f)))))
+                              (null === Fa || !Fa.has(f)))))
                       ) {
                         (l.effectTag |= 2048),
                           (l.expirationTime = s),
-                          Jo(l, (s = wa(l, d, s)));
+                          Jo(l, (s = Ea(l, d, s)));
                         break e;
                       }
                   }
                   l = l.return;
                 } while (null !== l);
               }
-              Ca = za(o);
+              Ca = Va(o);
               continue;
             }
             (i = !0), Ls(t);
@@ -62779,7 +62795,7 @@ object-assign
         }
         break;
       }
-      if (((Sa = !1), (Ea.current = n), (Fo = ko = Bo = null), Ki(), i))
+      if (((Sa = !1), (xa.current = n), (No = ko = Bo = null), Ki(), i))
         (La = null), (e.finishedWork = null);
       else if (null !== Ca) e.finishedWork = null;
       else {
@@ -62808,7 +62824,7 @@ object-assign
           : ((e.pendingCommitExpirationTime = r), (e.finishedWork = n));
       }
     }
-    function Ga(e, t) {
+    function ja(e, t) {
       for (var n = e.return; null !== n; ) {
         switch (n.tag) {
           case 1:
@@ -62816,10 +62832,10 @@ object-assign
             if (
               "function" == typeof n.type.getDerivedStateFromError ||
               ("function" == typeof r.componentDidCatch &&
-                (null === Na || !Na.has(r)))
+                (null === Fa || !Fa.has(r)))
             )
               return (
-                Zo(n, (e = wa(n, (e = ia(t, e)), 1073741823))),
+                Zo(n, (e = Ea(n, (e = ia(t, e)), 1073741823))),
                 void Ya(n, 1073741823)
               );
             break;
@@ -62836,8 +62852,8 @@ object-assign
     }
     function Wa(e, t) {
       return (
-        0 !== Ta
-          ? (e = Ta)
+        0 !== Ma
+          ? (e = Ma)
           : Sa
           ? (e = Ia ? 1073741823 : Ra)
           : 1 & t.mode
@@ -62898,12 +62914,12 @@ object-assign
         fs > ps && ((fs = 0), a("185")));
     }
     function Qa(e, t, n, r, i) {
-      var o = Ta;
-      Ta = 1073741823;
+      var o = Ma;
+      Ma = 1073741823;
       try {
         return e(t, n, r, i);
       } finally {
-        Ta = o;
+        Ma = o;
       }
     }
     var Ka = null,
@@ -62942,7 +62958,7 @@ object-assign
     }
     function ys(e, t, n, r, i) {
       (e.expirationTime = r),
-        0 !== i || Es()
+        0 !== i || xs()
           ? 0 < i &&
             (e.timeoutHandle = yr(
               function(e, t, n) {
@@ -62950,14 +62966,14 @@ object-assign
                   (e.finishedWork = t),
                   vs(),
                   (ds = hs),
-                  Ts(e, n);
+                  Ms(e, n);
               }.bind(null, e, t, n),
               i
             ))
           : ((e.pendingCommitExpirationTime = n), (e.finishedWork = t));
     }
     function bs() {
-      return es ? ds : (ws(), (0 !== ns && 1 !== ns) || (vs(), (ds = hs)), ds);
+      return es ? ds : (Es(), (0 !== ns && 1 !== ns) || (vs(), (ds = hs)), ds);
     }
     function As(e, t) {
       null === e.nextScheduledRoot
@@ -62970,10 +62986,10 @@ object-assign
           (as
             ? ss && ((ts = e), (ns = 1073741823), Ss(e, 1073741823, !1))
             : 1073741823 === t
-            ? Ms(1073741823, !1)
+            ? Ts(1073741823, !1)
             : gs(e, t));
     }
-    function ws() {
+    function Es() {
       var e = 0,
         t = null;
       if (null !== Za)
@@ -63008,13 +63024,13 @@ object-assign
         }
       (ts = t), (ns = e);
     }
-    var xs = !1;
-    function Es() {
-      return !!xs || (!!o.unstable_shouldYield() && (xs = !0));
+    var ws = !1;
+    function xs() {
+      return !!ws || (!!o.unstable_shouldYield() && (ws = !0));
     }
     function _s() {
       try {
-        if (!Es() && null !== Ka) {
+        if (!xs() && null !== Ka) {
           vs();
           var e = Ka;
           do {
@@ -63023,20 +63039,20 @@ object-assign
               (e = e.nextScheduledRoot);
           } while (e !== Ka);
         }
-        Ms(0, !0);
+        Ts(0, !0);
       } finally {
-        xs = !1;
+        ws = !1;
       }
     }
-    function Ms(e, t) {
-      if ((ws(), t))
+    function Ts(e, t) {
+      if ((Es(), t))
         for (
           vs(), ds = hs;
-          null !== ts && 0 !== ns && e <= ns && !(xs && hs > ns);
+          null !== ts && 0 !== ns && e <= ns && !(ws && hs > ns);
 
         )
-          Ss(ts, ns, hs > ns), ws(), vs(), (ds = hs);
-      else for (; null !== ts && 0 !== ns && e <= ns; ) Ss(ts, ns, !1), ws();
+          Ss(ts, ns, hs > ns), Es(), vs(), (ds = hs);
+      else for (; null !== ts && 0 !== ns && e <= ns; ) Ss(ts, ns, !1), Es();
       if (
         (t && ((Ja = 0), ($a = null)),
         0 !== ns && gs(ts, ns),
@@ -63054,8 +63070,8 @@ object-assign
         }
       if (is) throw ((e = os), (os = null), (is = !1), e);
     }
-    function Ts(e, t) {
-      es && a("253"), (ts = e), (ns = t), Ss(e, t, !1), Ms(1073741823, !1);
+    function Ms(e, t) {
+      es && a("253"), (ts = e), (ns = t), Ss(e, t, !1), Ts(1073741823, !1);
     }
     function Ss(e, t, n) {
       if ((es && a("245"), (es = !0), n)) {
@@ -63064,15 +63080,15 @@ object-assign
           ? Cs(e, r, t)
           : ((e.finishedWork = null),
             -1 !== (r = e.timeoutHandle) && ((e.timeoutHandle = -1), br(r)),
-            Va(e, n),
+            Ga(e, n),
             null !== (r = e.finishedWork) &&
-              (Es() ? (e.finishedWork = r) : Cs(e, r, t)));
+              (xs() ? (e.finishedWork = r) : Cs(e, r, t)));
       } else
         null !== (r = e.finishedWork)
           ? Cs(e, r, t)
           : ((e.finishedWork = null),
             -1 !== (r = e.timeoutHandle) && ((e.timeoutHandle = -1), br(r)),
-            Va(e, n),
+            Ga(e, n),
             null !== (r = e.finishedWork) && Cs(e, r, t));
       es = !1;
     }
@@ -63123,7 +63139,7 @@ object-assign
             : (r = t)
           : (r = t.firstEffect),
         (fr = _n),
-        Fn((i = kn())))
+        Nn((i = kn())))
       ) {
         if ("selectionStart" in i)
           var o = { start: i.selectionStart, end: i.selectionEnd };
@@ -63192,18 +63208,18 @@ object-assign
                   case 0:
                   case 11:
                   case 15:
-                    pa(Ti, Mi, l);
+                    pa(Mi, Ti, l);
                     break e;
                   case 1:
                     if (256 & l.effectTag && null !== y) {
                       var b = y.memoizedProps,
                         A = y.memoizedState,
-                        w = l.stateNode,
-                        x = w.getSnapshotBeforeUpdate(
+                        E = l.stateNode,
+                        w = E.getSnapshotBeforeUpdate(
                           l.elementType === l.type ? b : ni(l.type, b),
                           A
                         );
-                      w.__reactInternalSnapshotBeforeUpdate = x;
+                      E.__reactInternalSnapshotBeforeUpdate = w;
                     }
                     break e;
                   case 3:
@@ -63223,23 +63239,23 @@ object-assign
         }
         i &&
           (null === Da && a("178"),
-          Ga(Da, o),
+          ja(Da, o),
           null !== Da && (Da = Da.nextEffect));
       }
       for (Da = r; null !== Da; ) {
         (y = !1), (b = void 0);
         try {
           for (; null !== Da; ) {
-            var E = Da.effectTag;
-            if ((16 & E && ir(Da.stateNode, ""), 128 & E)) {
+            var x = Da.effectTag;
+            if ((16 & x && ir(Da.stateNode, ""), 128 & x)) {
               var _ = Da.alternate;
               if (null !== _) {
-                var M = _.ref;
-                null !== M &&
-                  ("function" == typeof M ? M(null) : (M.current = null));
+                var T = _.ref;
+                null !== T &&
+                  ("function" == typeof T ? T(null) : (T.current = null));
               }
             }
-            switch (14 & E) {
+            switch (14 & x) {
               case 2:
                 va(Da), (Da.effectTag &= -3);
                 break;
@@ -63255,12 +63271,12 @@ object-assign
                   (A.child = null),
                   (A.memoizedState = null),
                   (A.updateQueue = null);
-                var T = A.alternate;
-                null !== T &&
-                  ((T.return = null),
-                  (T.child = null),
-                  (T.memoizedState = null),
-                  (T.updateQueue = null));
+                var M = A.alternate;
+                null !== M &&
+                  ((M.return = null),
+                  (M.child = null),
+                  (M.memoizedState = null),
+                  (M.updateQueue = null));
             }
             Da = Da.nextEffect;
           }
@@ -63269,17 +63285,17 @@ object-assign
         }
         y &&
           (null === Da && a("178"),
-          Ga(Da, b),
+          ja(Da, b),
           null !== Da && (Da = Da.nextEffect));
       }
       if (
-        ((M = mr),
+        ((T = mr),
         (_ = kn()),
-        (E = M.focusedElem),
-        (y = M.selectionRange),
-        _ !== E &&
-          E &&
-          E.ownerDocument &&
+        (x = T.focusedElem),
+        (y = T.selectionRange),
+        _ !== x &&
+          x &&
+          x.ownerDocument &&
           (function e(t, n) {
             return (
               !(!t || !n) &&
@@ -63292,61 +63308,61 @@ object-assign
                     : !!t.compareDocumentPosition &&
                       !!(16 & t.compareDocumentPosition(n)))))
             );
-          })(E.ownerDocument.documentElement, E))
+          })(x.ownerDocument.documentElement, x))
       ) {
         null !== y &&
-          Fn(E) &&
+          Nn(x) &&
           ((_ = y.start),
-          void 0 === (M = y.end) && (M = _),
-          "selectionStart" in E
-            ? ((E.selectionStart = _),
-              (E.selectionEnd = Math.min(M, E.value.length)))
-            : (M =
-                ((_ = E.ownerDocument || document) && _.defaultView) || window)
+          void 0 === (T = y.end) && (T = _),
+          "selectionStart" in x
+            ? ((x.selectionStart = _),
+              (x.selectionEnd = Math.min(T, x.value.length)))
+            : (T =
+                ((_ = x.ownerDocument || document) && _.defaultView) || window)
                 .getSelection &&
-              ((M = M.getSelection()),
-              (b = E.textContent.length),
-              (T = Math.min(y.start, b)),
-              (y = void 0 === y.end ? T : Math.min(y.end, b)),
-              !M.extend && T > y && ((b = y), (y = T), (T = b)),
-              (b = Bn(E, T)),
-              (A = Bn(E, y)),
+              ((T = T.getSelection()),
+              (b = x.textContent.length),
+              (M = Math.min(y.start, b)),
+              (y = void 0 === y.end ? M : Math.min(y.end, b)),
+              !T.extend && M > y && ((b = y), (y = M), (M = b)),
+              (b = Bn(x, M)),
+              (A = Bn(x, y)),
               b &&
                 A &&
-                (1 !== M.rangeCount ||
-                  M.anchorNode !== b.node ||
-                  M.anchorOffset !== b.offset ||
-                  M.focusNode !== A.node ||
-                  M.focusOffset !== A.offset) &&
+                (1 !== T.rangeCount ||
+                  T.anchorNode !== b.node ||
+                  T.anchorOffset !== b.offset ||
+                  T.focusNode !== A.node ||
+                  T.focusOffset !== A.offset) &&
                 ((_ = _.createRange()).setStart(b.node, b.offset),
-                M.removeAllRanges(),
-                T > y
-                  ? (M.addRange(_), M.extend(A.node, A.offset))
-                  : (_.setEnd(A.node, A.offset), M.addRange(_))))),
+                T.removeAllRanges(),
+                M > y
+                  ? (T.addRange(_), T.extend(A.node, A.offset))
+                  : (_.setEnd(A.node, A.offset), T.addRange(_))))),
           (_ = []);
-        for (M = E; (M = M.parentNode); )
-          1 === M.nodeType &&
-            _.push({ element: M, left: M.scrollLeft, top: M.scrollTop });
+        for (T = x; (T = T.parentNode); )
+          1 === T.nodeType &&
+            _.push({ element: T, left: T.scrollLeft, top: T.scrollTop });
         for (
-          "function" == typeof E.focus && E.focus(), E = 0;
-          E < _.length;
-          E++
+          "function" == typeof x.focus && x.focus(), x = 0;
+          x < _.length;
+          x++
         )
-          ((M = _[E]).element.scrollLeft = M.left),
-            (M.element.scrollTop = M.top);
+          ((T = _[x]).element.scrollLeft = T.left),
+            (T.element.scrollTop = T.top);
       }
       for (
         mr = null, _n = !!fr, fr = null, e.current = t, Da = r;
         null !== Da;
 
       ) {
-        (E = !1), (_ = void 0);
+        (x = !1), (_ = void 0);
         try {
-          for (M = e, T = n; null !== Da; ) {
+          for (T = e, M = n; null !== Da; ) {
             var S = Da.effectTag;
             if (36 & S) {
               var C = Da.alternate;
-              switch (((b = T), (y = Da).tag)) {
+              switch (((b = M), (y = Da).tag)) {
                 case 0:
                 case 11:
                 case 15:
@@ -63415,20 +63431,20 @@ object-assign
                 "function" == typeof I ? I(k) : (I.current = k);
               }
             }
-            512 & S && (Ba = M), (Da = Da.nextEffect);
+            512 & S && (Ba = T), (Da = Da.nextEffect);
           }
         } catch (e) {
-          (E = !0), (_ = e);
+          (x = !0), (_ = e);
         }
-        E &&
+        x &&
           (null === Da && a("178"),
-          Ga(Da, _),
+          ja(Da, _),
           null !== Da && (Da = Da.nextEffect));
       }
       null !== r &&
         null !== Ba &&
         ((S = function(e, t) {
-          Fa = ka = Ba = null;
+          Na = ka = Ba = null;
           var n = es;
           es = !0;
           do {
@@ -63437,22 +63453,22 @@ object-assign
                 i = void 0;
               try {
                 var o = t;
-                pa(Oi, Mi, o), pa(Mi, Pi, o);
+                pa(Oi, Ti, o), pa(Ti, Pi, o);
               } catch (e) {
                 (r = !0), (i = e);
               }
-              r && Ga(t, i);
+              r && ja(t, i);
             }
             t = t.nextEffect;
           } while (null !== t);
           (es = n), 0 !== (n = e.expirationTime) && As(e, n);
         }.bind(null, e, r)),
         (ka = Ar(S)),
-        (Fa = S)),
+        (Na = S)),
         (Sa = Ia = !1),
         "function" == typeof Hr && Hr(t.stateNode),
         (S = t.expirationTime),
-        0 === (t = (t = t.childExpirationTime) > S ? t : S) && (Na = null),
+        0 === (t = (t = t.childExpirationTime) > S ? t : S) && (Fa = null),
         (e.expirationTime = t),
         (e.finishedWork = null);
     }
@@ -63467,7 +63483,7 @@ object-assign
       try {
         return e(t);
       } finally {
-        (as = n) || es || Ms(1073741823, !1);
+        (as = n) || es || Ts(1073741823, !1);
       }
     }
     function Ps(e, t) {
@@ -63483,14 +63499,14 @@ object-assign
     }
     function Os(e, t, n) {
       if (ls) return e(t, n);
-      as || es || 0 === rs || (Ms(rs, !1), (rs = 0));
+      as || es || 0 === rs || (Ts(rs, !1), (rs = 0));
       var r = ls,
         i = as;
       as = ls = !0;
       try {
         return e(t, n);
       } finally {
-        (ls = r), (as = i) || es || Ms(1073741823, !1);
+        (ls = r), (as = i) || es || Ts(1073741823, !1);
       }
     }
     function Ds(e, t, n, r, i) {
@@ -63517,7 +63533,7 @@ object-assign
         if (1 === n.tag) {
           var l = n.type;
           if (Dr(l)) {
-            n = Fr(n, l, s);
+            n = Nr(n, l, s);
             break e;
           }
         }
@@ -63548,22 +63564,22 @@ object-assign
     }
     function ks(e) {
       var t = 1073741822 - 25 * (1 + (((1073741822 - bs() + 500) / 25) | 0));
-      t >= Ma && (t = Ma - 1),
-        (this._expirationTime = Ma = t),
+      t >= Ta && (t = Ta - 1),
+        (this._expirationTime = Ta = t),
         (this._root = e),
         (this._callbacks = this._next = null),
         (this._hasChildren = this._didComplete = !1),
         (this._children = null),
         (this._defer = !0);
     }
-    function Fs() {
+    function Ns() {
       (this._callbacks = null),
         (this._didCommit = !1),
         (this._onCommit = this._onCommit.bind(this));
     }
-    function Ns(e, t, n) {
+    function Fs(e, t, n) {
       (e = {
-        current: (t = Gr(3, null, null, t ? 3 : 0)),
+        current: (t = jr(3, null, null, t ? 3 : 0)),
         containerInfo: e,
         pendingChildren: null,
         pingCache: null,
@@ -63625,7 +63641,7 @@ object-assign
               !t)
             )
               for (var n; (n = e.lastChild); ) e.removeChild(n);
-            return new Ns(e, !1, t);
+            return new Fs(e, !1, t);
           })(n, r)),
           "function" == typeof i)
         ) {
@@ -63643,7 +63659,7 @@ object-assign
       }
       return Bs(o._internalRoot);
     }
-    function zs(e, t) {
+    function Vs(e, t) {
       var n =
         2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
       return (
@@ -63663,10 +63679,10 @@ object-assign
         })(e, t, null, n)
       );
     }
-    (Te = function(e, t, n) {
+    (Me = function(e, t, n) {
       switch (t) {
         case "input":
-          if ((xt(e, n), (t = n.name), "radio" === n.type && null != t)) {
+          if ((wt(e, n), (t = n.name), "radio" === n.type && null != t)) {
             for (n = e; n.parentNode; ) n = n.parentNode;
             for (
               n = n.querySelectorAll(
@@ -63678,8 +63694,8 @@ object-assign
             ) {
               var r = n[t];
               if (r !== e && r.form === e.form) {
-                var i = N(r);
-                i || a("90"), Ve(r), xt(r, i);
+                var i = F(r);
+                i || a("90"), Ge(r), wt(r, i);
               }
             }
           }
@@ -63695,7 +63711,7 @@ object-assign
         this._defer || a("250"), (this._hasChildren = !0), (this._children = e);
         var t = this._root._internalRoot,
           n = this._expirationTime,
-          r = new Fs();
+          r = new Ns();
         return Ds(e, t, null, n, r._onCommit), r;
       }),
       (ks.prototype.then = function(e) {
@@ -63721,7 +63737,7 @@ object-assign
               (e.firstBatch = this);
           }
           (this._defer = !1),
-            Ts(e, n),
+            Ms(e, n),
             (t = this._next),
             (this._next = null),
             null !== (t = e.firstBatch = t) &&
@@ -63736,14 +63752,14 @@ object-assign
           if (null !== e) for (var t = 0; t < e.length; t++) (0, e[t])();
         }
       }),
-      (Fs.prototype.then = function(e) {
+      (Ns.prototype.then = function(e) {
         if (this._didCommit) e();
         else {
           var t = this._callbacks;
           null === t && (t = this._callbacks = []), t.push(e);
         }
       }),
-      (Fs.prototype._onCommit = function() {
+      (Ns.prototype._onCommit = function() {
         if (!this._didCommit) {
           this._didCommit = !0;
           var e = this._callbacks;
@@ -63754,34 +63770,34 @@ object-assign
             }
         }
       }),
-      (Ns.prototype.render = function(e, t) {
+      (Fs.prototype.render = function(e, t) {
         var n = this._internalRoot,
-          r = new Fs();
+          r = new Ns();
         return (
           null !== (t = void 0 === t ? null : t) && r.then(t),
           Is(e, n, null, r._onCommit),
           r
         );
       }),
-      (Ns.prototype.unmount = function(e) {
+      (Fs.prototype.unmount = function(e) {
         var t = this._internalRoot,
-          n = new Fs();
+          n = new Ns();
         return (
           null !== (e = void 0 === e ? null : e) && n.then(e),
           Is(null, t, null, n._onCommit),
           n
         );
       }),
-      (Ns.prototype.legacy_renderSubtreeIntoContainer = function(e, t, n) {
+      (Fs.prototype.legacy_renderSubtreeIntoContainer = function(e, t, n) {
         var r = this._internalRoot,
-          i = new Fs();
+          i = new Ns();
         return (
           null !== (n = void 0 === n ? null : n) && i.then(n),
           Is(t, r, e, i._onCommit),
           i
         );
       }),
-      (Ns.prototype.createBatch = function() {
+      (Fs.prototype.createBatch = function() {
         var e = new ks(this),
           t = e._expirationTime,
           n = this._internalRoot,
@@ -63797,10 +63813,10 @@ object-assign
       (Oe = Rs),
       (De = Os),
       (Ie = function() {
-        es || 0 === rs || (Ms(rs, !1), (rs = 0));
+        es || 0 === rs || (Ts(rs, !1), (rs = 0));
       });
-    var js = {
-      createPortal: zs,
+    var zs = {
+      createPortal: Vs,
       findDOMNode: function(e) {
         if (null == e) return null;
         if (1 === e.nodeType) return e;
@@ -63839,7 +63855,7 @@ object-assign
         );
       },
       unstable_createPortal: function() {
-        return zs.apply(void 0, arguments);
+        return Vs.apply(void 0, arguments);
       },
       unstable_batchedUpdates: Rs,
       unstable_interactiveUpdates: Os,
@@ -63850,13 +63866,13 @@ object-assign
         try {
           return Qa(e, t);
         } finally {
-          (as = n), Ms(1073741823, !1);
+          (as = n), Ts(1073741823, !1);
         }
       },
       unstable_createRoot: function(e, t) {
         return (
           Us(e) || a("299", "unstable_createRoot"),
-          new Ns(e, !0, null != t && !0 === t.hydrate)
+          new Fs(e, !0, null != t && !0 === t.hydrate)
         );
       },
       unstable_flushControlled: function(e) {
@@ -63865,19 +63881,19 @@ object-assign
         try {
           Qa(e);
         } finally {
-          (as = t) || es || Ms(1073741823, !1);
+          (as = t) || es || Ts(1073741823, !1);
         }
       },
       __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: {
         Events: [
           k,
-          F,
           N,
+          F,
           L.injectEventPluginsByName,
           y,
-          G,
+          j,
           function(e) {
-            T(e, V);
+            M(e, G);
           },
           Re,
           Pe,
@@ -63894,17 +63910,17 @@ object-assign
         if (t.isDisabled || !t.supportsFiber) return !0;
         try {
           var n = t.inject(e);
-          (Hr = jr(function(e) {
+          (Hr = zr(function(e) {
             return t.onCommitFiberRoot(n, e);
           })),
-            (zr = jr(function(e) {
+            (Vr = zr(function(e) {
               return t.onCommitFiberUnmount(n, e);
             }));
         } catch (e) {}
       })(
         i({}, e, {
           overrideProps: null,
-          currentDispatcherRef: Ge.ReactCurrentDispatcher,
+          currentDispatcherRef: je.ReactCurrentDispatcher,
           findHostInstanceByFiber: function(e) {
             return null === (e = rn(e)) ? null : e.stateNode;
           },
@@ -63919,13 +63935,13 @@ object-assign
       version: "16.8.1",
       rendererPackageName: "react-dom",
     });
-    var Vs = { default: js },
-      Gs = (Vs && js) || Vs;
-    e.exports = Gs.default || Gs;
+    var Gs = { default: zs },
+      js = (Gs && zs) || Gs;
+    e.exports = js.default || js;
   },
   function(e, t, n) {
     "use strict";
-    e.exports = n(10);
+    e.exports = n(11);
   },
   function(e, t, n) {
     "use strict";
@@ -63949,7 +63965,7 @@ object-assign
       function c() {
         if (!s) {
           var e = n.expirationTime;
-          l ? E() : (l = !0), x(d, e);
+          l ? x() : (l = !0), w(d, e);
         }
       }
       function u() {
@@ -64057,24 +64073,24 @@ object-assign
         "object" == typeof performance &&
         "function" == typeof performance.now
       ) {
-        var w = performance;
+        var E = performance;
         t.unstable_now = function() {
-          return w.now();
+          return E.now();
         };
       } else
         t.unstable_now = function() {
           return m.now();
         };
-      var x,
-        E,
+      var w,
+        x,
         _,
-        M = null;
+        T = null;
       if (
-        ("undefined" != typeof window ? (M = window) : void 0 !== e && (M = e),
-        M && M._schedMock)
+        ("undefined" != typeof window ? (T = window) : void 0 !== e && (T = e),
+        T && T._schedMock)
       ) {
-        var T = M._schedMock;
-        (x = T[0]), (E = T[1]), (_ = T[2]), (t.unstable_now = T[3]);
+        var M = T._schedMock;
+        (w = M[0]), (x = M[1]), (_ = M[2]), (t.unstable_now = M[3]);
       } else if (
         "undefined" == typeof window ||
         "function" != typeof MessageChannel
@@ -64088,10 +64104,10 @@ object-assign
                 S = null;
               }
           };
-        (x = function(e) {
-          null !== S ? setTimeout(x, 0, e) : ((S = e), setTimeout(C, 0, !1));
+        (w = function(e) {
+          null !== S ? setTimeout(w, 0, e) : ((S = e), setTimeout(C, 0, !1));
         }),
-          (E = function() {
+          (x = function() {
             S = null;
           }),
           (_ = function() {
@@ -64118,9 +64134,9 @@ object-assign
         _ = function() {
           return I <= t.unstable_now();
         };
-        var F = new MessageChannel(),
-          N = F.port2;
-        F.port1.onmessage = function() {
+        var N = new MessageChannel(),
+          F = N.port2;
+        N.port1.onmessage = function() {
           R = !1;
           var e = L,
             n = P;
@@ -64147,15 +64163,15 @@ object-assign
             var t = e - I + k;
             t < k && B < k ? (8 > t && (t = 8), (k = t < B ? B : t)) : (B = t),
               (I = e + k),
-              R || ((R = !0), N.postMessage(void 0));
+              R || ((R = !0), F.postMessage(void 0));
           } else O = !1;
         };
-        (x = function(e, t) {
+        (w = function(e, t) {
           (L = e),
             (P = t),
-            D || 0 > t ? N.postMessage(void 0) : O || ((O = !0), A(U));
+            D || 0 > t ? F.postMessage(void 0) : O || ((O = !0), A(U));
         }),
-          (E = function() {
+          (x = function() {
             (L = null), (R = !1), (P = -1);
           });
       }
@@ -64275,7 +64291,7 @@ object-assign
         (t.unstable_getFirstCallbackNode = function() {
           return n;
         });
-    }.call(this, n(2)));
+    }.call(this, n(3)));
   },
   function(e, t, n) {
     (function(e) {
@@ -64312,7 +64328,7 @@ object-assign
               e._onTimeout && e._onTimeout();
             }, t));
         }),
-        n(12),
+        n(13),
         (t.setImmediate =
           ("undefined" != typeof self && self.setImmediate) ||
           (void 0 !== e && e.setImmediate) ||
@@ -64321,7 +64337,7 @@ object-assign
           ("undefined" != typeof self && self.clearImmediate) ||
           (void 0 !== e && e.clearImmediate) ||
           (this && this.clearImmediate));
-    }.call(this, n(2)));
+    }.call(this, n(3)));
   },
   function(e, t, n) {
     (function(e, t) {
@@ -64444,7 +64460,7 @@ object-assign
           }
         }
       })("undefined" == typeof self ? (void 0 === e ? this : e) : self);
-    }.call(this, n(2), n(13)));
+    }.call(this, n(3), n(14)));
   },
   function(e, t) {
     var n,
@@ -66350,13 +66366,1078 @@ object-assign
       });
   },
   function(e, t, n) {
+    if ("undefined" == typeof AFRAME)
+      throw new Error(
+        "Component attempted to register before AFRAME was available."
+      );
+    n(17),
+      n(18),
+      n(19),
+      n(21),
+      n(22),
+      n(23),
+      n(24),
+      n(25),
+      AFRAME.registerComponent("super-hands", {
+        schema: {
+          colliderEvent: { default: "hit" },
+          colliderEventProperty: { default: "el" },
+          colliderEndEvent: { default: "hitend" },
+          colliderEndEventProperty: { default: "el" },
+          grabStartButtons: {
+            default: [
+              "gripdown",
+              "trackpaddown",
+              "triggerdown",
+              "gripclose",
+              "abuttondown",
+              "bbuttondown",
+              "xbuttondown",
+              "ybuttondown",
+              "pointup",
+              "thumbup",
+              "pointingstart",
+              "pistolstart",
+              "thumbstickdown",
+              "mousedown",
+              "touchstart",
+            ],
+          },
+          grabEndButtons: {
+            default: [
+              "gripup",
+              "trackpadup",
+              "triggerup",
+              "gripopen",
+              "abuttonup",
+              "bbuttonup",
+              "xbuttonup",
+              "ybuttonup",
+              "pointdown",
+              "thumbdown",
+              "pointingend",
+              "pistolend",
+              "thumbstickup",
+              "mouseup",
+              "touchend",
+            ],
+          },
+          stretchStartButtons: {
+            default: [
+              "gripdown",
+              "trackpaddown",
+              "triggerdown",
+              "gripclose",
+              "abuttondown",
+              "bbuttondown",
+              "xbuttondown",
+              "ybuttondown",
+              "pointup",
+              "thumbup",
+              "pointingstart",
+              "pistolstart",
+              "thumbstickdown",
+              "mousedown",
+              "touchstart",
+            ],
+          },
+          stretchEndButtons: {
+            default: [
+              "gripup",
+              "trackpadup",
+              "triggerup",
+              "gripopen",
+              "abuttonup",
+              "bbuttonup",
+              "xbuttonup",
+              "ybuttonup",
+              "pointdown",
+              "thumbdown",
+              "pointingend",
+              "pistolend",
+              "thumbstickup",
+              "mouseup",
+              "touchend",
+            ],
+          },
+          dragDropStartButtons: {
+            default: [
+              "gripdown",
+              "trackpaddown",
+              "triggerdown",
+              "gripclose",
+              "abuttondown",
+              "bbuttondown",
+              "xbuttondown",
+              "ybuttondown",
+              "pointup",
+              "thumbup",
+              "pointingstart",
+              "pistolstart",
+              "thumbstickdown",
+              "mousedown",
+              "touchstart",
+            ],
+          },
+          dragDropEndButtons: {
+            default: [
+              "gripup",
+              "trackpadup",
+              "triggerup",
+              "gripopen",
+              "abuttonup",
+              "bbuttonup",
+              "xbuttonup",
+              "ybuttonup",
+              "pointdown",
+              "thumbdown",
+              "pointingend",
+              "pistolend",
+              "thumbstickup",
+              "mouseup",
+              "touchend",
+            ],
+          },
+          interval: { default: 0 },
+        },
+        multiple: !1,
+        init: function() {
+          (this.HOVER_EVENT = "hover-start"),
+            (this.UNHOVER_EVENT = "hover-end"),
+            (this.GRAB_EVENT = "grab-start"),
+            (this.UNGRAB_EVENT = "grab-end"),
+            (this.STRETCH_EVENT = "stretch-start"),
+            (this.UNSTRETCH_EVENT = "stretch-end"),
+            (this.DRAG_EVENT = "drag-start"),
+            (this.UNDRAG_EVENT = "drag-end"),
+            (this.DRAGOVER_EVENT = "dragover-start"),
+            (this.UNDRAGOVER_EVENT = "dragover-end"),
+            (this.DRAGDROP_EVENT = "drag-drop"),
+            (this.otherSuperHand = null),
+            (this.gehDragged = new Set()),
+            (this.gehClicking = new Set()),
+            (this.hoverEls = []),
+            (this.hoverElsIntersections = []),
+            (this.prevCheckTime = null),
+            (this.state = new Map()),
+            (this.dragging = !1),
+            (this.unHover = this.unHover.bind(this)),
+            (this.unWatch = this.unWatch.bind(this)),
+            (this.onHit = this.onHit.bind(this)),
+            (this.onGrabStartButton = this.onGrabStartButton.bind(this)),
+            (this.onGrabEndButton = this.onGrabEndButton.bind(this)),
+            (this.onStretchStartButton = this.onStretchStartButton.bind(this)),
+            (this.onStretchEndButton = this.onStretchEndButton.bind(this)),
+            (this.onDragDropStartButton = this.onDragDropStartButton.bind(
+              this
+            )),
+            (this.onDragDropEndButton = this.onDragDropEndButton.bind(this)),
+            this.system.registerMe(this);
+        },
+        update: function(e) {
+          this.unRegisterListeners(e), this.registerListeners();
+        },
+        remove: function() {
+          this.system.unregisterMe(this),
+            this.unRegisterListeners(),
+            (this.hoverEls.length = 0),
+            this.state.get(this.HOVER_EVENT) &&
+              this._unHover(this.state.get(this.HOVER_EVENT)),
+            this.onGrabEndButton(),
+            this.onStretchEndButton(),
+            this.onDragDropEndButton();
+        },
+        tick: (function() {
+          let e = !1;
+          function t(t, n) {
+            const r = null == t.distance ? -1 : t.distance,
+              i = null == n.distance ? -1 : n.distance;
+            return r < i ? ((e = !0), 1) : i < r ? -1 : 0;
+          }
+          return function(n) {
+            const r = this.data,
+              i = this.prevCheckTime;
+            if (
+              !(i && n - i < r.interval) &&
+              ((this.prevCheckTime = n),
+              (e = !1),
+              this.hoverElsIntersections.sort(t),
+              e)
+            ) {
+              for (let e = 0; e < this.hoverElsIntersections.length; e++)
+                this.hoverEls[e] = this.hoverElsIntersections[e].object.el;
+              this.hover();
+            }
+          };
+        })(),
+        onGrabStartButton: function(e) {
+          let t = this.state.get(this.GRAB_EVENT);
+          this.dispatchMouseEventAll("mousedown", this.el),
+            (this.gehClicking = new Set(this.hoverEls)),
+            t ||
+              ((t = this.findTarget(this.GRAB_EVENT, {
+                hand: this.el,
+                buttonEvent: e,
+              })) &&
+                (this.state.set(this.GRAB_EVENT, t), this._unHover(t)));
+        },
+        onGrabEndButton: function(e) {
+          const t = this.hoverEls.filter((e) => this.gehClicking.has(e)),
+            n = this.state.get(this.GRAB_EVENT),
+            r = { hand: this.el, buttonEvent: e };
+          this.dispatchMouseEventAll("mouseup", this.el);
+          for (let e = 0; e < t.length; e++)
+            this.dispatchMouseEvent(t[e], "click", this.el);
+          this.gehClicking.clear(),
+            n &&
+              !this.emitCancelable(n, this.UNGRAB_EVENT, r) &&
+              (this.promoteHoveredEl(this.state.get(this.GRAB_EVENT)),
+              this.state.delete(this.GRAB_EVENT),
+              this.hover());
+        },
+        onStretchStartButton: function(e) {
+          let t = this.state.get(this.STRETCH_EVENT);
+          t ||
+            ((t = this.findTarget(this.STRETCH_EVENT, {
+              hand: this.el,
+              buttonEvent: e,
+            })) &&
+              (this.state.set(this.STRETCH_EVENT, t), this._unHover(t)));
+        },
+        onStretchEndButton: function(e) {
+          const t = this.state.get(this.STRETCH_EVENT),
+            n = { hand: this.el, buttonEvent: e };
+          t &&
+            !this.emitCancelable(t, this.UNSTRETCH_EVENT, n) &&
+            (this.promoteHoveredEl(t),
+            this.state.delete(this.STRETCH_EVENT),
+            this.hover());
+        },
+        onDragDropStartButton: function(e) {
+          let t = this.state.get(this.DRAG_EVENT);
+          (this.dragging = !0),
+            this.hoverEls.length &&
+              ((this.gehDragged = new Set(this.hoverEls)),
+              this.dispatchMouseEventAll("dragstart", this.el)),
+            t ||
+              ((t =
+                this.state.get(this.GRAB_EVENT) &&
+                !this.emitCancelable(
+                  this.state.get(this.GRAB_EVENT),
+                  this.DRAG_EVENT,
+                  { hand: this.el, buttonEvent: e }
+                )
+                  ? this.state.get(this.GRAB_EVENT)
+                  : this.findTarget(this.DRAG_EVENT, {
+                      hand: this.el,
+                      buttonEvent: e,
+                    })) &&
+                (this.state.set(this.DRAG_EVENT, t), this._unHover(t)));
+        },
+        onDragDropEndButton: function(e) {
+          const t = this.state.get(this.DRAG_EVENT);
+          if (
+            ((this.dragging = !1),
+            this.gehDragged.forEach((e) => {
+              this.dispatchMouseEvent(e, "dragend", this.el),
+                this.dispatchMouseEventAll("drop", e, !0, !0),
+                this.dispatchMouseEventAll("dragleave", e, !0, !0);
+            }),
+            this.gehDragged.clear(),
+            t)
+          ) {
+            const n = { hand: this.el, dropped: t, on: null, buttonEvent: e },
+              r = { hand: this.el, buttonEvent: e },
+              i = this.findTarget(this.DRAGDROP_EVENT, n, !0);
+            i &&
+              ((n.on = i),
+              this.emitCancelable(t, this.DRAGDROP_EVENT, n),
+              this._unHover(i)),
+              this.emitCancelable(t, this.UNDRAG_EVENT, r) ||
+                (this.promoteHoveredEl(t),
+                this.state.delete(this.DRAG_EVENT),
+                this.hover());
+          }
+        },
+        processHitEl: function(e, t) {
+          const n = t && t.distance,
+            r = this.hoverElsIntersections,
+            i = this.hoverEls;
+          let o = !1;
+          if (-1 === this.hoverEls.indexOf(e)) {
+            if (((o = !0), null != n)) {
+              let o = 0;
+              for (; o < r.length && n < r[o].distance; ) o++;
+              i.splice(o, 0, e), r.splice(o, 0, t);
+            } else i.push(e), r.push({ object: { el: e } });
+            this.dispatchMouseEvent(e, "mouseover", this.el),
+              this.dragging &&
+                this.gehDragged.size &&
+                this.gehDragged.forEach((e) => {
+                  this.dispatchMouseEventAll("dragenter", e, !0, !0);
+                });
+          }
+          return o;
+        },
+        onHit: function(e) {
+          const t = e.detail[this.data.colliderEventProperty];
+          let n = 0;
+          if (t) {
+            if (Array.isArray(t))
+              for (let r, i = 0; i < t.length; i++)
+                (r = e.detail.intersections && e.detail.intersections[i]),
+                  (n += this.processHitEl(t[i], r));
+            else n += this.processHitEl(t, null);
+            n && this.hover();
+          }
+        },
+        hover: function() {
+          var e, t;
+          this.state.has(this.HOVER_EVENT) &&
+            this._unHover(this.state.get(this.HOVER_EVENT), !0),
+            this.state.has(this.DRAGOVER_EVENT) &&
+              this._unHover(this.state.get(this.DRAGOVER_EVENT), !0),
+            this.dragging &&
+              this.state.get(this.DRAG_EVENT) &&
+              ((e = {
+                hand: this.el,
+                hovered: t,
+                carried: this.state.get(this.DRAG_EVENT),
+              }),
+              (t = this.findTarget(this.DRAGOVER_EVENT, e, !0)) &&
+                (this.emitCancelable(
+                  this.state.get(this.DRAG_EVENT),
+                  this.DRAGOVER_EVENT,
+                  e
+                ),
+                this.state.set(this.DRAGOVER_EVENT, t))),
+            this.state.has(this.DRAGOVER_EVENT) ||
+              ((t = this.findTarget(this.HOVER_EVENT, { hand: this.el }, !0)) &&
+                this.state.set(this.HOVER_EVENT, t));
+        },
+        unHover: function(e) {
+          const t = e.detail[this.data.colliderEndEventProperty];
+          t &&
+            (Array.isArray(t)
+              ? t.forEach((e) => this._unHover(e))
+              : this._unHover(t));
+        },
+        _unHover: function(e, t) {
+          let n,
+            r = !1;
+          e === this.state.get(this.DRAGOVER_EVENT) &&
+            (this.state.delete(this.DRAGOVER_EVENT),
+            (r = !0),
+            (n = {
+              hand: this.el,
+              hovered: e,
+              carried: this.state.get(this.DRAG_EVENT),
+            }),
+            this.emitCancelable(e, this.UNDRAGOVER_EVENT, n),
+            this.state.has(this.DRAG_EVENT) &&
+              this.emitCancelable(
+                this.state.get(this.DRAG_EVENT),
+                this.UNDRAGOVER_EVENT,
+                n
+              )),
+            e === this.state.get(this.HOVER_EVENT) &&
+              (this.state.delete(this.HOVER_EVENT),
+              (r = !0),
+              this.emitCancelable(e, this.UNHOVER_EVENT, { hand: this.el })),
+            r && !t && this.hover();
+        },
+        unWatch: function(e) {
+          const t = e.detail[this.data.colliderEndEventProperty];
+          t &&
+            (Array.isArray(t)
+              ? t.forEach((e) => this._unWatch(e))
+              : this._unWatch(t));
+        },
+        _unWatch: function(e) {
+          var t = this.hoverEls.indexOf(e);
+          -1 !== t &&
+            (this.hoverEls.splice(t, 1),
+            this.hoverElsIntersections.splice(t, 1)),
+            this.gehDragged.forEach((t) => {
+              this.dispatchMouseEvent(e, "dragleave", t),
+                this.dispatchMouseEvent(t, "dragleave", e);
+            }),
+            this.dispatchMouseEvent(e, "mouseout", this.el);
+        },
+        registerListeners: function() {
+          this.el.addEventListener(this.data.colliderEvent, this.onHit),
+            this.el.addEventListener(this.data.colliderEndEvent, this.unWatch),
+            this.el.addEventListener(this.data.colliderEndEvent, this.unHover),
+            this.data.grabStartButtons.forEach((e) => {
+              this.el.addEventListener(e, this.onGrabStartButton);
+            }),
+            this.data.stretchStartButtons.forEach((e) => {
+              this.el.addEventListener(e, this.onStretchStartButton);
+            }),
+            this.data.dragDropStartButtons.forEach((e) => {
+              this.el.addEventListener(e, this.onDragDropStartButton);
+            }),
+            this.data.dragDropEndButtons.forEach((e) => {
+              this.el.addEventListener(e, this.onDragDropEndButton);
+            }),
+            this.data.stretchEndButtons.forEach((e) => {
+              this.el.addEventListener(e, this.onStretchEndButton);
+            }),
+            this.data.grabEndButtons.forEach((e) => {
+              this.el.addEventListener(e, this.onGrabEndButton);
+            });
+        },
+        unRegisterListeners: function(e) {
+          (e = e || this.data),
+            0 !== Object.keys(e).length &&
+              (this.el.removeEventListener(e.colliderEvent, this.onHit),
+              this.el.removeEventListener(e.colliderEndEvent, this.unHover),
+              this.el.removeEventListener(e.colliderEndEvent, this.unWatch),
+              e.grabStartButtons.forEach((e) => {
+                this.el.removeEventListener(e, this.onGrabStartButton);
+              }),
+              e.grabEndButtons.forEach((e) => {
+                this.el.removeEventListener(e, this.onGrabEndButton);
+              }),
+              e.stretchStartButtons.forEach((e) => {
+                this.el.removeEventListener(e, this.onStretchStartButton);
+              }),
+              e.stretchEndButtons.forEach((e) => {
+                this.el.removeEventListener(e, this.onStretchEndButton);
+              }),
+              e.dragDropStartButtons.forEach((e) => {
+                this.el.removeEventListener(e, this.onDragDropStartButton);
+              }),
+              e.dragDropEndButtons.forEach((e) => {
+                this.el.removeEventListener(e, this.onDragDropEndButton);
+              }));
+        },
+        emitCancelable: function(e, t, n) {
+          var r, i;
+          return (
+            ((r = {
+              bubbles: !0,
+              cancelable: !0,
+              detail: (n = n || {}),
+            }).detail.target = r.detail.target || e),
+            (i = new window.CustomEvent(t, r)),
+            e.dispatchEvent(i)
+          );
+        },
+        dispatchMouseEvent: function(e, t, n) {
+          var r = new window.MouseEvent(t, { relatedTarget: n });
+          e.dispatchEvent(r);
+        },
+        dispatchMouseEventAll: function(e, t, n, r) {
+          let i = this.hoverEls;
+          if (
+            (n &&
+              (i = i.filter(
+                (e) =>
+                  e !== this.state.get(this.GRAB_EVENT) &&
+                  e !== this.state.get(this.DRAG_EVENT) &&
+                  e !== this.state.get(this.STRETCH_EVENT) &&
+                  !this.gehDragged.has(e)
+              )),
+            r)
+          )
+            for (let n = 0; n < i.length; n++)
+              this.dispatchMouseEvent(i[n], e, t),
+                this.dispatchMouseEvent(t, e, i[n]);
+          else
+            for (let n = 0; n < i.length; n++)
+              this.dispatchMouseEvent(i[n], e, t);
+        },
+        findTarget: function(e, t, n) {
+          var r,
+            i = this.hoverEls;
+          for (
+            n &&
+              (i = i.filter(
+                (e) =>
+                  e !== this.state.get(this.GRAB_EVENT) &&
+                  e !== this.state.get(this.DRAG_EVENT) &&
+                  e !== this.state.get(this.STRETCH_EVENT)
+              )),
+              r = i.length - 1;
+            r >= 0;
+            r--
+          )
+            if (!this.emitCancelable(i[r], e, t)) return i[r];
+          return null;
+        },
+        promoteHoveredEl: function(e) {
+          var t = this.hoverEls.indexOf(e);
+          if (-1 !== t && null == this.hoverElsIntersections[t].distance) {
+            this.hoverEls.splice(t, 1);
+            const n = this.hoverElsIntersections.splice(t, 1);
+            this.hoverEls.push(e), this.hoverElsIntersections.push(n);
+          }
+        },
+      });
+  },
+  function(e, t) {
+    AFRAME.registerSystem("super-hands", {
+      init: function() {
+        this.superHands = [];
+      },
+      registerMe: function(e) {
+        1 === this.superHands.length &&
+          ((this.superHands[0].otherSuperHand = e),
+          (e.otherSuperHand = this.superHands[0])),
+          this.superHands.push(e);
+      },
+      unregisterMe: function(e) {
+        var t = this.superHands.indexOf(e);
+        -1 !== t && this.superHands.splice(t, 1),
+          this.superHands.forEach((t) => {
+            t.otherSuperHand === e && (t.otherSuperHand = null);
+          });
+      },
+    });
+  },
+  function(e, t) {
+    AFRAME.registerComponent("hoverable", {
+      init: function() {
+        (this.HOVERED_STATE = "hovered"),
+          (this.HOVER_EVENT = "hover-start"),
+          (this.UNHOVER_EVENT = "hover-end"),
+          (this.hoverers = []),
+          (this.start = this.start.bind(this)),
+          (this.end = this.end.bind(this)),
+          this.el.addEventListener(this.HOVER_EVENT, this.start),
+          this.el.addEventListener(this.UNHOVER_EVENT, this.end);
+      },
+      remove: function() {
+        this.el.removeEventListener(this.HOVER_EVENT, this.start),
+          this.el.removeEventListener(this.UNHOVER_EVENT, this.end);
+      },
+      start: function(e) {
+        e.defaultPrevented ||
+          (this.el.addState(this.HOVERED_STATE),
+          -1 === this.hoverers.indexOf(e.detail.hand) &&
+            this.hoverers.push(e.detail.hand),
+          e.preventDefault && e.preventDefault());
+      },
+      end: function(e) {
+        if (!e.defaultPrevented) {
+          var t = this.hoverers.indexOf(e.detail.hand);
+          -1 !== t && this.hoverers.splice(t, 1),
+            this.hoverers.length < 1 && this.el.removeState(this.HOVERED_STATE);
+        }
+      },
+    });
+  },
+  function(e, t, n) {
+    const r = AFRAME.utils.extendDeep,
+      i = r({}, n(20), n(2));
+    AFRAME.registerComponent(
+      "grabbable",
+      r(i, {
+        schema: {
+          maxGrabbers: { type: "int", default: NaN },
+          invert: { default: !1 },
+          suppressY: { default: !1 },
+        },
+        init: function() {
+          (this.GRABBED_STATE = "grabbed"),
+            (this.GRAB_EVENT = "grab-start"),
+            (this.UNGRAB_EVENT = "grab-end"),
+            (this.grabbed = !1),
+            (this.grabbers = []),
+            (this.constraints = new Map()),
+            (this.deltaPositionIsValid = !1),
+            (this.grabDistance = void 0),
+            (this.grabDirection = { x: 0, y: 0, z: -1 }),
+            (this.grabOffset = { x: 0, y: 0, z: 0 }),
+            (this.destPosition = { x: 0, y: 0, z: 0 }),
+            (this.deltaPosition = new THREE.Vector3()),
+            (this.targetPosition = new THREE.Vector3()),
+            this.physicsInit(),
+            this.el.addEventListener(this.GRAB_EVENT, (e) => this.start(e)),
+            this.el.addEventListener(this.UNGRAB_EVENT, (e) => this.end(e)),
+            this.el.addEventListener("mouseout", (e) => this.lostGrabber(e));
+        },
+        update: function() {
+          this.physicsUpdate(),
+            (this.xFactor = this.data.invert ? -1 : 1),
+            (this.zFactor = this.data.invert ? -1 : 1),
+            (this.yFactor = (this.data.invert ? -1 : 1) * !this.data.suppressY);
+        },
+        tick: function() {
+          var e;
+          this.grabber &&
+            (this.targetPosition.copy(this.grabDirection),
+            this.targetPosition
+              .applyQuaternion(this.grabber.object3D.getWorldQuaternion())
+              .setLength(this.grabDistance)
+              .add(this.grabber.object3D.getWorldPosition())
+              .add(this.grabOffset),
+            this.deltaPositionIsValid
+              ? (this.deltaPosition.sub(this.targetPosition),
+                (e = this.el.getAttribute("position")),
+                (this.destPosition.x =
+                  e.x - this.deltaPosition.x * this.xFactor),
+                (this.destPosition.y =
+                  e.y - this.deltaPosition.y * this.yFactor),
+                (this.destPosition.z =
+                  e.z - this.deltaPosition.z * this.zFactor),
+                this.el.setAttribute("position", this.destPosition))
+              : (this.deltaPositionIsValid = !0),
+            this.deltaPosition.copy(this.targetPosition));
+        },
+        remove: function() {
+          this.el.removeEventListener(this.GRAB_EVENT, this.start),
+            this.el.removeEventListener(this.UNGRAB_EVENT, this.end),
+            this.physicsRemove();
+        },
+        start: function(e) {
+          if (e.defaultPrevented || !this.startButtonOk(e)) return;
+          const t =
+            !Number.isFinite(this.data.maxGrabbers) ||
+            this.grabbers.length < this.data.maxGrabbers;
+          if (-1 === this.grabbers.indexOf(e.detail.hand) && t) {
+            if (!e.detail.hand.object3D)
+              return void console.warn(
+                "grabbable entities must have an object3D"
+              );
+            this.grabbers.push(e.detail.hand),
+              this.physicsStart(e) ||
+                this.grabber ||
+                ((this.grabber = e.detail.hand), this.resetGrabber()),
+              e.preventDefault && e.preventDefault(),
+              (this.grabbed = !0),
+              this.el.addState(this.GRABBED_STATE);
+          }
+        },
+        end: function(e) {
+          const t = this.grabbers.indexOf(e.detail.hand);
+          !e.defaultPrevented &&
+            this.endButtonOk(e) &&
+            (-1 !== t &&
+              (this.grabbers.splice(t, 1), (this.grabber = this.grabbers[0])),
+            this.physicsEnd(e),
+            this.resetGrabber() ||
+              ((this.grabbed = !1), this.el.removeState(this.GRABBED_STATE)),
+            e.preventDefault && e.preventDefault());
+        },
+        resetGrabber: function() {
+          let e;
+          return (
+            !!this.grabber &&
+            ((e = this.grabber.getAttribute("raycaster")),
+            (this.deltaPositionIsValid = !1),
+            (this.grabDistance = this.el.object3D
+              .getWorldPosition()
+              .distanceTo(this.grabber.object3D.getWorldPosition())),
+            e &&
+              ((this.grabDirection = e.direction),
+              (this.grabOffset = e.origin)),
+            !0)
+          );
+        },
+        lostGrabber: function(e) {
+          let t = this.grabbers.indexOf(e.relatedTarget);
+          -1 === t ||
+            e.relatedTarget === this.grabber ||
+            this.physicsIsConstrained(e.relatedTarget) ||
+            this.grabbers.splice(t, 1);
+        },
+      })
+    );
+  },
+  function(e, t) {
+    e.exports = {
+      schema: { usePhysics: { default: "ifavailable" } },
+      physicsInit: function() {
+        this.constraints = new Map();
+      },
+      physicsUpdate: function() {
+        "never" === this.data.usePhysics &&
+          this.constraints.size &&
+          this.physicsClear();
+      },
+      physicsRemove: function() {
+        this.physicsClear();
+      },
+      physicsStart: function(e) {
+        if (
+          "never" !== this.data.usePhysics &&
+          this.el.body &&
+          e.detail.hand.body &&
+          !this.constraints.has(e.detail.hand)
+        ) {
+          const t = Math.random()
+            .toString(36)
+            .substr(2, 9);
+          return (
+            this.el.setAttribute("constraint__" + t, { target: e.detail.hand }),
+            this.constraints.set(e.detail.hand, t),
+            !0
+          );
+        }
+        return "only" === this.data.usePhysics;
+      },
+      physicsEnd: function(e) {
+        let t = this.constraints.get(e.detail.hand);
+        t &&
+          (this.el.removeAttribute("constraint__" + t),
+          this.constraints.delete(e.detail.hand));
+      },
+      physicsClear: function() {
+        if (this.el.body)
+          for (let e of this.constraints.values())
+            this.el.body.world.removeConstraint(e);
+        this.constraints.clear();
+      },
+      physicsIsConstrained: function(e) {
+        return this.constraints.has(e);
+      },
+      physicsIsGrabbing() {
+        return this.constraints.size > 0;
+      },
+    };
+  },
+  function(e, t, n) {
+    const r = AFRAME.utils.extendDeep,
+      i = r({}, n(2));
+    AFRAME.registerComponent(
+      "stretchable",
+      r(i, {
+        schema: {
+          usePhysics: { default: "ifavailable" },
+          invert: { default: !1 },
+          physicsUpdateRate: { default: 100 },
+        },
+        init: function() {
+          (this.STRETCHED_STATE = "stretched"),
+            (this.STRETCH_EVENT = "stretch-start"),
+            (this.UNSTRETCH_EVENT = "stretch-end"),
+            (this.stretched = !1),
+            (this.stretchers = []),
+            (this.scale = new THREE.Vector3()),
+            (this.handPos = new THREE.Vector3()),
+            (this.otherHandPos = new THREE.Vector3()),
+            (this.start = this.start.bind(this)),
+            (this.end = this.end.bind(this)),
+            this.el.addEventListener(this.STRETCH_EVENT, this.start),
+            this.el.addEventListener(this.UNSTRETCH_EVENT, this.end);
+        },
+        update: function(e) {
+          this.updateBodies = AFRAME.utils.throttleTick(
+            this._updateBodies,
+            this.data.physicsUpdateRate,
+            this
+          );
+        },
+        tick: function(e, t) {
+          if (!this.stretched) return;
+          this.scale.copy(this.el.getAttribute("scale")),
+            this.handPos.copy(this.stretchers[0].getAttribute("position")),
+            this.otherHandPos.copy(this.stretchers[1].getAttribute("position"));
+          const n = this.handPos.distanceTo(this.otherHandPos);
+          let r = 1;
+          null !== this.previousStretch &&
+            0 !== n &&
+            (r = Math.pow(n / this.previousStretch, this.data.invert ? -1 : 1)),
+            (this.previousStretch = n),
+            null == this.previousPhysicsStretch &&
+              (this.previousPhysicsStretch = n),
+            this.scale.multiplyScalar(r),
+            this.el.setAttribute("scale", this.scale),
+            this.updateBodies(e, t);
+        },
+        remove: function() {
+          this.el.removeEventListener(this.STRETCH_EVENT, this.start),
+            this.el.removeEventListener(this.UNSTRETCH_EVENT, this.end);
+        },
+        start: function(e) {
+          this.stretched ||
+            this.stretchers.includes(e.detail.hand) ||
+            !this.startButtonOk(e) ||
+            e.defaultPrevented ||
+            (this.stretchers.push(e.detail.hand),
+            2 === this.stretchers.length &&
+              ((this.stretched = !0),
+              (this.previousStretch = null),
+              (this.previousPhysicsStretch = null),
+              this.el.addState(this.STRETCHED_STATE)),
+            e.preventDefault && e.preventDefault());
+        },
+        end: function(e) {
+          var t = this.stretchers.indexOf(e.detail.hand);
+          !e.defaultPrevented &&
+            this.endButtonOk(e) &&
+            (-1 !== t &&
+              (this.stretchers.splice(t, 1),
+              (this.stretched = !1),
+              this.el.removeState(this.STRETCHED_STATE),
+              this._updateBodies()),
+            e.preventDefault && e.preventDefault());
+        },
+        _updateBodies: function() {
+          if (!this.el.body || "never" === this.data.usePhysics) return;
+          const e = this.previousStretch;
+          let t = 1;
+          if (
+            (null !== this.previousPhysicsStretch &&
+              e > 0 &&
+              (t = Math.pow(
+                e / this.previousPhysicsStretch,
+                this.data.invert ? -1 : 1
+              )),
+            (this.previousPhysicsStretch = e),
+            1 !== t)
+          ) {
+            for (let e of this.el.childNodes) this.stretchBody(e, t);
+            this.stretchBody(this.el, t);
+          }
+        },
+        stretchBody: function(e, t) {
+          if (!e.body) return;
+          let n, r;
+          for (let i = 0; i < e.body.shapes.length; i++)
+            (n = e.body.shapes[i]).halfExtents
+              ? (n.halfExtents.scale(t, n.halfExtents),
+                n.updateConvexPolyhedronRepresentation())
+              : n.radius
+              ? ((n.radius *= t), n.updateBoundingSphereRadius())
+              : this.shapeWarned ||
+                (console.warn(
+                  "Unable to stretch physics body: unsupported shape"
+                ),
+                (this.shapeWarned = !0)),
+              (r = e.body.shapeOffsets[i]).scale(t, r);
+          e.body.updateBoundingRadius();
+        },
+      })
+    );
+  },
+  function(e, t, n) {
+    const r = AFRAME.utils.extendDeep,
+      i = n(2);
+    AFRAME.registerComponent(
+      "drag-droppable",
+      r({}, i, {
+        init: function() {
+          console.warn(
+            "Warning: drag-droppable is deprecated. Use draggable and droppable components instead"
+          ),
+            (this.HOVERED_STATE = "dragover"),
+            (this.DRAGGED_STATE = "dragged"),
+            (this.HOVER_EVENT = "dragover-start"),
+            (this.UNHOVER_EVENT = "dragover-end"),
+            (this.DRAG_EVENT = "drag-start"),
+            (this.UNDRAG_EVENT = "drag-end"),
+            (this.DRAGDROP_EVENT = "drag-drop"),
+            (this.hoverStart = this.hoverStart.bind(this)),
+            (this.dragStart = this.dragStart.bind(this)),
+            (this.hoverEnd = this.hoverEnd.bind(this)),
+            (this.dragEnd = this.dragEnd.bind(this)),
+            (this.dragDrop = this.dragDrop.bind(this)),
+            this.el.addEventListener(this.HOVER_EVENT, this.hoverStart),
+            this.el.addEventListener(this.DRAG_EVENT, this.dragStart),
+            this.el.addEventListener(this.UNHOVER_EVENT, this.hoverEnd),
+            this.el.addEventListener(this.UNDRAG_EVENT, this.dragEnd),
+            this.el.addEventListener(this.DRAGDROP_EVENT, this.dragDrop);
+        },
+        remove: function() {
+          this.el.removeEventListener(this.HOVER_EVENT, this.hoverStart),
+            this.el.removeEventListener(this.DRAG_EVENT, this.dragStart),
+            this.el.removeEventListener(this.UNHOVER_EVENT, this.hoverEnd),
+            this.el.removeEventListener(this.UNDRAG_EVENT, this.dragEnd),
+            this.el.removeEventListener(this.DRAGDROP_EVENT, this.dragDrop);
+        },
+        hoverStart: function(e) {
+          this.el.addState(this.HOVERED_STATE),
+            e.preventDefault && e.preventDefault();
+        },
+        dragStart: function(e) {
+          this.startButtonOk(e) &&
+            (this.el.addState(this.DRAGGED_STATE),
+            e.preventDefault && e.preventDefault());
+        },
+        hoverEnd: function(e) {
+          this.el.removeState(this.HOVERED_STATE);
+        },
+        dragEnd: function(e) {
+          this.endButtonOk(e) &&
+            (this.el.removeState(this.DRAGGED_STATE),
+            e.preventDefault && e.preventDefault());
+        },
+        dragDrop: function(e) {
+          this.endButtonOk(e) && e.preventDefault && e.preventDefault();
+        },
+      })
+    );
+  },
+  function(e, t, n) {
+    const r = AFRAME.utils.extendDeep,
+      i = n(2);
+    AFRAME.registerComponent(
+      "draggable",
+      r({}, i, {
+        init: function() {
+          (this.DRAGGED_STATE = "dragged"),
+            (this.DRAG_EVENT = "drag-start"),
+            (this.UNDRAG_EVENT = "drag-end"),
+            (this.dragStartBound = this.dragStart.bind(this)),
+            (this.dragEndBound = this.dragEnd.bind(this)),
+            this.el.addEventListener(this.DRAG_EVENT, this.dragStartBound),
+            this.el.addEventListener(this.UNDRAG_EVENT, this.dragEndBound);
+        },
+        remove: function() {
+          this.el.removeEventListener(this.DRAG_EVENT, this.dragStart),
+            this.el.removeEventListener(this.UNDRAG_EVENT, this.dragEnd);
+        },
+        dragStart: function(e) {
+          !e.defaultPrevented &&
+            this.startButtonOk(e) &&
+            (this.el.addState(this.DRAGGED_STATE),
+            e.preventDefault && e.preventDefault());
+        },
+        dragEnd: function(e) {
+          !e.defaultPrevented &&
+            this.endButtonOk(e) &&
+            (this.el.removeState(this.DRAGGED_STATE),
+            e.preventDefault && e.preventDefault());
+        },
+      })
+    );
+  },
+  function(e, t) {
+    AFRAME.registerComponent("droppable", {
+      schema: {
+        accepts: { default: "" },
+        autoUpdate: { default: !0 },
+        acceptEvent: { default: "" },
+        rejectEvent: { default: "" },
+      },
+      multiple: !0,
+      init: function() {
+        (this.HOVERED_STATE = "dragover"),
+          (this.HOVER_EVENT = "dragover-start"),
+          (this.UNHOVER_EVENT = "dragover-end"),
+          (this.DRAGDROP_EVENT = "drag-drop"),
+          (this.hoverStartBound = this.hoverStart.bind(this)),
+          (this.hoverEndBound = this.hoverEnd.bind(this)),
+          (this.dragDropBound = this.dragDrop.bind(this)),
+          (this.mutateAcceptsBound = this.mutateAccepts.bind(this)),
+          (this.acceptableEntities = []),
+          (this.observer = new window.MutationObserver(
+            this.mutateAcceptsBound
+          )),
+          (this.observerOpts = { childList: !0, subtree: !0 }),
+          this.el.addEventListener(this.HOVER_EVENT, this.hoverStartBound),
+          this.el.addEventListener(this.UNHOVER_EVENT, this.hoverEndBound),
+          this.el.addEventListener(this.DRAGDROP_EVENT, this.dragDropBound);
+      },
+      update: function() {
+        this.data.accepts.length
+          ? (this.acceptableEntities = Array.prototype.slice.call(
+              this.el.sceneEl.querySelectorAll(this.data.accepts)
+            ))
+          : (this.acceptableEntities = null),
+          this.data.autoUpdate && null != this.acceptableEntities
+            ? this.observer.observe(this.el.sceneEl, this.observerOpts)
+            : this.observer.disconnect();
+      },
+      remove: function() {
+        this.el.removeEventListener(this.HOVER_EVENT, this.hoverStartBound),
+          this.el.removeEventListener(this.UNHOVER_EVENT, this.hoverEndBound),
+          this.el.removeEventListener(this.DRAGDROP_EVENT, this.dragDropBound),
+          this.observer.disconnect();
+      },
+      mutateAccepts: function(e) {
+        const t = this.data.accepts;
+        e.forEach((e) => {
+          e.addedNodes.forEach((e) => {
+            (function(e, t) {
+              return e.matches
+                ? e.matches(t)
+                : e.msMatchesSelector
+                ? e.msMatchesSelector(t)
+                : e.webkitMatchesSelector
+                ? e.webkitMatchesSelector(t)
+                : void 0;
+            })(e, t) && this.acceptableEntities.push(e);
+          });
+        });
+      },
+      entityAcceptable: function(e) {
+        const t = this.acceptableEntities;
+        if (null == t) return !0;
+        for (let n of t) if (n === e) return !0;
+        return !1;
+      },
+      hoverStart: function(e) {
+        !e.defaultPrevented &&
+          this.entityAcceptable(e.detail.carried) &&
+          (this.el.addState(this.HOVERED_STATE),
+          e.preventDefault && e.preventDefault());
+      },
+      hoverEnd: function(e) {
+        e.defaultPrevented || this.el.removeState(this.HOVERED_STATE);
+      },
+      dragDrop: function(e) {
+        if (e.defaultPrevented) return;
+        const t = e.detail.dropped;
+        this.entityAcceptable(t)
+          ? (this.data.acceptEvent.length &&
+              this.el.emit(this.data.acceptEvent, { el: t }),
+            e.preventDefault && e.preventDefault())
+          : this.data.rejectEvent.length &&
+            this.el.emit(this.data.rejectEvent, { el: t });
+      },
+    });
+  },
+  function(e, t, n) {
+    const r = n(2);
+    AFRAME.registerComponent(
+      "clickable",
+      AFRAME.utils.extendDeep({}, r, {
+        schema: { onclick: { type: "string" } },
+        init: function() {
+          (this.CLICKED_STATE = "clicked"),
+            (this.CLICK_EVENT = "grab-start"),
+            (this.UNCLICK_EVENT = "grab-end"),
+            (this.clickers = []),
+            (this.start = this.start.bind(this)),
+            (this.end = this.end.bind(this)),
+            this.el.addEventListener(this.CLICK_EVENT, this.start),
+            this.el.addEventListener(this.UNCLICK_EVENT, this.end);
+        },
+        remove: function() {
+          this.el.removeEventListener(this.CLICK_EVENT, this.start),
+            this.el.removeEventListener(this.UNCLICK_EVENT, this.end);
+        },
+        start: function(e) {
+          !e.defaultPrevented &&
+            this.startButtonOk(e) &&
+            (this.el.addState(this.CLICKED_STATE),
+            -1 === this.clickers.indexOf(e.detail.hand) &&
+              (this.clickers.push(e.detail.hand),
+              e.preventDefault && e.preventDefault()));
+        },
+        end: function(e) {
+          const t = this.clickers.indexOf(e.detail.hand);
+          !e.defaultPrevented &&
+            this.endButtonOk(e) &&
+            (-1 !== t && this.clickers.splice(t, 1),
+            this.clickers.length < 1 && this.el.removeState(this.CLICKED_STATE),
+            e.preventDefault && e.preventDefault());
+        },
+      })
+    );
+  },
+  function(e, t, n) {
     "use strict";
     n.r(t);
     var r = n(0),
       i = n.n(r),
-      o = n(6),
+      o = n(7),
       a = n.n(o),
-      s = (n(4), n(5), n(1));
+      s = (n(5), n(6), n(1));
     function l(e) {
       return (l =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
@@ -66452,6 +67533,7 @@ object-assign
         t
       );
     })();
+    n(16);
     function f(e) {
       return (f =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
@@ -66533,7 +67615,7 @@ object-assign
         e
       );
     }
-    var w = (function(e) {
+    var E = (function(e) {
       function t(e) {
         var n, r, i;
         return (
@@ -66582,6 +67664,10 @@ object-assign
               return i.a.createElement(
                 s.Scene,
                 { cursor: "rayOrigin: mouse" },
+                i.a.createElement("a-entity", {
+                  "daydream-controls": !0,
+                  "daydream-listener": !0,
+                }),
                 i.a.createElement(
                   s.Entity,
                   { primitive: "a-assets" },
@@ -66629,6 +67715,6 @@ object-assign
         t
       );
     })();
-    a.a.render(i.a.createElement(w, null), document.getElementById("root"));
+    a.a.render(i.a.createElement(E, null), document.getElementById("root"));
   },
 ]);

@@ -39,11 +39,6 @@ class App extends React.Component {
         <Entity primitive="a-assets">
           <img id="petraglyph" src="../assets/petraglyph.png" />
           <img id="sky" src="../assets/pefo.jpg" />
-          {/* <video id="video" style="display:none" 
-               autoplay loop crossorigin="anonymous" playsinline webkit-playsinline>
-          <source type="video/mp4"
-               src="https://ucarecdn.com/fadab25d-0b3a-45f7-8ef5-85318e92a261/" />
-        </video> */}
         </Entity>
         <Entity
           events={{ click: this.handleClick }}
